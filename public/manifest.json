@@ -1,0 +1,17 @@
+{
+  "name": "Dottssa Irene Maria Beconi - Odontoiatria e Medicina Estetica",
+  "short_name": "Dr. Beconi",
+  "description": "Specialista in odontoiatria e medicina estetica del volto a Pistoia",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F5F1E8",
+  "theme_color": "#1B8489",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "any",
+      "type": "image/x-icon"
+    }
+  ]
+}

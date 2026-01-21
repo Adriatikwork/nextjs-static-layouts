@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  # Production build
+  prod:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8924:3000"
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+
+  # Development with hot reload
+  dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "8925:3000"
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/.next
+    restart: unless-stopped
