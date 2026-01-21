@@ -1,4 +1,7 @@
 /** @type {import('next').NextConfig} */
+const isProd = process.env.NODE_ENV === 'production'
+const repoName = 'nextjs-static-layouts'
+
 const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
@@ -11,8 +14,9 @@ const nextConfig = {
   },
   output: 'export',
   trailingSlash: true,
-  basePath: '',
-  assetPrefix: '',
+  // Use basePath for GitHub Pages subdirectory deployment
+  basePath: isProd ? `/${repoName}` : '',
+  assetPrefix: isProd ? `/${repoName}/` : '',
 }
 
 export default nextConfig
