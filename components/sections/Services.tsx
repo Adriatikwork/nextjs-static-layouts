@@ -30,55 +30,60 @@ export function Services() {
   ]
 
   return (
-    <section id="servizi" className="bg-white section-padding">
+    <section id="servizi" className="bg-white section-padding relative">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
-          {/* Section Header */}
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-darkText mb-4">
+          {/* Section Header - Classical Style */}
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-brand-gold mb-6" style={{ fontFamily: "'Cinzel', serif", letterSpacing: '0.12em' }}>
               {t.services.title}
             </h2>
             <div className="gold-divider"></div>
-            <p className="text-lg text-gray-600 mt-6 max-w-2xl mx-auto">
+            <p className="text-lg text-brand-dark-text mt-8 max-w-2xl mx-auto leading-relaxed" style={{ fontFamily: "'Montserrat', sans-serif" }}>
               {t.services.subtitle}
             </p>
           </div>
 
-          {/* Service Cards */}
+          {/* Service Cards - Elegant Grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {services.map((service, index) => {
               const Icon = service.icon
               return (
                 <Card
                   key={index}
-                  className={`card-hover border-2 hover:border-teal/30 transition-all stagger-${index + 1} animate-fade-in-up`}
+                  className={`card-hover border border-brand-gold/20 hover:border-brand-gold/50 transition-all duration-500 stagger-${index + 1} animate-fade-in-up bg-white shadow-elegant hover:shadow-elegant-lg`}
                 >
-                  <CardHeader>
-                    <div className="w-16 h-16 rounded-full bg-teal/10 flex items-center justify-center mb-4">
-                      <Icon className="w-8 h-8 text-teal" />
+                  <CardHeader className="text-center pb-4">
+                    {/* Icon with elegant background */}
+                    <div className="w-20 h-20 rounded-full bg-gradient-to-br from-brand-teal/10 to-brand-gold/10 flex items-center justify-center mb-6 mx-auto border-2 border-brand-gold/20 shadow-sm">
+                      <Icon className="w-10 h-10 text-brand-teal" strokeWidth={1.5} />
                     </div>
-                    <CardTitle className="text-2xl text-darkText">{service.title}</CardTitle>
+                    <CardTitle className="text-2xl text-brand-gold" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 600, letterSpacing: '0.05em' }}>
+                      {service.title}
+                    </CardTitle>
                   </CardHeader>
-                  <CardContent className="space-y-4">
-                    <CardDescription className="text-base text-gray-600 leading-relaxed">
+                  <CardContent className="space-y-6">
+                    <CardDescription className="text-base text-brand-dark-text leading-relaxed text-center" style={{ fontFamily: "'Montserrat', sans-serif" }}>
                       {service.description}
                     </CardDescription>
                     
-                    {/* Features List */}
-                    <div className="pt-4 border-t border-gold/20">
-                      <ul className="space-y-2">
+                    {/* Features List with elegant styling */}
+                    <div className="pt-6 border-t border-brand-gold/20">
+                      <ul className="space-y-3">
                         {service.features.map((feature, idx) => (
-                          <li key={idx} className="text-sm text-gray-600 flex items-center gap-2">
-                            <span className="w-1.5 h-1.5 rounded-full bg-gold"></span>
-                            {feature}
+                          <li key={idx} className="text-sm text-brand-dark-text flex items-center gap-3 group" style={{ fontFamily: "'Montserrat', sans-serif" }}>
+                            <span className="w-2 h-2 rounded-full bg-brand-gold group-hover:scale-125 transition-transform flex-shrink-0"></span>
+                            <span className="leading-relaxed">{feature}</span>
                           </li>
                         ))}
                       </ul>
                     </div>
 
+                    {/* CTA Button */}
                     <Button
                       variant="outline"
-                      className="w-full mt-4 border-teal text-teal hover:bg-teal hover:text-white"
+                      className="w-full mt-6 border-2 border-brand-teal text-brand-teal hover:bg-brand-teal hover:text-white transition-all duration-300 shadow-sm hover:shadow-md"
+                      style={{ fontFamily: "'Montserrat', sans-serif", letterSpacing: '0.08em', fontWeight: 500 }}
                       onClick={() => {
                         const element = document.getElementById('contatti')
                         element?.scrollIntoView({ behavior: 'smooth' })
