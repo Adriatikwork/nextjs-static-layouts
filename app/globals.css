@@ -50,6 +50,9 @@
     /* Cream/Beige panel */
     --brand-cream: #E6DED9;
     --brand-cream-dark: #D9CFC8;
+    
+    /* Asset paths for CSS (set by JS based on environment) */
+    --texture-fresh-snow: url('/fresh_snow.png');
   }
 
   .dark {
@@ -85,7 +88,7 @@
     font-weight: 400;
     letter-spacing: 0.01em;
     background-color: var(--brand-cream);
-    background-image: url('/fresh_snow.png');
+    background-image: var(--texture-fresh-snow);
     background-repeat: repeat;
     background-attachment: fixed;
   }
@@ -180,7 +183,7 @@ section[id] {
   bottom: 0;
   z-index: 2;
   pointer-events: none;
-  background-image: url('/fresh_snow.png');
+  background-image: var(--texture-fresh-snow);
   background-repeat: repeat;
   background-size: 400px 400px; /* Even larger for better visibility */
   /* Using overlay at 0.65 opacity - slightly darker and more prominent */

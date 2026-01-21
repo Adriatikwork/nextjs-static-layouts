@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Inter, Playfair_Display } from 'next/font/google'
 import './globals.css'
 import { LanguageProvider } from '@/lib/LanguageContext'
+import { AssetPathProvider } from '@/components/AssetPathProvider'
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -113,6 +114,7 @@ export default function RootLayout({
         />
       </head>
       <body className={`${inter.className} antialiased`}>
+        <AssetPathProvider />
         <LanguageProvider>
           {children}
         </LanguageProvider>
