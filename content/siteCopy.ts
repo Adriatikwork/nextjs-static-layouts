@@ -53,6 +53,7 @@ export const content = {
     approach: {
       title: "Il Mio Approccio",
       subtitle: "Valori che guidano la mia pratica medica",
+      quote: "La vera bellezza nasce dall'armonia tra salute, benessere e naturalezza.",
       items: [
         {
           title: "Cura del Paziente",
@@ -84,21 +85,24 @@ export const content = {
         phone: "+39 XXX XXX XXXX",
         email: "info@dottoressairenebeconi.it",
         address: "Via Example, 123 - 51100 Pistoia (PT)",
+        hours: "Orari di Apertura",
       },
       form: {
+        title: "Invia un Messaggio",
         name: "Nome e Cognome",
         email: "Email",
         message: "Messaggio",
-        submit: "Invia",
+        send: "Invia",
         success: "Messaggio inviato con successo!",
         error: "Errore nell'invio. Riprova più tardi.",
       },
     },
-    ctaBand: {
+    cta: {
       title: "Prenota il tuo appuntamento",
       subtitle: "Inizia il tuo percorso verso il benessere. Contattami per una consulenza personalizzata.",
-      ctaPrimary: "Prenota ora",
-      ctaSecondary: "Contattami",
+      primary: "Prenota ora",
+      secondary: "Contattami",
+      note: "Rispondiamo entro 24 ore",
     },
     footer: {
       name: "Dottssa Irene Maria Beconi",
@@ -166,6 +170,7 @@ export const content = {
     approach: {
       title: "My Approach",
       subtitle: "Values that guide my medical practice",
+      quote: "True beauty is born from the harmony between health, wellness, and naturalness.",
       items: [
         {
           title: "Patient Care",
@@ -197,21 +202,24 @@ export const content = {
         phone: "+39 XXX XXX XXXX",
         email: "info@dottoressairenebeconi.it",
         address: "Via Example, 123 - 51100 Pistoia (PT)",
+        hours: "Opening Hours",
       },
       form: {
+        title: "Send a Message",
         name: "Full Name",
         email: "Email",
         message: "Message",
-        submit: "Send",
+        send: "Send",
         success: "Message sent successfully!",
         error: "Error sending. Please try again later.",
       },
     },
-    ctaBand: {
+    cta: {
       title: "Book your appointment",
       subtitle: "Start your journey to wellness. Contact me for a personalized consultation.",
-      ctaPrimary: "Book now",
-      ctaSecondary: "Contact me",
+      primary: "Book now",
+      secondary: "Contact me",
+      note: "We respond within 24 hours",
     },
     footer: {
       name: "Dr. Irene Maria Beconi",
