@@ -1,6 +1,7 @@
 "use client"
 
 import { useLanguage } from '@/lib/LanguageContext'
+import { assetPath } from '@/lib/utils'
 import { CheckCircle } from 'lucide-react'
 import Image from 'next/image'
 
@@ -61,7 +62,7 @@ export function About() {
                       {/* Logo as placeholder */}
                       <div className="mb-4 opacity-30">
                         <Image 
-                          src="/logo.svg" 
+                          src={assetPath("/logo.svg")} 
                           alt="" 
                           width={120} 
                           height={120}

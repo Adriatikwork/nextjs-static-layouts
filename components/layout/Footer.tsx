@@ -1,6 +1,7 @@
 "use client"
 
 import { useLanguage } from '@/lib/LanguageContext'
+import { assetPath } from '@/lib/utils'
 import { MapPin, Phone, Mail } from 'lucide-react'
 import Image from 'next/image'
 
@@ -25,7 +26,7 @@ export function Footer() {
       {/* Decorative logo */}
       <div className="absolute bottom-10 right-10 opacity-5 pointer-events-none hidden lg:block">
         <Image 
-          src="/logo.svg" 
+          src={assetPath("/logo.svg")}
           alt="" 
           width={200} 
           height={200}
@@ -38,7 +39,7 @@ export function Footer() {
           <div>
             <div className="flex items-center gap-3 mb-6">
               <Image 
-                src="/logo.svg" 
+                src={assetPath("/logo.svg")} 
                 alt="Logo" 
                 width={48} 
                 height={48}

@@ -1,6 +1,7 @@
 "use client"
 
 import { useLanguage } from '@/lib/LanguageContext'
+import { assetPath } from '@/lib/utils'
 import { Image as ImageIcon } from 'lucide-react'
 import Image from 'next/image'
 
@@ -40,7 +41,7 @@ export function Gallery() {
                     {/* Logo as placeholder */}
                     <div className="mb-3 opacity-20 group-hover:opacity-30 transition-opacity">
                       <Image 
-                        src="/logo.svg" 
+                        src={assetPath("/logo.svg")} 
                         alt="" 
                         width={80} 
                         height={80}

@@ -2,6 +2,7 @@
 
 import { Button } from '@/components/ui/button'
 import { useLanguage } from '@/lib/LanguageContext'
+import { assetPath } from '@/lib/utils'
 import { Calendar, MessageCircle } from 'lucide-react'
 import Image from 'next/image'
 
@@ -23,7 +24,7 @@ export function CtaBand() {
       {/* Decorative background elements */}
       <div className="absolute top-10 right-10 opacity-10 pointer-events-none hidden lg:block">
         <Image 
-          src="/logo.svg" 
+          src={assetPath("/logo.svg")} 
           alt="" 
           width={250} 
           height={250}
@@ -33,7 +34,7 @@ export function CtaBand() {
       
       <div className="absolute bottom-10 left-10 opacity-10 pointer-events-none hidden lg:block">
         <Image 
-          src="/logo.svg" 
+          src={assetPath("/logo.svg")} 
           alt="" 
           width={200} 
           height={200}

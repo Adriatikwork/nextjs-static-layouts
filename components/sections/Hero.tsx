@@ -2,6 +2,7 @@
 
 import { Button } from '@/components/ui/button'
 import { useLanguage } from '@/lib/LanguageContext'
+import { assetPath } from '@/lib/utils'
 import { MapPin } from 'lucide-react'
 import Image from 'next/image'
 
@@ -23,7 +24,7 @@ export function Hero() {
       {/* Decorative logo - large background */}
       <div className="absolute top-10 right-10 opacity-10 pointer-events-none hidden lg:block">
         <Image 
-          src="/logo.svg" 
+          src={assetPath("/logo.svg")}
           alt="Decorative logo" 
           width={300} 
           height={300}
@@ -95,7 +96,7 @@ export function Hero() {
               {/* Small logo accent */}
               <div className="absolute top-0 left-0 opacity-20 z-10">
                 <Image 
-                  src="/logo.svg" 
+                  src={assetPath("/logo.svg")}
                   alt="" 
                   width={80} 
                   height={80}
@@ -105,7 +106,7 @@ export function Hero() {
               {/* Portrait Image with elegant frame */}
               <div className="relative w-full h-full rounded-lg overflow-hidden shadow-elegant-lg border-4 border-white/20 backdrop-blur-sm">
                 <Image
-                  src="/doctor_no_background.png"
+                  src={assetPath("/doctor_no_background.png")}
                   alt={t.hero.name}
                   fill
                   className="object-cover"

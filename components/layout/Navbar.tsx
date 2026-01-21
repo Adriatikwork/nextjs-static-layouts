@@ -5,6 +5,7 @@ import { Menu, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { LanguageToggle } from '@/components/LanguageToggle'
 import { useLanguage } from '@/lib/LanguageContext'
+import { assetPath } from '@/lib/utils'
 import Image from 'next/image'
 
 export function Navbar() {
@@ -61,7 +62,7 @@ export function Navbar() {
             {/* Line Art Logo */}
             <div className="w-12 h-12 flex items-center justify-center transition-transform group-hover:scale-110">
               <Image 
-                src="/logo.svg" 
+                src={assetPath("/logo.svg")}
                 alt="Logo" 
                 width={48} 
                 height={48}
