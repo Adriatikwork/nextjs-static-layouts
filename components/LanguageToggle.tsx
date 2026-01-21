@@ -13,11 +13,7 @@ export function LanguageToggle({ isScrolled = false }: LanguageToggleProps) {
   return (
     <button
       onClick={() => setLanguage(language === 'it' ? 'en' : 'it')}
-      className={`flex items-center gap-2 px-3 py-2 rounded-md transition-all duration-300 ${
-        isScrolled 
-          ? 'hover:bg-brand-teal/10 text-brand-dark-text' 
-          : 'hover:bg-white/10 text-white'
-      }`}
+      className="flex items-center gap-2 px-3 py-2 rounded-md transition-all duration-300 hover:bg-white/10 text-white"
       aria-label="Toggle language"
       style={{ fontFamily: "'Montserrat', sans-serif" }}
     >

@@ -55,22 +55,18 @@ export function About() {
                 <div className="absolute -top-6 -left-6 w-full h-full border-2 border-brand-gold/30 rounded-lg"></div>
                 <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-brand-gold/10 rounded-full blur-2xl"></div>
                 
-                {/* Image placeholder with elegant styling */}
+                {/* Doctor image */}
                 <div className="relative w-full h-full rounded-lg overflow-hidden bg-white shadow-elegant-lg border border-brand-gold/20">
-                  <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-brand-teal/5 via-brand-cream/50 to-brand-gold/5">
-                    <div className="text-center">
-                      {/* Logo as placeholder */}
-                      <div className="mb-4 opacity-30">
-                        <Image 
-                          src={assetPath("/logo.svg")} 
-                          alt="" 
-                          width={120} 
-                          height={120}
-                        />
-                      </div>
-                      <p className="text-brand-gold/60 text-sm tracking-wider" style={{ fontFamily: "'Montserrat', sans-serif" }}>About Photo</p>
-                    </div>
-                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-br from-brand-teal/5 via-brand-cream/60 to-brand-gold/10" />
+                  <Image
+                    src={assetPath("/doctor_no_background.png")}
+                    alt={t.hero.name}
+                    fill
+                    priority
+                    sizes="(max-width: 1024px) 92vw, 520px"
+                    className="object-contain object-bottom"
+                    style={{ filter: "drop-shadow(-22px 14px 40px rgba(0,0,0,0.18))" }}
+                  />
                 </div>
 
                 {/* Corner decorations */}

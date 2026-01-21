@@ -51,20 +51,39 @@ const config: Config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        // Medical website custom colors
+        // ===== TARGET COLOR PALETTE =====
+        // Blue-teal (richer, more blue than green)
+        'brand-teal': {
+          DEFAULT: "#3A7884",
+          light: "#44808B",
+          dark: "#2D6974",
+        },
+        // Gold/Champagne accent
+        'brand-gold': {
+          DEFAULT: "#C09B83",
+          light: "#D4B19A",
+          dark: "#A8856D",
+        },
+        // Cream/Beige panel
+        'brand-cream': {
+          DEFAULT: "#E6DED9",
+          dark: "#D9CFC8",
+        },
+        'brand-dark-text': "#1F2A33",
+        // Legacy aliases for backwards compatibility
         teal: {
-          DEFAULT: "#1B8489",
-          dark: "#156266",
-          light: "#2A9BA0",
+          DEFAULT: "#3A7884",
+          dark: "#2D6974",
+          light: "#44808B",
         },
         cream: {
-          DEFAULT: "#F5F1E8",
-          dark: "#EBE5D8",
+          DEFAULT: "#E6DED9",
+          dark: "#D9CFC8",
         },
         gold: {
-          DEFAULT: "#C9A46A",
-          dark: "#B08F54",
-          light: "#D4B17E",
+          DEFAULT: "#C09B83",
+          dark: "#A8856D",
+          light: "#D4B19A",
         },
         darkText: "#1F2A33",
       },

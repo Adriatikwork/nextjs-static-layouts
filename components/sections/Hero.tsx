@@ -1,9 +1,7 @@
 "use client"
 
-import { Button } from '@/components/ui/button'
 import { useLanguage } from '@/lib/LanguageContext'
 import { assetPath } from '@/lib/utils'
-import { MapPin } from 'lucide-react'
 import Image from 'next/image'
 
 export function Hero() {
@@ -12,7 +10,7 @@ export function Hero() {
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId)
     if (element) {
-      const offset = 80
+      const offset = 100
       const elementPosition = element.getBoundingClientRect().top
       const offsetPosition = elementPosition + window.pageYOffset - offset
       window.scrollTo({ top: offsetPosition, behavior: 'smooth' })
@@ -20,117 +18,94 @@ export function Hero() {
   }
 
   return (
-    <section id="home" className="relative teal-gradient text-white section-padding pt-32 pb-20">
-      {/* Decorative logo - large background */}
-      <div className="absolute top-10 right-10 opacity-10 pointer-events-none hidden lg:block">
-        <Image 
-          src={assetPath("/logo.svg")}
-          alt="Decorative logo" 
-          width={300} 
-          height={300}
-          className="animate-float"
-        />
-      </div>
-
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          {/* Left Column - Text Content */}
-          <div className="space-y-8 animate-fade-in-left">
-            {/* Name with elegant styling */}
-            <div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 tracking-wider">
-                {t.hero.name.split(' ').map((word, i) => (
-                  <span key={i} className="block" style={{ fontFamily: "'Cinzel', serif" }}>
-                    {word}
-                  </span>
-                ))}
-              </h1>
-              <div className="gold-divider-left"></div>
-            </div>
+    <>
+      <section 
+        id="home" 
+        className="relative teal-gradient text-white overflow-hidden"
+      >
+        {/* Main Hero Content */}
+        <div className="container mx-auto px-4 relative z-10 pb-0">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-6 items-start lg:items-center min-h-[100svh]">
             
-            {/* Subtitle */}
-            <h2 className="text-xl md:text-2xl font-light opacity-95 tracking-wide" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 400 }}>
-              {t.hero.subtitle}
-            </h2>
-            
-            {/* Tagline */}
-            <p className="text-base md:text-lg opacity-85 max-w-xl leading-relaxed" style={{ fontFamily: "'Montserrat', sans-serif" }}>
-              {t.hero.tagline}
-            </p>
-
-            {/* Location */}
-            <div className="flex items-center gap-2 text-sm opacity-80">
-              <MapPin className="w-4 h-4" />
-              <span style={{ fontFamily: "'Montserrat', sans-serif", letterSpacing: '0.05em' }}>{t.hero.location}</span>
-            </div>
-
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 pt-6">
-              <Button
-                size="lg"
-                onClick={() => scrollToSection('prenota')}
-                className="bg-white text-brand-teal hover:bg-cream font-semibold shadow-elegant-lg border-2 border-white hover:border-brand-gold transition-all duration-300"
-                style={{ fontFamily: "'Montserrat', sans-serif", letterSpacing: '0.08em' }}
-              >
-                {t.hero.ctaPrimary}
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                onClick={() => scrollToSection('contatti')}
-                className="border-2 border-white text-white hover:bg-white/15 backdrop-blur-sm transition-all duration-300"
-                style={{ fontFamily: "'Montserrat', sans-serif", letterSpacing: '0.08em' }}
-              >
-                {t.hero.ctaSecondary}
-              </Button>
-            </div>
-          </div>
-
-          {/* Right Column - Portrait Image */}
-          <div className="relative animate-fade-in-right">
-            <div className="relative w-full aspect-[3/4] max-w-md mx-auto">
-              {/* Decorative gold elements */}
-              <div className="absolute -top-6 -right-6 w-32 h-32 rounded-full border-2 border-brand-gold opacity-40 animate-float"></div>
-              <div className="absolute -bottom-6 -left-6 w-40 h-40 rounded-full border-2 border-brand-gold opacity-30 animate-float" style={{ animationDelay: '1.5s' }}></div>
+            {/* Left Column - ALL CONTENT CENTERED */}
+            <div className="flex flex-col items-center text-center pt-10 pb-10 lg:py-16 animate-fade-in-up">
               
-              {/* Small logo accent */}
-              <div className="absolute top-0 left-0 opacity-20 z-10">
+              {/* LARGE CENTERED ICON (Image 1) */}
+              <div className="mb-6 lg:mb-8">
                 <Image 
-                  src={assetPath("/logo.svg")}
-                  alt="" 
-                  width={80} 
-                  height={80}
-                />
-              </div>
-
-              {/* Portrait Image with elegant frame */}
-              <div className="relative w-full h-full rounded-lg overflow-hidden shadow-elegant-lg border-4 border-white/20 backdrop-blur-sm">
-                <Image
-                  src={assetPath("/doctor_no_background.png")}
-                  alt={t.hero.name}
-                  fill
-                  className="object-cover"
+                  src={assetPath("/logo-icon.png")}
+                  alt="Logo Icon" 
+                  width={300} 
+                  height={300}
+                  className="w-36 sm:w-44 md:w-52 lg:w-60 mx-auto"
                   priority
-                  sizes="(max-width: 768px) 100vw, 50vw"
                 />
-                {/* Subtle overlay for premium feel */}
-                <div className="absolute inset-0 bg-gradient-to-br from-brand-gold/5 via-transparent to-transparent pointer-events-none"></div>
               </div>
 
-              {/* Decorative corner elements */}
-              <div className="absolute top-4 left-4 w-8 h-8 border-l-2 border-t-2 border-brand-gold opacity-60"></div>
-              <div className="absolute bottom-4 right-4 w-8 h-8 border-r-2 border-b-2 border-brand-gold opacity-60"></div>
+              {/* Name + Subtitle (real text, responsive) */}
+              <div className="mb-10 lg:mb-12 w-full">
+                <h1
+                  className="mx-auto max-w-[18ch] uppercase text-white leading-[1.05] tracking-[0.18em] text-[clamp(1.35rem,3.2vw,3.15rem)]"
+                  style={{ fontFamily: "'Cinzel', serif" }}
+                >
+                  DOTTORESSA IRENE MARIA BECONI
+                </h1>
+                <p
+                  className="mt-3 mx-auto max-w-[44ch] uppercase text-white/85 tracking-[0.22em] text-[clamp(0.62rem,1.15vw,0.95rem)]"
+                  style={{ fontFamily: "'Cinzel', serif" }}
+                >
+                  ODONTOIATRIA E MEDICINA ESTETICA DEL VOLTO
+                </p>
+              </div>
+              
+              {/* CENTERED Elegant Divider */}
+              <div className="elegant-divider mb-8">
+                <span className="arrow">◂◂</span>
+                <span className="line"></span>
+                <span className="dot"></span>
+                <span className="line line-right"></span>
+                <span className="arrow">▸▸</span>
+              </div>
+
+              {/* CENTERED CTA Button */}
+              <button
+                onClick={() => scrollToSection('servizi')}
+                className="btn-premium"
+              >
+                ACCEDI I SERVIZI
+              </button>
+            </div>
+
+            {/* Right Column - Portrait Image */}
+            <div className="relative animate-fade-in-right flex justify-center lg:justify-end items-start lg:items-end pb-10 lg:pb-0">
+              <div className="relative w-full max-w-[320px] sm:max-w-[380px] md:max-w-[420px] lg:max-w-lg xl:max-w-xl lg:translate-y-[-6px]">
+                {/* Clean Portrait Image with Shadow following edges */}
+                <div className="relative w-full" style={{ aspectRatio: '3 / 4' }}>
+                  <Image
+                    src={assetPath("/doctor_no_background.png")}
+                    alt={t.hero.name}
+                    fill
+                    className="object-contain object-top"
+                    style={{ filter: 'drop-shadow(-18px 12px 34px rgba(0,0,0,0.35))' }}
+                    priority
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* Elegant wave divider at bottom */}
-      <div className="absolute bottom-0 left-0 right-0 z-0">
-        <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full" preserveAspectRatio="none">
-          <path d="M0 0L60 10C120 20 240 40 360 46.7C480 53 600 47 720 43.3C840 40 960 40 1080 46.7C1200 53 1320 67 1380 73.3L1440 80V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0V0Z" fill="#F5F1E8"/>
-        </svg>
+      {/* Bottom Cream Band */}
+      <div className="hero-bottom-band">
+        <p>
+          + Poliambulatorio di Irene Maria Beconi viene effettuata
+        </p>
+        <p className="mt-1">
+          Nostri Horari e Tutela Offerta Visieratti di Lui del Surridenca e Ilun Tobaco.
+        </p>
       </div>
-    </section>
+    </>
   )
 }
