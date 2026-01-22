@@ -1,6 +1,7 @@
 "use client"
 
 import Image from 'next/image'
+import { assetPath } from '@/lib/utils'
 
 export function About() {
   return (
@@ -74,7 +75,7 @@ export function About() {
                   </button>
                   <div className="relative w-32 h-12">
                     <Image
-                      src="/images/signature.png"
+                      src={assetPath("/images/signature.png")}
                       alt="Signature"
                       fill
                       className="object-contain"
@@ -93,7 +94,7 @@ export function About() {
         <div className="absolute top-0 right-0 w-[55%] h-full hidden lg:flex items-center justify-center pointer-events-none pr-8">
           <div className="relative w-full max-w-2xl h-full">
             <Image
-              src="/doctor_no_background.png"
+              src={assetPath("/doctor_no_background.png")}
               alt="Dottoressa Irene Maria Beconi"
               fill
               className="object-contain object-center"

@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useLanguage } from '@/lib/LanguageContext'
 import { LanguageToggle } from '@/components/LanguageToggle'
+import { assetPath } from '@/lib/utils'
 
 export function Navbar() {
   const pathname = usePathname()
@@ -23,7 +24,7 @@ export function Navbar() {
               <Link href="/">
                 <div className="relative w-24 h-24">
                   <Image
-                    src="/logo-combined.png"
+                    src={assetPath("/logo-combined.png")}
                     alt="Logo"
                     fill
                     className="object-contain"

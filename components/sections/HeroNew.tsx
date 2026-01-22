@@ -2,6 +2,7 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
+import { assetPath } from '@/lib/utils'
 
 export function HeroNew() {
   return (
@@ -21,7 +22,7 @@ export function HeroNew() {
               {/* Logo icon */}
               <div className="relative w-32 h-32">
                 <Image
-                  src="/logo-icon.png"
+                  src={assetPath("/logo-icon.png")}
                   alt="Logo"
                   fill
                   className="object-contain"
@@ -86,7 +87,7 @@ export function HeroNew() {
             <div className="relative w-full h-[600px] flex justify-end">
               <div className="relative w-full max-w-md h-full">
                 <Image
-                  src="/doctor_no_background.png"
+                  src={assetPath("/doctor_no_background.png")}
                   alt="Professional portrait"
                   fill
                   className="object-cover object-center"
@@ -131,7 +132,7 @@ export function HeroNew() {
               >
                 <div className="relative w-full h-64">
                   <Image
-                    src="/images/chi-sono-card.jpg"
+                    src={assetPath("/images/chi-sono-card.jpg")}
                     alt="Chi Sono"
                     fill
                     className="object-cover"
@@ -164,7 +165,7 @@ export function HeroNew() {
               >
                 <div className="relative w-full h-64">
                   <Image
-                    src="/images/servizi-card.jpg"
+                    src={assetPath("/images/servizi-card.jpg")}
                     alt="Servizi"
                     fill
                     className="object-cover"
@@ -197,7 +198,7 @@ export function HeroNew() {
               >
                 <div className="relative w-full h-64">
                   <Image
-                    src="/images/galleria-card.jpg"
+                    src={assetPath("/images/galleria-card.jpg")}
                     alt="Galleria"
                     fill
                     className="object-cover"
