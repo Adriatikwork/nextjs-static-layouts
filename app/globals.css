@@ -37,19 +37,27 @@
     --radius: 0.5rem;
     
     /* ===== TARGET COLOR PALETTE ===== */
+    /* Custom colors for this design - RAL5018 Turquoise Blue */
+    --teal-primary: #068c8c;
+    --gold-accent: #c9b896;
+    --beige-light: #e8dfd0;
+    
     /* Blue-teal (NOT green-teal) */
     --brand-teal: #3A7884;
     --brand-teal-light: #44808B;
     --brand-teal-dark: #2D6974;
     
     /* Gold/Champagne accent */
-    --brand-gold: #C09B83;
+    --brand-gold: #c9b896;
     --brand-gold-light: #D4B19A;
     --brand-gold-dark: #A8856D;
     
     /* Cream/Beige panel */
-    --brand-cream: #E6DED9;
+    --brand-cream: #e8dfd0;
     --brand-cream-dark: #D9CFC8;
+    
+    /* Dark text color for footer */
+    --brand-dark-text: #1F2A33;
     
     /* Asset paths for CSS (set by JS based on environment) */
     --texture-fresh-snow: url('/fresh_snow.png');

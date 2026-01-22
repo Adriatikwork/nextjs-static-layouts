@@ -5,19 +5,10 @@ import { useLanguage } from '@/lib/LanguageContext'
 import { assetPath } from '@/lib/utils'
 import { Calendar, MessageCircle } from 'lucide-react'
 import Image from 'next/image'
+import Link from 'next/link'
 
 export function CtaBand() {
   const { t } = useLanguage()
-
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId)
-    if (element) {
-      const offset = 100
-      const elementPosition = element.getBoundingClientRect().top
-      const offsetPosition = elementPosition + window.pageYOffset - offset
-      window.scrollTo({ top: offsetPosition, behavior: 'smooth' })
-    }
-  }
 
   return (
     <section id="prenota" className="teal-gradient text-white section-padding relative overflow-hidden">
@@ -66,25 +57,27 @@ export function CtaBand() {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in-up stagger-2">
-            <Button
-              size="lg"
-              onClick={() => scrollToSection('contatti')}
-              className="bg-white text-brand-teal hover:bg-cream font-semibold shadow-elegant-lg border-2 border-white hover:border-brand-gold transition-all duration-300 min-w-[200px]"
-              style={{ fontFamily: "'Montserrat', sans-serif", letterSpacing: '0.08em' }}
-            >
-              <Calendar className="w-5 h-5 mr-2" />
-              {t.cta.primary}
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              onClick={() => scrollToSection('contatti')}
-              className="border-2 border-white text-white hover:bg-white/15 backdrop-blur-sm transition-all duration-300 min-w-[200px]"
-              style={{ fontFamily: "'Montserrat', sans-serif", letterSpacing: '0.08em' }}
-            >
-              <MessageCircle className="w-5 h-5 mr-2" />
-              {t.cta.secondary}
-            </Button>
+            <Link href="/contatti">
+              <Button
+                size="lg"
+                className="bg-white text-brand-teal hover:bg-cream font-semibold shadow-elegant-lg border-2 border-white hover:border-brand-gold transition-all duration-300 min-w-[200px]"
+                style={{ fontFamily: "'Montserrat', sans-serif", letterSpacing: '0.08em' }}
+              >
+                <Calendar className="w-5 h-5 mr-2" />
+                {t.cta.primary}
+              </Button>
+            </Link>
+            <Link href="/contatti">
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-2 border-white text-white hover:bg-white/15 backdrop-blur-sm transition-all duration-300 min-w-[200px]"
+                style={{ fontFamily: "'Montserrat', sans-serif", letterSpacing: '0.08em' }}
+              >
+                <MessageCircle className="w-5 h-5 mr-2" />
+                {t.cta.secondary}
+              </Button>
+            </Link>
           </div>
 
           {/* Additional Info */}

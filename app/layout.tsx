@@ -1,12 +1,20 @@
 import type { Metadata } from 'next'
-import { Inter, Playfair_Display } from 'next/font/google'
+import { Geist, Geist_Mono, Playfair_Display } from 'next/font/google'
 import './globals.css'
 import { LanguageProvider } from '@/lib/LanguageContext'
 import { AssetPathProvider } from '@/components/AssetPathProvider'
+import { Navbar } from '@/components/layout/Navbar'
+import { Footer } from '@/components/layout/Footer'
 
-const inter = Inter({ 
+const geist = Geist({ 
   subsets: ['latin'],
-  variable: '--font-inter',
+  variable: '--font-geist',
+  display: 'swap',
+})
+
+const geistMono = Geist_Mono({ 
+  subsets: ['latin'],
+  variable: '--font-geist-mono',
   display: 'swap',
 })
 
@@ -14,6 +22,7 @@ const playfair = Playfair_Display({
   subsets: ['latin'],
   variable: '--font-playfair',
   display: 'swap',
+  weight: ['400', '500', '600', '700'],
 })
 
 export const metadata: Metadata = {
@@ -65,7 +74,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="it" className={`scroll-smooth ${inter.variable} ${playfair.variable}`}>
+    <html lang="it" className={`scroll-smooth ${geist.variable} ${geistMono.variable} ${playfair.variable}`}>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="geo.region" content="IT-PT" />
@@ -75,8 +84,8 @@ export default function RootLayout({
         <link rel="canonical" href="https://dottoressairenebeconi.it" />
         
         {/* Theme colors */}
-        <meta name="theme-color" content="#1B8489" />
-        <meta name="msapplication-TileColor" content="#1B8489" />
+        <meta name="theme-color" content="#068c8c" />
+        <meta name="msapplication-TileColor" content="#068c8c" />
         
         {/* Structured Data - Medical Professional */}
         <script
@@ -113,10 +122,12 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${inter.className} antialiased`}>
+      <body className={`${geist.className} antialiased`} style={{ fontFamily: 'var(--font-geist), sans-serif' }}>
         <AssetPathProvider />
         <LanguageProvider>
+          <Navbar />
           {children}
+          <Footer />
         </LanguageProvider>
       </body>
     </html>

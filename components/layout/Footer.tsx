@@ -4,19 +4,10 @@ import { useLanguage } from '@/lib/LanguageContext'
 import { assetPath } from '@/lib/utils'
 import { MapPin, Phone, Mail } from 'lucide-react'
 import Image from 'next/image'
+import Link from 'next/link'
 
 export function Footer() {
   const { t } = useLanguage()
-
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId)
-    if (element) {
-      const offset = 100
-      const elementPosition = element.getBoundingClientRect().top
-      const offsetPosition = elementPosition + window.pageYOffset - offset
-      window.scrollTo({ top: offsetPosition, behavior: 'smooth' })
-    }
-  }
 
   return (
     <footer className="bg-brand-dark-text text-white py-16 relative overflow-hidden">
@@ -65,19 +56,19 @@ export function Footer() {
             </h4>
             <div className="space-y-3">
               {[
-                { label: t.nav.about, href: 'chi-sono' },
-                { label: t.nav.services, href: 'servizi' },
-                { label: t.nav.gallery, href: 'galleria' },
-                { label: t.nav.contact, href: 'contatti' },
+                { label: t.nav.about, href: '/chi-sono' },
+                { label: t.nav.services, href: '/servizi' },
+                { label: t.nav.gallery, href: '/galleria' },
+                { label: t.nav.contact, href: '/contatti' },
               ].map((link) => (
-                <button
+                <Link
                   key={link.href}
-                  onClick={() => scrollToSection(link.href)}
+                  href={link.href}
                   className="block text-brand-cream/70 hover:text-brand-gold transition-colors text-sm"
                   style={{ fontFamily: "'Montserrat', sans-serif" }}
                 >
                   {link.label}
-                </button>
+                </Link>
               ))}
             </div>
           </div>
