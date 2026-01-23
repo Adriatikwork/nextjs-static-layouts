@@ -1,12 +1,140 @@
 "use client"
 
+import { useState, useEffect, useCallback } from 'react'
 import { assetPath } from '@/lib/utils'
-import { MapPin, Phone, Mail, Clock } from 'lucide-react'
+import { MapPin, Phone, Mail, Clock, Navigation } from 'lucide-react'
+
+// Location data for the route map
+const locations = [
+  { 
+    id: "loc1", 
+    name: "Studio Centrale", 
+    address: "Via dei Calzaiuoli 12, 50122 Firenze", 
+    days: "Lunedì, Mercoledì, Venerdì", 
+    hours: "09:00 – 18:00", 
+    notes: "Sede principale - Centro storico"
+  },
+  { 
+    id: "loc2", 
+    name: "Clinica Santa Maria Novella", 
+    address: "Piazza Santa Maria Novella 8, 50123 Firenze", 
+    days: "Martedì, Giovedì", 
+    hours: "10:00 – 19:00", 
+    notes: "Vicino alla stazione ferroviaria"
+  },
+  { 
+    id: "loc3", 
+    name: "Ambulatorio Oltrarno", 
+    address: "Via Maggio 45, 50125 Firenze", 
+    days: "Lunedì, Venerdì", 
+    hours: "14:00 – 20:00", 
+    notes: "Quartiere artigianale"
+  },
+  { 
+    id: "loc4", 
+    name: "Poliambulatorio Le Cure", 
+    address: "Viale dei Mille 90, 50131 Firenze", 
+    days: "Mercoledì, Sabato", 
+    hours: "08:00 – 14:00", 
+    notes: "Parcheggio disponibile"
+  },
+  { 
+    id: "loc5", 
+    name: "Studio Campo di Marte", 
+    address: "Via Luigi Alamanni 5, 50123 Firenze", 
+    days: "Giovedì", 
+    hours: "15:00 – 19:00", 
+    notes: "Solo su appuntamento"
+  }
+]
+
+// SVG node positions for vertical metro-map style layout (percentages)
+const nodePositions = [
+  { x: 86, y: 14 },   // 1 - top-right
+  { x: 58, y: 38 },   // 2 - main junction
+  { x: 74, y: 56 },   // 3 - mid-right
+  { x: 60, y: 72 },   // 4 - lower-mid
+  { x: 72, y: 88 },   // 5 - bottom-right
+]
 
 export function Contact() {
+  const BOOKING_PAGE_URL = "https://calendar.app.google/PXJf7qQMexizEqsk9"
+  
+  // State for location selection and auto-rotation
+  const [activeIndex, setActiveIndex] = useState(0)
+  const [isPaused, setIsPaused] = useState(false)
+  const [lastInteraction, setLastInteraction] = useState(Date.now())
+  
+  // Handle node selection
+  const handleNodeSelect = useCallback((index: number) => {
+    setActiveIndex(index)
+    setIsPaused(true)
+    setLastInteraction(Date.now())
+  }, [])
+  
+  // Handle keyboard interaction
+  const handleKeyDown = useCallback((e: React.KeyboardEvent, index: number) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault()
+      handleNodeSelect(index)
+    }
+  }, [handleNodeSelect])
+  
+  // Auto-rotation logic
+  useEffect(() => {
+    const rotationInterval = setInterval(() => {
+      if (!isPaused) {
+        setActiveIndex((prev) => (prev + 1) % locations.length)
+      }
+    }, 4000)
+    
+    return () => clearInterval(rotationInterval)
+  }, [isPaused])
+  
+  // Resume rotation after 10s of inactivity
+  useEffect(() => {
+    if (isPaused) {
+      const resumeTimeout = setTimeout(() => {
+        if (Date.now() - lastInteraction >= 10000) {
+          setIsPaused(false)
+        }
+      }, 10000)
+      
+      return () => clearTimeout(resumeTimeout)
+    }
+  }, [isPaused, lastInteraction])
+  
+  // Pause on hover handlers
+  const handleMouseEnter = useCallback(() => {
+    setIsPaused(true)
+    setLastInteraction(Date.now())
+  }, [])
+  
+  const handleMouseLeave = useCallback(() => {
+    setLastInteraction(Date.now())
+    // Will resume after 10s via the useEffect
+  }, [])
+  
+  const activeLocation = locations[activeIndex]
+  
+  // Generate SVG path through all nodes
+  const generatePath = () => {
+    const points = nodePositions.map((pos) => ({
+      x: pos.x * 4, // Scale to viewBox (400 width)
+      y: pos.y * 2.25 // Scale to viewBox (225 height for 16:9)
+    }))
+    
+    // Create straight angular lines through points (matching the mockup)
+    let d = `M ${points[0].x} ${points[0].y}`
+    for (let i = 1; i < points.length; i++) {
+      d += ` L ${points[i].x} ${points[i].y}`
+    }
+    return d
+  }
+  
   return (
     <section className="relative w-full">
-      {/* Top teal section with title */}
+      {/* Hero section with title - Matching other pages */}
       <div 
         className="w-full py-16"
         style={{
@@ -24,146 +152,35 @@ export function Contact() {
         </div>
       </div>
 
-      {/* Main contact section - beige background */}
+      {/* Main content - Beige background like other pages */}
       <div 
         className="w-full py-20"
         style={{ backgroundColor: '#e8dfd0' }}
       >
         <div className="container mx-auto px-4">
           <div className="max-w-7xl mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-              {/* Left column - Contact form */}
-              <div className="bg-white p-10 rounded-lg shadow-lg" style={{ border: '2px solid #c9b896' }}>
+            <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+              {/* Contact Information Cards */}
+              <div className="space-y-4">
                 <h2 
-                  className="text-3xl text-[#068c8c] mb-6 font-normal"
+                  className="text-2xl text-[#068c8c] mb-6 font-normal"
                   style={{ fontFamily: 'Playfair Display, serif' }}
                 >
-                  Prenota un Appuntamento
+                  Informazioni
                 </h2>
-                <p 
-                  className="text-gray-700 mb-8 font-light"
-                  style={{ fontFamily: 'Playfair Display, serif' }}
-                >
-                  Compila il modulo e ti ricontatteremo al più presto per confermare il tuo appuntamento.
-                </p>
 
-                <form className="space-y-6">
-                  <div>
-                    <label 
-                      className="block text-gray-700 mb-2 font-light"
-                      style={{ fontFamily: 'Playfair Display, serif' }}
-                    >
-                      Nome e Cognome *
-                    </label>
-                    <input
-                      type="text"
-                      required
-                      className="w-full px-4 py-3 border-2 border-[#c9b896] rounded focus:outline-none focus:border-[#068c8c] transition-colors"
-                      style={{ fontFamily: 'Playfair Display, serif' }}
-                    />
-                  </div>
-
-                  <div>
-                    <label 
-                      className="block text-gray-700 mb-2 font-light"
-                      style={{ fontFamily: 'Playfair Display, serif' }}
-                    >
-                      Email *
-                    </label>
-                    <input
-                      type="email"
-                      required
-                      className="w-full px-4 py-3 border-2 border-[#c9b896] rounded focus:outline-none focus:border-[#068c8c] transition-colors"
-                      style={{ fontFamily: 'Playfair Display, serif' }}
-                    />
-                  </div>
-
-                  <div>
-                    <label 
-                      className="block text-gray-700 mb-2 font-light"
-                      style={{ fontFamily: 'Playfair Display, serif' }}
-                    >
-                      Telefono *
-                    </label>
-                    <input
-                      type="tel"
-                      required
-                      className="w-full px-4 py-3 border-2 border-[#c9b896] rounded focus:outline-none focus:border-[#068c8c] transition-colors"
-                      style={{ fontFamily: 'Playfair Display, serif' }}
-                    />
-                  </div>
-
-                  <div>
-                    <label 
-                      className="block text-gray-700 mb-2 font-light"
-                      style={{ fontFamily: 'Playfair Display, serif' }}
-                    >
-                      Servizio Richiesto
-                    </label>
-                    <select
-                      className="w-full px-4 py-3 border-2 border-[#c9b896] rounded focus:outline-none focus:border-[#068c8c] transition-colors"
-                      style={{ fontFamily: 'Playfair Display, serif' }}
-                    >
-                      <option>Odontoiatria Generale</option>
-                      <option>Medicina Estetica</option>
-                      <option>Implantologia</option>
-                      <option>Ortodonzia</option>
-                      <option>Sbiancamento Dentale</option>
-                      <option>Igiene Dentale</option>
-                      <option>Altro</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label 
-                      className="block text-gray-700 mb-2 font-light"
-                      style={{ fontFamily: 'Playfair Display, serif' }}
-                    >
-                      Messaggio
-                    </label>
-                    <textarea
-                      rows={4}
-                      className="w-full px-4 py-3 border-2 border-[#c9b896] rounded focus:outline-none focus:border-[#068c8c] transition-colors"
-                      style={{ fontFamily: 'Playfair Display, serif' }}
-                    ></textarea>
-                  </div>
-
-                  <button
-                    type="submit"
-                    className="w-full px-8 py-4 bg-[#068c8c] text-white tracking-wider text-lg hover:opacity-90 transition-all font-light"
-                    style={{ 
-                      fontFamily: 'Playfair Display, serif',
-                      textTransform: 'uppercase'
-                    }}
-                  >
-                    Invia Richiesta
-                  </button>
-                </form>
-              </div>
-
-              {/* Right column - Contact info */}
-              <div className="space-y-8">
-                <div>
-                  <h2 
-                    className="text-3xl text-[#068c8c] mb-8 font-normal"
-                    style={{ fontFamily: 'Playfair Display, serif' }}
-                  >
-                    Informazioni di Contatto
-                  </h2>
-                </div>
-
-                <div className="space-y-6">
-                  <div className="flex items-start gap-4 bg-white p-6 rounded-lg shadow" style={{ border: '1px solid #c9b896' }}>
-                    <MapPin className="w-6 h-6 text-[#068c8c] flex-shrink-0 mt-1" />
+                <div className="bg-white p-4 border-l-4 border-[#068c8c] shadow-sm hover:shadow-md transition-shadow">
+                  <div className="flex items-start gap-3">
+                    <MapPin className="w-5 h-5 text-[#068c8c] flex-shrink-0 mt-1" />
                     <div>
                       <h3 
-                        className="text-xl text-[#068c8c] mb-2 font-normal"
+                        className="text-base text-[#068c8c] mb-1 font-normal"
                         style={{ fontFamily: 'Playfair Display, serif' }}
                       >
                         Indirizzo
                       </h3>
                       <p 
-                        className="text-gray-700 font-light"
+                        className="text-gray-700 text-sm leading-relaxed font-light"
                         style={{ fontFamily: 'Playfair Display, serif' }}
                       >
                         Via del Montone numero 34<br />
@@ -171,61 +188,145 @@ export function Contact() {
                       </p>
                     </div>
                   </div>
+                </div>
 
-                  <div className="flex items-start gap-4 bg-white p-6 rounded-lg shadow" style={{ border: '1px solid #c9b896' }}>
-                    <Phone className="w-6 h-6 text-[#068c8c] flex-shrink-0 mt-1" />
+                <div className="bg-white p-4 border-l-4 border-[#c9b896] shadow-sm hover:shadow-md transition-shadow">
+                  <div className="flex items-start gap-3">
+                    <Phone className="w-5 h-5 text-[#068c8c] flex-shrink-0 mt-1" />
                     <div>
                       <h3 
-                        className="text-xl text-[#068c8c] mb-2 font-normal"
+                        className="text-base text-[#068c8c] mb-1 font-normal"
                         style={{ fontFamily: 'Playfair Display, serif' }}
                       >
                         Telefono
                       </h3>
-                      <p 
-                        className="text-gray-700 font-light"
+                      <a 
+                        href="tel:+3905512456" 
+                        className="text-gray-700 text-sm hover:text-[#068c8c] transition-colors font-light"
                         style={{ fontFamily: 'Playfair Display, serif' }}
                       >
                         +39 055 12456
-                      </p>
+                      </a>
                     </div>
                   </div>
+                </div>
 
-                  <div className="flex items-start gap-4 bg-white p-6 rounded-lg shadow" style={{ border: '1px solid #c9b896' }}>
-                    <Mail className="w-6 h-6 text-[#068c8c] flex-shrink-0 mt-1" />
+                <div className="bg-white p-4 border-l-4 border-[#068c8c] shadow-sm hover:shadow-md transition-shadow">
+                  <div className="flex items-start gap-3">
+                    <Mail className="w-5 h-5 text-[#068c8c] flex-shrink-0 mt-1" />
                     <div>
                       <h3 
-                        className="text-xl text-[#068c8c] mb-2 font-normal"
+                        className="text-base text-[#068c8c] mb-1 font-normal"
                         style={{ fontFamily: 'Playfair Display, serif' }}
                       >
                         Email
                       </h3>
-                      <p 
-                        className="text-gray-700 font-light"
+                      <a 
+                        href="mailto:info@dottoressamariabeconi.it" 
+                        className="text-gray-700 text-sm hover:text-[#068c8c] transition-colors break-all font-light"
                         style={{ fontFamily: 'Playfair Display, serif' }}
                       >
                         info@dottoressamariabeconi.it
-                      </p>
+                      </a>
                     </div>
                   </div>
+                </div>
 
-                  <div className="flex items-start gap-4 bg-white p-6 rounded-lg shadow" style={{ border: '1px solid #c9b896' }}>
-                    <Clock className="w-6 h-6 text-[#068c8c] flex-shrink-0 mt-1" />
+                <div className="bg-white p-4 border-l-4 border-[#c9b896] shadow-sm hover:shadow-md transition-shadow">
+                  <div className="flex items-start gap-3">
+                    <Clock className="w-5 h-5 text-[#068c8c] flex-shrink-0 mt-1" />
                     <div>
                       <h3 
-                        className="text-xl text-[#068c8c] mb-2 font-normal"
+                        className="text-base text-[#068c8c] mb-1 font-normal"
                         style={{ fontFamily: 'Playfair Display, serif' }}
                       >
-                        Orari di Apertura
+                        Orari
                       </h3>
                       <div 
-                        className="text-gray-700 font-light space-y-1"
+                        className="text-gray-700 space-y-1 text-sm font-light"
                         style={{ fontFamily: 'Playfair Display, serif' }}
                       >
-                        <p>Lunedì - Venerdì: 9:00 - 19:00</p>
-                        <p>Sabato: 9:00 - 13:00</p>
-                        <p>Domenica: Chiuso</p>
+                        <p className="flex justify-between gap-2">
+                          <span className="font-medium">Lun-Ven:</span>
+                          <span>9:00-19:00</span>
+                        </p>
+                        <p className="flex justify-between gap-2">
+                          <span className="font-medium">Sabato:</span>
+                          <span>9:00-13:00</span>
+                        </p>
+                        <p className="flex justify-between gap-2">
+                          <span className="font-medium">Domenica:</span>
+                          <span>Chiuso</span>
+                        </p>
                       </div>
                     </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Google Calendar Booking - Spans 3 columns */}
+              <div className="lg:col-span-3">
+                <h2 
+                  className="text-2xl text-[#068c8c] mb-6 font-normal"
+                  style={{ fontFamily: 'Playfair Display, serif' }}
+                >
+                  Prenota Appuntamento
+                </h2>
+                
+                <div className="bg-white shadow-xl overflow-hidden" style={{ border: '2px solid #c9b896' }}>
+                  <div 
+                    className="p-4"
+                    style={{
+                      background: 'linear-gradient(135deg, #068c8c 0%, #057575 100%)'
+                    }}
+                  >
+                    <p 
+                      className="text-white text-center leading-relaxed font-light"
+                      style={{ fontFamily: 'Playfair Display, serif' }}
+                    >
+                      Seleziona una data e un orario disponibile per il tuo appuntamento
+                    </p>
+                  </div>
+
+                  {/* Google Calendar Embed */}
+                  <div className="relative overflow-hidden" style={{ height: '550px' }}>
+                    <iframe 
+                      src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ1sn4N5UDj5qZlgwWvHZO7hWvPRPho91rom4_PlrTowM8GLtZ2xdtjCMBnFzMAD5Z0kKp44E1Rf?gv=true" 
+                      style={{ border: 0, marginTop: '-60px' }} 
+                      width="100%" 
+                      height="720" 
+                      frameBorder="0"
+                      title="Prenota un appuntamento"
+                      className="w-full"
+                    />
+                  </div>
+
+                  <div className="p-4 bg-gray-50 border-t border-[#c9b896]/30 flex items-center justify-between gap-4">
+                    <div className="flex items-start gap-2 flex-1">
+                      <div className="w-5 h-5 rounded-full bg-[#068c8c]/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <span className="text-[#068c8c] text-xs font-bold">i</span>
+                      </div>
+                      <p 
+                        className="text-gray-600 text-xs leading-relaxed font-light"
+                        style={{ fontFamily: 'Playfair Display, serif' }}
+                      >
+                        La prenotazione è una richiesta. Ti contatteremo per confermare.
+                      </p>
+                    </div>
+                    
+                    <a
+                      href={BOOKING_PAGE_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center px-4 py-2 text-white text-sm tracking-wider hover:opacity-90 transition-all whitespace-nowrap font-light"
+                      style={{ 
+                        fontFamily: 'Playfair Display, serif',
+                        backgroundColor: '#068c8c',
+                        border: '1px solid #c9b896'
+                      }}
+                    >
+                      Apri Finestra
+                    </a>
                   </div>
                 </div>
               </div>
@@ -234,24 +335,305 @@ export function Contact() {
         </div>
       </div>
 
-      {/* Bottom teal section with map placeholder */}
+      {/* Come Raggiungerci Section - Premium Route Map */}
       <div 
-        className="w-full py-16"
-        style={{
-          background: `#068c8c url(${assetPath('/images/fresh-snow.png')}) repeat`,
-          backgroundBlendMode: 'multiply'
-        }}
+        className="relative w-full py-20 overflow-hidden"
+        style={{ backgroundColor: '#3A7884' }}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
       >
-        <div className="container mx-auto px-4">
-          <div className="max-w-7xl mx-auto">
-            <div className="bg-white/10 rounded-lg p-8 text-center">
-              <p 
-                className="text-2xl text-white font-normal italic"
-                style={{ fontFamily: 'Playfair Display, serif' }}
-              >
-                "Siamo qui per prenderci cura del tuo sorriso e del tuo benessere. 
-                Vieni a trovarci nel cuore di Firenze."
-              </p>
+        {/* City background overlay */}
+        <div 
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            backgroundImage: `url(${assetPath('/images/city-clay.png')})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            opacity: 0.1,
+          }}
+        />
+        
+        {/* Subtle vignette overlay */}
+        <div 
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background: 'radial-gradient(ellipse at center, transparent 0%, rgba(31, 42, 51, 0.4) 100%)'
+          }}
+        />
+        
+        {/* Content */}
+        <div className="relative z-10 container mx-auto px-4">
+          {/* Section heading */}
+          <h2 
+            className="text-3xl md:text-4xl text-white text-center mb-4 font-normal tracking-wider"
+            style={{ fontFamily: 'Playfair Display, serif' }}
+          >
+            Come Raggiungerci
+          </h2>
+          <p 
+            className="text-white/70 text-center mb-12 font-light"
+            style={{ fontFamily: 'Playfair Display, serif' }}
+          >
+            Le nostre sedi a Firenze
+          </p>
+          
+          <div className="max-w-6xl mx-auto">
+            {/* Two-column layout: Card left, SVG right on desktop; stacked on mobile */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+              
+              {/* SVG Route Map - Shows first on mobile */}
+              {/* Transparent background - route renders directly on section background */}
+              <div className="order-1 lg:order-2">
+                <div className="relative w-full aspect-[16/9]">
+                  <svg 
+                    viewBox="0 0 400 225" 
+                    className="absolute inset-0 w-full h-full"
+                    role="img"
+                    aria-label="Mappa delle sedi con percorso"
+                    preserveAspectRatio="xMidYMid meet"
+                  >
+                    {/* Route path */}
+                    <path
+                      d={generatePath()}
+                      fill="none"
+                      stroke="#C09B83"
+                      strokeWidth="3"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      style={{ filter: 'drop-shadow(0 2px 8px rgba(192, 155, 131, 0.5))' }}
+                    />
+                    
+                    {/* Location nodes */}
+                    {nodePositions.map((pos, index) => {
+                      const isActive = index === activeIndex
+                      const cx = pos.x * 4
+                      const cy = pos.y * 2.25
+                      
+                      return (
+                        <g key={locations[index].id}>
+                          {/* Outer halo for active node */}
+                          {isActive && (
+                            <circle
+                              cx={cx}
+                              cy={cy}
+                              r="18"
+                              fill="none"
+                              stroke="#C09B83"
+                              strokeWidth="2"
+                              className="animate-pulse"
+                              style={{ opacity: 0.4 }}
+                            />
+                          )}
+                          
+                          {/* Node background glow */}
+                          <circle
+                            cx={cx}
+                            cy={cy}
+                            r={isActive ? 14 : 10}
+                            fill={isActive ? '#C09B83' : '#E6DED9'}
+                            className="transition-all duration-300 ease-out"
+                            style={{ 
+                              filter: isActive 
+                                ? 'drop-shadow(0 4px 12px rgba(192, 155, 131, 0.6))' 
+                                : 'drop-shadow(0 2px 6px rgba(0, 0, 0, 0.3))'
+                            }}
+                          />
+                          
+                          {/* Inner circle */}
+                          <circle
+                            cx={cx}
+                            cy={cy}
+                            r={isActive ? 8 : 6}
+                            fill={isActive ? '#1F2A33' : '#3A7884'}
+                            className="transition-all duration-300 ease-out"
+                          />
+                          
+                          {/* Clickable/focusable button overlay */}
+                          <circle
+                            cx={cx}
+                            cy={cy}
+                            r="20"
+                            fill="transparent"
+                            className="cursor-pointer focus:outline-none"
+                            role="button"
+                            tabIndex={0}
+                            aria-label={`Seleziona ${locations[index].name}`}
+                            aria-pressed={isActive}
+                            onClick={() => handleNodeSelect(index)}
+                            onKeyDown={(e) => handleKeyDown(e, index)}
+                          />
+                          
+                          {/* Location number label */}
+                          <text
+                            x={cx}
+                            y={cy + 1}
+                            textAnchor="middle"
+                            dominantBaseline="middle"
+                            fill={isActive ? '#C09B83' : '#E6DED9'}
+                            fontSize="8"
+                            fontWeight="600"
+                            className="pointer-events-none select-none"
+                            style={{ fontFamily: 'Montserrat, sans-serif' }}
+                          >
+                            {index + 1}
+                          </text>
+                        </g>
+                      )
+                    })}
+                  </svg>
+                  
+                </div>
+              </div>
+              
+              {/* Location Detail Card - Shows second on mobile */}
+              <div className="order-2 lg:order-1">
+                <div 
+                  className="rounded-2xl p-6 md:p-8 shadow-xl transition-all duration-300"
+                  style={{ 
+                    backgroundColor: '#E6DED9',
+                    boxShadow: '0 20px 40px rgba(31, 42, 51, 0.3)'
+                  }}
+                >
+                  {/* Card header */}
+                  <div className="flex items-start gap-4 mb-6">
+                    <div 
+                      className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0"
+                      style={{ backgroundColor: '#C09B83' }}
+                    >
+                      <Navigation className="w-6 h-6 text-white" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <h3 
+                        className="text-xl md:text-2xl font-normal truncate"
+                        style={{ 
+                          fontFamily: 'Playfair Display, serif',
+                          color: '#1F2A33'
+                        }}
+                      >
+                        {activeLocation.name}
+                      </h3>
+                    </div>
+                  </div>
+                  
+                  {/* Divider */}
+                  <div className="h-px w-full mb-6" style={{ backgroundColor: '#C09B83', opacity: 0.3 }} />
+                  
+                  {/* Location details */}
+                  <div className="space-y-4">
+                    {/* Address */}
+                    <div className="flex items-start gap-3">
+                      <MapPin className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: '#C09B83' }} />
+                      <div>
+                        <p 
+                          className="text-xs uppercase tracking-wider mb-1 font-medium"
+                          style={{ color: '#3A7884' }}
+                        >
+                          Indirizzo
+                        </p>
+                        <p 
+                          className="font-light"
+                          style={{ 
+                            fontFamily: 'Playfair Display, serif',
+                            color: '#1F2A33'
+                          }}
+                        >
+                          {activeLocation.address}
+                        </p>
+                      </div>
+                    </div>
+                    
+                    {/* Days */}
+                    <div className="flex items-start gap-3">
+                      <Clock className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: '#C09B83' }} />
+                      <div>
+                        <p 
+                          className="text-xs uppercase tracking-wider mb-1 font-medium"
+                          style={{ color: '#3A7884' }}
+                        >
+                          Giorni
+                        </p>
+                        <p 
+                          className="font-light"
+                          style={{ 
+                            fontFamily: 'Playfair Display, serif',
+                            color: '#1F2A33'
+                          }}
+                        >
+                          {activeLocation.days}
+                        </p>
+                      </div>
+                    </div>
+                    
+                    {/* Hours */}
+                    <div className="flex items-start gap-3">
+                      <div className="w-5 h-5 flex-shrink-0 mt-0.5 flex items-center justify-center">
+                        <div 
+                          className="w-3 h-3 rounded-full border-2"
+                          style={{ borderColor: '#C09B83' }}
+                        />
+                      </div>
+                      <div>
+                        <p 
+                          className="text-xs uppercase tracking-wider mb-1 font-medium"
+                          style={{ color: '#3A7884' }}
+                        >
+                          Orario
+                        </p>
+                        <p 
+                          className="font-light"
+                          style={{ 
+                            fontFamily: 'Playfair Display, serif',
+                            color: '#1F2A33'
+                          }}
+                        >
+                          {activeLocation.hours}
+                        </p>
+                      </div>
+                    </div>
+                    
+                    {/* Notes */}
+                    {activeLocation.notes && (
+                      <div 
+                        className="mt-4 p-3 rounded-xl"
+                        style={{ backgroundColor: 'rgba(58, 120, 132, 0.1)' }}
+                      >
+                        <p 
+                          className="text-sm font-light italic"
+                          style={{ 
+                            fontFamily: 'Playfair Display, serif',
+                            color: '#3A7884'
+                          }}
+                        >
+                          {activeLocation.notes}
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                  
+                  {/* Location selector dots */}
+                  <div className="flex items-center justify-center gap-2 mt-6 pt-4" style={{ borderTop: '1px solid rgba(192, 155, 131, 0.2)' }}>
+                    {locations.map((loc, index) => (
+                      <button
+                        key={loc.id}
+                        onClick={() => handleNodeSelect(index)}
+                        className={`w-2.5 h-2.5 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 ${
+                          index === activeIndex 
+                            ? 'scale-125' 
+                            : 'hover:scale-110'
+                        }`}
+                        style={{ 
+                          backgroundColor: index === activeIndex ? '#C09B83' : '#3A7884',
+                          opacity: index === activeIndex ? 1 : 0.5,
+                          focusRingColor: '#C09B83'
+                        }}
+                        aria-label={`Vai a ${loc.name}`}
+                        aria-current={index === activeIndex ? 'true' : 'false'}
+                      />
+                    ))}
+                  </div>
+                </div>
+              </div>
+              
             </div>
           </div>
         </div>

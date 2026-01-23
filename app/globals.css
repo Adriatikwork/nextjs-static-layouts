@@ -508,3 +508,81 @@ button:active {
   color: #5A6A70;
   letter-spacing: 0.02em;
 }
+
+/* ============================================
+   GOOGLE CALENDAR APPOINTMENT EMBED STYLES
+   ============================================ */
+
+/* Container for the Google Calendar embed */
+.google-calendar-embed-container {
+  width: 100%;
+  min-height: 650px;
+  background: linear-gradient(135deg, #f8f6f3 0%, #fff 100%);
+  border: 1px solid rgba(201, 184, 150, 0.4);
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Make the iframe responsive */
+.google-calendar-embed-container iframe {
+  width: 100% !important;
+  min-height: 650px;
+  border: none !important;
+  display: block;
+}
+
+/* Desktop: taller embed for better UX */
+@media (min-width: 768px) {
+  .google-calendar-embed-container {
+    min-height: 750px;
+  }
+  
+  .google-calendar-embed-container iframe {
+    min-height: 750px;
+  }
+}
+
+/* Large screens: even taller */
+@media (min-width: 1024px) {
+  .google-calendar-embed-container {
+    min-height: 800px;
+  }
+  
+  .google-calendar-embed-container iframe {
+    min-height: 800px;
+  }
+}
+
+/* Placeholder styling (remove after adding embed) */
+.calendar-embed-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  padding: 2rem;
+  background: linear-gradient(135deg, rgba(6, 140, 140, 0.03) 0%, rgba(201, 184, 150, 0.08) 100%);
+  border: 2px dashed rgba(201, 184, 150, 0.5);
+  border-radius: 8px;
+}
+
+/* Loading state for embed */
+.google-calendar-embed-container.loading::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, #D9CFC8 0%, var(--brand-cream) 50%, #D9CFC8 100%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+  z-index: 1;
+}
+
+/* Ensure embed loads above loading state */
+.google-calendar-embed-container iframe {
+  position: relative;
+  z-index: 2;
+}
