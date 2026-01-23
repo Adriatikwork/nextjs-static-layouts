@@ -11,7 +11,7 @@ export function HeroNew() {
       <div 
         className="relative min-h-[700px] w-full"
         style={{
-          background: '#068c8c url(/images/fresh-snow.png) repeat',
+          background: `#068c8c url(${assetPath('/images/fresh-snow.png')}) repeat`,
           backgroundBlendMode: 'multiply'
         }}
       >
@@ -87,7 +87,7 @@ export function HeroNew() {
             <div className="relative w-full h-[600px] flex justify-end">
               <div className="relative w-full max-w-md h-full">
                 <Image
-                  src={assetPath("/doctor_no_background.png")}
+                  src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=800&q=80"
                   alt="Professional portrait"
                   fill
                   className="object-cover object-center"
@@ -118,7 +118,7 @@ export function HeroNew() {
       <div 
         className="w-full py-20"
         style={{
-          background: '#068c8c url(/images/fresh-snow.png) repeat',
+          background: `#068c8c url(${assetPath('/images/fresh-snow.png')}) repeat`,
           backgroundBlendMode: 'multiply'
         }}
       >

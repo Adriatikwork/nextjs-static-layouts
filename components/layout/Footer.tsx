@@ -17,7 +17,7 @@ export function Footer() {
       {/* Decorative logo */}
       <div className="absolute bottom-10 right-10 opacity-5 pointer-events-none hidden lg:block">
         <Image 
-          src={assetPath("/logo.svg")}
+          src={assetPath("/logo-icon.png")}
           alt="" 
           width={200} 
           height={200}
@@ -30,7 +30,7 @@ export function Footer() {
           <div>
             <div className="flex items-center gap-3 mb-6">
               <Image 
-                src={assetPath("/logo.svg")} 
+                src={assetPath("/logo-icon.png")} 
                 alt="Logo" 
                 width={48} 
                 height={48}

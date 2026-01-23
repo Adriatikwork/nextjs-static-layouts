@@ -12,7 +12,7 @@ export function About() {
         <div 
           className="w-full py-16"
           style={{
-            background: '#068c8c url(/images/fresh-snow.png) repeat',
+            background: `#068c8c url(${assetPath('/images/fresh-snow.png')}) repeat`,
             backgroundBlendMode: 'multiply'
           }}
         >
@@ -94,7 +94,7 @@ export function About() {
         <div className="absolute top-0 right-0 w-[55%] h-full hidden lg:flex items-center justify-center pointer-events-none pr-8">
           <div className="relative w-full max-w-2xl h-full">
             <Image
-              src={assetPath("/doctor_no_background.png")}
+              src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=800&q=80"
               alt="Dottoressa Irene Maria Beconi"
               fill
               className="object-contain object-center"
@@ -108,7 +108,7 @@ export function About() {
       <div 
         className="w-full py-16"
         style={{
-          background: '#068c8c url(/images/fresh-snow.png) repeat',
+          background: `#068c8c url(${assetPath('/images/fresh-snow.png')}) repeat`,
           backgroundBlendMode: 'multiply'
         }}
       >
