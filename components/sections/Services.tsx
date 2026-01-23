@@ -1,101 +1,437 @@
 "use client"
 
-import { useLanguage } from '@/lib/LanguageContext'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
+import { assetPath } from '@/lib/utils'
 import { Smile, Scissors, Sparkles } from 'lucide-react'
 
 export function Services() {
-  const { t } = useLanguage()
-
   const services = [
     {
+      title: "Odontoiatria",
       icon: Smile,
-      title: t.services.items[0].title,
-      description: t.services.items[0].description,
-      features: t.services.items[0].features,
+      description: "Cure dentali complete, dall'igiene professionale alla riabilitazione protesica, con tecnologie all'avanguardia per garantire salute e bellezza del sorriso.",
+      items: [
+        "Igiene dentale",
+        "Conservativa",
+        "Protesi",
+        "Sbiancamento"
+      ]
     },
     {
+      title: "Chirurgia Orale",
       icon: Scissors,
-      title: t.services.items[1].title,
-      description: t.services.items[1].description,
-      features: t.services.items[1].features,
+      description: "Interventi chirurgici specialistici eseguiti con precisione e sicurezza, dalla semplice estrazione agli impianti dentali più complessi.",
+      items: [
+        "Estrazioni",
+        "Implantologia",
+        "Chirurgia pre-protesica",
+        "Rigenerazione ossea"
+      ]
     },
     {
+      title: "Medicina Estetica del Volto",
       icon: Sparkles,
-      title: t.services.items[2].title,
-      description: t.services.items[2].description,
-      features: t.services.items[2].features,
-    },
+      description: "Trattamenti estetici non invasivi per valorizzare la bellezza naturale del viso, con risultati armoniosi e naturali.",
+      items: [
+        "Filler",
+        "Botulino",
+        "Biorivitalizzazione",
+        "Peeling medici"
+      ]
+    }
   ]
 
   return (
-    <section id="servizi" className="bg-white section-padding relative">
-      <div className="container mx-auto px-4">
-        <div className="max-w-6xl mx-auto">
-          {/* Section Header - Classical Style */}
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-brand-gold mb-6" style={{ fontFamily: "'Cinzel', serif", letterSpacing: '0.12em' }}>
-              {t.services.title}
-            </h2>
-            <div className="gold-divider"></div>
-            <p className="text-lg text-brand-dark-text mt-8 max-w-2xl mx-auto leading-relaxed" style={{ fontFamily: "'Montserrat', sans-serif" }}>
-              {t.services.subtitle}
-            </p>
-          </div>
+    <section className="relative w-full">
+      {/* Top teal section with title */}
+      <div 
+        className="w-full py-16"
+        style={{
+          background: `#068c8c url(${assetPath('/images/fresh-snow.png')}) repeat`,
+          backgroundBlendMode: 'multiply'
+        }}
+      >
+        <div className="container mx-auto px-4 text-center">
+          <h1 
+            className="text-5xl md:text-6xl text-[#c9b896] tracking-wider font-normal"
+            style={{ fontFamily: 'Playfair Display, serif' }}
+          >
+            I Nostri Servizi
+          </h1>
+        </div>
+      </div>
 
-          {/* Service Cards - Elegant Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {services.map((service, index) => {
-              const Icon = service.icon
-              return (
-                <Card
-                  key={index}
-                  className={`card-hover border border-brand-gold/20 hover:border-brand-gold/50 transition-all duration-500 stagger-${index + 1} animate-fade-in-up bg-white shadow-elegant hover:shadow-elegant-lg`}
-                >
-                  <CardHeader className="text-center pb-4">
-                    {/* Icon with elegant background */}
-                    <div className="w-20 h-20 rounded-full bg-gradient-to-br from-brand-teal/10 to-brand-gold/10 flex items-center justify-center mb-6 mx-auto border-2 border-brand-gold/20 shadow-sm">
-                      <Icon className="w-10 h-10 text-brand-teal" strokeWidth={1.5} />
+      {/* Main services section - light gray background */}
+      <div 
+        className="w-full py-20"
+        style={{ backgroundColor: '#f5f5f5' }}
+      >
+        <div className="container mx-auto px-4">
+          <div className="max-w-7xl mx-auto">
+            {/* Introduction text */}
+            <div className="text-center mb-16">
+              <h2 
+                className="text-3xl text-gray-800 mb-6 font-normal"
+                style={{ fontFamily: 'Playfair Display, serif' }}
+              >
+                Trattamenti personalizzati per il tuo benessere
+              </h2>
+            </div>
+
+            {/* Services grid */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {services.map((service, index) => {
+                const IconComponent = service.icon
+                return (
+                  <div 
+                    key={index}
+                    className="bg-white rounded-lg shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden"
+                    style={{ border: '1px solid #e0e0e0' }}
+                  >
+                    {/* Icon circle */}
+                    <div className="flex justify-center pt-12 pb-6">
+                      <div 
+                        className="w-24 h-24 rounded-full flex items-center justify-center"
+                        style={{ backgroundColor: '#e8f4f4' }}
+                      >
+                        <IconComponent 
+                          className="w-12 h-12"
+                          style={{ color: '#068c8c' }}
+                        />
+                      </div>
                     </div>
-                    <CardTitle className="text-2xl text-brand-gold" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 600, letterSpacing: '0.05em' }}>
-                      {service.title}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent className="space-y-6">
-                    <CardDescription className="text-base text-brand-dark-text leading-relaxed text-center" style={{ fontFamily: "'Montserrat', sans-serif" }}>
-                      {service.description}
-                    </CardDescription>
-                    
-                    {/* Features List with elegant styling */}
-                    <div className="pt-6 border-t border-brand-gold/20">
-                      <ul className="space-y-3">
-                        {service.features.map((feature, idx) => (
-                          <li key={idx} className="text-sm text-brand-dark-text flex items-center gap-3 group" style={{ fontFamily: "'Montserrat', sans-serif" }}>
-                            <span className="w-2 h-2 rounded-full bg-brand-gold group-hover:scale-125 transition-transform flex-shrink-0"></span>
-                            <span className="leading-relaxed">{feature}</span>
+
+                    {/* Content */}
+                    <div className="px-8 pb-10">
+                      <h3 
+                        className="text-2xl text-center mb-6 font-normal"
+                        style={{ 
+                          fontFamily: 'Playfair Display, serif',
+                          color: '#c9a876'
+                        }}
+                      >
+                        {service.title}
+                      </h3>
+
+                      <p 
+                        className="text-gray-700 text-center mb-8 font-light leading-relaxed"
+                        style={{ fontFamily: 'Playfair Display, serif' }}
+                      >
+                        {service.description}
+                      </p>
+
+                      {/* Service items list */}
+                      <ul className="space-y-3 mb-8">
+                        {service.items.map((item, idx) => (
+                          <li 
+                            key={idx}
+                            className="flex items-center gap-3 text-gray-700 font-light"
+                            style={{ fontFamily: 'Playfair Display, serif' }}
+                          >
+                            <span 
+                              className="w-2 h-2 rounded-full flex-shrink-0"
+                              style={{ backgroundColor: '#c9a876' }}
+                            ></span>
+                            <span>{item}</span>
                           </li>
                         ))}
                       </ul>
-                    </div>
 
-                    {/* CTA Button */}
-                    <Button
-                      variant="outline"
-                      className="w-full mt-6 border-2 border-brand-teal text-brand-teal hover:bg-brand-teal hover:text-white transition-all duration-300 shadow-sm hover:shadow-md"
-                      style={{ fontFamily: "'Montserrat', sans-serif", letterSpacing: '0.08em', fontWeight: 500 }}
-                      onClick={() => {
-                        const element = document.getElementById('contatti')
-                        element?.scrollIntoView({ behavior: 'smooth' })
+                      {/* Button */}
+                      <div className="text-center">
+                        <button 
+                          className="px-8 py-3 text-base font-light tracking-wide hover:bg-[#068c8c] hover:text-white transition-all duration-300"
+                          style={{ 
+                            fontFamily: 'Playfair Display, serif',
+                            color: '#068c8c',
+                            border: '2px solid #068c8c',
+                            backgroundColor: 'transparent'
+                          }}
+                        >
+                          Scopri di più
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* IL MIO APPROCCIO Section - beige background */}
+      <div 
+        className="w-full py-20"
+        style={{ backgroundColor: '#e8dfd0' }}
+      >
+        <div className="container mx-auto px-4">
+          <div className="max-w-7xl mx-auto">
+            {/* Section title */}
+            <div className="text-center mb-16">
+              <h2 
+                className="text-4xl md:text-5xl mb-4 font-normal tracking-wider"
+                style={{ 
+                  fontFamily: 'Playfair Display, serif',
+                  color: '#c9a876',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.1em'
+                }}
+              >
+                Il Mio Approccio
+              </h2>
+              <div className="flex justify-center mt-6">
+                {/* Premium decorative divider */}
+                <div className="flex items-center gap-3">
+                  <div className="w-2 h-2" style={{ 
+                    background: '#c9a876',
+                    transform: 'rotate(45deg)',
+                    opacity: 0.9
+                  }} />
+                  <div className="w-3 h-3 rounded-full border-2" style={{ 
+                    borderColor: '#c9a876',
+                    backgroundColor: 'transparent'
+                  }} />
+                  <div className="w-2 h-2" style={{ 
+                    background: '#c9a876',
+                    transform: 'rotate(45deg)',
+                    opacity: 0.9
+                  }} />
+                </div>
+              </div>
+              <p 
+                className="text-xl text-gray-700 mt-8 font-light"
+                style={{ fontFamily: 'Playfair Display, serif' }}
+              >
+                Valori che guidano la mia pratica medica
+              </p>
+            </div>
+
+            {/* Approach cards grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {/* Card 1 - Cura del Paziente */}
+              <div 
+                className="bg-white p-8 rounded-lg shadow-md"
+                style={{ border: '1px solid #d4c5a9' }}
+              >
+                <div className="flex items-start gap-6">
+                  <div 
+                    className="w-16 h-16 rounded-full flex items-center justify-center flex-shrink-0"
+                    style={{ backgroundColor: '#e8f4f4' }}
+                  >
+                    <svg 
+                      className="w-8 h-8"
+                      style={{ color: '#068c8c' }}
+                      fill="none" 
+                      stroke="currentColor" 
+                      viewBox="0 0 24 24"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 
+                      className="text-2xl mb-4 font-normal"
+                      style={{ 
+                        fontFamily: 'Playfair Display, serif',
+                        color: '#c9a876'
                       }}
                     >
-                      {t.services.cta}
-                    </Button>
-                  </CardContent>
-                </Card>
-              )
-            })}
+                      CURA DEL PAZIENTE
+                    </h3>
+                    {/* Premium decorative line */}
+                    <div className="flex items-center gap-2 mb-4">
+                      <div className="w-8 h-[1px]" style={{ background: '#c9a876' }}></div>
+                      <div className="w-1 h-1 rounded-full" style={{ background: '#c9a876' }}></div>
+                      <div className="w-2 h-[1px]" style={{ background: '#c9a876' }}></div>
+                    </div>
+                    <p 
+                      className="text-gray-700 font-light leading-relaxed"
+                      style={{ fontFamily: 'Playfair Display, serif' }}
+                    >
+                      Ogni persona è unica e merita un'attenzione personalizzata. 
+                      Ascolto le esigenze di ogni paziente per offrire il trattamento più adatto.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Card 2 - Precisione Medica */}
+              <div 
+                className="bg-white p-8 rounded-lg shadow-md"
+                style={{ border: '1px solid #d4c5a9' }}
+              >
+                <div className="flex items-start gap-6">
+                  <div 
+                    className="w-16 h-16 rounded-full flex items-center justify-center flex-shrink-0"
+                    style={{ backgroundColor: '#e8f4f4' }}
+                  >
+                    <svg 
+                      className="w-8 h-8"
+                      style={{ color: '#068c8c' }}
+                      fill="none" 
+                      stroke="currentColor" 
+                      viewBox="0 0 24 24"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 
+                      className="text-2xl mb-4 font-normal"
+                      style={{ 
+                        fontFamily: 'Playfair Display, serif',
+                        color: '#c9a876'
+                      }}
+                    >
+                      PRECISIONE MEDICA
+                    </h3>
+                    {/* Premium decorative line */}
+                    <div className="flex items-center gap-2 mb-4">
+                      <div className="w-8 h-[1px]" style={{ background: '#c9a876' }}></div>
+                      <div className="w-1 h-1 rounded-full" style={{ background: '#c9a876' }}></div>
+                      <div className="w-2 h-[1px]" style={{ background: '#c9a876' }}></div>
+                    </div>
+                    <p 
+                      className="text-gray-700 font-light leading-relaxed"
+                      style={{ fontFamily: 'Playfair Display, serif' }}
+                    >
+                      Utilizzo protocolli clinici rigorosi e tecnologie avanzate per garantire 
+                      risultati sicuri ed efficaci in ogni intervento.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Card 3 - Risultati Naturali */}
+              <div 
+                className="bg-white p-8 rounded-lg shadow-md"
+                style={{ border: '1px solid #d4c5a9' }}
+              >
+                <div className="flex items-start gap-6">
+                  <div 
+                    className="w-16 h-16 rounded-full flex items-center justify-center flex-shrink-0"
+                    style={{ backgroundColor: '#e8f4f4' }}
+                  >
+                    <svg 
+                      className="w-8 h-8"
+                      style={{ color: '#068c8c' }}
+                      fill="none" 
+                      stroke="currentColor" 
+                      viewBox="0 0 24 24"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 
+                      className="text-2xl mb-4 font-normal"
+                      style={{ 
+                        fontFamily: 'Playfair Display, serif',
+                        color: '#c9a876'
+                      }}
+                    >
+                      RISULTATI NATURALI
+                    </h3>
+                    {/* Premium decorative line */}
+                    <div className="flex items-center gap-2 mb-4">
+                      <div className="w-8 h-[1px]" style={{ background: '#c9a876' }}></div>
+                      <div className="w-1 h-1 rounded-full" style={{ background: '#c9a876' }}></div>
+                      <div className="w-2 h-[1px]" style={{ background: '#c9a876' }}></div>
+                    </div>
+                    <p 
+                      className="text-gray-700 font-light leading-relaxed"
+                      style={{ fontFamily: 'Playfair Display, serif' }}
+                    >
+                      Il mio obiettivo è valorizzare la bellezza naturale di ogni persona, 
+                      evitando eccessi e mantenendo l'armonia del viso.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Card 4 - Sicurezza ed Etica */}
+              <div 
+                className="bg-white p-8 rounded-lg shadow-md"
+                style={{ border: '1px solid #d4c5a9' }}
+              >
+                <div className="flex items-start gap-6">
+                  <div 
+                    className="w-16 h-16 rounded-full flex items-center justify-center flex-shrink-0"
+                    style={{ backgroundColor: '#e8f4f4' }}
+                  >
+                    <svg 
+                      className="w-8 h-8"
+                      style={{ color: '#068c8c' }}
+                      fill="none" 
+                      stroke="currentColor" 
+                      viewBox="0 0 24 24"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 
+                      className="text-2xl mb-4 font-normal"
+                      style={{ 
+                        fontFamily: 'Playfair Display, serif',
+                        color: '#c9a876'
+                      }}
+                    >
+                      SICUREZZA ED ETICA
+                    </h3>
+                    {/* Premium decorative line */}
+                    <div className="flex items-center gap-2 mb-4">
+                      <div className="w-8 h-[1px]" style={{ background: '#c9a876' }}></div>
+                      <div className="w-1 h-1 rounded-full" style={{ background: '#c9a876' }}></div>
+                      <div className="w-2 h-[1px]" style={{ background: '#c9a876' }}></div>
+                    </div>
+                    <p 
+                      className="text-gray-700 font-light leading-relaxed"
+                      style={{ fontFamily: 'Playfair Display, serif' }}
+                    >
+                      La sicurezza del paziente è la priorità assoluta. 
+                      Opero secondo i più alti standard etici e professionali della medicina.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
+        </div>
+      </div>
+
+      {/* Bottom teal section with CTA */}
+      <div 
+        className="w-full py-16"
+        style={{
+          background: `#068c8c url(${assetPath('/images/fresh-snow.png')}) repeat`,
+          backgroundBlendMode: 'multiply'
+        }}
+      >
+        <div className="container mx-auto px-4 text-center">
+          <h2 
+            className="text-3xl md:text-4xl text-white mb-6 font-normal"
+            style={{ fontFamily: 'Playfair Display, serif' }}
+          >
+            Hai bisogno di maggiori informazioni?
+          </h2>
+          <p 
+            className="text-xl text-white/90 mb-8 font-light"
+            style={{ fontFamily: 'Playfair Display, serif' }}
+          >
+            Contattaci per una consulenza personalizzata
+          </p>
+          <a href="/contatti">
+            <button 
+              className="px-10 py-4 text-[#068c8c] bg-[#c9b896] tracking-widest text-lg hover:opacity-90 transition-all font-light"
+              style={{ 
+                fontFamily: 'Playfair Display, serif',
+                textTransform: 'uppercase'
+              }}
+            >
+              Prenota Appuntamento
+            </button>
+          </a>
         </div>
       </div>
     </section>

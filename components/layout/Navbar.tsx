@@ -50,8 +50,8 @@ export function Navbar() {
                     <li>
                       <Link 
                         href="/" 
-                        className={`hover:opacity-80 transition-opacity text-sm font-normal tracking-wide ${
-                          pathname === '/' ? 'underline decoration-2 underline-offset-8' : ''
+                        className={`hover:opacity-80 transition-all text-sm font-normal tracking-wide ${
+                          pathname === '/' ? 'text-[#c9b896] underline decoration-2 underline-offset-8 decoration-[#c9b896]' : 'text-white'
                         }`}
                       >
                         HOME
@@ -60,8 +60,8 @@ export function Navbar() {
                     <li>
                       <Link 
                         href="/chi-sono" 
-                        className={`hover:opacity-80 transition-opacity text-sm font-normal tracking-wide ${
-                          pathname === '/chi-sono' ? 'underline decoration-2 underline-offset-8' : ''
+                        className={`hover:opacity-80 transition-all text-sm font-normal tracking-wide ${
+                          pathname === '/chi-sono' ? 'text-[#c9b896] underline decoration-2 underline-offset-8 decoration-[#c9b896]' : 'text-white'
                         }`}
                       >
                         CHI SONO
@@ -70,8 +70,8 @@ export function Navbar() {
                     <li>
                       <Link 
                         href="/servizi" 
-                        className={`hover:opacity-80 transition-opacity text-sm font-normal tracking-wide ${
-                          pathname === '/servizi' ? 'underline decoration-2 underline-offset-8' : ''
+                        className={`hover:opacity-80 transition-all text-sm font-normal tracking-wide ${
+                          pathname === '/servizi' ? 'text-[#c9b896] underline decoration-2 underline-offset-8 decoration-[#c9b896]' : 'text-white'
                         }`}
                       >
                         SERVIZI
@@ -80,8 +80,8 @@ export function Navbar() {
                     <li>
                       <Link 
                         href="/galleria" 
-                        className={`hover:opacity-80 transition-opacity text-sm font-normal tracking-wide ${
-                          pathname === '/galleria' ? 'underline decoration-2 underline-offset-8' : ''
+                        className={`hover:opacity-80 transition-all text-sm font-normal tracking-wide ${
+                          pathname === '/galleria' ? 'text-[#c9b896] underline decoration-2 underline-offset-8 decoration-[#c9b896]' : 'text-white'
                         }`}
                       >
                         GALLERIA
@@ -90,8 +90,8 @@ export function Navbar() {
                     <li>
                       <Link 
                         href="/contatti" 
-                        className={`hover:opacity-80 transition-opacity text-sm font-normal tracking-wide ${
-                          pathname === '/contatti' ? 'underline decoration-2 underline-offset-8' : ''
+                        className={`hover:opacity-80 transition-all text-sm font-normal tracking-wide ${
+                          pathname === '/contatti' ? 'text-[#c9b896] underline decoration-2 underline-offset-8 decoration-[#c9b896]' : 'text-white'
                         }`}
                       >
                         CONTATTI
