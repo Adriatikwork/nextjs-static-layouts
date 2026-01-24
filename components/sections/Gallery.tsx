@@ -68,13 +68,28 @@ export function Gallery() {
       <section className="relative w-full">
         {/* Top teal section with title */}
         <div 
-          className="w-full py-16"
+          className="w-full py-16 relative overflow-hidden"
           style={{
-            background: `#068c8c url(${assetPath('/images/fresh-snow.png')}) repeat`,
-            backgroundBlendMode: 'multiply'
+            backgroundColor: '#068c8c',
+            isolation: 'isolate'
           }}
         >
-        <div className="container mx-auto px-4 text-center">
+        {/* Pattern overlay with mix-blend-mode */}
+        <div 
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundImage: `url(${assetPath('/images/fresh-snow.png')})`,
+            backgroundRepeat: 'repeat',
+            mixBlendMode: 'multiply',
+            pointerEvents: 'none',
+            zIndex: 1
+          }}
+        />
+        <div className="container mx-auto px-4 text-center relative z-10">
           <h1 
             className="text-5xl md:text-6xl text-[#c9b896] tracking-wider font-normal"
             style={{ fontFamily: 'Playfair Display, serif' }}

@@ -11,13 +11,11 @@ export function Footer() {
   
   return (
     <footer 
-      className="text-white py-16 relative overflow-hidden"
-      style={{ backgroundColor: '#068c8c' }}
+      className="bg-brand-dark-text text-white py-16 relative overflow-hidden"
     >
       {/* Decorative background */}
       <div 
-        className="absolute top-0 left-0 right-0 h-1"
-        style={{ background: 'linear-gradient(to right, transparent, #c9b896, transparent)' }}
+        className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-brand-gold to-transparent"
       />
       
       {/* Decorative logo */}
@@ -51,13 +49,13 @@ export function Footer() {
               {t.footer.name}
             </h3>
             <p 
-              className="text-white/80 mb-4 leading-relaxed font-light"
+              className="text-brand-cream/80 mb-4 leading-relaxed font-light"
               style={{ fontFamily: 'Playfair Display, serif' }}
             >
               {t.footer.subtitle}
             </p>
             <div 
-              className="flex items-center gap-2 text-white/70 text-sm font-light"
+              className="flex items-center gap-2 text-brand-cream/70 text-sm font-light"
               style={{ fontFamily: 'Playfair Display, serif' }}
             >
               <MapPin className="w-4 h-4" />
@@ -68,8 +66,8 @@ export function Footer() {
           {/* Column 2 - Quick Links */}
           <div>
             <h4 
-              className="text-lg mb-6 font-normal tracking-wide"
-              style={{ fontFamily: 'Playfair Display, serif', color: '#c9b896' }}
+              className="text-lg mb-6 text-brand-gold font-normal tracking-wide"
+              style={{ fontFamily: 'Playfair Display, serif' }}
             >
               {t.footer.linksTitle}
             </h4>
@@ -84,7 +82,7 @@ export function Footer() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="block text-white/70 hover:text-[#c9b896] transition-colors text-sm font-light"
+                  className="block text-brand-cream/70 hover:text-brand-gold transition-colors text-sm font-light"
                   style={{ fontFamily: 'Playfair Display, serif' }}
                 >
                   {link.label}
@@ -96,17 +94,17 @@ export function Footer() {
           {/* Column 3 - Contact Info */}
           <div>
             <h4 
-              className="text-lg mb-6 font-normal tracking-wide"
-              style={{ fontFamily: 'Playfair Display, serif', color: '#c9b896' }}
+              className="text-lg mb-6 text-brand-gold font-normal tracking-wide"
+              style={{ fontFamily: 'Playfair Display, serif' }}
             >
               {t.footer.contactTitle}
             </h4>
             <div className="space-y-4">
               <div className="flex items-start gap-3">
-                <Phone className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: '#c9b896' }} />
+                <Phone className="w-5 h-5 text-brand-gold flex-shrink-0 mt-0.5" />
                 <div>
                   <p 
-                    className="text-white/70 text-sm font-light"
+                    className="text-brand-cream/70 text-sm font-light"
                     style={{ fontFamily: 'Playfair Display, serif' }}
                   >
                     {t.contact.info.phoneNumber}
@@ -114,10 +112,10 @@ export function Footer() {
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <Mail className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: '#c9b896' }} />
+                <Mail className="w-5 h-5 text-brand-gold flex-shrink-0 mt-0.5" />
                 <div>
                   <p 
-                    className="text-white/70 text-sm font-light"
+                    className="text-brand-cream/70 text-sm font-light"
                     style={{ fontFamily: 'Playfair Display, serif' }}
                   >
                     {t.contact.info.emailAddress}
@@ -125,10 +123,10 @@ export function Footer() {
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <MapPin className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: '#c9b896' }} />
+                <MapPin className="w-5 h-5 text-brand-gold flex-shrink-0 mt-0.5" />
                 <div>
                   <p 
-                    className="text-white/70 text-sm font-light"
+                    className="text-brand-cream/70 text-sm font-light"
                     style={{ fontFamily: 'Playfair Display, serif' }}
                   >
                     {t.contact.info.locationAddress}<br />
@@ -141,11 +139,11 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-white/20">
+        <div className="pt-8 border-t border-brand-gold/20">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             {/* Copyright */}
             <p 
-              className="text-white/60 text-sm font-light"
+              className="text-brand-cream/60 text-sm font-light"
               style={{ fontFamily: 'Playfair Display, serif' }}
             >
               {t.footer.copyright.replace('{year}', new Date().getFullYear().toString())}
@@ -161,7 +159,7 @@ export function Footer() {
                 <a
                   key={link.label}
                   href={link.href}
-                  className="text-white/60 hover:text-[#c9b896] transition-colors text-sm font-light"
+                  className="text-brand-cream/60 hover:text-brand-gold transition-colors text-sm font-light"
                   style={{ fontFamily: 'Playfair Display, serif' }}
                 >
                   {link.label}
