@@ -62,112 +62,113 @@ export function Gallery() {
   const selectedImage = selectedImageIndex !== null ? galleryItems[selectedImageIndex] : null
 
   return (
-    <section className="relative w-full">
-      {/* Top teal section with title */}
-      <div 
-        className="w-full py-16"
-        style={{
-          background: `#068c8c url(${assetPath('/images/fresh-snow.png')}) repeat`,
-          backgroundBlendMode: 'multiply'
-        }}
-      >
-        <div className="container mx-auto px-4 text-center">
-          <h1 
-            className="text-5xl md:text-6xl text-[#c9b896] tracking-wider font-normal"
-            style={{ fontFamily: 'Playfair Display, serif' }}
-          >
-            Galleria
-          </h1>
-        </div>
-      </div>
-
-      {/* Main gallery section - beige background */}
-      <div 
-        className="w-full py-20"
-        style={{ backgroundColor: '#e8dfd0' }}
-      >
-        <div className="container mx-auto px-4">
-          <div className="max-w-7xl mx-auto">
-            {/* Introduction */}
-            <div className="text-center mb-12">
-              <h2 
-                className="text-3xl text-gray-800 mb-4 font-normal"
-                style={{ fontFamily: 'Playfair Display, serif' }}
-              >
-                I nostri spazi e risultati
-              </h2>
-              <p 
-                className="text-lg text-gray-600 max-w-2xl mx-auto font-light leading-relaxed"
-                style={{ fontFamily: 'Playfair Display, serif' }}
-              >
-                Scopri gli ambienti della clinica e i risultati dei nostri trattamenti
-              </p>
-            </div>
-
-            {/* Gallery grid with masonry layout */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-              {displayedItems.map((item, index) => (
-                <button
-                  type="button"
-                  key={item.id}
-                  onClick={() => openLightbox(index)}
-                  className="relative group overflow-hidden rounded-lg shadow-md hover:shadow-2xl transition-all duration-300 cursor-pointer"
-                  style={{ aspectRatio: '4/3' }}
-                >
-                  <Image
-                    src={item.image || "/placeholder.svg"}
-                    alt={item.title}
-                    fill
-                    className="object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#068c8c]/90 via-[#068c8c]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-end pb-6 px-4">
-                    <h3 
-                      className="text-xl md:text-2xl text-white font-normal mb-2"
-                      style={{ fontFamily: 'Playfair Display, serif' }}
-                    >
-                      {item.title}
-                    </h3>
-                    <p 
-                      className="text-sm text-white/90 font-light"
-                      style={{ fontFamily: 'Playfair Display, serif' }}
-                    >
-                      {item.description}
-                    </p>
-                  </div>
-                </button>
-              ))}
-            </div>
-
-            {/* View More / View Less Button - Premium Gold Style */}
-            {galleryItems.length > 6 && (
-              <div className="text-center mt-16">
-                <button
-                  onClick={() => setShowAll(!showAll)}
-                  className="group relative px-12 py-4 text-lg font-light tracking-wider overflow-hidden transition-all duration-500 hover:scale-105"
-                  style={{ 
-                    fontFamily: 'Playfair Display, serif',
-                    color: 'white',
-                    backgroundColor: '#c9a876',
-                    boxShadow: '0 4px 15px rgba(201, 168, 118, 0.3)',
-                  }}
-                >
-                  <span className="relative z-10">
-                    {showAll ? 'Mostra meno' : `Scopri tutte le ${galleryItems.length} foto`}
-                  </span>
-                  <div 
-                    className="absolute inset-0 bg-gradient-to-r from-[#d4b896] to-[#c9a876] opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                  />
-                </button>
-              </div>
-            )}
+    <>
+      <section className="relative w-full">
+        {/* Top teal section with title */}
+        <div 
+          className="w-full py-16"
+          style={{
+            background: `#068c8c url(${assetPath('/images/fresh-snow.png')}) repeat`,
+            backgroundBlendMode: 'multiply'
+          }}
+        >
+          <div className="container mx-auto px-4 text-center">
+            <h1 
+              className="text-5xl md:text-6xl text-[#c9b896] tracking-wider font-normal"
+              style={{ fontFamily: 'Playfair Display, serif' }}
+            >
+              Galleria
+            </h1>
           </div>
         </div>
-      </div>
 
-    </section>
+        {/* Main gallery section - beige background */}
+        <div 
+          className="w-full py-20"
+          style={{ backgroundColor: '#e8dfd0' }}
+        >
+          <div className="container mx-auto px-4">
+            <div className="max-w-7xl mx-auto">
+              {/* Introduction */}
+              <div className="text-center mb-12">
+                <h2 
+                  className="text-3xl text-gray-800 mb-4 font-normal"
+                  style={{ fontFamily: 'Playfair Display, serif' }}
+                >
+                  I nostri spazi e risultati
+                </h2>
+                <p 
+                  className="text-lg text-gray-600 max-w-2xl mx-auto font-light leading-relaxed"
+                  style={{ fontFamily: 'Playfair Display, serif' }}
+                >
+                  Scopri gli ambienti della clinica e i risultati dei nostri trattamenti
+                </p>
+              </div>
 
-    {/* Premium Lightbox Modal */}
-    <Dialog open={selectedImageIndex !== null} onOpenChange={closeLightbox}>
+              {/* Gallery grid with masonry layout */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+                {displayedItems.map((item, index) => (
+                  <button
+                    type="button"
+                    key={item.id}
+                    onClick={() => openLightbox(index)}
+                    className="relative group overflow-hidden rounded-lg shadow-md hover:shadow-2xl transition-all duration-300 cursor-pointer"
+                    style={{ aspectRatio: '4/3' }}
+                  >
+                    <Image
+                      src={item.image || "/placeholder.svg"}
+                      alt={item.title}
+                      fill
+                      className="object-cover group-hover:scale-110 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#068c8c]/90 via-[#068c8c]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-end pb-6 px-4">
+                      <h3 
+                        className="text-xl md:text-2xl text-white font-normal mb-2"
+                        style={{ fontFamily: 'Playfair Display, serif' }}
+                      >
+                        {item.title}
+                      </h3>
+                      <p 
+                        className="text-sm text-white/90 font-light"
+                        style={{ fontFamily: 'Playfair Display, serif' }}
+                      >
+                        {item.description}
+                      </p>
+                    </div>
+                  </button>
+                ))}
+              </div>
+
+              {/* View More / View Less Button - Premium Gold Style */}
+              {galleryItems.length > 6 && (
+                <div className="text-center mt-16">
+                  <button
+                    onClick={() => setShowAll(!showAll)}
+                    className="group relative px-12 py-4 text-lg font-light tracking-wider overflow-hidden transition-all duration-500 hover:scale-105"
+                    style={{ 
+                      fontFamily: 'Playfair Display, serif',
+                      color: 'white',
+                      backgroundColor: '#c9a876',
+                      boxShadow: '0 4px 15px rgba(201, 168, 118, 0.3)',
+                    }}
+                  >
+                    <span className="relative z-10">
+                      {showAll ? 'Mostra meno' : `Scopri tutte le ${galleryItems.length} foto`}
+                    </span>
+                    <div 
+                      className="absolute inset-0 bg-gradient-to-r from-[#d4b896] to-[#c9a876] opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                    />
+                  </button>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      {/* Premium Lightbox Modal */}
+      <Dialog open={selectedImageIndex !== null} onOpenChange={closeLightbox}>
       <DialogContent 
         className="max-w-[95vw] max-h-[95vh] w-full h-full p-0 border-none bg-black/95"
         showCloseButton={false}
@@ -258,5 +259,6 @@ export function Gallery() {
         )}
       </DialogContent>
     </Dialog>
+    </>
   )
 }
