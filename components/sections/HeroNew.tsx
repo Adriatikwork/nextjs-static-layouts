@@ -14,7 +14,9 @@ export function HeroNew() {
       <div 
         className="relative min-h-[700px] w-full"
         style={{
-          background: `#068c8c url(${assetPath('/images/fresh-snow.png')}) repeat`,
+          backgroundColor: '#068c8c',
+          backgroundImage: `url(${assetPath('/images/fresh-snow.png')})`,
+          backgroundRepeat: 'repeat',
           backgroundBlendMode: 'multiply'
         }}
       >
@@ -121,7 +123,9 @@ export function HeroNew() {
       <div 
         className="w-full py-20"
         style={{
-          background: `#068c8c url(${assetPath('/images/fresh-snow.png')}) repeat`,
+          backgroundColor: '#068c8c',
+          backgroundImage: `url(${assetPath('/images/fresh-snow.png')})`,
+          backgroundRepeat: 'repeat',
           backgroundBlendMode: 'multiply'
         }}
       >
