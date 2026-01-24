@@ -48,13 +48,17 @@ const locations = [
   }
 ]
 
-// SVG node positions for vertical metro-map style layout (percentages)
+// User's final path shape
+const scaledPath = "M 171 29 L 142 15 L 60 80 L 143 130 L 30 231 L 162 331"
+
+// Node positions at 5 of the 6 path vertices (skipping vertex 2 which is a small corner)
+// These are the actual SVG coordinates
 const nodePositions = [
-  { x: 86, y: 14 },   // 1 - top-right
-  { x: 58, y: 38 },   // 2 - main junction
-  { x: 74, y: 56 },   // 3 - mid-right
-  { x: 60, y: 72 },   // 4 - lower-mid
-  { x: 72, y: 88 },   // 5 - bottom-right
+  { x: 171, y: 29 },   // 1 - top-right (start)
+  { x: 60, y: 80 },    // 2 - upper-left
+  { x: 143, y: 130 },  // 3 - mid-right
+  { x: 30, y: 231 },   // 4 - lower-left
+  { x: 162, y: 331 },  // 5 - bottom (end)
 ]
 
 export function Contact() {
@@ -117,20 +121,33 @@ export function Contact() {
   
   const activeLocation = locations[activeIndex]
   
-  // Generate SVG path through all nodes
-  const generatePath = () => {
-    const points = nodePositions.map((pos) => ({
-      x: pos.x * 4, // Scale to viewBox (400 width)
-      y: pos.y * 2.25 // Scale to viewBox (225 height for 16:9)
-    }))
-    
-    // Create straight angular lines through points (matching the mockup)
-    let d = `M ${points[0].x} ${points[0].y}`
-    for (let i = 1; i < points.length; i++) {
-      d += ` L ${points[i].x} ${points[i].y}`
+  // Check if mobile view
+  const [isMobile, setIsMobile] = useState(false)
+  
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 1024)
     }
-    return d
-  }
+    
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+  
+  // Use the pre-computed scaled path (user's exact shape) for desktop
+  const generatePath = () => scaledPath
+  
+  // Horizontal path for mobile: straight line from left to right
+  const horizontalPath = "M 20 30 L 180 30"
+  
+  // Horizontal node positions for mobile (evenly spaced)
+  const horizontalNodePositions = [
+    { x: 20, y: 30 },
+    { x: 52, y: 30 },
+    { x: 84, y: 30 },
+    { x: 116, y: 30 },
+    { x: 148, y: 30 },
+  ]
   
   return (
     <section className="relative w-full">
@@ -379,114 +396,10 @@ export function Contact() {
           
           <div className="max-w-6xl mx-auto">
             {/* Two-column layout: Card left, SVG right on desktop; stacked on mobile */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:items-center">
               
-              {/* SVG Route Map - Shows first on mobile */}
-              {/* Transparent background - route renders directly on section background */}
-              <div className="order-1 lg:order-2">
-                <div className="relative w-full aspect-[16/9]">
-                  <svg 
-                    viewBox="0 0 400 225" 
-                    className="absolute inset-0 w-full h-full"
-                    role="img"
-                    aria-label="Mappa delle sedi con percorso"
-                    preserveAspectRatio="xMidYMid meet"
-                  >
-                    {/* Route path */}
-                    <path
-                      d={generatePath()}
-                      fill="none"
-                      stroke="#C09B83"
-                      strokeWidth="3"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      style={{ filter: 'drop-shadow(0 2px 8px rgba(192, 155, 131, 0.5))' }}
-                    />
-                    
-                    {/* Location nodes */}
-                    {nodePositions.map((pos, index) => {
-                      const isActive = index === activeIndex
-                      const cx = pos.x * 4
-                      const cy = pos.y * 2.25
-                      
-                      return (
-                        <g key={locations[index].id}>
-                          {/* Outer halo for active node */}
-                          {isActive && (
-                            <circle
-                              cx={cx}
-                              cy={cy}
-                              r="18"
-                              fill="none"
-                              stroke="#C09B83"
-                              strokeWidth="2"
-                              className="animate-pulse"
-                              style={{ opacity: 0.4 }}
-                            />
-                          )}
-                          
-                          {/* Node background glow */}
-                          <circle
-                            cx={cx}
-                            cy={cy}
-                            r={isActive ? 14 : 10}
-                            fill={isActive ? '#C09B83' : '#E6DED9'}
-                            className="transition-all duration-300 ease-out"
-                            style={{ 
-                              filter: isActive 
-                                ? 'drop-shadow(0 4px 12px rgba(192, 155, 131, 0.6))' 
-                                : 'drop-shadow(0 2px 6px rgba(0, 0, 0, 0.3))'
-                            }}
-                          />
-                          
-                          {/* Inner circle */}
-                          <circle
-                            cx={cx}
-                            cy={cy}
-                            r={isActive ? 8 : 6}
-                            fill={isActive ? '#1F2A33' : '#3A7884'}
-                            className="transition-all duration-300 ease-out"
-                          />
-                          
-                          {/* Clickable/focusable button overlay */}
-                          <circle
-                            cx={cx}
-                            cy={cy}
-                            r="20"
-                            fill="transparent"
-                            className="cursor-pointer focus:outline-none"
-                            role="button"
-                            tabIndex={0}
-                            aria-label={`Seleziona ${locations[index].name}`}
-                            aria-pressed={isActive}
-                            onClick={() => handleNodeSelect(index)}
-                            onKeyDown={(e) => handleKeyDown(e, index)}
-                          />
-                          
-                          {/* Location number label */}
-                          <text
-                            x={cx}
-                            y={cy + 1}
-                            textAnchor="middle"
-                            dominantBaseline="middle"
-                            fill={isActive ? '#C09B83' : '#E6DED9'}
-                            fontSize="8"
-                            fontWeight="600"
-                            className="pointer-events-none select-none"
-                            style={{ fontFamily: 'Montserrat, sans-serif' }}
-                          >
-                            {index + 1}
-                          </text>
-                        </g>
-                      )
-                    })}
-                  </svg>
-                  
-                </div>
-              </div>
-              
-              {/* Location Detail Card - Shows second on mobile */}
-              <div className="order-2 lg:order-1">
+              {/* Location Detail Card - Shows FIRST on mobile (top) */}
+              <div className="order-1">
                 <div 
                   className="rounded-2xl p-6 md:p-8 shadow-xl transition-all duration-300"
                   style={{ 
@@ -623,14 +536,217 @@ export function Contact() {
                         }`}
                         style={{ 
                           backgroundColor: index === activeIndex ? '#C09B83' : '#3A7884',
-                          opacity: index === activeIndex ? 1 : 0.5,
-                          focusRingColor: '#C09B83'
+                          opacity: index === activeIndex ? 1 : 0.5
                         }}
                         aria-label={`Vai a ${loc.name}`}
                         aria-current={index === activeIndex ? 'true' : 'false'}
                       />
                     ))}
                   </div>
+                </div>
+              </div>
+              
+              {/* SVG Route Map - Shows SECOND on mobile (bottom) */}
+              <div className="order-2">
+                {/* Mobile: Compact horizontal layout */}
+                <div className="lg:hidden relative w-full" style={{ height: '80px' }}>
+                  <svg 
+                    viewBox="0 0 200 60" 
+                    className="w-full h-full"
+                    role="img"
+                    aria-label="Mappa delle sedi con percorso"
+                    preserveAspectRatio="xMidYMid meet"
+                  >
+                    {/* Horizontal route path */}
+                    <path
+                      d={horizontalPath}
+                      fill="none"
+                      stroke="#C09B83"
+                      strokeWidth="3"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      style={{ filter: 'drop-shadow(0 2px 8px rgba(192, 155, 131, 0.5))' }}
+                    />
+                    
+                    {/* Location nodes */}
+                    {horizontalNodePositions.map((pos, index) => {
+                      const isActive = index === activeIndex
+                      const cx = pos.x
+                      const cy = pos.y
+                      
+                      return (
+                        <g key={locations[index].id}>
+                          {/* Outer halo for active node */}
+                          {isActive && (
+                            <circle
+                              cx={cx}
+                              cy={cy}
+                              r="18"
+                              fill="none"
+                              stroke="#C09B83"
+                              strokeWidth="2"
+                              className="animate-pulse"
+                              style={{ opacity: 0.4 }}
+                            />
+                          )}
+                          
+                          {/* Node background glow */}
+                          <circle
+                            cx={cx}
+                            cy={cy}
+                            r={isActive ? 14 : 10}
+                            fill={isActive ? '#C09B83' : '#E6DED9'}
+                            className="transition-all duration-300 ease-out"
+                            style={{ 
+                              filter: isActive 
+                                ? 'drop-shadow(0 4px 12px rgba(192, 155, 131, 0.6))' 
+                                : 'drop-shadow(0 2px 6px rgba(0, 0, 0, 0.3))'
+                            }}
+                          />
+                          
+                          {/* Inner circle */}
+                          <circle
+                            cx={cx}
+                            cy={cy}
+                            r={isActive ? 8 : 6}
+                            fill={isActive ? '#1F2A33' : '#3A7884'}
+                            className="transition-all duration-300 ease-out"
+                          />
+                          
+                          {/* Clickable/focusable button overlay */}
+                          <circle
+                            cx={cx}
+                            cy={cy}
+                            r="20"
+                            fill="transparent"
+                            className="cursor-pointer focus:outline-none"
+                            role="button"
+                            tabIndex={0}
+                            aria-label={`Seleziona ${locations[index].name}`}
+                            aria-pressed={isActive}
+                            onClick={() => handleNodeSelect(index)}
+                            onKeyDown={(e) => handleKeyDown(e, index)}
+                          />
+                          
+                          {/* Location number label */}
+                          <text
+                            x={cx}
+                            y={cy + 1}
+                            textAnchor="middle"
+                            dominantBaseline="middle"
+                            fill={isActive ? '#C09B83' : '#E6DED9'}
+                            fontSize="9"
+                            fontWeight="600"
+                            className="pointer-events-none select-none"
+                            style={{ fontFamily: 'Montserrat, sans-serif' }}
+                          >
+                            {index + 1}
+                          </text>
+                        </g>
+                      )
+                    })}
+                  </svg>
+                </div>
+                
+                {/* Desktop: Original vertical layout */}
+                <div className="hidden lg:block relative w-full" style={{ height: '350px' }}>
+                  <svg 
+                    viewBox="0 0 200 360" 
+                    className="absolute inset-0 w-full h-full"
+                    role="img"
+                    aria-label="Mappa delle sedi con percorso"
+                    preserveAspectRatio="xMidYMid meet"
+                  >
+                    {/* Route path */}
+                    <path
+                      d={generatePath()}
+                      fill="none"
+                      stroke="#C09B83"
+                      strokeWidth="4"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      style={{ filter: 'drop-shadow(0 2px 8px rgba(192, 155, 131, 0.5))' }}
+                    />
+                    
+                    {/* Location nodes */}
+                    {nodePositions.map((pos, index) => {
+                      const isActive = index === activeIndex
+                      const cx = pos.x  // Already in SVG coordinates
+                      const cy = pos.y  // Already in SVG coordinates
+                      
+                      return (
+                        <g key={locations[index].id}>
+                          {/* Outer halo for active node */}
+                          {isActive && (
+                            <circle
+                              cx={cx}
+                              cy={cy}
+                              r="24"
+                              fill="none"
+                              stroke="#C09B83"
+                              strokeWidth="2.5"
+                              className="animate-pulse"
+                              style={{ opacity: 0.4 }}
+                            />
+                          )}
+                          
+                          {/* Node background glow */}
+                          <circle
+                            cx={cx}
+                            cy={cy}
+                            r={isActive ? 18 : 13}
+                            fill={isActive ? '#C09B83' : '#E6DED9'}
+                            className="transition-all duration-300 ease-out"
+                            style={{ 
+                              filter: isActive 
+                                ? 'drop-shadow(0 4px 12px rgba(192, 155, 131, 0.6))' 
+                                : 'drop-shadow(0 2px 6px rgba(0, 0, 0, 0.3))'
+                            }}
+                          />
+                          
+                          {/* Inner circle */}
+                          <circle
+                            cx={cx}
+                            cy={cy}
+                            r={isActive ? 10 : 8}
+                            fill={isActive ? '#1F2A33' : '#3A7884'}
+                            className="transition-all duration-300 ease-out"
+                          />
+                          
+                          {/* Clickable/focusable button overlay */}
+                          <circle
+                            cx={cx}
+                            cy={cy}
+                            r="26"
+                            fill="transparent"
+                            className="cursor-pointer focus:outline-none"
+                            role="button"
+                            tabIndex={0}
+                            aria-label={`Seleziona ${locations[index].name}`}
+                            aria-pressed={isActive}
+                            onClick={() => handleNodeSelect(index)}
+                            onKeyDown={(e) => handleKeyDown(e, index)}
+                          />
+                          
+                          {/* Location number label */}
+                          <text
+                            x={cx}
+                            y={cy + 1}
+                            textAnchor="middle"
+                            dominantBaseline="middle"
+                            fill={isActive ? '#C09B83' : '#E6DED9'}
+                            fontSize="11"
+                            fontWeight="600"
+                            className="pointer-events-none select-none"
+                            style={{ fontFamily: 'Montserrat, sans-serif' }}
+                          >
+                            {index + 1}
+                          </text>
+                        </g>
+                      )
+                    })}
+                  </svg>
+                  
                 </div>
               </div>
               

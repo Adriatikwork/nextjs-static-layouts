@@ -1,15 +1,21 @@
 "use client"
 
+import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useLanguage } from '@/lib/LanguageContext'
 import { LanguageToggle } from '@/components/LanguageToggle'
 import { assetPath } from '@/lib/utils'
+import { Menu, X } from 'lucide-react'
 
 export function Navbar() {
   const pathname = usePathname()
   const { t } = useLanguage()
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
+  const closeMenu = () => setIsMenuOpen(false)
 
   return (
     <>
@@ -18,7 +24,8 @@ export function Navbar() {
         style={{ backgroundColor: '#068c8c' }}
       >
         <div className="container mx-auto px-4">
-          <div className="flex items-stretch">
+          {/* Desktop Layout */}
+          <div className="hidden lg:flex items-stretch">
             {/* Logo - spans both top bar and main navbar */}
             <div className="flex items-center pr-8">
               <Link href="/">
@@ -38,7 +45,7 @@ export function Navbar() {
               {/* Top contact bar */}
               <div className="border-b border-white/20 py-2">
                 <div className="flex justify-end items-center gap-4 text-white text-xs font-light">
-                  <span>Via del Montone numero 34. Firenze - Secilafè wae effustae</span>
+                  <span className="hidden xl:inline">Via del Montone numero 34. Firenze - Secilafè wae effustae</span>
                   <span>+39 05512456</span>
                 </div>
               </div>
@@ -120,6 +127,166 @@ export function Navbar() {
                 </div>
               </div>
             </div>
+          </div>
+
+          {/* Mobile Layout */}
+          <div className="lg:hidden">
+            <div className="flex items-center justify-between py-4">
+              {/* Logo */}
+              <Link href="/" onClick={closeMenu}>
+                <div className="relative w-16 h-16">
+                  <Image
+                    src={assetPath("/logo-combined.png")}
+                    alt="Logo"
+                    fill
+                    className="object-contain"
+                  />
+                </div>
+              </Link>
+
+              {/* Mobile menu button */}
+              <button
+                onClick={toggleMenu}
+                className="text-white p-2 hover:opacity-80 transition-opacity"
+                aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+              >
+                {isMenuOpen ? (
+                  <X className="w-7 h-7" />
+                ) : (
+                  <Menu className="w-7 h-7" />
+                )}
+              </button>
+            </div>
+
+            {/* Mobile Menu Overlay */}
+            {isMenuOpen && (
+              <div 
+                className="fixed inset-0 z-50"
+                style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }}
+                onClick={closeMenu}
+              >
+                {/* Mobile Menu Panel */}
+                <div 
+                  className="absolute top-0 right-0 h-full w-4/5 max-w-sm shadow-2xl overflow-y-auto"
+                  style={{ backgroundColor: '#068c8c' }}
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  {/* Close button */}
+                  <div className="flex justify-end p-4 border-b border-white/20">
+                    <button
+                      onClick={closeMenu}
+                      className="text-white p-2 hover:opacity-80 transition-opacity"
+                      aria-label="Close menu"
+                    >
+                      <X className="w-7 h-7" />
+                    </button>
+                  </div>
+
+                  {/* Contact Info */}
+                  <div className="p-6 border-b border-white/20">
+                    <div className="space-y-2 text-white text-sm font-light">
+                      <p>Via del Montone numero 34</p>
+                      <p>Firenze</p>
+                      <a href="tel:+3905512456" className="block hover:text-[#c9b896] transition-colors">
+                        +39 05512456
+                      </a>
+                    </div>
+                  </div>
+
+                  {/* Navigation Links */}
+                  <nav className="py-6">
+                    <ul className="space-y-1" style={{ fontFamily: 'Playfair Display, serif' }}>
+                      <li>
+                        <Link 
+                          href="/"
+                          onClick={closeMenu}
+                          className={`block px-6 py-4 text-lg font-normal tracking-wide transition-all ${
+                            pathname === '/' 
+                              ? 'text-[#c9b896] bg-white/10' 
+                              : 'text-white hover:bg-white/5 hover:text-[#c9b896]'
+                          }`}
+                        >
+                          HOME
+                        </Link>
+                      </li>
+                      <li>
+                        <Link 
+                          href="/chi-sono"
+                          onClick={closeMenu}
+                          className={`block px-6 py-4 text-lg font-normal tracking-wide transition-all ${
+                            pathname === '/chi-sono' 
+                              ? 'text-[#c9b896] bg-white/10' 
+                              : 'text-white hover:bg-white/5 hover:text-[#c9b896]'
+                          }`}
+                        >
+                          CHI SONO
+                        </Link>
+                      </li>
+                      <li>
+                        <Link 
+                          href="/servizi"
+                          onClick={closeMenu}
+                          className={`block px-6 py-4 text-lg font-normal tracking-wide transition-all ${
+                            pathname === '/servizi' 
+                              ? 'text-[#c9b896] bg-white/10' 
+                              : 'text-white hover:bg-white/5 hover:text-[#c9b896]'
+                          }`}
+                        >
+                          SERVIZI
+                        </Link>
+                      </li>
+                      <li>
+                        <Link 
+                          href="/galleria"
+                          onClick={closeMenu}
+                          className={`block px-6 py-4 text-lg font-normal tracking-wide transition-all ${
+                            pathname === '/galleria' 
+                              ? 'text-[#c9b896] bg-white/10' 
+                              : 'text-white hover:bg-white/5 hover:text-[#c9b896]'
+                          }`}
+                        >
+                          GALLERIA
+                        </Link>
+                      </li>
+                      <li>
+                        <Link 
+                          href="/contatti"
+                          onClick={closeMenu}
+                          className={`block px-6 py-4 text-lg font-normal tracking-wide transition-all ${
+                            pathname === '/contatti' 
+                              ? 'text-[#c9b896] bg-white/10' 
+                              : 'text-white hover:bg-white/5 hover:text-[#c9b896]'
+                          }`}
+                        >
+                          CONTATTI
+                        </Link>
+                      </li>
+                    </ul>
+                  </nav>
+
+                  {/* Language Toggle */}
+                  <div className="px-6 py-4 border-t border-white/20">
+                    <LanguageToggle isScrolled={false} />
+                  </div>
+
+                  {/* Prenota button */}
+                  <div className="px-6 py-6">
+                    <Link href="/contatti" onClick={closeMenu}>
+                      <button 
+                        className="w-full px-8 py-4 text-white tracking-wide hover:opacity-80 transition-all text-base font-light"
+                        style={{ 
+                          fontFamily: 'Playfair Display, serif',
+                          border: '2px solid #c9b896',
+                          backgroundColor: 'transparent'
+                        }}
+                      >
+                        PRENOTA APPUNTAMENTO
+                      </button>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
         
