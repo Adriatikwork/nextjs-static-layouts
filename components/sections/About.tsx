@@ -32,18 +32,18 @@ export function About() {
           style={{ backgroundColor: '#e8dfd0' }}
         >
           <div className="container mx-auto px-4">
-            <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+            <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start">
               {/* Left Column - Text Content */}
-              <div className="space-y-8">
+              <div className="space-y-6 md:space-y-8">
                 <div>
                   <h2 
-                    className="text-4xl md:text-5xl text-gray-900 mb-4 font-normal"
+                    className="text-3xl md:text-4xl lg:text-5xl text-gray-900 mb-3 md:mb-4 font-normal"
                     style={{ fontFamily: 'Playfair Display, serif' }}
                   >
                     Dottoressa Irene Maria Beconi
                   </h2>
                   <p 
-                    className="text-xl text-gray-800 font-light"
+                    className="text-lg md:text-xl text-gray-800 font-light"
                     style={{ fontFamily: 'Playfair Display, serif' }}
                   >
                     Odontoiatria e Medicina Estetica del Viso
@@ -75,7 +75,7 @@ export function About() {
                   </button>
                   <div className="relative w-32 h-12">
                     <Image
-                      src={assetPath("/images/signature.png")}
+                      src={assetPath("/images/signature.png") || "/placeholder.svg"}
                       alt="Signature"
                       fill
                       className="object-contain"
@@ -91,13 +91,13 @@ export function About() {
         </div>
 
         {/* Doctor Image - Absolute positioned to span ONLY teal CHI SONO + beige Dottoressa sections */}
-        <div className="absolute top-0 right-0 w-[55%] h-full hidden lg:flex items-center justify-center pointer-events-none pr-8">
-          <div className="relative w-full max-w-2xl h-full">
+        <div className="absolute top-0 right-0 w-[50%] h-full hidden lg:flex items-end justify-end pointer-events-none pr-8 pb-8">
+          <div className="relative w-full max-w-xl" style={{ height: '85%' }}>
             <Image
               src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=800&q=80"
               alt="Dottoressa Irene Maria Beconi"
               fill
-              className="object-contain object-center"
+              className="object-contain object-bottom"
               priority
             />
           </div>

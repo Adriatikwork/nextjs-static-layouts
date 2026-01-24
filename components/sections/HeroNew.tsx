@@ -15,14 +15,14 @@ export function HeroNew() {
           backgroundBlendMode: 'multiply'
         }}
       >
-        <div className="container mx-auto px-4 py-20">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="container mx-auto px-4 py-12 md:py-20">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Left side - Content */}
-            <div className="flex flex-col items-center gap-8">
+            <div className="flex flex-col items-center gap-6 md:gap-8">
               {/* Logo icon */}
-              <div className="relative w-32 h-32">
+              <div className="relative w-24 h-24 md:w-32 md:h-32">
                 <Image
-                  src={assetPath("/logo-icon.png")}
+                  src={assetPath("/logo-icon.png") || "/placeholder.svg"}
                   alt="Logo"
                   fill
                   className="object-contain"
@@ -31,11 +31,11 @@ export function HeroNew() {
               </div>
 
               {/* Main heading */}
-              <div className="space-y-4">
-                <h1 className="text-4xl md:text-5xl text-white tracking-wide leading-tight text-center font-normal" style={{ fontFamily: 'Playfair Display, serif' }}>
+              <div className="space-y-3 md:space-y-4">
+                <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-white tracking-wide leading-tight text-center font-normal" style={{ fontFamily: 'Playfair Display, serif' }}>
                   DOTTORESSA IRENE MARIA BECONI
                 </h1>
-                <p className="text-xl md:text-2xl text-white tracking-widest text-center font-light" style={{ fontFamily: 'Playfair Display, serif' }}>
+                <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white tracking-wider lg:tracking-widest text-center font-light px-4" style={{ fontFamily: 'Playfair Display, serif' }}>
                   ODONTOIATRIA E MEDICINA ESTETICA DEL VOLTO
                 </p>
               </div>
@@ -84,13 +84,13 @@ export function HeroNew() {
             </div>
 
             {/* Right side - Image */}
-            <div className="relative w-full h-[600px] flex justify-end">
-              <div className="relative w-full max-w-md h-full">
+            <div className="relative w-full h-[400px] sm:h-[500px] lg:h-[600px] flex justify-center lg:justify-end">
+              <div className="relative w-full max-w-sm lg:max-w-md h-full">
                 <Image
                   src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=800&q=80"
                   alt="Professional portrait"
                   fill
-                  className="object-cover object-center"
+                  className="object-cover object-center rounded-lg lg:rounded-none"
                   priority
                 />
               </div>
@@ -101,14 +101,14 @@ export function HeroNew() {
 
       {/* Bottom beige section */}
       <div 
-        className="w-full py-12"
+        className="w-full py-8 md:py-12"
         style={{ backgroundColor: '#e8dfd0' }}
       >
         <div className="container mx-auto px-4 text-center">
-          <p className="text-lg text-gray-800 leading-relaxed font-normal" style={{ fontFamily: 'Playfair Display, serif' }}>
-            <span className="text-2xl">+</span> Poliambulatorio di Irene Maria Beconi viene effettuata
+          <p className="text-base md:text-lg text-gray-800 leading-relaxed font-normal" style={{ fontFamily: 'Playfair Display, serif' }}>
+            <span className="text-xl md:text-2xl">+</span> Poliambulatorio di Irene Maria Beconi viene effettuata
           </p>
-          <p className="text-lg text-gray-800 leading-relaxed italic mt-2 font-light" style={{ fontFamily: 'Playfair Display, serif' }}>
+          <p className="text-sm md:text-lg text-gray-800 leading-relaxed italic mt-2 font-light px-4" style={{ fontFamily: 'Playfair Display, serif' }}>
             Nostri Horari e Tutela Offerta Visieratii di Lui del Surridenca e llun Tobaco.
           </p>
         </div>
@@ -132,7 +132,7 @@ export function HeroNew() {
               >
                 <div className="relative w-full h-64">
                   <Image
-                    src={assetPath("/images/chi-sono-card.jpg")}
+                    src={assetPath("/images/chi-sono-card.jpg") || "/placeholder.svg"}
                     alt="Chi Sono"
                     fill
                     className="object-cover"
@@ -165,7 +165,7 @@ export function HeroNew() {
               >
                 <div className="relative w-full h-64">
                   <Image
-                    src={assetPath("/images/servizi-card.jpg")}
+                    src={assetPath("/images/servizi-card.jpg") || "/placeholder.svg"}
                     alt="Servizi"
                     fill
                     className="object-cover"
@@ -198,7 +198,7 @@ export function HeroNew() {
               >
                 <div className="relative w-full h-64">
                   <Image
-                    src={assetPath("/images/galleria-card.jpg")}
+                    src={assetPath("/images/galleria-card.jpg") || "/placeholder.svg"}
                     alt="Galleria"
                     fill
                     className="object-cover"

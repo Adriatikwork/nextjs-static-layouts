@@ -108,7 +108,16 @@ const config: Config = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [
+    require("tailwindcss-animate"),
+    function({ addBase }: any) {
+      addBase({
+        '*': {
+          borderColor: 'hsl(var(--border))',
+        },
+      })
+    }
+  ],
 }
 
 export default config

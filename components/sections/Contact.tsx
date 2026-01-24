@@ -1,5 +1,7 @@
 "use client"
 
+import React from "react"
+
 import { useState, useEffect, useCallback } from 'react'
 import { assetPath } from '@/lib/utils'
 import { MapPin, Phone, Mail, Clock, Navigation } from 'lucide-react'
@@ -176,9 +178,9 @@ export function Contact() {
       >
         <div className="container mx-auto px-4">
           <div className="max-w-7xl mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 lg:gap-8">
               {/* Contact Information Cards */}
-              <div className="space-y-4">
+              <div className="space-y-3 md:space-y-4">
                 <h2 
                   className="text-2xl text-[#068c8c] mb-6 font-normal"
                   style={{ fontFamily: 'Playfair Display, serif' }}
@@ -306,12 +308,12 @@ export function Contact() {
                   </div>
 
                   {/* Google Calendar Embed */}
-                  <div className="relative overflow-hidden" style={{ height: '550px' }}>
+                  <div className="relative w-full overflow-hidden" style={{ height: '600px' }}>
                     <iframe 
                       src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ1sn4N5UDj5qZlgwWvHZO7hWvPRPho91rom4_PlrTowM8GLtZ2xdtjCMBnFzMAD5Z0kKp44E1Rf?gv=true" 
-                      style={{ border: 0, marginTop: '-60px' }} 
+                      style={{ border: 0 }} 
                       width="100%" 
-                      height="720" 
+                      height="600" 
                       frameBorder="0"
                       title="Prenota un appuntamento"
                       className="w-full"
