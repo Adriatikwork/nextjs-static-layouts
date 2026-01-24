@@ -5,8 +5,10 @@ import { assetPath } from '@/lib/utils'
 import { useState } from 'react'
 import { Dialog, DialogContent } from '@/components/ui/dialog'
 import { ChevronLeft, ChevronRight, X } from 'lucide-react'
+import { useLanguage } from '@/lib/LanguageContext'
 
 export function Gallery() {
+  const { t } = useLanguage()
   const [showAll, setShowAll] = useState(false)
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null)
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
@@ -72,38 +74,38 @@ export function Gallery() {
             backgroundBlendMode: 'multiply'
           }}
         >
-          <div className="container mx-auto px-4 text-center">
-            <h1 
-              className="text-5xl md:text-6xl text-[#c9b896] tracking-wider font-normal"
-              style={{ fontFamily: 'Playfair Display, serif' }}
-            >
-              Galleria
-            </h1>
-          </div>
+        <div className="container mx-auto px-4 text-center">
+          <h1 
+            className="text-5xl md:text-6xl text-[#c9b896] tracking-wider font-normal"
+            style={{ fontFamily: 'Playfair Display, serif' }}
+          >
+            {t.gallery.title}
+          </h1>
         </div>
+      </div>
 
-        {/* Main gallery section - beige background */}
-        <div 
-          className="w-full py-20"
-          style={{ backgroundColor: '#e8dfd0' }}
-        >
-          <div className="container mx-auto px-4">
-            <div className="max-w-7xl mx-auto">
-              {/* Introduction */}
-              <div className="text-center mb-12">
-                <h2 
-                  className="text-3xl text-gray-800 mb-4 font-normal"
-                  style={{ fontFamily: 'Playfair Display, serif' }}
-                >
-                  I nostri spazi e risultati
-                </h2>
-                <p 
-                  className="text-lg text-gray-600 max-w-2xl mx-auto font-light leading-relaxed"
-                  style={{ fontFamily: 'Playfair Display, serif' }}
-                >
-                  Scopri gli ambienti della clinica e i risultati dei nostri trattamenti
-                </p>
-              </div>
+      {/* Main gallery section - beige background */}
+      <div 
+        className="w-full py-20"
+        style={{ backgroundColor: '#e8dfd0' }}
+      >
+        <div className="container mx-auto px-4">
+          <div className="max-w-7xl mx-auto">
+            {/* Introduction */}
+            <div className="text-center mb-12">
+              <h2 
+                className="text-3xl text-gray-800 mb-4 font-normal"
+                style={{ fontFamily: 'Playfair Display, serif' }}
+              >
+                {t.gallery.subtitle}
+              </h2>
+              <p 
+                className="text-lg text-gray-600 max-w-2xl mx-auto font-light leading-relaxed"
+                style={{ fontFamily: 'Playfair Display, serif' }}
+              >
+                {t.gallery.intro}
+              </p>
+            </div>
 
               {/* Gallery grid with masonry layout */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
@@ -153,7 +155,7 @@ export function Gallery() {
                     }}
                   >
                     <span className="relative z-10">
-                      {showAll ? 'Mostra meno' : `Scopri tutte le ${galleryItems.length} foto`}
+                      {showAll ? t.gallery.showLess : `${t.gallery.showAll} ${galleryItems.length} ${t.gallery.photos}`}
                     </span>
                     <div 
                       className="absolute inset-0 bg-gradient-to-r from-[#d4b896] to-[#c9a876] opacity-0 group-hover:opacity-100 transition-opacity duration-500"

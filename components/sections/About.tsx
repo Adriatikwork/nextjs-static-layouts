@@ -2,8 +2,11 @@
 
 import Image from 'next/image'
 import { assetPath } from '@/lib/utils'
+import { useLanguage } from '@/lib/LanguageContext'
 
 export function About() {
+  const { t } = useLanguage()
+
   return (
     <section className="relative w-full">
       {/* Wrapper for TOP TEAL + MIDDLE BEIGE with image spanning ONLY these two */}
@@ -21,7 +24,7 @@ export function About() {
               className="text-5xl md:text-6xl text-[#c9b896] tracking-wider font-normal"
               style={{ fontFamily: 'Playfair Display, serif' }}
             >
-              Chi Sono
+              {t.about.title}
             </h1>
           </div>
         </div>
@@ -32,7 +35,7 @@ export function About() {
           style={{ backgroundColor: '#e8dfd0' }}
         >
           <div className="container mx-auto px-4">
-            <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start">
+            <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
               {/* Left Column - Text Content */}
               <div className="space-y-6 md:space-y-8">
                 <div>
@@ -40,13 +43,13 @@ export function About() {
                     className="text-3xl md:text-4xl lg:text-5xl text-gray-900 mb-3 md:mb-4 font-normal"
                     style={{ fontFamily: 'Playfair Display, serif' }}
                   >
-                    Dottoressa Irene Maria Beconi
+                    {t.hero.name}
                   </h2>
                   <p 
                     className="text-lg md:text-xl text-gray-800 font-light"
                     style={{ fontFamily: 'Playfair Display, serif' }}
                   >
-                    Odontoiatria e Medicina Estetica del Viso
+                    {t.hero.subtitle}
                   </p>
                 </div>
 
@@ -58,7 +61,15 @@ export function About() {
                   className="text-lg text-gray-800 leading-relaxed font-light"
                   style={{ fontFamily: 'Playfair Display, serif' }}
                 >
-                  Così ligula idelit ud mi ele varius varius. Id eu siit tincidunt urna, coof diam quas amet condimentum laoreet tacmnent. Facentum effit. Dgnissim aurc, consectetur faucibus exorcidian vestibulum, esocondeconse.
+                  {t.about.intro}
+                </p>
+
+                {/* Second Description */}
+                <p 
+                  className="text-lg text-gray-800 leading-relaxed font-light"
+                  style={{ fontFamily: 'Playfair Display, serif' }}
+                >
+                  {t.about.description}
                 </p>
 
                 {/* Button with signature */}
@@ -70,8 +81,12 @@ export function About() {
                       backgroundColor: '#068c8c',
                       textTransform: 'uppercase'
                     }}
+                    onClick={() => {
+                      const contactSection = document.getElementById('contact')
+                      contactSection?.scrollIntoView({ behavior: 'smooth' })
+                    }}
                   >
-                    HENITETA IGNA
+                    {t.nav.contact}
                   </button>
                   <div className="relative w-32 h-12">
                     <Image
@@ -84,22 +99,17 @@ export function About() {
                 </div>
               </div>
 
-              {/* Right Column - Placeholder for image */}
-              <div className="hidden lg:block"></div>
+              {/* Right Column - Doctor Image */}
+              <div className="relative w-full h-[500px] lg:h-[600px]">
+                <Image
+                  src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=800&q=80"
+                  alt={t.hero.name}
+                  fill
+                  className="object-cover object-center rounded-lg shadow-lg"
+                  priority
+                />
+              </div>
             </div>
-          </div>
-        </div>
-
-        {/* Doctor Image - Absolute positioned to span ONLY teal CHI SONO + beige Dottoressa sections */}
-        <div className="absolute top-0 right-0 w-[50%] h-full hidden lg:flex items-end justify-end pointer-events-none pr-8 pb-8">
-          <div className="relative w-full max-w-xl" style={{ height: '85%' }}>
-            <Image
-              src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=800&q=80"
-              alt="Dottoressa Irene Maria Beconi"
-              fill
-              className="object-contain object-bottom"
-              priority
-            />
           </div>
         </div>
       </div>
@@ -121,43 +131,32 @@ export function About() {
                 className="text-3xl md:text-4xl text-[#c9b896] tracking-wider font-normal text-center"
                 style={{ fontFamily: 'Playfair Display, serif', textTransform: 'uppercase' }}
               >
-                La Mia Formazione
+                {t.about.formationTitle}
               </h2>
               <div className="flex-1 h-[1px] bg-[#c9b896]"></div>
             </div>
 
             {/* Two columns of bullet points */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-white">
+              {/* Split formation items into two columns */}
               {/* Left column */}
               <div className="space-y-4">
-                <p className="text-lg font-light flex items-start gap-3" style={{ fontFamily: 'Playfair Display, serif' }}>
-                  <span className="text-[#c9b896] mt-1">•</span>
-                  <span>Convurt luct intesquwe der empo est lineaticenlectric.</span>
-                </p>
-                <p className="text-lg font-light flex items-start gap-3" style={{ fontFamily: 'Playfair Display, serif' }}>
-                  <span className="text-[#c9b896] mt-1">•</span>
-                  <span>Dicturger sit amet sit amet quidi mudid.</span>
-                </p>
-                <p className="text-lg font-light flex items-start gap-3" style={{ fontFamily: 'Playfair Display, serif' }}>
-                  <span className="text-[#c9b896] mt-1">•</span>
-                  <span>Addressperio nndcristoquw semdapi sied HLÅC.</span>
-                </p>
+                {t.about.formation.slice(0, Math.ceil(t.about.formation.length / 2)).map((item, idx) => (
+                  <p key={idx} className="text-lg font-light flex items-start gap-3" style={{ fontFamily: 'Playfair Display, serif' }}>
+                    <span className="text-[#c9b896] mt-1">•</span>
+                    <span>{item}</span>
+                  </p>
+                ))}
               </div>
 
               {/* Right column */}
               <div className="space-y-4">
-                <p className="text-lg font-light flex items-start gap-3" style={{ fontFamily: 'Playfair Display, serif' }}>
-                  <span className="text-[#c9b896] mt-1">•</span>
-                  <span>Convurt luct intesquwee der empo est lineatictenlectrit.</span>
-                </p>
-                <p className="text-lg font-light flex items-start gap-3" style={{ fontFamily: 'Playfair Display, serif' }}>
-                  <span className="text-[#c9b896] mt-1">•</span>
-                  <span>Jano sed saness met, laoorneathcquo magnalis.</span>
-                </p>
-                <p className="text-lg font-light flex items-start gap-3" style={{ fontFamily: 'Playfair Display, serif' }}>
-                  <span className="text-[#c9b896] mt-1">•</span>
-                  <span>Eais sed velit id Sess (modi novet lorem)</span>
-                </p>
+                {t.about.formation.slice(Math.ceil(t.about.formation.length / 2)).map((item, idx) => (
+                  <p key={idx} className="text-lg font-light flex items-start gap-3" style={{ fontFamily: 'Playfair Display, serif' }}>
+                    <span className="text-[#c9b896] mt-1">•</span>
+                    <span>{item}</span>
+                  </p>
+                ))}
               </div>
             </div>
 
@@ -184,8 +183,7 @@ export function About() {
             className="text-xl md:text-2xl text-gray-800 leading-relaxed font-normal italic"
             style={{ fontFamily: 'Playfair Display, serif' }}
           >
-            "Scegli la migliore per avere un sorriso curato e una stroria luminante. Con il tempo, colgi Gingiglia 
-            sii client fidato nel conoscere nuove tecniche e trattamenti innovatve."
+            "{t.approach.quote}"
           </p>
         </div>
       </div>

@@ -3,81 +3,28 @@
 import { assetPath } from '@/lib/utils'
 import { Smile, Activity, Syringe, Droplet, Sparkles, Scissors } from 'lucide-react'
 import { useState } from 'react'
+import { useLanguage } from '@/lib/LanguageContext'
 
 export function Services() {
+  const { t } = useLanguage()
   const [activeCategory, setActiveCategory] = useState<'dental' | 'aesthetic'>('dental')
 
-  const dentalServices = [
-    {
-      title: "Cure Conservative e Restaurative",
-      icon: Smile,
-      description: "Trattamenti per preservare e ripristinare la salute dentale naturale, dall'otturazione alla cura della carie con materiali biocompatibili di ultima generazione.",
-      items: [
-        "Otturazioni estetiche",
-        "Ricostruzioni dentali",
-        "Cura della carie",
-        "Sbiancamento dentale"
-      ]
-    },
-    {
-      title: "Endodonzia",
-      icon: Activity,
-      description: "Terapie canalari specialistiche per salvare denti compromessi, eseguite con tecnologie digitali avanzate e massima precisione operativa.",
-      items: [
-        "Devitalizzazioni",
-        "Ritrattamenti canalari",
-        "Terapie della polpa",
-        "Microscopia operatoria"
-      ]
-    },
-    {
-      title: "Chirurgia Orale",
-      icon: Scissors,
-      description: "Interventi chirurgici specialistici eseguiti con precisione e sicurezza, dalla semplice estrazione agli impianti dentali più complessi.",
-      items: [
-        "Estrazioni dentali",
-        "Implantologia dentale",
-        "Chirurgia pre-protesica",
-        "Rigenerazione ossea guidata"
-      ]
+  // Use translations for services
+  const dentalServices = t.services.dental.map((service, index) => {
+    const icons = [Smile, Activity, Scissors]
+    return {
+      ...service,
+      icon: icons[index]
     }
-  ]
+  })
 
-  const aestheticServices = [
-    {
-      title: "Filler Dermici",
-      icon: Syringe,
-      description: "Acido ialuronico di altissima qualità per volumizzare e definire i tratti del viso in modo naturale e armonioso, rispettando l'anatomia facciale.",
-      items: [
-        "Aumento volumetrico labbra",
-        "Definizione zigomi",
-        "Rimodellamento mento",
-        "Correzione solchi naso-labiali"
-      ]
-    },
-    {
-      title: "Tossina Botulinica",
-      icon: Droplet,
-      description: "Trattamenti mirati per attenuare rughe d'espressione e linee sottili, con risultati naturali che preservano la mobilità e l'espressività del volto.",
-      items: [
-        "Trattamento rughe frontali",
-        "Correzione zampe di gallina",
-        "Gummy smile",
-        "Ipertrofia massetere"
-      ]
-    },
-    {
-      title: "Biorivitalizzazione e Peeling",
-      icon: Sparkles,
-      description: "Terapie rigenerative cutanee per migliorare texture, tono ed elasticità della pelle del viso, stimolando i naturali processi di rinnovamento cellulare.",
-      items: [
-        "Biorivitalizzazione viso",
-        "Skinbooster",
-        "Peeling chimici medicali",
-        "Trattamenti anti-aging"
-      ]
+  const aestheticServices = t.services.aesthetic.map((service, index) => {
+    const icons = [Syringe, Droplet, Sparkles]
+    return {
+      ...service,
+      icon: icons[index]
     }
-  ]
+  })
 
   const activeServices = activeCategory === 'dental' ? dentalServices : aestheticServices
 
@@ -96,7 +43,7 @@ export function Services() {
             className="text-5xl md:text-6xl text-[#c9b896] tracking-wider font-normal"
             style={{ fontFamily: 'Playfair Display, serif' }}
           >
-            I Nostri Servizi
+            {t.services.title}
           </h1>
         </div>
       </div>
@@ -114,14 +61,13 @@ export function Services() {
                 className="text-3xl text-gray-800 mb-6 font-normal"
                 style={{ fontFamily: 'Playfair Display, serif' }}
               >
-                Due aree di eccellenza al servizio della tua bellezza
+                {t.services.subtitle}
               </h2>
               <p 
                 className="text-lg text-gray-600 max-w-3xl mx-auto font-light leading-relaxed"
                 style={{ fontFamily: 'Playfair Display, serif' }}
               >
-                La mia pratica medica unisce competenze odontoiatriche e competenze in medicina estetica facciale 
-                per offrirti un approccio completo alla cura del sorriso e del volto.
+                {t.services.intro}
               </p>
             </div>
 
@@ -144,7 +90,7 @@ export function Services() {
                     color: activeCategory === 'dental' ? 'white' : '#068c8c'
                   }}
                 >
-                  Odontoiatria e Salute Orale
+                  {t.services.dentalCategory}
                 </button>
                 <button
                   onClick={() => setActiveCategory('aesthetic')}
@@ -155,7 +101,7 @@ export function Services() {
                     color: activeCategory === 'aesthetic' ? 'white' : '#068c8c'
                   }}
                 >
-                  Medicina Estetica del Volto
+                  {t.services.aestheticCategory}
                 </button>
               </div>
             </div>
@@ -238,7 +184,7 @@ export function Services() {
                               backgroundColor: 'transparent'
                             }}
                           >
-                            Scopri di più
+                            {t.services.learnMore}
                           </button>
                         </div>
                       </div>
@@ -335,7 +281,7 @@ export function Services() {
                             backgroundColor: 'transparent'
                           }}
                         >
-                          Scopri di più
+                          {t.services.learnMore}
                         </button>
                       </div>
                     </div>
@@ -365,7 +311,7 @@ export function Services() {
                   letterSpacing: '0.1em'
                 }}
               >
-                Il Mio Approccio
+                {t.services.approachTitle}
               </h2>
               <div className="flex justify-center mt-6">
                 {/* Premium decorative divider */}
@@ -390,199 +336,62 @@ export function Services() {
                 className="text-xl text-gray-700 mt-8 font-light"
                 style={{ fontFamily: 'Playfair Display, serif' }}
               >
-                Valori che guidano la mia pratica medica
+                {t.services.approachSubtitle}
               </p>
             </div>
 
             {/* Approach cards grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {/* Card 1 - Cura del Paziente */}
-              <div 
-                className="bg-white p-8 rounded-lg shadow-md"
-                style={{ border: '1px solid #d4c5a9' }}
-              >
-                <div className="flex items-start gap-6">
-                  <div 
-                    className="w-16 h-16 rounded-full flex items-center justify-center flex-shrink-0"
-                    style={{ backgroundColor: '#e8f4f4' }}
-                  >
-                    <svg 
-                      className="w-8 h-8"
-                      style={{ color: '#068c8c' }}
-                      fill="none" 
-                      stroke="currentColor" 
-                      viewBox="0 0 24 24"
+              {t.approach.items.map((item, index) => (
+                <div 
+                  key={index}
+                  className="bg-white p-8 rounded-lg shadow-md"
+                  style={{ border: '1px solid #d4c5a9' }}
+                >
+                  <div className="flex items-start gap-6">
+                    <div 
+                      className="w-16 h-16 rounded-full flex items-center justify-center flex-shrink-0"
+                      style={{ backgroundColor: '#e8f4f4' }}
                     >
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 
-                      className="text-2xl mb-4 font-normal"
-                      style={{ 
-                        fontFamily: 'Playfair Display, serif',
-                        color: '#c9a876'
-                      }}
-                    >
-                      CURA DEL PAZIENTE
-                    </h3>
-                    {/* Premium decorative line */}
-                    <div className="flex items-center gap-2 mb-4">
-                      <div className="w-8 h-[1px]" style={{ background: '#c9a876' }}></div>
-                      <div className="w-1 h-1 rounded-full" style={{ background: '#c9a876' }}></div>
-                      <div className="w-2 h-[1px]" style={{ background: '#c9a876' }}></div>
+                      <svg 
+                        className="w-8 h-8"
+                        style={{ color: '#068c8c' }}
+                        fill="none" 
+                        stroke="currentColor" 
+                        viewBox="0 0 24 24"
+                      >
+                        {index === 0 && <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />}
+                        {index === 1 && <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />}
+                        {index === 2 && <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />}
+                        {index === 3 && <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />}
+                      </svg>
                     </div>
-                    <p 
-                      className="text-gray-700 font-light leading-relaxed"
-                      style={{ fontFamily: 'Playfair Display, serif' }}
-                    >
-                      Ogni persona è unica e merita un'attenzione personalizzata. 
-                      Ascolto le esigenze di ogni paziente per offrire il trattamento più adatto.
-                    </p>
+                    <div>
+                      <h3 
+                        className="text-2xl mb-4 font-normal"
+                        style={{ 
+                          fontFamily: 'Playfair Display, serif',
+                          color: '#c9a876'
+                        }}
+                      >
+                        {item.title.toUpperCase()}
+                      </h3>
+                      {/* Premium decorative line */}
+                      <div className="flex items-center gap-2 mb-4">
+                        <div className="w-8 h-[1px]" style={{ background: '#c9a876' }}></div>
+                        <div className="w-1 h-1 rounded-full" style={{ background: '#c9a876' }}></div>
+                        <div className="w-2 h-[1px]" style={{ background: '#c9a876' }}></div>
+                      </div>
+                      <p 
+                        className="text-gray-700 font-light leading-relaxed"
+                        style={{ fontFamily: 'Playfair Display, serif' }}
+                      >
+                        {item.description}
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
-
-              {/* Card 2 - Precisione Medica */}
-              <div 
-                className="bg-white p-8 rounded-lg shadow-md"
-                style={{ border: '1px solid #d4c5a9' }}
-              >
-                <div className="flex items-start gap-6">
-                  <div 
-                    className="w-16 h-16 rounded-full flex items-center justify-center flex-shrink-0"
-                    style={{ backgroundColor: '#e8f4f4' }}
-                  >
-                    <svg 
-                      className="w-8 h-8"
-                      style={{ color: '#068c8c' }}
-                      fill="none" 
-                      stroke="currentColor" 
-                      viewBox="0 0 24 24"
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 
-                      className="text-2xl mb-4 font-normal"
-                      style={{ 
-                        fontFamily: 'Playfair Display, serif',
-                        color: '#c9a876'
-                      }}
-                    >
-                      PRECISIONE MEDICA
-                    </h3>
-                    {/* Premium decorative line */}
-                    <div className="flex items-center gap-2 mb-4">
-                      <div className="w-8 h-[1px]" style={{ background: '#c9a876' }}></div>
-                      <div className="w-1 h-1 rounded-full" style={{ background: '#c9a876' }}></div>
-                      <div className="w-2 h-[1px]" style={{ background: '#c9a876' }}></div>
-                    </div>
-                    <p 
-                      className="text-gray-700 font-light leading-relaxed"
-                      style={{ fontFamily: 'Playfair Display, serif' }}
-                    >
-                      Utilizzo protocolli clinici rigorosi e tecnologie avanzate per garantire 
-                      risultati sicuri ed efficaci in ogni intervento.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Card 3 - Risultati Naturali */}
-              <div 
-                className="bg-white p-8 rounded-lg shadow-md"
-                style={{ border: '1px solid #d4c5a9' }}
-              >
-                <div className="flex items-start gap-6">
-                  <div 
-                    className="w-16 h-16 rounded-full flex items-center justify-center flex-shrink-0"
-                    style={{ backgroundColor: '#e8f4f4' }}
-                  >
-                    <svg 
-                      className="w-8 h-8"
-                      style={{ color: '#068c8c' }}
-                      fill="none" 
-                      stroke="currentColor" 
-                      viewBox="0 0 24 24"
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 
-                      className="text-2xl mb-4 font-normal"
-                      style={{ 
-                        fontFamily: 'Playfair Display, serif',
-                        color: '#c9a876'
-                      }}
-                    >
-                      RISULTATI NATURALI
-                    </h3>
-                    {/* Premium decorative line */}
-                    <div className="flex items-center gap-2 mb-4">
-                      <div className="w-8 h-[1px]" style={{ background: '#c9a876' }}></div>
-                      <div className="w-1 h-1 rounded-full" style={{ background: '#c9a876' }}></div>
-                      <div className="w-2 h-[1px]" style={{ background: '#c9a876' }}></div>
-                    </div>
-                    <p 
-                      className="text-gray-700 font-light leading-relaxed"
-                      style={{ fontFamily: 'Playfair Display, serif' }}
-                    >
-                      Il mio obiettivo è valorizzare la bellezza naturale di ogni persona, 
-                      evitando eccessi e mantenendo l'armonia del viso.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Card 4 - Sicurezza ed Etica */}
-              <div 
-                className="bg-white p-8 rounded-lg shadow-md"
-                style={{ border: '1px solid #d4c5a9' }}
-              >
-                <div className="flex items-start gap-6">
-                  <div 
-                    className="w-16 h-16 rounded-full flex items-center justify-center flex-shrink-0"
-                    style={{ backgroundColor: '#e8f4f4' }}
-                  >
-                    <svg 
-                      className="w-8 h-8"
-                      style={{ color: '#068c8c' }}
-                      fill="none" 
-                      stroke="currentColor" 
-                      viewBox="0 0 24 24"
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 
-                      className="text-2xl mb-4 font-normal"
-                      style={{ 
-                        fontFamily: 'Playfair Display, serif',
-                        color: '#c9a876'
-                      }}
-                    >
-                      SICUREZZA ED ETICA
-                    </h3>
-                    {/* Premium decorative line */}
-                    <div className="flex items-center gap-2 mb-4">
-                      <div className="w-8 h-[1px]" style={{ background: '#c9a876' }}></div>
-                      <div className="w-1 h-1 rounded-full" style={{ background: '#c9a876' }}></div>
-                      <div className="w-2 h-[1px]" style={{ background: '#c9a876' }}></div>
-                    </div>
-                    <p 
-                      className="text-gray-700 font-light leading-relaxed"
-                      style={{ fontFamily: 'Playfair Display, serif' }}
-                    >
-                      La sicurezza del paziente è la priorità assoluta. 
-                      Opero secondo i più alti standard etici e professionali della medicina.
-                    </p>
-                  </div>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </div>
@@ -601,13 +410,13 @@ export function Services() {
             className="text-3xl md:text-4xl text-white mb-6 font-normal"
             style={{ fontFamily: 'Playfair Display, serif' }}
           >
-            Hai bisogno di maggiori informazioni?
+            {t.services.ctaTitle}
           </h2>
           <p 
             className="text-xl text-white/90 mb-8 font-light"
             style={{ fontFamily: 'Playfair Display, serif' }}
           >
-            Contattaci per una consulenza personalizzata
+            {t.services.ctaSubtitle}
           </p>
           <a href="/contatti">
             <button 
@@ -617,7 +426,7 @@ export function Services() {
                 textTransform: 'uppercase'
               }}
             >
-              Prenota Appuntamento
+              {t.services.ctaButton}
             </button>
           </a>
         </div>

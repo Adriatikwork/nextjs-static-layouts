@@ -3,8 +3,11 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { assetPath } from '@/lib/utils'
+import { useLanguage } from '@/lib/LanguageContext'
 
 export function HeroNew() {
+  const { t } = useLanguage()
+
   return (
     <section className="relative w-full">
       {/* Main hero section with teal background */}
@@ -33,10 +36,10 @@ export function HeroNew() {
               {/* Main heading */}
               <div className="space-y-3 md:space-y-4">
                 <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-white tracking-wide leading-tight text-center font-normal" style={{ fontFamily: 'Playfair Display, serif' }}>
-                  DOTTORESSA IRENE MARIA BECONI
+                  {t.hero.name.toUpperCase()}
                 </h1>
                 <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white tracking-wider lg:tracking-widest text-center font-light px-4" style={{ fontFamily: 'Playfair Display, serif' }}>
-                  ODONTOIATRIA E MEDICINA ESTETICA DEL VOLTO
+                  {t.hero.subtitle.toUpperCase()}
                 </p>
               </div>
 
@@ -78,7 +81,7 @@ export function HeroNew() {
                     backgroundColor: 'transparent'
                   }}
                 >
-                  ACCEDI I SERVIZI
+                  {t.hero.ctaPrimary.toUpperCase()}
                 </button>
               </Link>
             </div>
@@ -88,7 +91,7 @@ export function HeroNew() {
               <div className="relative w-full max-w-sm lg:max-w-md h-full">
                 <Image
                   src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=800&q=80"
-                  alt="Professional portrait"
+                  alt={t.hero.name}
                   fill
                   className="object-cover object-center rounded-lg lg:rounded-none"
                   priority
@@ -106,10 +109,10 @@ export function HeroNew() {
       >
         <div className="container mx-auto px-4 text-center">
           <p className="text-base md:text-lg text-gray-800 leading-relaxed font-normal" style={{ fontFamily: 'Playfair Display, serif' }}>
-            <span className="text-xl md:text-2xl">+</span> Poliambulatorio di Irene Maria Beconi viene effettuata
+            <span className="text-xl md:text-2xl">+</span> {t.hero.bottomText}
           </p>
           <p className="text-sm md:text-lg text-gray-800 leading-relaxed italic mt-2 font-light px-4" style={{ fontFamily: 'Playfair Display, serif' }}>
-            Nostri Horari e Tutela Offerta Visieratii di Lui del Surridenca e llun Tobaco.
+            {t.hero.bottomSubtext}
           </p>
         </div>
       </div>
@@ -132,8 +135,8 @@ export function HeroNew() {
               >
                 <div className="relative w-full h-64">
                   <Image
-                    src={assetPath("/images/chi-sono-card.jpg") || "/placeholder.svg"}
-                    alt="Chi Sono"
+                    src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&q=80"
+                    alt={t.hero.cards.aboutTitle}
                     fill
                     className="object-cover"
                   />
@@ -143,14 +146,14 @@ export function HeroNew() {
                     className="text-2xl text-white mb-6 tracking-wider font-normal"
                     style={{ fontFamily: 'Playfair Display, serif' }}
                   >
-                    Chi Sono
+                    {t.hero.cards.aboutTitle}
                   </h3>
                   <div className="space-y-3 text-white">
                     <p className="text-base font-light" style={{ fontFamily: 'Playfair Display, serif' }}>
-                      <span className="text-[#c9b896]">•</span> Lorem mi id elit cursus varius
+                      <span className="text-[#c9b896]">•</span> {t.hero.cards.aboutBullet1}
                     </p>
                     <p className="text-base font-light" style={{ fontFamily: 'Playfair Display, serif' }}>
-                      <span className="text-[#c9b896]">•</span> Tacon venenatis suspenlisse.
+                      <span className="text-[#c9b896]">•</span> {t.hero.cards.aboutBullet2}
                     </p>
                   </div>
                 </div>
@@ -165,8 +168,8 @@ export function HeroNew() {
               >
                 <div className="relative w-full h-64">
                   <Image
-                    src={assetPath("/images/servizi-card.jpg") || "/placeholder.svg"}
-                    alt="Servizi"
+                    src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&q=80"
+                    alt={t.hero.cards.servicesTitle}
                     fill
                     className="object-cover"
                   />
@@ -176,14 +179,14 @@ export function HeroNew() {
                     className="text-2xl text-white mb-6 tracking-wider font-normal"
                     style={{ fontFamily: 'Playfair Display, serif' }}
                   >
-                    Servizi
+                    {t.hero.cards.servicesTitle}
                   </h3>
                   <div className="space-y-3 text-white">
                     <p className="text-base font-light" style={{ fontFamily: 'Playfair Display, serif' }}>
-                      <span className="text-[#c9b896]">•</span> Lorem mi id elit cursus varius
+                      <span className="text-[#c9b896]">•</span> {t.hero.cards.servicesBullet1}
                     </p>
                     <p className="text-base font-light" style={{ fontFamily: 'Playfair Display, serif' }}>
-                      <span className="text-[#c9b896]">•</span> Tacon venenatis suspendisse.
+                      <span className="text-[#c9b896]">•</span> {t.hero.cards.servicesBullet2}
                     </p>
                   </div>
                 </div>
@@ -198,8 +201,8 @@ export function HeroNew() {
               >
                 <div className="relative w-full h-64">
                   <Image
-                    src={assetPath("/images/galleria-card.jpg") || "/placeholder.svg"}
-                    alt="Galleria"
+                    src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=600&q=80"
+                    alt={t.hero.cards.galleryTitle}
                     fill
                     className="object-cover"
                   />
@@ -209,14 +212,14 @@ export function HeroNew() {
                     className="text-2xl text-white mb-6 tracking-wider font-normal"
                     style={{ fontFamily: 'Playfair Display, serif' }}
                   >
-                    Galleria
+                    {t.hero.cards.galleryTitle}
                   </h3>
                   <div className="space-y-3 text-white">
                     <p className="text-base font-light" style={{ fontFamily: 'Playfair Display, serif' }}>
-                      <span className="text-[#c9b896]">•</span> Squat lacus consequat lacus cursus
+                      <span className="text-[#c9b896]">•</span> {t.hero.cards.galleryBullet1}
                     </p>
                     <p className="text-base font-light" style={{ fontFamily: 'Playfair Display, serif' }}>
-                      <span className="text-[#c9b896]">•</span> Uelieci consequat.
+                      <span className="text-[#c9b896]">•</span> {t.hero.cards.galleryBullet2}
                     </p>
                   </div>
                 </div>
@@ -236,8 +239,7 @@ export function HeroNew() {
             className="text-xl md:text-2xl text-gray-800 leading-relaxed font-normal italic"
             style={{ fontFamily: 'Playfair Display, serif' }}
           >
-            "Il sorriso è il nostro biglietto da visita più bello. Affidati a cure personalizzate per il tuo benessere, 
-            di benessere trattiamo e ti metterai eslusivo " il seretto inusico."
+            "{t.hero.quote}"
           </p>
         </div>
       </div>

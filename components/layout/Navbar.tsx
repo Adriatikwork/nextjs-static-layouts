@@ -61,7 +61,7 @@ export function Navbar() {
                           pathname === '/' ? 'text-[#c9b896] underline decoration-2 underline-offset-8 decoration-[#c9b896]' : 'text-white'
                         }`}
                       >
-                        HOME
+                        {t.nav.home.toUpperCase()}
                       </Link>
                     </li>
                     <li>
@@ -71,7 +71,7 @@ export function Navbar() {
                           pathname === '/chi-sono' ? 'text-[#c9b896] underline decoration-2 underline-offset-8 decoration-[#c9b896]' : 'text-white'
                         }`}
                       >
-                        CHI SONO
+                        {t.nav.about.toUpperCase()}
                       </Link>
                     </li>
                     <li>
@@ -81,7 +81,7 @@ export function Navbar() {
                           pathname === '/servizi' ? 'text-[#c9b896] underline decoration-2 underline-offset-8 decoration-[#c9b896]' : 'text-white'
                         }`}
                       >
-                        SERVIZI
+                        {t.nav.services.toUpperCase()}
                       </Link>
                     </li>
                     <li>
@@ -91,7 +91,7 @@ export function Navbar() {
                           pathname === '/galleria' ? 'text-[#c9b896] underline decoration-2 underline-offset-8 decoration-[#c9b896]' : 'text-white'
                         }`}
                       >
-                        GALLERIA
+                        {t.nav.gallery.toUpperCase()}
                       </Link>
                     </li>
                     <li>
@@ -101,7 +101,7 @@ export function Navbar() {
                           pathname === '/contatti' ? 'text-[#c9b896] underline decoration-2 underline-offset-8 decoration-[#c9b896]' : 'text-white'
                         }`}
                       >
-                        CONTATTI
+                        {t.nav.contact.toUpperCase()}
                       </Link>
                     </li>
                   </ul>
@@ -121,7 +121,7 @@ export function Navbar() {
                         backgroundColor: 'transparent'
                       }}
                     >
-                      PRENOTA
+                      {t.nav.cta.toUpperCase()}
                     </button>
                   </Link>
                 </div>
@@ -206,7 +206,7 @@ export function Navbar() {
                               : 'text-white hover:bg-white/5 hover:text-[#c9b896]'
                           }`}
                         >
-                          HOME
+                          {t.nav.home.toUpperCase()}
                         </Link>
                       </li>
                       <li>
@@ -219,7 +219,7 @@ export function Navbar() {
                               : 'text-white hover:bg-white/5 hover:text-[#c9b896]'
                           }`}
                         >
-                          CHI SONO
+                          {t.nav.about.toUpperCase()}
                         </Link>
                       </li>
                       <li>
@@ -232,7 +232,7 @@ export function Navbar() {
                               : 'text-white hover:bg-white/5 hover:text-[#c9b896]'
                           }`}
                         >
-                          SERVIZI
+                          {t.nav.services.toUpperCase()}
                         </Link>
                       </li>
                       <li>
@@ -245,7 +245,7 @@ export function Navbar() {
                               : 'text-white hover:bg-white/5 hover:text-[#c9b896]'
                           }`}
                         >
-                          GALLERIA
+                          {t.nav.gallery.toUpperCase()}
                         </Link>
                       </li>
                       <li>
@@ -258,7 +258,7 @@ export function Navbar() {
                               : 'text-white hover:bg-white/5 hover:text-[#c9b896]'
                           }`}
                         >
-                          CONTATTI
+                          {t.nav.contact.toUpperCase()}
                         </Link>
                       </li>
                     </ul>
@@ -280,7 +280,7 @@ export function Navbar() {
                           backgroundColor: 'transparent'
                         }}
                       >
-                        PRENOTA APPUNTAMENTO
+                        {t.nav.bookAppointment.toUpperCase()}
                       </button>
                     </Link>
                   </div>

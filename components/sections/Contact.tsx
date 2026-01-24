@@ -5,6 +5,7 @@ import React from "react"
 import { useState, useEffect, useCallback } from 'react'
 import { assetPath } from '@/lib/utils'
 import { MapPin, Phone, Mail, Clock, Navigation } from 'lucide-react'
+import { useLanguage } from '@/lib/LanguageContext'
 
 // Location data for the route map
 const locations = [
@@ -64,6 +65,7 @@ const nodePositions = [
 ]
 
 export function Contact() {
+  const { t } = useLanguage()
   const BOOKING_PAGE_URL = "https://calendar.app.google/PXJf7qQMexizEqsk9"
   
   // State for location selection and auto-rotation
@@ -166,7 +168,7 @@ export function Contact() {
             className="text-5xl md:text-6xl text-[#c9b896] tracking-wider font-normal"
             style={{ fontFamily: 'Playfair Display, serif' }}
           >
-            Contatti
+            {t.contact.title}
           </h1>
         </div>
       </div>
@@ -185,7 +187,7 @@ export function Contact() {
                   className="text-2xl text-[#068c8c] mb-6 font-normal"
                   style={{ fontFamily: 'Playfair Display, serif' }}
                 >
-                  Informazioni
+                  {t.contact.info.label}
                 </h2>
 
                 <div className="bg-white p-4 border-l-4 border-[#068c8c] shadow-sm hover:shadow-md transition-shadow">
@@ -196,14 +198,14 @@ export function Contact() {
                         className="text-base text-[#068c8c] mb-1 font-normal"
                         style={{ fontFamily: 'Playfair Display, serif' }}
                       >
-                        Indirizzo
+                        {t.contact.info.location}
                       </h3>
                       <p 
                         className="text-gray-700 text-sm leading-relaxed font-light"
                         style={{ fontFamily: 'Playfair Display, serif' }}
                       >
-                        Via del Montone numero 34<br />
-                        50100 Firenze (FI)
+                        {t.contact.info.locationAddress}<br />
+                        {t.contact.info.locationCity}
                       </p>
                     </div>
                   </div>
@@ -217,14 +219,14 @@ export function Contact() {
                         className="text-base text-[#068c8c] mb-1 font-normal"
                         style={{ fontFamily: 'Playfair Display, serif' }}
                       >
-                        Telefono
+                        {t.contact.info.phone}
                       </h3>
                       <a 
-                        href="tel:+3905512456" 
+                        href={`tel:${t.contact.info.phoneNumber.replace(/\s/g, '')}`}
                         className="text-gray-700 text-sm hover:text-[#068c8c] transition-colors font-light"
                         style={{ fontFamily: 'Playfair Display, serif' }}
                       >
-                        +39 055 12456
+                        {t.contact.info.phoneNumber}
                       </a>
                     </div>
                   </div>
@@ -238,14 +240,14 @@ export function Contact() {
                         className="text-base text-[#068c8c] mb-1 font-normal"
                         style={{ fontFamily: 'Playfair Display, serif' }}
                       >
-                        Email
+                        {t.contact.info.email}
                       </h3>
                       <a 
-                        href="mailto:info@dottoressamariabeconi.it" 
+                        href={`mailto:${t.contact.info.emailAddress}`}
                         className="text-gray-700 text-sm hover:text-[#068c8c] transition-colors break-all font-light"
                         style={{ fontFamily: 'Playfair Display, serif' }}
                       >
-                        info@dottoressamariabeconi.it
+                        {t.contact.info.emailAddress}
                       </a>
                     </div>
                   </div>
@@ -259,23 +261,23 @@ export function Contact() {
                         className="text-base text-[#068c8c] mb-1 font-normal"
                         style={{ fontFamily: 'Playfair Display, serif' }}
                       >
-                        Orari
+                        {t.contact.info.hours}
                       </h3>
                       <div 
                         className="text-gray-700 space-y-1 text-sm font-light"
                         style={{ fontFamily: 'Playfair Display, serif' }}
                       >
                         <p className="flex justify-between gap-2">
-                          <span className="font-medium">Lun-Ven:</span>
-                          <span>9:00-19:00</span>
+                          <span className="font-medium">{t.contact.info.weekdays}</span>
+                          <span>{t.contact.info.weekdaysTime}</span>
                         </p>
                         <p className="flex justify-between gap-2">
-                          <span className="font-medium">Sabato:</span>
-                          <span>9:00-13:00</span>
+                          <span className="font-medium">{t.contact.info.saturday}</span>
+                          <span>{t.contact.info.saturdayTime}</span>
                         </p>
                         <p className="flex justify-between gap-2">
-                          <span className="font-medium">Domenica:</span>
-                          <span>Chiuso</span>
+                          <span className="font-medium">{t.contact.info.sunday}</span>
+                          <span>{t.contact.info.sundayTime}</span>
                         </p>
                       </div>
                     </div>
@@ -289,7 +291,7 @@ export function Contact() {
                   className="text-2xl text-[#068c8c] mb-6 font-normal"
                   style={{ fontFamily: 'Playfair Display, serif' }}
                 >
-                  Prenota Appuntamento
+                  {t.contact.booking.title}
                 </h2>
                 
                 <div className="bg-white shadow-xl overflow-hidden" style={{ border: '2px solid #c9b896' }}>
@@ -303,7 +305,7 @@ export function Contact() {
                       className="text-white text-center leading-relaxed font-light"
                       style={{ fontFamily: 'Playfair Display, serif' }}
                     >
-                      Seleziona una data e un orario disponibile per il tuo appuntamento
+                      {t.contact.booking.subtitle}
                     </p>
                   </div>
 
@@ -315,7 +317,7 @@ export function Contact() {
                       width="100%" 
                       height="600" 
                       frameBorder="0"
-                      title="Prenota un appuntamento"
+                      title={t.contact.booking.title}
                       className="w-full"
                     />
                   </div>
@@ -329,7 +331,7 @@ export function Contact() {
                         className="text-gray-600 text-xs leading-relaxed font-light"
                         style={{ fontFamily: 'Playfair Display, serif' }}
                       >
-                        La prenotazione è una richiesta. Ti contatteremo per confermare.
+                        {t.contact.booking.note}
                       </p>
                     </div>
                     
@@ -344,7 +346,7 @@ export function Contact() {
                         border: '1px solid #c9b896'
                       }}
                     >
-                      Apri Finestra
+                      {t.contact.booking.openWindow}
                     </a>
                   </div>
                 </div>
@@ -387,13 +389,13 @@ export function Contact() {
             className="text-3xl md:text-4xl text-white text-center mb-4 font-normal tracking-wider"
             style={{ fontFamily: 'Playfair Display, serif' }}
           >
-            Come Raggiungerci
+            {t.contact.map.title}
           </h2>
           <p 
             className="text-white/70 text-center mb-12 font-light"
             style={{ fontFamily: 'Playfair Display, serif' }}
           >
-            Le nostre sedi a Firenze
+            {t.contact.map.subtitle}
           </p>
           
           <div className="max-w-6xl mx-auto">
@@ -443,7 +445,7 @@ export function Contact() {
                           className="text-xs uppercase tracking-wider mb-1 font-medium"
                           style={{ color: '#3A7884' }}
                         >
-                          Indirizzo
+                          {t.contact.map.locationFields.address}
                         </p>
                         <p 
                           className="font-light"
@@ -465,7 +467,7 @@ export function Contact() {
                           className="text-xs uppercase tracking-wider mb-1 font-medium"
                           style={{ color: '#3A7884' }}
                         >
-                          Giorni
+                          {t.contact.map.locationFields.days}
                         </p>
                         <p 
                           className="font-light"
@@ -492,7 +494,7 @@ export function Contact() {
                           className="text-xs uppercase tracking-wider mb-1 font-medium"
                           style={{ color: '#3A7884' }}
                         >
-                          Orario
+                          {t.contact.map.locationFields.hours}
                         </p>
                         <p 
                           className="font-light"

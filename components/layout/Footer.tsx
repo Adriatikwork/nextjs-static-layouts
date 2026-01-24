@@ -3,8 +3,11 @@
 import { MapPin, Phone, Mail } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useLanguage } from '@/lib/LanguageContext'
 
 export function Footer() {
+  const { t } = useLanguage()
+  
   return (
     <footer 
       className="text-white py-16 relative overflow-hidden"
@@ -44,20 +47,20 @@ export function Footer() {
               className="text-xl mb-3 font-normal tracking-wider"
               style={{ fontFamily: 'Playfair Display, serif' }}
             >
-              Dottoressa Irene Maria Beconi
+              {t.footer.name}
             </h3>
             <p 
               className="text-white/80 mb-4 leading-relaxed font-light"
               style={{ fontFamily: 'Playfair Display, serif' }}
             >
-              Odontoiatria e Medicina Estetica del Volto
+              {t.footer.subtitle}
             </p>
             <div 
               className="flex items-center gap-2 text-white/70 text-sm font-light"
               style={{ fontFamily: 'Playfair Display, serif' }}
             >
               <MapPin className="w-4 h-4" />
-              <span>Firenze</span>
+              <span>{t.footer.location}</span>
             </div>
           </div>
 
@@ -67,15 +70,15 @@ export function Footer() {
               className="text-lg mb-6 font-normal tracking-wide"
               style={{ fontFamily: 'Playfair Display, serif', color: '#c9b896' }}
             >
-              Links
+              {t.footer.linksTitle}
             </h4>
             <div className="space-y-3">
               {[
-                { label: 'Home', href: '/' },
-                { label: 'Chi Sono', href: '/chi-sono' },
-                { label: 'Servizi', href: '/servizi' },
-                { label: 'Galleria', href: '/galleria' },
-                { label: 'Contatti', href: '/contatti' },
+                { label: t.footer.links.home, href: '/' },
+                { label: t.footer.links.about, href: '/chi-sono' },
+                { label: t.footer.links.services, href: '/servizi' },
+                { label: t.footer.links.gallery, href: '/galleria' },
+                { label: t.footer.links.contact, href: '/contatti' },
               ].map((link) => (
                 <Link
                   key={link.href}
@@ -95,7 +98,7 @@ export function Footer() {
               className="text-lg mb-6 font-normal tracking-wide"
               style={{ fontFamily: 'Playfair Display, serif', color: '#c9b896' }}
             >
-              Contatti
+              {t.footer.contactTitle}
             </h4>
             <div className="space-y-4">
               <div className="flex items-start gap-3">
@@ -105,7 +108,7 @@ export function Footer() {
                     className="text-white/70 text-sm font-light"
                     style={{ fontFamily: 'Playfair Display, serif' }}
                   >
-                    +39 055 12456
+                    {t.contact.info.phoneNumber}
                   </p>
                 </div>
               </div>
@@ -116,7 +119,7 @@ export function Footer() {
                     className="text-white/70 text-sm font-light"
                     style={{ fontFamily: 'Playfair Display, serif' }}
                   >
-                    info@dottoressamariabeconi.it
+                    {t.contact.info.emailAddress}
                   </p>
                 </div>
               </div>
@@ -127,8 +130,8 @@ export function Footer() {
                     className="text-white/70 text-sm font-light"
                     style={{ fontFamily: 'Playfair Display, serif' }}
                   >
-                    Via del Montone numero 34<br />
-                    50100 Firenze
+                    {t.contact.info.locationAddress}<br />
+                    {t.contact.info.locationCity}
                   </p>
                 </div>
               </div>
@@ -144,15 +147,15 @@ export function Footer() {
               className="text-white/60 text-sm font-light"
               style={{ fontFamily: 'Playfair Display, serif' }}
             >
-              © {new Date().getFullYear()} Dottoressa Irene Maria Beconi. Tutti i diritti riservati.
+              {t.footer.copyright.replace('{year}', new Date().getFullYear().toString())}
             </p>
 
             {/* Legal Links */}
             <div className="flex gap-6">
               {[
-                { label: 'Privacy Policy', href: '#' },
-                { label: 'Cookie Policy', href: '#' },
-                { label: 'Note Legali', href: '#' },
+                { label: t.footer.links.privacy, href: '#' },
+                { label: t.footer.links.cookie, href: '#' },
+                { label: t.footer.links.legal, href: '#' },
               ].map((link) => (
                 <a
                   key={link.label}
