@@ -12,15 +12,28 @@ export function HeroNew() {
     <section className="relative w-full">
       {/* Main hero section with teal background */}
       <div 
-        className="relative min-h-[700px] w-full"
+        className="relative min-h-[700px] w-full overflow-hidden"
         style={{
           backgroundColor: '#068c8c',
-          backgroundImage: `url(${assetPath('/images/fresh-snow.png')})`,
-          backgroundRepeat: 'repeat',
-          backgroundBlendMode: 'multiply'
+          isolation: 'isolate'
         }}
       >
-        <div className="container mx-auto px-4 py-12 md:py-20">
+        {/* Pattern overlay with mix-blend-mode */}
+        <div 
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundImage: `url(${assetPath('/images/fresh-snow.png')})`,
+            backgroundRepeat: 'repeat',
+            mixBlendMode: 'multiply',
+            pointerEvents: 'none',
+            zIndex: 1
+          }}
+        />
+        <div className="container mx-auto px-4 py-12 md:py-20 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Left side - Content */}
             <div className="flex flex-col items-center gap-6 md:gap-8">
@@ -121,15 +134,28 @@ export function HeroNew() {
 
       {/* Three Cards Section */}
       <div 
-        className="w-full py-20"
+        className="w-full py-20 relative overflow-hidden"
         style={{
           backgroundColor: '#068c8c',
-          backgroundImage: `url(${assetPath('/images/fresh-snow.png')})`,
-          backgroundRepeat: 'repeat',
-          backgroundBlendMode: 'multiply'
+          isolation: 'isolate'
         }}
       >
-        <div className="container mx-auto px-4">
+        {/* Pattern overlay with mix-blend-mode */}
+        <div 
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundImage: `url(${assetPath('/images/fresh-snow.png')})`,
+            backgroundRepeat: 'repeat',
+            mixBlendMode: 'multiply',
+            pointerEvents: 'none',
+            zIndex: 1
+          }}
+        />
+        <div className="container mx-auto px-4 relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
             {/* Card 1 - Chi Sono */}
             <Link href="/chi-sono">
