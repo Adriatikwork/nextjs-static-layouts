@@ -63,10 +63,10 @@ export function Services() {
         </div>
       </div>
 
-      {/* Main services section - light gray background */}
+      {/* Main services section - light cream background */}
       <div 
         className="w-full py-20"
-        style={{ backgroundColor: '#f5f5f5' }}
+        style={{ backgroundColor: '#f9f6f0' }}
       >
         <div className="container mx-auto px-4">
           <div className="max-w-7xl mx-auto">
