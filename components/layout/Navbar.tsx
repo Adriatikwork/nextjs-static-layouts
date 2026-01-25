@@ -14,6 +14,13 @@ export function Navbar() {
   const { t } = useLanguage()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
+  // Helper function to check if a path is active (handles trailing slashes)
+  const isActive = (path: string) => {
+    const normalizedPathname = pathname.replace(/\/$/, '') || '/'
+    const normalizedPath = path.replace(/\/$/, '') || '/'
+    return normalizedPathname === normalizedPath
+  }
+
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
   const closeMenu = () => setIsMenuOpen(false)
 
@@ -58,7 +65,7 @@ export function Navbar() {
                       <Link 
                         href="/" 
                         className={`hover:opacity-80 transition-all text-sm font-normal tracking-wide ${
-                          pathname === '/' ? 'text-[#c9b896] underline decoration-2 underline-offset-8 decoration-[#c9b896]' : 'text-white'
+                          isActive('/') ? 'text-[#c9b896] underline decoration-2 underline-offset-8 decoration-[#c9b896]' : 'text-white'
                         }`}
                       >
                         {t.nav.home.toUpperCase()}
@@ -68,7 +75,7 @@ export function Navbar() {
                       <Link 
                         href="/chi-sono" 
                         className={`hover:opacity-80 transition-all text-sm font-normal tracking-wide ${
-                          pathname === '/chi-sono' ? 'text-[#c9b896] underline decoration-2 underline-offset-8 decoration-[#c9b896]' : 'text-white'
+                          isActive('/chi-sono') ? 'text-[#c9b896] underline decoration-2 underline-offset-8 decoration-[#c9b896]' : 'text-white'
                         }`}
                       >
                         {t.nav.about.toUpperCase()}
@@ -78,7 +85,7 @@ export function Navbar() {
                       <Link 
                         href="/servizi" 
                         className={`hover:opacity-80 transition-all text-sm font-normal tracking-wide ${
-                          pathname === '/servizi' ? 'text-[#c9b896] underline decoration-2 underline-offset-8 decoration-[#c9b896]' : 'text-white'
+                          isActive('/servizi') ? 'text-[#c9b896] underline decoration-2 underline-offset-8 decoration-[#c9b896]' : 'text-white'
                         }`}
                       >
                         {t.nav.services.toUpperCase()}
@@ -88,7 +95,7 @@ export function Navbar() {
                       <Link 
                         href="/galleria" 
                         className={`hover:opacity-80 transition-all text-sm font-normal tracking-wide ${
-                          pathname === '/galleria' ? 'text-[#c9b896] underline decoration-2 underline-offset-8 decoration-[#c9b896]' : 'text-white'
+                          isActive('/galleria') ? 'text-[#c9b896] underline decoration-2 underline-offset-8 decoration-[#c9b896]' : 'text-white'
                         }`}
                       >
                         {t.nav.gallery.toUpperCase()}
@@ -98,7 +105,7 @@ export function Navbar() {
                       <Link 
                         href="/contatti" 
                         className={`hover:opacity-80 transition-all text-sm font-normal tracking-wide ${
-                          pathname === '/contatti' ? 'text-[#c9b896] underline decoration-2 underline-offset-8 decoration-[#c9b896]' : 'text-white'
+                          isActive('/contatti') ? 'text-[#c9b896] underline decoration-2 underline-offset-8 decoration-[#c9b896]' : 'text-white'
                         }`}
                       >
                         {t.nav.contact.toUpperCase()}
@@ -201,7 +208,7 @@ export function Navbar() {
                           href="/"
                           onClick={closeMenu}
                           className={`block px-6 py-4 text-lg font-normal tracking-wide transition-all ${
-                            pathname === '/' 
+                            isActive('/') 
                               ? 'text-[#c9b896] bg-white/10' 
                               : 'text-white hover:bg-white/5 hover:text-[#c9b896]'
                           }`}
@@ -214,7 +221,7 @@ export function Navbar() {
                           href="/chi-sono"
                           onClick={closeMenu}
                           className={`block px-6 py-4 text-lg font-normal tracking-wide transition-all ${
-                            pathname === '/chi-sono' 
+                            isActive('/chi-sono') 
                               ? 'text-[#c9b896] bg-white/10' 
                               : 'text-white hover:bg-white/5 hover:text-[#c9b896]'
                           }`}
@@ -227,7 +234,7 @@ export function Navbar() {
                           href="/servizi"
                           onClick={closeMenu}
                           className={`block px-6 py-4 text-lg font-normal tracking-wide transition-all ${
-                            pathname === '/servizi' 
+                            isActive('/servizi') 
                               ? 'text-[#c9b896] bg-white/10' 
                               : 'text-white hover:bg-white/5 hover:text-[#c9b896]'
                           }`}
@@ -240,7 +247,7 @@ export function Navbar() {
                           href="/galleria"
                           onClick={closeMenu}
                           className={`block px-6 py-4 text-lg font-normal tracking-wide transition-all ${
-                            pathname === '/galleria' 
+                            isActive('/galleria') 
                               ? 'text-[#c9b896] bg-white/10' 
                               : 'text-white hover:bg-white/5 hover:text-[#c9b896]'
                           }`}
@@ -253,7 +260,7 @@ export function Navbar() {
                           href="/contatti"
                           onClick={closeMenu}
                           className={`block px-6 py-4 text-lg font-normal tracking-wide transition-all ${
-                            pathname === '/contatti' 
+                            isActive('/contatti') 
                               ? 'text-[#c9b896] bg-white/10' 
                               : 'text-white hover:bg-white/5 hover:text-[#c9b896]'
                           }`}
