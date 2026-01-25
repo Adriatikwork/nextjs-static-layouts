@@ -6,6 +6,7 @@ import { useState } from 'react'
 import { Dialog, DialogContent } from '@/components/ui/dialog'
 import { ChevronLeft, ChevronRight, X } from 'lucide-react'
 import { useLanguage } from '@/lib/LanguageContext'
+import { DecorativeDivider } from '@/components/ui/decorative-divider'
 
 export function Gallery() {
   const { t } = useLanguage()
@@ -109,11 +110,12 @@ export function Gallery() {
             {/* Introduction */}
             <div className="text-center mb-12">
               <h2 
-                className="text-3xl text-gray-800 mb-4 font-normal"
+                className="text-3xl text-gray-800 mb-6 font-normal"
                 style={{ fontFamily: 'Playfair Display, serif' }}
               >
                 {t.gallery.subtitle}
               </h2>
+              <DecorativeDivider variant="default" className="mb-6" />
               <p 
                 className="text-lg text-gray-600 max-w-2xl mx-auto font-light leading-relaxed"
                 style={{ fontFamily: 'Playfair Display, serif' }}

@@ -4,6 +4,7 @@ import { assetPath } from '@/lib/utils'
 import { Smile, Activity, Syringe, Droplet, Sparkles, Scissors } from 'lucide-react'
 import { useState } from 'react'
 import { useLanguage } from '@/lib/LanguageContext'
+import { DecorativeDivider } from '@/components/ui/decorative-divider'
 
 export function Services() {
   const { t } = useLanguage()
@@ -78,6 +79,7 @@ export function Services() {
               >
                 {t.services.subtitle}
               </h2>
+              <DecorativeDivider variant="default" className="mb-6" />
               <p 
                 className="text-lg text-gray-600 max-w-3xl mx-auto font-light leading-relaxed"
                 style={{ fontFamily: 'Playfair Display, serif' }}
@@ -318,7 +320,7 @@ export function Services() {
             {/* Section title */}
             <div className="text-center mb-16">
               <h2 
-                className="text-4xl md:text-5xl mb-4 font-normal tracking-wider"
+                className="text-4xl md:text-5xl mb-6 font-normal tracking-wider"
                 style={{ 
                   fontFamily: 'Playfair Display, serif',
                   color: '#c9a876',
@@ -328,27 +330,9 @@ export function Services() {
               >
                 {t.services.approachTitle}
               </h2>
-              <div className="flex justify-center mt-6">
-                {/* Premium decorative divider */}
-                <div className="flex items-center gap-3">
-                  <div className="w-2 h-2" style={{ 
-                    background: '#c9a876',
-                    transform: 'rotate(45deg)',
-                    opacity: 0.9
-                  }} />
-                  <div className="w-3 h-3 rounded-full border-2" style={{ 
-                    borderColor: '#c9a876',
-                    backgroundColor: 'transparent'
-                  }} />
-                  <div className="w-2 h-2" style={{ 
-                    background: '#c9a876',
-                    transform: 'rotate(45deg)',
-                    opacity: 0.9
-                  }} />
-                </div>
-              </div>
+              <DecorativeDivider variant="default" className="mb-8" />
               <p 
-                className="text-xl text-gray-700 mt-8 font-light"
+                className="text-xl text-gray-700 font-light"
                 style={{ fontFamily: 'Playfair Display, serif' }}
               >
                 {t.services.approachSubtitle}
@@ -442,6 +426,7 @@ export function Services() {
           >
             {t.services.ctaTitle}
           </h2>
+          <DecorativeDivider variant="short" className="mb-6" />
           <p 
             className="text-xl text-white/90 mb-8 font-light"
             style={{ fontFamily: 'Playfair Display, serif' }}
