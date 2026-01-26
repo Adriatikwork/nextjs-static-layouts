@@ -51,7 +51,7 @@ export function HeroNew() {
             <div
               className="absolute inset-0"
               style={{
-                background: 'linear-gradient(135deg, rgba(6, 140, 140, 0.6) 0%, rgba(10, 95, 95, 0.7) 50%, rgba(0, 0, 0, 0.6) 100%)',
+                background: 'linear-gradient(135deg, rgba(6, 140, 140, 0.5) 0%, rgba(10, 95, 95, 0.6) 50%, rgba(0, 0, 0, 0.55) 100%)',
               }}
             />
           </div>
@@ -70,11 +70,11 @@ export function HeroNew() {
         />
 
         {/* Hero Content */}
-        <div className="relative z-20 h-full flex items-center px-4 py-32 sm:py-28 md:py-0">
+        <div className="relative z-20 h-full flex items-center px-4 pt-32 sm:pt-28 md:pt-24 pb-40 md:pb-32">
           <div className="container mx-auto">
             <div className="max-w-6xl mx-auto text-center">
               {/* Animated entrance for content */}
-              <div className="space-y-5 sm:space-y-6 md:space-y-8 animate-fade-in">
+              <div className="space-y-5 sm:space-y-6 md:space-y-8 animate-fade-in relative z-30">
                 {/* Small accent line */}
                 <div className="flex items-center justify-center gap-3 md:gap-4 mb-2">
                   <div className="w-12 sm:w-16 md:w-24 h-[1px] bg-gradient-to-r from-transparent via-[#c9b896] to-[#c9b896]" />
@@ -142,7 +142,7 @@ export function HeroNew() {
                 </p>
 
                 {/* CTA Buttons */}
-                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4 md:pt-8 px-4">
+                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4 md:pt-8 px-4 relative z-40">
                   <Link href="/contatti">
                     <button
                       className="group w-full sm:w-auto px-8 sm:px-10 md:px-12 py-4 md:py-5 text-white tracking-[0.15em] sm:tracking-[0.2em] text-sm sm:text-base md:text-lg uppercase transition-all duration-500 font-light min-w-[240px] sm:min-w-[260px] relative overflow-hidden"
@@ -151,6 +151,7 @@ export function HeroNew() {
                         border: '2px solid #c9b896',
                         backgroundColor: '#c9b896',
                         boxShadow: '0 8px 24px rgba(201, 184, 150, 0.4)',
+                        zIndex: 40,
                       }}
                     >
                       <span className="relative z-10">Prenota Consulto</span>
@@ -164,6 +165,7 @@ export function HeroNew() {
                         fontFamily: 'Playfair Display, serif',
                         border: '2px solid white',
                         backgroundColor: 'transparent',
+                        zIndex: 40,
                       }}
                     >
                       <span className="relative z-10">Scopri i Servizi</span>
@@ -177,13 +179,14 @@ export function HeroNew() {
         </div>
 
         {/* Slide indicators */}
-        <div className="absolute bottom-28 sm:bottom-24 md:bottom-20 left-1/2 -translate-x-1/2 z-30 flex gap-3 md:gap-4">
+        <div className="absolute bottom-28 sm:bottom-24 md:bottom-20 left-1/2 -translate-x-1/2 z-50 flex gap-3 md:gap-4">
           {heroImages.map((_, index) => (
             <button
               key={index}
               onClick={() => setCurrentSlide(index)}
               className="group relative"
               aria-label={`Go to slide ${index + 1}`}
+              style={{ zIndex: 50 }}
             >
               <div
                 className={`w-10 sm:w-12 md:w-16 h-1 rounded-full transition-all duration-500 ${
@@ -204,7 +207,7 @@ export function HeroNew() {
         </div>
 
         {/* Scroll indicator */}
-        <div className="hidden sm:flex absolute bottom-10 md:bottom-8 left-1/2 -translate-x-1/2 z-20 animate-bounce">
+        <div className="hidden sm:flex absolute bottom-10 md:bottom-8 left-1/2 -translate-x-1/2 z-50 animate-bounce">
           <div className="flex flex-col items-center gap-2 text-white/70">
             <span className="text-xs tracking-widest uppercase" style={{ fontFamily: 'Playfair Display, serif' }}>
               Scroll

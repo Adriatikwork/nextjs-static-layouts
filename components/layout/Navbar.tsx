@@ -59,8 +59,8 @@ export function Navbar() {
 
   return (
     <nav
-      className="fixed top-0 left-0 right-0 w-full z-50 transition-all duration-500"
-      style={getNavbarStyles()}
+      className="fixed top-0 left-0 right-0 w-full transition-all duration-500"
+      style={{ ...getNavbarStyles(), zIndex: isMenuOpen ? 9997 : 50 }}
     >
       <div className="container mx-auto px-4">
         {/* Desktop Layout */}
@@ -158,15 +158,17 @@ export function Navbar() {
             <>
               {/* Backdrop */}
               <div
-                className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40"
+                className="fixed inset-0 bg-black/60 backdrop-blur-sm"
+                style={{ zIndex: 9998 }}
                 onClick={closeMenu}
               />
 
               {/* Menu Panel */}
               <div
-                className="fixed top-0 right-0 h-full w-full max-w-sm shadow-2xl overflow-y-auto z-50 animate-slide-in"
+                className="fixed top-0 right-0 h-full w-full max-w-sm shadow-2xl overflow-y-auto animate-slide-in"
                 style={{
                   background: 'linear-gradient(135deg, #068c8c 0%, #0a7575 100%)',
+                  zIndex: 9999,
                 }}
               >
                 {/* Close button */}
