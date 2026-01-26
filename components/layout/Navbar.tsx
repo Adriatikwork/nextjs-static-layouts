@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
@@ -13,6 +13,27 @@ export function Navbar() {
   const pathname = usePathname()
   const { t } = useLanguage()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
+  
+  // Detect if we're on homepage
+  const isHomePage = pathname === '/'
+  
+  // Handle scroll for navbar transition
+  useEffect(() => {
+    if (!isHomePage) return
+    
+    const handleScroll = () => {
+      const heroSection = document.getElementById('hero-section')
+      if (heroSection) {
+        const heroBottom = heroSection.offsetHeight
+        setIsScrolled(window.scrollY > heroBottom - 100)
+      }
+    }
+    
+    handleScroll()
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [isHomePage])
 
   // Helper function to check if a path is active (handles trailing slashes)
   const isActive = (path: string) => {
@@ -24,129 +45,153 @@ export function Navbar() {
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
   const closeMenu = () => setIsMenuOpen(false)
 
+  // Determine navbar style based on page and scroll state
+  // Glassmorphic dark navbar for homepage hero, teal for other states
+  const navbarBgColor = isHomePage && !isScrolled ? 'rgba(0, 0, 0, 0.4)' : '#068c8c'
+  const navbarPosition = isHomePage && !isScrolled ? 'absolute' : 'relative'
+  const textColor = 'white' // Always white text for better contrast
+  const logoFilter = 'brightness(0) saturate(100%) invert(100%)' // Always white logo
+  
   return (
-    <>
-      <nav 
-        className="w-full relative"
-        style={{ backgroundColor: '#068c8c' }}
-      >
-        <div className="container mx-auto px-4">
-          {/* Desktop Layout */}
-          <div className="hidden lg:flex items-stretch">
-            {/* Logo - spans both top bar and main navbar */}
-            <div className="flex items-center pr-8">
-              <Link href="/">
-                <div className="relative w-24 h-24">
-                  <Image
-                    src={assetPath("/logo-combined.png")}
-                    alt="Logo"
-                    fill
-                    className="object-contain"
-                  />
-                </div>
-              </Link>
+    <nav
+      className={`w-full z-50 transition-all duration-300 ${isHomePage && !isScrolled ? 'absolute top-0 left-0 right-0' : 'relative'}`}
+      style={{
+        backgroundColor: navbarBgColor,
+        backdropFilter: isHomePage && !isScrolled ? 'blur(20px) saturate(180%)' : 'none',
+        boxShadow: isHomePage && !isScrolled ? 'none' : '0 2px 10px rgba(0,0,0,0.1)'
+      }}
+    >
+      <div className="container mx-auto px-4">
+        {/* Desktop Layout */}
+        <div className="hidden lg:flex items-stretch">
+          {/* Logo - spans both top bar and main navbar */}
+          <div className="flex items-center pr-8">
+            <Link href="/">
+              <div className="relative w-24 h-24 transition-all duration-300">
+                <Image
+                  src={assetPath("/logo-combined.png") || "/placeholder.svg"}
+                  alt="Logo"
+                  fill
+                  className="object-contain transition-all duration-300"
+                  style={{ filter: logoFilter }}
+                />
+              </div>
+            </Link>
+          </div>
+
+          {/* Right side - Contact bar and navigation */}
+          <div className="flex-1 flex flex-col">
+            {/* Top contact bar */}
+            <div
+              className="py-2 transition-all duration-300"
+              style={{
+                borderBottom: `1px solid ${isHomePage && !isScrolled ? 'rgba(255,255,255,0.15)' : 'rgba(255,255,255,0.2)'}`
+              }}
+            >
+              <div className="flex justify-end items-center gap-4 text-xs font-light transition-colors duration-300" style={{ color: textColor }}>
+                <span className="hidden xl:inline">Via del Montone numero 34. Firenze</span>
+                <span>+39 05512456</span>
+              </div>
             </div>
 
-            {/* Right side - Contact bar and navigation */}
-            <div className="flex-1 flex flex-col">
-              {/* Top contact bar */}
-              <div className="border-b border-white/20 py-2">
-                <div className="flex justify-end items-center gap-4 text-white text-xs font-light">
-                  <span className="hidden xl:inline">Via del Montone numero 34. Firenze - Secilafè wae effustae</span>
-                  <span>+39 05512456</span>
-                </div>
-              </div>
-
-              {/* Main navbar */}
-              <div className="py-4">
-                <div className="flex items-center justify-center gap-12">
-                  <ul className="flex items-center gap-8 text-white" style={{ fontFamily: 'Playfair Display, serif' }}>
-                    <li>
-                      <Link 
-                        href="/" 
-                        className={`hover:opacity-80 transition-all text-sm font-normal tracking-wide ${
-                          isActive('/') ? 'text-[#c9b896] underline decoration-2 underline-offset-8 decoration-[#c9b896]' : 'text-white'
-                        }`}
-                      >
-                        {t.nav.home.toUpperCase()}
-                      </Link>
-                    </li>
-                    <li>
-                      <Link 
-                        href="/chi-sono" 
-                        className={`hover:opacity-80 transition-all text-sm font-normal tracking-wide ${
-                          isActive('/chi-sono') ? 'text-[#c9b896] underline decoration-2 underline-offset-8 decoration-[#c9b896]' : 'text-white'
-                        }`}
-                      >
-                        {t.nav.about.toUpperCase()}
-                      </Link>
-                    </li>
-                    <li>
-                      <Link 
-                        href="/servizi" 
-                        className={`hover:opacity-80 transition-all text-sm font-normal tracking-wide ${
-                          isActive('/servizi') ? 'text-[#c9b896] underline decoration-2 underline-offset-8 decoration-[#c9b896]' : 'text-white'
-                        }`}
-                      >
-                        {t.nav.services.toUpperCase()}
-                      </Link>
-                    </li>
-                    <li>
-                      <Link 
-                        href="/galleria" 
-                        className={`hover:opacity-80 transition-all text-sm font-normal tracking-wide ${
-                          isActive('/galleria') ? 'text-[#c9b896] underline decoration-2 underline-offset-8 decoration-[#c9b896]' : 'text-white'
-                        }`}
-                      >
-                        {t.nav.gallery.toUpperCase()}
-                      </Link>
-                    </li>
-                    <li>
-                      <Link 
-                        href="/contatti" 
-                        className={`hover:opacity-80 transition-all text-sm font-normal tracking-wide ${
-                          isActive('/contatti') ? 'text-[#c9b896] underline decoration-2 underline-offset-8 decoration-[#c9b896]' : 'text-white'
-                        }`}
-                      >
-                        {t.nav.contact.toUpperCase()}
-                      </Link>
-                    </li>
-                  </ul>
-
-                  {/* Language Toggle instead of Search */}
-                  <div className="flex items-center">
-                    <LanguageToggle isScrolled={false} />
-                  </div>
-
-                  {/* Prenota button */}
-                  <Link href="/contatti">
-                    <button 
-                      className="px-8 py-3 text-white tracking-wide hover:opacity-80 transition-all text-sm font-light"
-                      style={{ 
-                        fontFamily: 'Playfair Display, serif',
-                        border: '2px solid #c9b896',
-                        backgroundColor: 'transparent'
-                      }}
+            {/* Main navbar */}
+            <div className="py-4">
+              <div className="flex items-center justify-center gap-12">
+                <ul className="flex items-center gap-8 transition-colors duration-300" style={{ fontFamily: 'Playfair Display, serif', color: textColor }}>
+                  <li>
+                    <Link 
+                      href="/" 
+                      className={`hover:opacity-70 transition-all text-sm font-normal tracking-wide ${
+                        isActive('/') ? 'opacity-60' : ''
+                      }`}
+                      style={{ color: textColor }}
                     >
-                      {t.nav.cta.toUpperCase()}
-                    </button>
-                  </Link>
+                      {t.nav.home.toUpperCase()}
+                    </Link>
+                  </li>
+                  <li>
+                    <Link 
+                      href="/chi-sono" 
+                      className={`hover:opacity-70 transition-all text-sm font-normal tracking-wide ${
+                        isActive('/chi-sono') ? 'opacity-60' : ''
+                      }`}
+                      style={{ color: textColor }}
+                    >
+                      {t.nav.about.toUpperCase()}
+                    </Link>
+                  </li>
+                  <li>
+                    <Link 
+                      href="/servizi" 
+                      className={`hover:opacity-70 transition-all text-sm font-normal tracking-wide ${
+                        isActive('/servizi') ? 'opacity-60' : ''
+                      }`}
+                      style={{ color: textColor }}
+                    >
+                      {t.nav.services.toUpperCase()}
+                    </Link>
+                  </li>
+                  <li>
+                    <Link 
+                      href="/galleria" 
+                      className={`hover:opacity-70 transition-all text-sm font-normal tracking-wide ${
+                        isActive('/galleria') ? 'opacity-60' : ''
+                      }`}
+                      style={{ color: textColor }}
+                    >
+                      {t.nav.gallery.toUpperCase()}
+                    </Link>
+                  </li>
+                  <li>
+                    <Link 
+                      href="/contatti" 
+                      className={`hover:opacity-70 transition-all text-sm font-normal tracking-wide ${
+                        isActive('/contatti') ? 'opacity-60' : ''
+                      }`}
+                      style={{ color: textColor }}
+                    >
+                      {t.nav.contact.toUpperCase()}
+                    </Link>
+                  </li>
+                </ul>
+
+                {/* Language Toggle */}
+                <div className="flex items-center">
+                  <LanguageToggle isScrolled={!(isHomePage && !isScrolled)} />
                 </div>
+
+                {/* Prenota button */}
+                <Link href="/contatti">
+                  <button
+                    className="px-8 py-3 tracking-wide hover:opacity-90 transition-all text-sm font-light"
+                    style={{
+                      fontFamily: 'Playfair Display, serif',
+                      border: isHomePage && !isScrolled ? '1px solid #B06F69' : `1px solid ${textColor}`,
+                      backgroundColor: isHomePage && !isScrolled ? '#B06F69' : 'transparent',
+                      color: textColor,
+                      boxShadow: isHomePage && !isScrolled ? '0 2px 8px rgba(176, 111, 105, 0.3)' : 'none'
+                    }}
+                  >
+                    {t.nav.cta.toUpperCase()}
+                  </button>
+                </Link>
               </div>
             </div>
           </div>
+        </div>
 
-          {/* Mobile Layout */}
-          <div className="lg:hidden">
+        {/* Mobile Layout */}
+        <div className="lg:hidden">
             <div className="flex items-center justify-between py-4">
               {/* Logo */}
               <Link href="/" onClick={closeMenu}>
                 <div className="relative w-16 h-16">
                   <Image
-                    src={assetPath("/logo-combined.png")}
+                    src={assetPath("/logo-combined.png") || "/placeholder.svg"}
                     alt="Logo"
                     fill
-                    className="object-contain"
+                    className="object-contain transition-all duration-300"
+                    style={{ filter: logoFilter }}
                   />
                 </div>
               </Link>
@@ -154,7 +199,8 @@ export function Navbar() {
               {/* Mobile menu button */}
               <button
                 onClick={toggleMenu}
-                className="text-white p-2 hover:opacity-80 transition-opacity"
+                className="p-2 hover:opacity-80 transition-all duration-300"
+                style={{ color: textColor }}
                 aria-label={isMenuOpen ? "Close menu" : "Open menu"}
               >
                 {isMenuOpen ? (
@@ -279,12 +325,13 @@ export function Navbar() {
                   {/* Prenota button */}
                   <div className="px-6 py-6">
                     <Link href="/contatti" onClick={closeMenu}>
-                      <button 
-                        className="w-full px-8 py-4 text-white tracking-wide hover:opacity-80 transition-all text-base font-light"
-                        style={{ 
+                      <button
+                        className="w-full px-8 py-4 text-white tracking-wide hover:opacity-90 transition-all text-base font-light"
+                        style={{
                           fontFamily: 'Playfair Display, serif',
-                          border: '2px solid #c9b896',
-                          backgroundColor: 'transparent'
+                          border: '2px solid #B06F69',
+                          backgroundColor: '#B06F69',
+                          boxShadow: '0 2px 8px rgba(176, 111, 105, 0.3)'
                         }}
                       >
                         {t.nav.bookAppointment.toUpperCase()}
@@ -294,12 +341,15 @@ export function Navbar() {
                 </div>
               </div>
             )}
-          </div>
         </div>
-        
-        {/* Golden Decorative Bar under navbar */}
-        <div className="golden-bar absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#c9b896] to-transparent opacity-60"></div>
-      </nav>
-    </>
+      </div>
+      
+      {/* Decorative Bar under navbar - Warm accent for homepage hero, gold for other states */}
+      {isHomePage && !isScrolled ? (
+        <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#B06F69]/40 to-transparent" />
+      ) : (
+        <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#c9b896] to-transparent opacity-60" />
+      )}
+    </nav>
   )
 }
