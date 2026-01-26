@@ -30,9 +30,9 @@ export function Services() {
   const activeServices = activeCategory === 'dental' ? dentalServices : aestheticServices
 
   return (
-    <section className="relative w-full">
+    <section className="relative w-full pt-20 md:pt-24">
       {/* Top teal section with title */}
-      <div 
+      <div
         className="w-full py-16 relative overflow-hidden"
         style={{
           backgroundColor: '#068c8c',

@@ -8,11 +8,11 @@ export function About() {
   const { t } = useLanguage()
 
   return (
-    <section className="relative w-full">
+    <section className="relative w-full pt-20 md:pt-24">
       {/* Wrapper for TOP TEAL + MIDDLE BEIGE with image spanning ONLY these two */}
       <div className="relative w-full">
         {/* Top teal section with title */}
-        <div 
+        <div
           className="w-full py-16 relative overflow-hidden"
           style={{
             backgroundColor: '#068c8c',

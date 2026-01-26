@@ -152,9 +152,9 @@ export function Contact() {
     { x: 116, y: 30 },
     { x: 148, y: 30 },
   ]
-  
+
   return (
-    <section className="relative w-full">
+    <section className="relative w-full pt-20 md:pt-24">
       {/* Hero section with title - Matching other pages */}
       <div 
         className="w-full py-16 relative overflow-hidden"
