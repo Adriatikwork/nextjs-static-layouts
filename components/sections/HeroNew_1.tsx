@@ -10,148 +10,109 @@ export function HeroNew() {
 
   return (
     <section className="relative w-full">
-      {/* Full-width hero with background image */}
+      {/* Main hero section with teal background */}
       <div 
-        className="relative min-h-[85vh] w-full overflow-hidden"
-        style={{ isolation: 'isolate' }}
+        className="relative min-h-[700px] w-full overflow-hidden"
+        style={{
+          backgroundColor: '#068c8c',
+          isolation: 'isolate'
+        }}
       >
-        {/* Background Image */}
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="https://images.unsplash.com/photo-1629909615184-74f495363b67?w=1920&q=80"
-            alt="Dental Clinic Background"
-            fill
-            className="object-cover object-center"
-            priority
-          />
-          {/* Gradient Overlay - Teal to dark */}
-          <div 
-            className="absolute inset-0"
-            style={{
-              background: 'linear-gradient(135deg, rgba(6, 140, 140, 0.85) 0%, rgba(6, 140, 140, 0.75) 50%, rgba(10, 95, 95, 0.85) 100%)',
-            }}
-          />
-          {/* Pattern overlay */}
-          <div 
-            className="absolute inset-0"
-            style={{
-              backgroundImage: `url(${assetPath('/images/fresh-snow.png')})`,
-              backgroundRepeat: 'repeat',
-              mixBlendMode: 'overlay',
-              opacity: 0.15,
-              pointerEvents: 'none',
-            }}
-          />
-        </div>
+        {/* Pattern overlay with mix-blend-mode */}
+        <div 
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundImage: `url(${assetPath('/images/fresh-snow.png')})`,
+            backgroundRepeat: 'repeat',
+            mixBlendMode: 'multiply',
+            pointerEvents: 'none',
+            zIndex: 1
+          }}
+        />
+        <div className="container mx-auto px-4 py-12 md:py-20 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+            {/* Left side - Content */}
+            <div className="flex flex-col items-center gap-6 md:gap-8">
+              {/* Logo icon */}
+              <div className="relative w-24 h-24 md:w-32 md:h-32">
+                <Image
+                  src={assetPath("/logo-icon.png") || "/placeholder.svg"}
+                  alt="Logo"
+                  fill
+                  className="object-contain"
+                  style={{ filter: 'brightness(0) saturate(100%) invert(87%) sepia(11%) saturate(734%) hue-rotate(344deg) brightness(95%) contrast(88%)' }}
+                />
+              </div>
 
-        {/* Content Container */}
-        <div className="relative z-10 container mx-auto px-4 py-20 md:py-28 flex items-center min-h-[85vh]">
-          <div className="max-w-4xl mx-auto text-center">
-            {/* Small subtitle above */}
-            <p 
-              className="text-[#c9b896] text-sm md:text-base tracking-[0.3em] uppercase mb-6 font-light"
-              style={{ fontFamily: 'Playfair Display, serif' }}
-            >
-              Benvenuti a Pistoia
-            </p>
+              {/* Main heading */}
+              <div className="space-y-3 md:space-y-4">
+                <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-white tracking-wide leading-tight text-center font-normal" style={{ fontFamily: 'Playfair Display, serif' }}>
+                  {t.hero.name.toUpperCase()}
+                </h1>
+                <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white tracking-wider lg:tracking-widest text-center font-light px-4" style={{ fontFamily: 'Playfair Display, serif' }}>
+                  {t.hero.subtitle.toUpperCase()}
+                </p>
+              </div>
 
-            {/* Logo icon */}
-            <div className="relative w-20 h-20 md:w-24 md:h-24 mx-auto mb-8">
-              <Image
-                src={assetPath("/logo-icon.png") || "/placeholder.svg"}
-                alt="Logo"
-                fill
-                className="object-contain"
-                style={{ filter: 'brightness(0) saturate(100%) invert(87%) sepia(11%) saturate(734%) hue-rotate(344deg) brightness(95%) contrast(88%)' }}
-              />
-            </div>
-
-            {/* Main Heading */}
-            <h1 
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white tracking-wide leading-tight mb-6 font-normal"
-              style={{ fontFamily: 'Playfair Display, serif' }}
-            >
-              {t.hero.name}
-            </h1>
-
-            {/* Decorative divider */}
-            <div className="flex items-center justify-center gap-3 mb-8">
-              <div className="w-16 md:w-24 h-[2px]" style={{ 
-                background: 'linear-gradient(to right, transparent, #c9b896)',
-                opacity: 0.8
-              }} />
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2" style={{ 
-                  background: '#c9b896',
-                  transform: 'rotate(45deg)',
-                  opacity: 0.9
+              {/* Decorative divider - Premium design */}
+              <div className="flex items-center gap-3 w-full max-w-lg">
+                <div className="flex-1 h-[2px]" style={{ 
+                  background: 'linear-gradient(to right, transparent, var(--gold-accent), var(--gold-accent))',
+                  opacity: 0.8
                 }} />
-                <div className="w-3 h-3 rounded-full border-2" style={{ 
-                  borderColor: '#c9b896',
-                  backgroundColor: 'transparent'
-                }} />
-                <div className="w-2 h-2" style={{ 
-                  background: '#c9b896',
-                  transform: 'rotate(45deg)',
-                  opacity: 0.9
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2" style={{ 
+                    background: 'var(--gold-accent)',
+                    transform: 'rotate(45deg)',
+                    opacity: 0.9
+                  }} />
+                  <div className="w-3 h-3 rounded-full border-2" style={{ 
+                    borderColor: 'var(--gold-accent)',
+                    backgroundColor: 'transparent'
+                  }} />
+                  <div className="w-2 h-2" style={{ 
+                    background: 'var(--gold-accent)',
+                    transform: 'rotate(45deg)',
+                    opacity: 0.9
+                  }} />
+                </div>
+                <div className="flex-1 h-[2px]" style={{ 
+                  background: 'linear-gradient(to left, transparent, var(--gold-accent), var(--gold-accent))',
+                  opacity: 0.8
                 }} />
               </div>
-              <div className="w-16 md:w-24 h-[2px]" style={{ 
-                background: 'linear-gradient(to left, transparent, #c9b896)',
-                opacity: 0.8
-              }} />
-            </div>
 
-            {/* Subtitle */}
-            <p 
-              className="text-xl sm:text-2xl md:text-3xl text-white/95 tracking-wider mb-10 font-light leading-relaxed max-w-3xl mx-auto"
-              style={{ fontFamily: 'Playfair Display, serif' }}
-            >
-              {t.hero.subtitle}
-            </p>
-
-            {/* Description text */}
-            <p 
-              className="text-base md:text-lg text-white/80 mb-12 font-light leading-relaxed max-w-2xl mx-auto px-4"
-              style={{ fontFamily: 'Playfair Display, serif' }}
-            >
-              Competenza odontoiatrica e medicina estetica facciale per un percorso di bellezza e benessere personalizzato
-            </p>
-
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Link href="/contatti">
+              {/* CTA Button */}
+              <Link href="/servizi">
                 <button 
-                  className="px-10 py-4 text-white tracking-wider text-base md:text-lg hover:bg-[#c9b896] hover:border-[#c9b896] transition-all duration-300 font-light min-w-[200px]"
+                  className="px-10 py-4 text-white tracking-widest text-lg hover:opacity-80 transition-all text-center font-light"
                   style={{ 
                     fontFamily: 'Playfair Display, serif',
                     border: '2px solid #c9b896',
-                    backgroundColor: '#c9b896'
-                  }}
-                >
-                  Prenota Consulto
-                </button>
-              </Link>
-              <Link href="/servizi">
-                <button 
-                  className="px-10 py-4 text-white tracking-wider text-base md:text-lg hover:bg-white/10 transition-all duration-300 font-light min-w-[200px]"
-                  style={{ 
-                    fontFamily: 'Playfair Display, serif',
-                    border: '2px solid white',
                     backgroundColor: 'transparent'
                   }}
                 >
-                  Scopri i Servizi
+                  {t.hero.ctaPrimary.toUpperCase()}
                 </button>
               </Link>
             </div>
-          </div>
-        </div>
 
-        {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 animate-bounce">
-          <div className="w-6 h-10 border-2 border-white/40 rounded-full flex items-start justify-center p-2">
-            <div className="w-1.5 h-3 bg-white/60 rounded-full" />
+            {/* Right side - Image */}
+            <div className="relative w-full h-[400px] sm:h-[500px] lg:h-[600px] flex justify-center lg:justify-end">
+              <div className="relative w-full max-w-sm lg:max-w-md h-full">
+                <Image
+                  src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=800&q=80"
+                  alt={t.hero.name}
+                  fill
+                  className="object-cover object-center rounded-lg lg:rounded-none"
+                  priority
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>
