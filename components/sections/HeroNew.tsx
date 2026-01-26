@@ -51,7 +51,7 @@ export function HeroNew() {
             <div
               className="absolute inset-0"
               style={{
-                background: 'linear-gradient(135deg, rgba(6, 140, 140, 0.75) 0%, rgba(10, 95, 95, 0.85) 50%, rgba(0, 0, 0, 0.7) 100%)',
+                background: 'linear-gradient(135deg, rgba(6, 140, 140, 0.6) 0%, rgba(10, 95, 95, 0.7) 50%, rgba(0, 0, 0, 0.6) 100%)',
               }}
             />
           </div>
@@ -64,27 +64,30 @@ export function HeroNew() {
             backgroundImage: `url(${assetPath('/images/fresh-snow.png')})`,
             backgroundRepeat: 'repeat',
             mixBlendMode: 'soft-light',
-            opacity: 0.1,
+            opacity: 0.05,
             pointerEvents: 'none',
           }}
         />
 
         {/* Hero Content */}
-        <div className="relative z-20 h-full flex items-center px-4 py-24 md:py-0">
+        <div className="relative z-20 h-full flex items-center px-4 py-32 sm:py-28 md:py-0">
           <div className="container mx-auto">
             <div className="max-w-6xl mx-auto text-center">
               {/* Animated entrance for content */}
-              <div className="space-y-4 sm:space-y-6 md:space-y-8 animate-fade-in">
+              <div className="space-y-5 sm:space-y-6 md:space-y-8 animate-fade-in">
                 {/* Small accent line */}
-                <div className="flex items-center justify-center gap-3 md:gap-4">
-                  <div className="w-12 sm:w-16 md:w-24 h-[1px] bg-gradient-to-r from-transparent to-[#c9b896]" />
+                <div className="flex items-center justify-center gap-3 md:gap-4 mb-2">
+                  <div className="w-12 sm:w-16 md:w-24 h-[1px] bg-gradient-to-r from-transparent via-[#c9b896] to-[#c9b896]" />
                   <p
                     className="text-[#c9b896] text-xs sm:text-sm md:text-base tracking-[0.3em] md:tracking-[0.4em] uppercase font-light whitespace-nowrap"
-                    style={{ fontFamily: 'Playfair Display, serif' }}
+                    style={{
+                      fontFamily: 'Playfair Display, serif',
+                      textShadow: '1px 1px 3px rgba(0,0,0,0.5)'
+                    }}
                   >
                     Benvenuti a Pistoia
                   </p>
-                  <div className="w-12 sm:w-16 md:w-24 h-[1px] bg-gradient-to-l from-transparent to-[#c9b896]" />
+                  <div className="w-12 sm:w-16 md:w-24 h-[1px] bg-gradient-to-l from-transparent via-[#c9b896] to-[#c9b896]" />
                 </div>
 
                 {/* Main Heading - HUGE and dramatic */}
@@ -174,7 +177,7 @@ export function HeroNew() {
         </div>
 
         {/* Slide indicators */}
-        <div className="absolute bottom-20 sm:bottom-16 md:bottom-12 left-1/2 -translate-x-1/2 z-30 flex gap-2 md:gap-3">
+        <div className="absolute bottom-28 sm:bottom-24 md:bottom-20 left-1/2 -translate-x-1/2 z-30 flex gap-3 md:gap-4">
           {heroImages.map((_, index) => (
             <button
               key={index}
@@ -183,8 +186,8 @@ export function HeroNew() {
               aria-label={`Go to slide ${index + 1}`}
             >
               <div
-                className={`w-8 sm:w-10 md:w-12 h-1 rounded-full transition-all duration-500 ${
-                  currentSlide === index ? 'bg-[#c9b896]' : 'bg-white/30'
+                className={`w-10 sm:w-12 md:w-16 h-1 rounded-full transition-all duration-500 ${
+                  currentSlide === index ? 'bg-[#c9b896]' : 'bg-white/40'
                 }`}
               >
                 {currentSlide === index && (
@@ -201,12 +204,12 @@ export function HeroNew() {
         </div>
 
         {/* Scroll indicator */}
-        <div className="hidden sm:flex absolute bottom-8 left-1/2 -translate-x-1/2 z-20 animate-bounce">
-          <div className="flex flex-col items-center gap-2 text-white/60">
+        <div className="hidden sm:flex absolute bottom-10 md:bottom-8 left-1/2 -translate-x-1/2 z-20 animate-bounce">
+          <div className="flex flex-col items-center gap-2 text-white/70">
             <span className="text-xs tracking-widest uppercase" style={{ fontFamily: 'Playfair Display, serif' }}>
               Scroll
             </span>
-            <div className="w-[2px] h-8 bg-gradient-to-b from-white/60 to-transparent" />
+            <div className="w-[2px] h-8 bg-gradient-to-b from-white/70 to-transparent" />
           </div>
         </div>
       </div>
