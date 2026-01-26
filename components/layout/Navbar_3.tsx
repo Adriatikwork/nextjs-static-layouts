@@ -46,16 +46,19 @@ export function Navbar() {
   const closeMenu = () => setIsMenuOpen(false)
 
   // Determine navbar style based on page and scroll state
-  const navbarBgColor = isHomePage && !isScrolled ? '#068c8c' : '#068c8c'
+  // Glassmorphic dark navbar for homepage hero, teal for other states
+  const navbarBgColor = isHomePage && !isScrolled ? 'rgba(0, 0, 0, 0.4)' : '#068c8c'
   const navbarPosition = isHomePage && !isScrolled ? 'absolute' : 'relative'
-  const textColor = 'white'
-  const logoFilter = 'brightness(0) saturate(100%) invert(100%)'
+  const textColor = 'white' // Always white text for better contrast
+  const logoFilter = 'brightness(0) saturate(100%) invert(100%)' // Always white logo
   
   return (
     <nav
       className={`w-full z-50 transition-all duration-300 ${isHomePage && !isScrolled ? 'absolute top-0 left-0 right-0' : 'relative'}`}
       style={{
-        backgroundColor: navbarBgColor
+        backgroundColor: navbarBgColor,
+        backdropFilter: isHomePage && !isScrolled ? 'blur(20px) saturate(180%)' : 'none',
+        boxShadow: isHomePage && !isScrolled ? 'none' : '0 2px 10px rgba(0,0,0,0.1)'
       }}
     >
       <div className="container mx-auto px-4">
@@ -82,7 +85,7 @@ export function Navbar() {
             <div
               className="py-2 transition-all duration-300"
               style={{
-                borderBottom: `1px solid rgba(255,255,255,0.2)`
+                borderBottom: `1px solid ${isHomePage && !isScrolled ? 'rgba(255,255,255,0.15)' : 'rgba(255,255,255,0.2)'}`
               }}
             >
               <div className="flex justify-end items-center gap-4 text-xs font-light transition-colors duration-300" style={{ color: textColor }}>
@@ -163,9 +166,10 @@ export function Navbar() {
                     className="px-8 py-3 tracking-wide hover:opacity-90 transition-all text-sm font-light"
                     style={{
                       fontFamily: 'Playfair Display, serif',
-                      border: '1px solid #c9b896',
-                      backgroundColor: 'transparent',
-                      color: textColor
+                      border: isHomePage && !isScrolled ? '1px solid #B06F69' : `1px solid ${textColor}`,
+                      backgroundColor: isHomePage && !isScrolled ? '#B06F69' : 'transparent',
+                      color: textColor,
+                      boxShadow: isHomePage && !isScrolled ? '0 2px 8px rgba(176, 111, 105, 0.3)' : 'none'
                     }}
                   >
                     {t.nav.cta.toUpperCase()}
@@ -325,8 +329,9 @@ export function Navbar() {
                         className="w-full px-8 py-4 text-white tracking-wide hover:opacity-90 transition-all text-base font-light"
                         style={{
                           fontFamily: 'Playfair Display, serif',
-                          border: '2px solid #c9b896',
-                          backgroundColor: 'transparent'
+                          border: '2px solid #B06F69',
+                          backgroundColor: '#B06F69',
+                          boxShadow: '0 2px 8px rgba(176, 111, 105, 0.3)'
                         }}
                       >
                         {t.nav.bookAppointment.toUpperCase()}
@@ -339,8 +344,10 @@ export function Navbar() {
         </div>
       </div>
       
-      {/* Golden Decorative Bar under navbar */}
-      {(!isHomePage || isScrolled) && (
+      {/* Decorative Bar under navbar - Warm accent for homepage hero, gold for other states */}
+      {isHomePage && !isScrolled ? (
+        <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#B06F69]/40 to-transparent" />
+      ) : (
         <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#c9b896] to-transparent opacity-60" />
       )}
     </nav>
