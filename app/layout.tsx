@@ -5,6 +5,7 @@ import { LanguageProvider } from '@/lib/LanguageContext'
 import { AssetPathProvider } from '@/components/AssetPathProvider'
 import { Navbar } from '@/components/layout/Navbar'
 import { Footer } from '@/components/layout/Footer'
+import { PageTransition } from '@/components/PageTransition'
 
 const geist = Geist({ 
   subsets: ['latin'],
@@ -126,7 +127,9 @@ export default function RootLayout({
         <AssetPathProvider />
         <LanguageProvider>
           <Navbar />
-          {children}
+          <PageTransition>
+            {children}
+          </PageTransition>
           <Footer />
         </LanguageProvider>
       </body>

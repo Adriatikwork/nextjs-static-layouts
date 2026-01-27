@@ -4,8 +4,10 @@ import React from "react"
 
 import { useState, useEffect, useCallback } from 'react'
 import { assetPath } from '@/lib/utils'
-import { MapPin, Phone, Mail, Clock, Navigation } from 'lucide-react'
+import { MapPin, Phone, Mail, Clock, Navigation, Send, CheckCircle, AlertCircle } from 'lucide-react'
 import { useLanguage } from '@/lib/LanguageContext'
+import emailjs from '@emailjs/browser'
+import { emailJsConfig } from '@/config/emailjs.config'
 
 // Location data for the route map
 const locations = [
@@ -66,13 +68,99 @@ const nodePositions = [
 
 export function Contact() {
   const { t } = useLanguage()
-  const BOOKING_PAGE_URL = "https://calendar.app.google/PXJf7qQMexizEqsk9"
-  
+
+  // Form state
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    subject: '',
+    message: ''
+  })
+  const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle')
+  const [formErrors, setFormErrors] = useState<Record<string, string>>({})
+
   // State for location selection and auto-rotation
   const [activeIndex, setActiveIndex] = useState(0)
   const [isPaused, setIsPaused] = useState(false)
   const [lastInteraction, setLastInteraction] = useState(Date.now())
-  
+
+  // Form handlers
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target
+    setFormData(prev => ({ ...prev, [name]: value }))
+    // Clear error for this field when user starts typing
+    if (formErrors[name]) {
+      setFormErrors(prev => ({ ...prev, [name]: '' }))
+    }
+  }
+
+  const validateForm = () => {
+    const errors: Record<string, string> = {}
+
+    if (!formData.name.trim()) {
+      errors.name = 'Il nome è obbligatorio'
+    }
+
+    if (!formData.email.trim()) {
+      errors.email = 'L\'email è obbligatoria'
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      errors.email = 'Inserisci un\'email valida'
+    }
+
+    if (!formData.message.trim()) {
+      errors.message = 'Il messaggio è obbligatorio'
+    }
+
+    setFormErrors(errors)
+    return Object.keys(errors).length === 0
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+
+    if (!validateForm()) {
+      return
+    }
+
+    setFormStatus('submitting')
+
+    try {
+      // EmailJS Configuration - edit values in config/emailjs.config.ts
+      const { serviceId, templateId, publicKey, recipientName } = emailJsConfig
+
+      // Template parameters - these will be used in your EmailJS template
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        phone: formData.phone || 'Non fornito',
+        subject: formData.subject || 'Richiesta di contatto dal sito web',
+        message: formData.message,
+        to_name: recipientName,
+      }
+
+      // Send email using EmailJS
+      const response = await emailjs.send(
+        serviceId,
+        templateId,
+        templateParams,
+        publicKey
+      )
+
+      console.log('Email sent successfully:', response)
+
+      setFormStatus('success')
+      setFormData({ name: '', email: '', phone: '', subject: '', message: '' })
+
+      // Reset success message after 5 seconds
+      setTimeout(() => setFormStatus('idle'), 5000)
+    } catch (error) {
+      console.error('Email send error:', error)
+      setFormStatus('error')
+      setTimeout(() => setFormStatus('idle'), 5000)
+    }
+  }
+
   // Handle node selection
   const handleNodeSelect = useCallback((index: number) => {
     setActiveIndex(index)
@@ -154,7 +242,7 @@ export function Contact() {
   ]
 
   return (
-    <section className="relative w-full pt-20 md:pt-24">
+    <section className="relative w-full">
       {/* Hero section with title - Matching other pages */}
       <div 
         className="w-full py-16 relative overflow-hidden"
@@ -300,69 +388,248 @@ export function Contact() {
                 </div>
               </div>
 
-              {/* Google Calendar Booking - Spans 3 columns */}
+              {/* Contact Form - Spans 3 columns */}
               <div className="lg:col-span-3">
-                <h2 
+                <h2
                   className="text-2xl text-[#068c8c] mb-6 font-normal"
                   style={{ fontFamily: 'Playfair Display, serif' }}
                 >
-                  {t.contact.booking.title}
+                  Inviaci un Messaggio
                 </h2>
-                
+
                 <div className="bg-white shadow-xl overflow-hidden" style={{ border: '2px solid #c9b896' }}>
-                  <div 
-                    className="p-4"
+                  {/* Form Header */}
+                  <div
+                    className="p-6"
                     style={{
                       background: 'linear-gradient(135deg, #068c8c 0%, #057575 100%)'
                     }}
                   >
-                    <p 
+                    <p
                       className="text-white text-center leading-relaxed font-light"
                       style={{ fontFamily: 'Playfair Display, serif' }}
                     >
-                      {t.contact.booking.subtitle}
+                      Compila il form qui sotto e ti risponderemo al più presto
                     </p>
                   </div>
 
-                  {/* Google Calendar Embed */}
-                  <div className="relative w-full overflow-hidden" style={{ height: '600px' }}>
-                    <iframe 
-                      src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ1sn4N5UDj5qZlgwWvHZO7hWvPRPho91rom4_PlrTowM8GLtZ2xdtjCMBnFzMAD5Z0kKp44E1Rf?gv=true" 
-                      style={{ border: 0 }} 
-                      width="100%" 
-                      height="600" 
-                      frameBorder="0"
-                      title={t.contact.booking.title}
-                      className="w-full"
-                    />
-                  </div>
+                  {/* Form Content */}
+                  <form onSubmit={handleSubmit} className="p-8">
+                    {/* Success Message */}
+                    {formStatus === 'success' && (
+                      <div
+                        className="mb-6 p-4 rounded-lg flex items-start gap-3 animate-fade-in-up"
+                        style={{ backgroundColor: 'rgba(34, 197, 94, 0.1)', border: '1px solid rgba(34, 197, 94, 0.3)' }}
+                      >
+                        <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                        <div>
+                          <p className="text-green-800 font-medium" style={{ fontFamily: 'Playfair Display, serif' }}>
+                            Messaggio inviato con successo!
+                          </p>
+                          <p className="text-green-700 text-sm font-light mt-1" style={{ fontFamily: 'Playfair Display, serif' }}>
+                            Ti risponderemo al più presto.
+                          </p>
+                        </div>
+                      </div>
+                    )}
 
-                  <div className="p-4 bg-gray-50 border-t border-[#c9b896]/30 flex items-center justify-between gap-4">
-                    <div className="flex items-start gap-2 flex-1">
+                    {/* Error Message */}
+                    {formStatus === 'error' && (
+                      <div
+                        className="mb-6 p-4 rounded-lg flex items-start gap-3 animate-fade-in-up"
+                        style={{ backgroundColor: 'rgba(239, 68, 68, 0.1)', border: '1px solid rgba(239, 68, 68, 0.3)' }}
+                      >
+                        <AlertCircle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
+                        <div>
+                          <p className="text-red-800 font-medium" style={{ fontFamily: 'Playfair Display, serif' }}>
+                            Errore nell'invio del messaggio
+                          </p>
+                          <p className="text-red-700 text-sm font-light mt-1" style={{ fontFamily: 'Playfair Display, serif' }}>
+                            Riprova più tardi o contattaci direttamente via email.
+                          </p>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Form Grid */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                      {/* Name Field */}
+                      <div>
+                        <label
+                          htmlFor="name"
+                          className="block text-sm font-medium mb-2 text-gray-700"
+                          style={{ fontFamily: 'Playfair Display, serif' }}
+                        >
+                          Nome e Cognome <span className="text-red-500">*</span>
+                        </label>
+                        <input
+                          type="text"
+                          id="name"
+                          name="name"
+                          value={formData.name}
+                          onChange={handleInputChange}
+                          className="w-full px-4 py-3 border border-gray-300 focus:border-[#068c8c] focus:ring-2 focus:ring-[#068c8c]/20 outline-none transition-all font-light"
+                          style={{
+                            fontFamily: 'Playfair Display, serif',
+                            borderColor: formErrors.name ? '#ef4444' : undefined
+                          }}
+                          placeholder="Mario Rossi"
+                        />
+                        {formErrors.name && (
+                          <p className="text-red-500 text-sm mt-1 font-light" style={{ fontFamily: 'Playfair Display, serif' }}>
+                            {formErrors.name}
+                          </p>
+                        )}
+                      </div>
+
+                      {/* Email Field */}
+                      <div>
+                        <label
+                          htmlFor="email"
+                          className="block text-sm font-medium mb-2 text-gray-700"
+                          style={{ fontFamily: 'Playfair Display, serif' }}
+                        >
+                          Email <span className="text-red-500">*</span>
+                        </label>
+                        <input
+                          type="email"
+                          id="email"
+                          name="email"
+                          value={formData.email}
+                          onChange={handleInputChange}
+                          className="w-full px-4 py-3 border border-gray-300 focus:border-[#068c8c] focus:ring-2 focus:ring-[#068c8c]/20 outline-none transition-all font-light"
+                          style={{
+                            fontFamily: 'Playfair Display, serif',
+                            borderColor: formErrors.email ? '#ef4444' : undefined
+                          }}
+                          placeholder="mario.rossi@example.com"
+                        />
+                        {formErrors.email && (
+                          <p className="text-red-500 text-sm mt-1 font-light" style={{ fontFamily: 'Playfair Display, serif' }}>
+                            {formErrors.email}
+                          </p>
+                        )}
+                      </div>
+
+                      {/* Phone Field */}
+                      <div>
+                        <label
+                          htmlFor="phone"
+                          className="block text-sm font-medium mb-2 text-gray-700"
+                          style={{ fontFamily: 'Playfair Display, serif' }}
+                        >
+                          Telefono <span className="text-gray-400 text-xs">(opzionale)</span>
+                        </label>
+                        <input
+                          type="tel"
+                          id="phone"
+                          name="phone"
+                          value={formData.phone}
+                          onChange={handleInputChange}
+                          className="w-full px-4 py-3 border border-gray-300 focus:border-[#068c8c] focus:ring-2 focus:ring-[#068c8c]/20 outline-none transition-all font-light"
+                          style={{ fontFamily: 'Playfair Display, serif' }}
+                          placeholder="+39 123 456 7890"
+                        />
+                      </div>
+
+                      {/* Subject Field */}
+                      <div>
+                        <label
+                          htmlFor="subject"
+                          className="block text-sm font-medium mb-2 text-gray-700"
+                          style={{ fontFamily: 'Playfair Display, serif' }}
+                        >
+                          Oggetto <span className="text-gray-400 text-xs">(opzionale)</span>
+                        </label>
+                        <input
+                          type="text"
+                          id="subject"
+                          name="subject"
+                          value={formData.subject}
+                          onChange={handleInputChange}
+                          className="w-full px-4 py-3 border border-gray-300 focus:border-[#068c8c] focus:ring-2 focus:ring-[#068c8c]/20 outline-none transition-all font-light"
+                          style={{ fontFamily: 'Playfair Display, serif' }}
+                          placeholder="Richiesta informazioni"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Message Field */}
+                    <div className="mb-6">
+                      <label
+                        htmlFor="message"
+                        className="block text-sm font-medium mb-2 text-gray-700"
+                        style={{ fontFamily: 'Playfair Display, serif' }}
+                      >
+                        Messaggio <span className="text-red-500">*</span>
+                      </label>
+                      <textarea
+                        id="message"
+                        name="message"
+                        value={formData.message}
+                        onChange={handleInputChange}
+                        rows={6}
+                        className="w-full px-4 py-3 border border-gray-300 focus:border-[#068c8c] focus:ring-2 focus:ring-[#068c8c]/20 outline-none transition-all resize-none font-light"
+                        style={{
+                          fontFamily: 'Playfair Display, serif',
+                          borderColor: formErrors.message ? '#ef4444' : undefined
+                        }}
+                        placeholder="Scrivi qui il tuo messaggio..."
+                      />
+                      {formErrors.message && (
+                        <p className="text-red-500 text-sm mt-1 font-light" style={{ fontFamily: 'Playfair Display, serif' }}>
+                          {formErrors.message}
+                        </p>
+                      )}
+                    </div>
+
+                    {/* Submit Button */}
+                    <div className="flex justify-center">
+                      <button
+                        type="submit"
+                        disabled={formStatus === 'submitting'}
+                        className="group relative px-10 py-4 text-white tracking-widest text-base font-light overflow-hidden transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed"
+                        style={{
+                          fontFamily: 'Playfair Display, serif',
+                          backgroundColor: '#068c8c',
+                          border: '2px solid #c9b896',
+                          textTransform: 'uppercase'
+                        }}
+                      >
+                        <span className="relative z-10 flex items-center gap-2">
+                          {formStatus === 'submitting' ? (
+                            <>
+                              <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                              Invio in corso...
+                            </>
+                          ) : (
+                            <>
+                              Invia Messaggio
+                              <Send className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                            </>
+                          )}
+                        </span>
+                        <div
+                          className="absolute inset-0 bg-[#057575] transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"
+                          style={{ zIndex: 0 }}
+                        />
+                      </button>
+                    </div>
+                  </form>
+
+                  {/* Form Footer */}
+                  <div className="p-4 bg-gray-50 border-t border-[#c9b896]/30">
+                    <div className="flex items-start gap-2">
                       <div className="w-5 h-5 rounded-full bg-[#068c8c]/10 flex items-center justify-center flex-shrink-0 mt-0.5">
                         <span className="text-[#068c8c] text-xs font-bold">i</span>
                       </div>
-                      <p 
-                        className="text-gray-600 text-xs leading-relaxed font-light"
+                      <p
+                        className="text-gray-600 text-sm leading-relaxed font-light"
                         style={{ fontFamily: 'Playfair Display, serif' }}
                       >
-                        {t.contact.booking.note}
+                        I tuoi dati personali sono protetti e verranno utilizzati esclusivamente per rispondere alla tua richiesta.
                       </p>
                     </div>
-                    
-                    <a
-                      href={BOOKING_PAGE_URL}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center justify-center px-4 py-2 text-white text-sm tracking-wider hover:opacity-90 transition-all whitespace-nowrap font-light"
-                      style={{ 
-                        fontFamily: 'Playfair Display, serif',
-                        backgroundColor: '#068c8c',
-                        border: '1px solid #c9b896'
-                      }}
-                    >
-                      {t.contact.booking.openWindow}
-                    </a>
                   </div>
                 </div>
               </div>

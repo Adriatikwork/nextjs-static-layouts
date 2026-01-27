@@ -8,7 +8,7 @@ export function About() {
   const { t } = useLanguage()
 
   return (
-    <section className="relative w-full pt-20 md:pt-24">
+    <section className="relative w-full">
       {/* Wrapper for TOP TEAL + MIDDLE BEIGE with image spanning ONLY these two */}
       <div className="relative w-full">
         {/* Top teal section with title */}
