@@ -40,7 +40,7 @@ export function HeroNew() {
             }}
           >
             <Image
-              src={image}
+              src={image || "/placeholder.svg"}
               alt={`Hero ${index + 1}`}
               fill
               className="object-cover object-center"
@@ -425,7 +425,7 @@ export function HeroNew() {
             className="text-lg md:text-xl lg:text-2xl text-gray-800 leading-relaxed font-normal italic"
             style={{ fontFamily: 'Playfair Display, serif' }}
           >
-            "{t.hero.quote}"
+            {`"${t.hero.quote}"`}
           </p>
         </div>
       </div>

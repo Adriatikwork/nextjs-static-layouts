@@ -213,7 +213,7 @@ export function About() {
             className="text-xl md:text-2xl text-gray-800 leading-relaxed font-normal italic"
             style={{ fontFamily: 'Playfair Display, serif' }}
           >
-            "{t.approach.quote}"
+            {`"${t.approach.quote}"`}
           </p>
         </div>
       </div>

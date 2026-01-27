@@ -12,7 +12,14 @@
  * 5. Configure allowed domains in EmailJS dashboard for security
  */
 
-export const emailJsConfig = {
+export interface EmailJsConfig {
+  serviceId: string
+  templateId: string
+  publicKey: string
+  recipientName: string
+}
+
+export const emailJsConfig: EmailJsConfig = {
   // Your EmailJS Service ID (from Email Services page)
   // Example: 'service_abc123'
   serviceId: 'YOUR_SERVICE_ID',
