@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -74,31 +72,18 @@
 
     --radius: 0.5rem; /* Preserving user's radius */
     
-    /* ===== TARGET COLOR PALETTE ===== */
-    /* Custom colors for this design - RAL5018 Turquoise Blue */
+    /* ===== EXACT HERO COLOR PALETTE ===== */
     --teal-primary: #068c8c;
     --gold-accent: #c9b896;
     --beige-light: #e8dfd0;
-    
-    /* Blue-teal (NOT green-teal) */
-    --brand-teal: #3A7884;
-    --brand-teal-light: #44808B;
-    --brand-teal-dark: #2D6974;
-    
-    /* Gold/Champagne accent */
+
+    /* Aliases for consistency */
+    --brand-teal: #068c8c;
     --brand-gold: #c9b896;
-    --brand-gold-light: #D4B19A;
-    --brand-gold-dark: #A8856D;
-    
-    /* Cream/Beige panel */
     --brand-cream: #e8dfd0;
-    --brand-cream-dark: #D9CFC8;
-    
+
     /* Dark text color for footer */
     --brand-dark-text: #1F2A33;
-    
-    /* Asset paths for CSS (set by JS based on environment) */
-    --texture-fresh-snow: url('/fresh_snow.png');
   }
 
   .dark {
@@ -212,50 +197,47 @@
   body {
     background-color: hsl(var(--background));
     color: hsl(var(--foreground));
-    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    font-weight: 400;
+    font-family: 'Playfair Display', serif;
+    font-weight: 300;
     letter-spacing: 0.01em;
     /* Override with brand colors */
     background-color: var(--brand-cream);
-    background-image: var(--texture-fresh-snow);
-    background-repeat: repeat;
-    background-attachment: fixed;
   }
   
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Cinzel', serif;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    text-transform: none;
   }
-  
+
   h1 {
     font-size: clamp(2.5rem, 5vw, 4rem);
     line-height: 1.2;
   }
-  
+
   h2 {
     font-size: clamp(2rem, 4vw, 3rem);
     line-height: 1.3;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.02em;
   }
-  
+
   h3 {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Playfair Display', serif;
     font-size: clamp(1.5rem, 3vw, 2rem);
-    font-weight: 600;
-    letter-spacing: 0.05em;
-  }
-  
-  h4 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(1.25rem, 2.5vw, 1.5rem);
-    font-weight: 600;
-  }
-  
-  p {
-    font-family: 'Montserrat', sans-serif;
     font-weight: 400;
+    letter-spacing: 0.02em;
+  }
+
+  h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+    font-weight: 400;
+  }
+
+  p {
+    font-family: 'Playfair Display', serif;
+    font-weight: 300;
     line-height: 1.8;
     letter-spacing: 0.01em;
   }
@@ -280,64 +262,25 @@ section[id] {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, var(--brand-gold) 0%, var(--brand-gold-dark) 100%);
+  background: var(--brand-gold);
   border-radius: 5px;
   border: 2px solid var(--brand-cream);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, var(--brand-gold-dark) 0%, #8A7060 100%);
+  background: #a8856d;
 }
 
 /* ============================================
-   PREMIUM BLUE-TEAL BACKGROUND WITH SUBTLE TEXTURE
-   Download texture from: https://www.toptal.com/designers/subtlepatterns/
-   Save as: public/subtle-texture.png
-   Target colors: #3A7884 base
+   CLEAN TEAL BACKGROUND - MATCHING HERO
    ============================================ */
 .teal-gradient {
   position: relative;
   overflow: hidden;
-  /* Base blue-teal color */
-  background-color: #3A7884;
+  background-color: #068c8c;
 }
 
-/* Texture overlay - visible pattern without washing out color */
-.teal-gradient::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 2;
-  pointer-events: none;
-  background-image: var(--texture-fresh-snow);
-  background-repeat: repeat;
-  background-size: 400px 400px; /* Even larger for better visibility */
-  /* Using overlay at 0.65 opacity - slightly darker and more prominent */
-  opacity: 0.65;
-  mix-blend-mode: overlay;
-}
-
-/* Deep vignette + color depth layer */
-.teal-gradient::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 1;
-  pointer-events: none;
-  background: 
-    radial-gradient(circle at 30% 30%, rgba(68, 128, 139, 0.25) 0%, transparent 70%),
-    radial-gradient(circle at 70% 70%, rgba(45, 105, 116, 0.15) 0%, transparent 70%),
-    /* Stronger vignette in corners to match target */
-    radial-gradient(ellipse at 50% 50%, transparent 10%, rgba(10, 35, 45, 0.6) 110%);
-}
-
-/* Ensure content is above texture layers */
+/* Ensure content is above */
 .teal-gradient > * {
   position: relative;
   z-index: 10;
@@ -543,8 +486,8 @@ section[id] {
 button {
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   letter-spacing: 0.05em;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 500;
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
 }
 
 button:hover {
@@ -556,36 +499,34 @@ button:active {
   transform: translateY(0);
 }
 
-/* Premium Gold/Cream CTA Button - TARGET COLORS */
+/* Premium Gold/Cream CTA Button - MATCHING HERO */
 .btn-premium {
-  background: linear-gradient(180deg, var(--brand-cream) 0%, var(--brand-cream-dark) 100%);
-  color: #3A7884;
-  border: 1px solid rgba(192, 155, 131, 0.6);
+  background: var(--brand-gold);
+  color: white;
+  border: 2px solid var(--brand-gold);
   padding: 1.1rem 3rem;
-  font-family: 'Cinzel', serif;
-  font-weight: 500;
+  font-family: 'Playfair Display', serif;
+  font-weight: 300;
   font-size: 0.9rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 24px rgba(201, 184, 150, 0.4);
   transition: all 0.3s ease;
 }
 
 .btn-premium:hover {
-  background: linear-gradient(180deg, var(--brand-cream-dark) 0%, #C8BBB2 100%);
-  border-color: var(--brand-gold);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 12px 32px rgba(201, 184, 150, 0.5);
   transform: translateY(-2px);
 }
 
-/* Navbar outline button - TARGET COLORS */
+/* Navbar outline button - MATCHING HERO */
 .btn-nav-outline {
   background: transparent;
   color: white;
-  border: 1px solid rgba(255, 255, 255, 0.6);
+  border: 2px solid white;
   padding: 0.6rem 1.5rem;
-  font-family: 'Cinzel', serif;
-  font-weight: 500;
+  font-family: 'Playfair Display', serif;
+  font-weight: 300;
   font-size: 0.75rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -598,13 +539,13 @@ button:active {
 }
 
 .btn-nav-outline.scrolled {
-  color: #3A7884;
-  border-color: rgba(58, 120, 132, 0.6);
+  color: var(--brand-teal);
+  border-color: var(--brand-teal);
 }
 
 .btn-nav-outline.scrolled:hover {
-  background: rgba(58, 120, 132, 0.05);
-  border-color: #3A7884;
+  background: rgba(6, 140, 140, 0.05);
+  border-color: var(--brand-teal);
 }
 
 /* Premium Image Overlay */
@@ -648,7 +589,7 @@ button:active {
 
 /* Loading States */
 .skeleton {
-  background: linear-gradient(90deg, #D9CFC8 0%, var(--brand-cream) 50%, #D9CFC8 100%);
+  background: linear-gradient(90deg, #d0c4b8 0%, var(--brand-cream) 50%, #d0c4b8 100%);
   background-size: 200% 100%;
   animation: shimmer 2s infinite;
 }
@@ -669,12 +610,12 @@ button:active {
   p { font-size: 0.95rem; line-height: 1.7; }
 }
 
-/* Top Info Bar - TARGET COLORS */
+/* Top Info Bar - MATCHING HERO */
 .top-info-bar {
   background: transparent;
   color: rgba(255, 255, 255, 0.85);
   font-size: 0.75rem;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Playfair Display', serif;
   letter-spacing: 0.05em;
   padding: 0.5rem 0;
 }
@@ -688,12 +629,12 @@ button:active {
   color: var(--brand-gold);
 }
 
-/* Hero Bottom Band - TARGET COLORS */
+/* Hero Bottom Band - MATCHING HERO */
 .hero-bottom-band {
-  background: linear-gradient(180deg, var(--brand-cream) 0%, var(--brand-cream-dark) 100%);
+  background: var(--brand-cream);
   padding: 1.5rem 2rem;
   text-align: center;
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Playfair Display', serif;
   font-style: italic;
   font-size: 1rem;
   color: #5A6A70;
@@ -766,7 +707,7 @@ button:active {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(90deg, #D9CFC8 0%, var(--brand-cream) 50%, #D9CFC8 100%);
+  background: linear-gradient(90deg, #d0c4b8 0%, var(--brand-cream) 50%, #d0c4b8 100%);
   background-size: 200% 100%;
   animation: shimmer 2s infinite;
   z-index: 1;
