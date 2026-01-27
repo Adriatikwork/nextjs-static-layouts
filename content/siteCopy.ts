@@ -13,11 +13,15 @@ export const content = {
       name: "Dottoressa Irene Maria Beconi",
       subtitle: "Odontoiatria e Medicina Estetica del Volto",
       tagline: "Eccellenza medica al servizio del tuo sorriso e della tua bellezza naturale",
-      ctaPrimary: "Accedi i Servizi",
-      ctaSecondary: "Contattami",
+      welcomeText: "Benvenuti a Pistoia",
+      description: "Competenza odontoiatrica e medicina estetica facciale per un percorso di bellezza e benessere personalizzato",
+      ctaPrimary: "Prenota Consulto",
+      ctaSecondary: "Scopri i Servizi",
       location: "Pistoia, Italia",
-      bottomText: "Poliambulatorio di Irene Maria Beconi viene effettuata",
-      bottomSubtext: "Nostri Orari e Tutela Offerta Visitatori di Lui del Surridenza e llun Tobaco.",
+      bottomText: "Presso lo studio della Dottoressa Irene Maria Beconi",
+      bottomSubtext: "Cura professionale e attenzione personalizzata per ogni paziente",
+      cardsTitle: "Il Nostro Percorso",
+      cardsSubtitle: "Scopri come possiamo aiutarti nel tuo percorso di salute e bellezza",
       cards: {
         aboutTitle: "Chi Sono",
         aboutBullet1: "Esperienza pluriennale in odontoiatria",
@@ -28,6 +32,7 @@ export const content = {
         galleryTitle: "Galleria",
         galleryBullet1: "Scopri i nostri ambienti",
         galleryBullet2: "Risultati eccellenti",
+        learnMore: "Scopri di più",
       },
       quote: "Il sorriso è il nostro biglietto da visita più bello. Affidati a cure personalizzate per il tuo benessere."
     },
@@ -242,11 +247,15 @@ export const content = {
       name: "Dr. Irene Maria Beconi",
       subtitle: "Dentistry and Facial Aesthetic Medicine",
       tagline: "Medical excellence at the service of your smile and natural beauty",
-      ctaPrimary: "Access Services",
-      ctaSecondary: "Contact me",
+      welcomeText: "Welcome to Pistoia",
+      description: "Dental expertise and facial aesthetic medicine for a personalized journey of beauty and wellness",
+      ctaPrimary: "Book Consultation",
+      ctaSecondary: "Discover Services",
       location: "Pistoia, Italy",
-      bottomText: "Clinic of Irene Maria Beconi is conducted",
-      bottomSubtext: "Our Hours and Protection Offered to Visitors and Clients.",
+      bottomText: "At Dr. Irene Maria Beconi's Practice",
+      bottomSubtext: "Professional care and personalized attention for every patient",
+      cardsTitle: "Our Journey",
+      cardsSubtitle: "Discover how we can help you on your journey to health and beauty",
       cards: {
         aboutTitle: "About Me",
         aboutBullet1: "Years of experience in dentistry",
@@ -257,14 +266,15 @@ export const content = {
         galleryTitle: "Gallery",
         galleryBullet1: "Discover our facilities",
         galleryBullet2: "Excellent results",
+        learnMore: "Learn more",
       },
       quote: "A smile is our most beautiful business card. Trust in personalized care for your wellbeing."
     },
     about: {
       title: "About Me",
-      intro: "I am Dr. Irene Maria Beconi, specialized in dentistry and facial aesthetic medicine. With years of experience and continuous training, I am dedicated to offering excellent treatments that combine medical expertise and personal care.",
-      description: "My mission is to help each patient achieve wellness through personalized care, using the most advanced techniques and a human and professional approach.",
-      formationTitle: "My Training",
+      intro: "I am Dr. Irene Maria Beconi, specialized in dentistry and facial aesthetic medicine. With years of experience and continuous professional development, I am dedicated to delivering exceptional treatments that combine medical expertise with personalized care.",
+      description: "My mission is to help each patient achieve wellbeing through tailored care, using the most advanced techniques with a compassionate and professional approach.",
+      formationTitle: "My Education & Training",
       formation: [
         "Dental Surgeon",
         "Master of Science in Oral Surgery",
@@ -274,38 +284,38 @@ export const content = {
     },
     services: {
       title: "Our Services",
-      subtitle: "Two areas of excellence at the service of your beauty",
-      intro: "My medical practice combines dental expertise and facial aesthetic medicine skills to offer you a complete approach to smile and face care.",
+      subtitle: "Two areas of excellence for your beauty and wellbeing",
+      intro: "My medical practice combines dental expertise with facial aesthetic medicine to provide you with a comprehensive approach to smile and facial care.",
       dentalCategory: "Dentistry and Oral Health",
       aestheticCategory: "Facial Aesthetic Medicine",
       learnMore: "Learn more",
       dental: [
         {
           title: "Conservative and Restorative Care",
-          description: "Treatments to preserve and restore natural dental health, from fillings to cavity care with state-of-the-art biocompatible materials.",
+          description: "Treatments designed to preserve and restore natural dental health, from fillings to cavity care using state-of-the-art biocompatible materials.",
           items: [
             "Aesthetic fillings",
             "Dental restorations",
             "Cavity treatment",
-            "Dental whitening"
+            "Teeth whitening"
           ]
         },
         {
           title: "Endodontics",
-          description: "Specialized canal therapies to save compromised teeth, performed with advanced digital technologies and maximum operational precision.",
+          description: "Specialized root canal therapies to save compromised teeth, performed with advanced digital technologies and the highest level of precision.",
           items: [
-            "Root canals",
-            "Canal retreatments",
+            "Root canal treatment",
+            "Root canal retreatment",
             "Pulp therapies",
-            "Operative microscopy"
+            "Microscopic dentistry"
           ]
         },
         {
           title: "Oral Surgery",
-          description: "Specialized surgical procedures performed with precision and safety, from simple extraction to complex dental implants.",
+          description: "Specialized surgical procedures performed with precision and safety, from simple extractions to complex dental implant procedures.",
           items: [
-            "Dental extractions",
-            "Dental implantology",
+            "Tooth extractions",
+            "Dental implants",
             "Pre-prosthetic surgery",
             "Guided bone regeneration"
           ]
@@ -314,69 +324,69 @@ export const content = {
       aesthetic: [
         {
           title: "Dermal Fillers",
-          description: "Highest quality hyaluronic acid to volumize and define facial features in a natural and harmonious way, respecting facial anatomy.",
+          description: "Premium hyaluronic acid treatments to volumize and define facial features naturally and harmoniously, respecting facial anatomy.",
           items: [
-            "Lip volumetric augmentation",
-            "Cheekbone definition",
-            "Chin remodeling",
+            "Lip augmentation",
+            "Cheekbone enhancement",
+            "Chin contouring",
             "Nasolabial fold correction"
           ]
         },
         {
           title: "Botulinum Toxin",
-          description: "Targeted treatments to reduce expression wrinkles and fine lines, with natural results that preserve facial mobility and expressiveness.",
+          description: "Targeted treatments to reduce expression lines and fine wrinkles, with natural-looking results that preserve facial movement and expressiveness.",
           items: [
-            "Forehead wrinkle treatment",
+            "Forehead lines treatment",
             "Crow's feet correction",
-            "Gummy smile",
-            "Masseter hypertrophy"
+            "Gummy smile treatment",
+            "Masseter reduction"
           ]
         },
         {
           title: "Biorevitalization and Peeling",
-          description: "Skin regenerative therapies to improve texture, tone and elasticity of facial skin, stimulating natural cellular renewal processes.",
+          description: "Regenerative skin therapies to improve texture, tone, and elasticity of facial skin, stimulating natural cellular renewal processes.",
           items: [
             "Facial biorevitalization",
-            "Skinboosters",
-            "Medical chemical peels",
+            "Skin boosters",
+            "Medical-grade chemical peels",
             "Anti-aging treatments"
           ]
         }
       ],
       approachTitle: "My Approach",
-      approachSubtitle: "Values that guide my medical practice",
+      approachSubtitle: "Values guiding my medical practice",
       ctaTitle: "Need more information?",
-      ctaSubtitle: "Contact us for a personalized consultation",
+      ctaSubtitle: "Contact me for a personalized consultation",
       ctaButton: "Book Appointment"
     },
     approach: {
       title: "My Approach",
-      subtitle: "Values that guide my medical practice",
-      quote: "True beauty is born from the harmony between health, wellness, and naturalness.",
+      subtitle: "Values guiding my medical practice",
+      quote: "True beauty is born from the harmony of health, wellness, and naturalness.",
       items: [
         {
           title: "Patient Care",
-          description: "Each person is unique and deserves personalized attention. I listen to each patient's needs to offer the most suitable treatment.",
+          description: "Each person is unique and deserves personalized attention. I listen to every patient's needs to provide the most suitable treatment.",
         },
         {
           title: "Medical Precision",
-          description: "I use rigorous clinical protocols and advanced technologies to ensure safe and effective results in every procedure.",
+          description: "I utilize rigorous clinical protocols and advanced technologies to ensure safe and effective results in every procedure.",
         },
         {
           title: "Natural Results",
-          description: "My goal is to enhance each person's natural beauty, avoiding excesses and maintaining facial harmony.",
+          description: "My goal is to enhance each person's natural beauty while avoiding excesses and maintaining facial harmony.",
         },
         {
           title: "Safety and Ethics",
-          description: "Patient safety is the absolute priority. I operate according to the highest ethical and professional standards of medicine.",
+          description: "Patient safety is my absolute priority. I operate according to the highest ethical and professional standards in medicine.",
         },
       ],
     },
     gallery: {
       title: "Gallery",
       subtitle: "Our spaces and results",
-      intro: "Discover the clinic's environments and the results of our treatments",
-      showAll: "Discover all",
+      intro: "Explore our clinic environments and treatment results",
+      showAll: "View all",
       photos: "photos",
       showLess: "Show less",
       categories: {
@@ -388,7 +398,7 @@ export const content = {
     },
     contact: {
       title: "Contact",
-      subtitle: "Book your appointment or request information",
+      subtitle: "Book your visit or request information",
       info: {
         label: "Information",
         location: "Address",
@@ -407,10 +417,10 @@ export const content = {
         sundayTime: "Closed",
       },
       booking: {
-        title: "Book Appointment",
-        subtitle: "Select an available date and time for your appointment",
-        note: "Booking is a request. We will contact you to confirm.",
-        openWindow: "Open Window"
+        title: "Book an Appointment",
+        subtitle: "Select a date and time for your visit",
+        note: "This is a booking request. We will contact you to confirm your appointment.",
+        openWindow: "Open Booking"
       },
       map: {
         title: "How to Reach Us",
@@ -428,14 +438,14 @@ export const content = {
         message: "Message",
         send: "Send",
         success: "Message sent successfully!",
-        error: "Error sending. Please try again later.",
+        error: "Error sending message. Please try again later.",
       },
     },
     cta: {
-      title: "Book your appointment",
-      subtitle: "Start your journey to wellness. Contact me for a personalized consultation.",
-      primary: "Book now",
-      secondary: "Contact me",
+      title: "Book Your Appointment",
+      subtitle: "Begin your journey to wellness. Contact me for a personalized consultation.",
+      primary: "Book Now",
+      secondary: "Contact Me",
       note: "We respond within 24 hours",
     },
     footer: {

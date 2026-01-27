@@ -86,7 +86,7 @@ export function HeroNew() {
                       textShadow: '1px 1px 3px rgba(0,0,0,0.5)'
                     }}
                   >
-                    Benvenuti a Pistoia
+                    {t.hero.welcomeText}
                   </p>
                   <div className="w-12 sm:w-16 md:w-24 h-[1px] bg-gradient-to-l from-transparent via-[#c9b896] to-[#c9b896]" />
                 </div>
@@ -139,7 +139,7 @@ export function HeroNew() {
                   className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/85 font-light leading-relaxed max-w-3xl mx-auto px-4"
                   style={{ fontFamily: 'Playfair Display, serif' }}
                 >
-                  Competenza odontoiatrica e medicina estetica facciale per un percorso di bellezza e benessere personalizzato
+                  {t.hero.description}
                 </p>
 
                 {/* CTA Buttons */}
@@ -154,7 +154,7 @@ export function HeroNew() {
                         boxShadow: '0 8px 24px rgba(201, 184, 150, 0.4)',
                       }}
                     >
-                      <span className="relative z-10">Prenota Consulto</span>
+                      <span className="relative z-10">{t.hero.ctaPrimary}</span>
                       <div className="absolute inset-0 bg-white/20 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
                     </button>
                   </Link>
@@ -167,7 +167,7 @@ export function HeroNew() {
                         backgroundColor: 'transparent',
                       }}
                     >
-                      <span className="relative z-10">Scopri i Servizi</span>
+                      <span className="relative z-10">{t.hero.ctaSecondary}</span>
                       <div className="absolute inset-0 bg-white/10 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
                     </button>
                   </Link>
@@ -253,7 +253,7 @@ export function HeroNew() {
               className="text-3xl sm:text-4xl md:text-5xl text-white font-normal tracking-wide mb-4"
               style={{ fontFamily: 'Playfair Display, serif' }}
             >
-              Il Nostro Percorso
+              {t.hero.cardsTitle}
             </h2>
             <div className="flex items-center justify-center gap-4 mb-4">
               <div className="w-20 h-[1px] bg-[#c9b896]" />
@@ -261,7 +261,7 @@ export function HeroNew() {
               <div className="w-20 h-[1px] bg-[#c9b896]" />
             </div>
             <p className="text-lg text-white/90 max-w-2xl mx-auto font-light" style={{ fontFamily: 'Playfair Display, serif' }}>
-              Scopri come possiamo aiutarti nel tuo percorso di salute e bellezza
+              {t.hero.cardsSubtitle}
             </p>
           </div>
 
@@ -305,7 +305,7 @@ export function HeroNew() {
                   {/* CTA */}
                   <div className="flex items-center gap-2 text-[#068c8c] group-hover:gap-3 transition-all duration-300">
                     <span className="text-sm uppercase tracking-wider font-medium" style={{ fontFamily: 'Playfair Display, serif' }}>
-                      Scopri di più
+                      {t.hero.cards.learnMore}
                     </span>
                     <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -349,7 +349,7 @@ export function HeroNew() {
 
                   <div className="flex items-center gap-2 text-[#068c8c] group-hover:gap-3 transition-all duration-300">
                     <span className="text-sm uppercase tracking-wider font-medium" style={{ fontFamily: 'Playfair Display, serif' }}>
-                      Scopri di più
+                      {t.hero.cards.learnMore}
                     </span>
                     <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -393,7 +393,7 @@ export function HeroNew() {
 
                   <div className="flex items-center gap-2 text-[#068c8c] group-hover:gap-3 transition-all duration-300">
                     <span className="text-sm uppercase tracking-wider font-medium" style={{ fontFamily: 'Playfair Display, serif' }}>
-                      Scopri di più
+                      {t.hero.cards.learnMore}
                     </span>
                     <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
