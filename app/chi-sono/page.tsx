@@ -1,6 +1,10 @@
-"use client"
-
 import { About } from '@/components/sections/About'
+import { content } from '@/content/siteCopy'
+
+export const metadata = {
+  title: content.it.seo.about.title,
+  description: content.it.seo.about.description,
+}
 
 export default function ChiSonoPage() {
   return (

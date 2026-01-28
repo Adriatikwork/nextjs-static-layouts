@@ -1,308 +1,319 @@
 "use client"
 
-import { assetPath } from '@/lib/utils'
-import { Smile, Activity, Syringe, Droplet, Sparkles, Scissors } from 'lucide-react'
-import { useState } from 'react'
 import { useLanguage } from '@/lib/LanguageContext'
-import { DecorativeDivider } from '@/components/ui/decorative-divider'
+import { motion, AnimatePresence } from 'framer-motion'
+import { useState } from 'react'
+import { FaTooth, FaSyringe, FaHeartbeat, FaUserMd, FaShieldAlt, FaAward, FaHeart } from 'react-icons/fa'
+import { HiSparkles, HiClock, HiCheckCircle } from 'react-icons/hi'
+import { RiStethoscopeLine } from 'react-icons/ri'
+import Link from 'next/link'
 
 export function Services() {
   const { t } = useLanguage()
-  const [activeCategory, setActiveCategory] = useState<'dental' | 'aesthetic'>('dental')
+  const [activeTab, setActiveTab] = useState<'dental' | 'aesthetic'>('dental')
 
-  // Use translations for services
-  const dentalServices = t.services.dental.map((service, index) => {
-    const icons = [Smile, Activity, Scissors]
-    return {
-      ...service,
-      icon: icons[index]
-    }
-  })
+  const dentalServices = t.services.dentalServices.map((service, index) => ({
+    icon: [FaTooth, RiStethoscopeLine, FaShieldAlt][index],
+    ...service
+  }))
 
-  const aestheticServices = t.services.aesthetic.map((service, index) => {
-    const icons = [Syringe, Droplet, Sparkles]
-    return {
-      ...service,
-      icon: icons[index]
-    }
-  })
+  const aestheticServices = t.services.aestheticServices.map((service, index) => ({
+    icon: [FaSyringe, HiSparkles, FaHeartbeat][index],
+    ...service
+  }))
 
-  const activeServices = activeCategory === 'dental' ? dentalServices : aestheticServices
+  const approach = t.services.journeySteps.map((step, index) => ({
+    ...step,
+    icon: [HiCheckCircle, RiStethoscopeLine, FaUserMd, FaAward][index]
+  }))
+
+  const currentServices = activeTab === 'dental' ? dentalServices : aestheticServices
 
   return (
-    <section className="relative w-full">
-      {/* Top teal section with title */}
-      <div
-        className="w-full py-16 relative overflow-hidden"
-        style={{
-          backgroundColor: '#068c8c',
-          isolation: 'isolate'
-        }}
+    <section className="w-full bg-[#f8f7f5] pt-16 sm:pt-[72px] lg:pt-20">
+      {/* Static Section Header with Tab Toggle */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="bg-white/95 backdrop-blur-lg shadow-sm"
       >
-        {/* Pattern overlay with mix-blend-mode */}
-        <div 
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            backgroundImage: `url(${assetPath('/images/fresh-snow.png')})`,
-            backgroundRepeat: 'repeat',
-            mixBlendMode: 'multiply',
-            pointerEvents: 'none',
-            zIndex: 1
-          }}
-        />
-        <div className="container mx-auto px-4 text-center relative z-10">
-          <h1 
-            className="text-5xl md:text-6xl text-[#c9b896] tracking-wider font-normal"
-            style={{ fontFamily: 'Playfair Display, serif' }}
+        <div className="container mx-auto px-4 py-6">
+          <div className="flex flex-col md:flex-row items-center justify-center md:justify-between gap-4">
+            <span
+              className="text-sm tracking-[0.3em] uppercase text-gray-500 font-light text-center md:text-left"
+              style={{ fontFamily: 'Playfair Display, serif' }}
+            >
+              {t.services.pageHeading}
+            </span>
+
+            {/* Tab Toggle */}
+            <div className="flex gap-2 bg-gray-100 rounded-full p-1">
+              <button
+                onClick={() => setActiveTab('dental')}
+                className={`px-6 py-2 rounded-full text-xs tracking-wider uppercase transition-all duration-300 ${
+                  activeTab === 'dental'
+                    ? 'bg-[#068c8c] text-white shadow-md'
+                    : 'bg-transparent text-gray-600'
+                }`}
+                style={{ fontFamily: 'Playfair Display, serif' }}
+              >
+                {t.services.dentalTab}
+              </button>
+              <button
+                onClick={() => setActiveTab('aesthetic')}
+                className={`px-6 py-2 rounded-full text-xs tracking-wider uppercase transition-all duration-300 ${
+                  activeTab === 'aesthetic'
+                    ? 'bg-[#068c8c] text-white shadow-md'
+                    : 'bg-transparent text-gray-600'
+                }`}
+                style={{ fontFamily: 'Playfair Display, serif' }}
+              >
+                {t.services.aestheticTab}
+              </button>
+            </div>
+          </div>
+        </div>
+      </motion.div>
+
+      {/* Services Grid */}
+      <div className="container mx-auto px-4 pt-12 pb-20">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeTab}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.4 }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
           >
-            {t.services.title}
-          </h1>
+            {currentServices.map((service, index) => {
+              const Icon = service.icon
+              return (
+                <motion.div
+                  key={service.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="group relative bg-white rounded-2xl p-8 shadow-sm hover:shadow-2xl transition-all duration-500 border border-gray-100"
+                >
+                  {/* Icon */}
+                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#068c8c]/10 to-[#c9b896]/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <Icon className="w-8 h-8 text-[#068c8c]" />
+                  </div>
+
+                  {/* Title */}
+                  <h3 
+                    className="text-2xl font-normal text-gray-900 mb-3"
+                    style={{ fontFamily: 'Playfair Display, serif' }}
+                  >
+                    {service.title}
+                  </h3>
+
+                  {/* Description */}
+                  <p 
+                    className="text-sm text-gray-600 mb-6 leading-relaxed font-light"
+                    style={{ fontFamily: 'Playfair Display, serif' }}
+                  >
+                    {service.description}
+                  </p>
+
+                  {/* Features List */}
+                  <ul className="space-y-2 mb-6">
+                    {service.features.map((feature, idx) => (
+                      <li 
+                        key={idx}
+                        className="flex items-start gap-2 text-sm text-gray-700 font-light"
+                        style={{ fontFamily: 'Playfair Display, serif' }}
+                      >
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#c9b896] mt-2 flex-shrink-0" />
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+
+                  {/* Hover Arrow */}
+                  <div className="absolute bottom-8 right-8 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="w-8 h-8 rounded-full bg-[#068c8c] flex items-center justify-center">
+                      <span className="text-white text-lg">→</span>
+                    </div>
+                  </div>
+                </motion.div>
+              )
+            })}
+          </motion.div>
+        </AnimatePresence>
+      </div>
+
+      {/* Our Approach Section */}
+      <div className="bg-white py-24">
+        <div className="container mx-auto px-4">
+          {/* Section Header */}
+          <div className="text-center mb-16">
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-sm tracking-[0.3em] uppercase text-[#c9b896] mb-4 font-light"
+              style={{ fontFamily: 'Playfair Display, serif' }}
+            >
+              {t.services.journeyTitle}
+            </motion.p>
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="text-4xl md:text-5xl font-normal text-gray-900"
+              style={{ fontFamily: 'Playfair Display, serif' }}
+            >
+              {t.services.journeySubtitle}
+            </motion.h2>
+          </div>
+
+          {/* Journey Steps */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {approach.map((step, index) => {
+              const Icon = step.icon
+              return (
+                <motion.div
+                  key={step.number}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.15 }}
+                  className="relative"
+                >
+                  {/* Connector Line */}
+                  {index < approach.length - 1 && (
+                    <div className="hidden lg:block absolute top-12 left-full w-full h-px bg-gradient-to-r from-[#c9b896]/50 to-transparent -z-10" />
+                  )}
+
+                  {/* Step Number */}
+                  <div 
+                    className="text-6xl font-light text-[#068c8c]/10 mb-4"
+                    style={{ fontFamily: 'Playfair Display, serif' }}
+                  >
+                    {step.number}
+                  </div>
+
+                  {/* Icon */}
+                  <div className="w-12 h-12 rounded-xl bg-[#068c8c]/10 flex items-center justify-center mb-4">
+                    <Icon className="w-6 h-6 text-[#068c8c]" />
+                  </div>
+
+                  {/* Title */}
+                  <h3 
+                    className="text-xl font-normal text-gray-900 mb-3"
+                    style={{ fontFamily: 'Playfair Display, serif' }}
+                  >
+                    {step.title}
+                  </h3>
+
+                  {/* Description */}
+                  <p 
+                    className="text-sm text-gray-600 leading-relaxed font-light"
+                    style={{ fontFamily: 'Playfair Display, serif' }}
+                  >
+                    {step.description}
+                  </p>
+                </motion.div>
+              )
+            })}
+          </div>
         </div>
       </div>
 
-      {/* Main services section - light cream background */}
-      <div 
-        className="w-full py-20"
-        style={{ backgroundColor: '#f9f6f0' }}
-      >
+      {/* Simple Modern Divider */}
+      <div className="bg-white py-12">
         <div className="container mx-auto px-4">
-          <div className="max-w-7xl mx-auto">
-            {/* Introduction text */}
+          <div className="max-w-4xl mx-auto">
+            <div className="h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
+          </div>
+        </div>
+      </div>
+
+      {/* Il Mio Approccio Section */}
+      <div className="py-24 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            {/* Section Header */}
             <div className="text-center mb-16">
-              <h2 
-                className="text-3xl text-gray-800 mb-6 font-normal"
+              <motion.h2
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="text-4xl md:text-5xl font-normal text-[#c9b896] mb-4 tracking-wide uppercase"
                 style={{ fontFamily: 'Playfair Display, serif' }}
               >
-                {t.services.subtitle}
-              </h2>
-              <DecorativeDivider variant="default" className="mb-6" />
-              <p 
-                className="text-lg text-gray-600 max-w-3xl mx-auto font-light leading-relaxed"
+                {t.services.approachTitle}
+              </motion.h2>
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1 }}
+                className="text-xl text-gray-700 font-light"
                 style={{ fontFamily: 'Playfair Display, serif' }}
               >
-                {t.services.intro}
-              </p>
+                {t.services.approachSubtitle}
+              </motion.p>
             </div>
 
-            {/* Category Switcher - Elegant Toggle - Responsive */}
-            <div className="flex justify-center mb-16 px-4">
-              <div 
-                className="inline-flex flex-col sm:flex-row p-2 rounded-lg gap-2 sm:gap-0 w-full sm:w-auto"
-                style={{ 
-                  backgroundColor: 'white',
-                  border: '1px solid #d4c5a9',
-                  boxShadow: '0 2px 8px rgba(0, 0, 0, 0.06)'
-                }}
-              >
-                <button
-                  onClick={() => setActiveCategory('dental')}
-                  className="px-4 sm:px-8 py-3 sm:py-4 rounded-md transition-all duration-300 font-light tracking-wide text-center whitespace-nowrap text-base sm:text-lg"
-                  style={{
-                    fontFamily: 'Playfair Display, serif',
-                    backgroundColor: activeCategory === 'dental' ? '#068c8c' : 'transparent',
-                    color: activeCategory === 'dental' ? 'white' : '#068c8c'
-                  }}
-                >
-                  {t.services.dentalCategory}
-                </button>
-                <button
-                  onClick={() => setActiveCategory('aesthetic')}
-                  className="px-4 sm:px-8 py-3 sm:py-4 rounded-md transition-all duration-300 font-light tracking-wide text-center whitespace-nowrap text-base sm:text-lg"
-                  style={{
-                    fontFamily: 'Playfair Display, serif',
-                    backgroundColor: activeCategory === 'aesthetic' ? '#068c8c' : 'transparent',
-                    color: activeCategory === 'aesthetic' ? 'white' : '#068c8c'
-                  }}
-                >
-                  {t.services.aestheticCategory}
-                </button>
-              </div>
-            </div>
+            {/* Approach Cards Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {t.approach.items.map((item, index) => {
+                const approachIcons = [
+                  { icon: FaHeart, color: '#068c8c' },
+                  { icon: HiCheckCircle, color: '#c9b896' },
+                  { icon: HiSparkles, color: '#068c8c' },
+                  { icon: FaShieldAlt, color: '#c9b896' }
+                ]
+                const { icon: ApproachIcon, color } = approachIcons[index]
 
-            {/* Mobile/Tablet: Horizontal Scroll Carousel */}
-            <div className="lg:hidden">
-              <div 
-                key={`mobile-${activeCategory}`}
-                className="flex gap-6 overflow-x-auto pb-8 px-4 snap-x snap-mandatory scrollbar-hide animate-fade-in-up"
-                style={{ 
-                  scrollPaddingLeft: '1rem',
-                  WebkitOverflowScrolling: 'touch'
-                }}
-              >
-                {activeServices.map((service, index) => {
-                  const IconComponent = service.icon
-                  return (
-                    <div 
-                      key={index}
-                      className="flex-shrink-0 w-[85vw] sm:w-[70vw] md:w-[45vw] bg-white rounded-lg shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden snap-center"
-                      style={{ border: '1px solid #e0e0e0' }}
-                    >
-                      {/* Icon circle */}
-                      <div className="flex justify-center pt-12 pb-6">
-                        <div 
-                          className="w-24 h-24 rounded-full flex items-center justify-center"
-                          style={{ backgroundColor: '#e8f4f4' }}
-                        >
-                          <IconComponent 
-                            className="w-12 h-12"
-                            style={{ color: '#068c8c' }}
-                          />
-                        </div>
+                return (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.1 }}
+                    className="bg-[#f8f7f5] p-8 rounded-2xl hover:shadow-xl transition-all duration-300 border border-gray-200/50"
+                  >
+                    <div className="flex items-start gap-6">
+                      {/* Premium Icon Circle */}
+                      <div 
+                        className="w-16 h-16 rounded-full flex items-center justify-center flex-shrink-0"
+                        style={{ backgroundColor: `${color}15` }}
+                      >
+                        <ApproachIcon className="w-8 h-8" style={{ color }} />
                       </div>
 
-                      {/* Content */}
-                      <div className="px-6 sm:px-8 pb-10">
+                      <div>
+                        {/* Title */}
                         <h3 
-                          className="text-xl sm:text-2xl text-center mb-4 sm:mb-6 font-normal"
-                          style={{ 
-                            fontFamily: 'Playfair Display, serif',
-                            color: '#c9a876'
-                          }}
-                        >
-                          {service.title}
-                        </h3>
-
-                        <p 
-                          className="text-sm sm:text-base text-gray-700 text-center mb-6 sm:mb-8 font-light leading-relaxed"
+                          className="text-2xl font-normal text-[#c9b896] mb-4 uppercase tracking-wide"
                           style={{ fontFamily: 'Playfair Display, serif' }}
                         >
-                          {service.description}
-                        </p>
+                          {item.title}
+                        </h3>
 
-                        {/* Service items list */}
-                        <ul className="space-y-2 sm:space-y-3 mb-6 sm:mb-8">
-                          {service.items.map((item, idx) => (
-                            <li 
-                              key={idx}
-                              className="flex items-center gap-3 text-sm sm:text-base text-gray-700 font-light"
-                              style={{ fontFamily: 'Playfair Display, serif' }}
-                            >
-                              <span 
-                                className="w-2 h-2 rounded-full flex-shrink-0"
-                                style={{ backgroundColor: '#c9a876' }}
-                              />
-                              <span>{item}</span>
-                            </li>
-                          ))}
-                        </ul>
-
-                        {/* Button */}
-                        <div className="text-center">
-                          <button 
-                            className="px-6 sm:px-8 py-2.5 sm:py-3 text-sm sm:text-base font-light tracking-wide hover:bg-[#068c8c] hover:text-white transition-all duration-300"
-                            style={{ 
-                              fontFamily: 'Playfair Display, serif',
-                              color: '#068c8c',
-                              border: '2px solid #068c8c',
-                              backgroundColor: 'transparent'
-                            }}
-                          >
-                            {t.services.learnMore}
-                          </button>
+                        {/* Decorative Line */}
+                        <div className="flex items-center gap-2 mb-4">
+                          <div className="h-px w-12 bg-gradient-to-r from-[#c9b896] to-transparent" />
+                          <div className="w-1.5 h-1.5 rounded-full bg-[#c9b896]" />
                         </div>
-                      </div>
-                    </div>
-                  )
-                })}
-              </div>
-              
-              {/* Scroll indicator dots */}
-              <div className="flex justify-center gap-2 mt-4">
-                {activeServices.map((_, index) => (
-                  <div 
-                    key={index}
-                    className="w-2 h-2 rounded-full"
-                    style={{ 
-                      backgroundColor: index === 0 ? '#068c8c' : '#d4c5a9',
-                      transition: 'background-color 0.3s'
-                    }}
-                  />
-                ))}
-              </div>
-            </div>
 
-            {/* Desktop: Grid Layout */}
-            <div 
-              key={`desktop-${activeCategory}`}
-              className="hidden lg:grid grid-cols-3 gap-8 animate-fade-in-up"
-            >
-              {activeServices.map((service, index) => {
-                const IconComponent = service.icon
-                return (
-                  <div 
-                    key={index}
-                    className="bg-white rounded-lg shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden"
-                    style={{ border: '1px solid #e0e0e0' }}
-                  >
-                    {/* Icon circle */}
-                    <div className="flex justify-center pt-12 pb-6">
-                      <div 
-                        className="w-24 h-24 rounded-full flex items-center justify-center"
-                        style={{ backgroundColor: '#e8f4f4' }}
-                      >
-                        <IconComponent 
-                          className="w-12 h-12"
-                          style={{ color: '#068c8c' }}
-                        />
-                      </div>
-                    </div>
-
-                    {/* Content */}
-                    <div className="px-8 pb-10">
-                      <h3 
-                        className="text-2xl text-center mb-6 font-normal"
-                        style={{ 
-                          fontFamily: 'Playfair Display, serif',
-                          color: '#c9a876'
-                        }}
-                      >
-                        {service.title}
-                      </h3>
-
-                      <p 
-                        className="text-gray-700 text-center mb-8 font-light leading-relaxed"
-                        style={{ fontFamily: 'Playfair Display, serif' }}
-                      >
-                        {service.description}
-                      </p>
-
-                      {/* Service items list */}
-                      <ul className="space-y-3 mb-8">
-                        {service.items.map((item, idx) => (
-                          <li 
-                            key={idx}
-                            className="flex items-center gap-3 text-gray-700 font-light"
-                            style={{ fontFamily: 'Playfair Display, serif' }}
-                          >
-                            <span 
-                              className="w-2 h-2 rounded-full flex-shrink-0"
-                              style={{ backgroundColor: '#c9a876' }}
-                            />
-                            <span>{item}</span>
-                          </li>
-                        ))}
-                      </ul>
-
-                      {/* Button */}
-                      <div className="text-center">
-                        <button 
-                          className="px-8 py-3 text-base font-light tracking-wide hover:bg-[#068c8c] hover:text-white transition-all duration-300"
-                          style={{ 
-                            fontFamily: 'Playfair Display, serif',
-                            color: '#068c8c',
-                            border: '2px solid #068c8c',
-                            backgroundColor: 'transparent'
-                          }}
+                        {/* Description */}
+                        <p 
+                          className="text-gray-700 leading-relaxed font-light"
+                          style={{ fontFamily: 'Playfair Display, serif' }}
                         >
-                          {t.services.learnMore}
-                        </button>
+                          {item.description}
+                        </p>
                       </div>
                     </div>
-                  </div>
+                  </motion.div>
                 )
               })}
             </div>
@@ -310,140 +321,43 @@ export function Services() {
         </div>
       </div>
 
-      {/* IL MIO APPROCCIO Section - beige background */}
-      <div 
-        className="w-full py-20"
-        style={{ backgroundColor: '#e8dfd0' }}
-      >
-        <div className="container mx-auto px-4">
-          <div className="max-w-7xl mx-auto">
-            {/* Section title */}
-            <div className="text-center mb-16">
-              <h2 
-                className="text-4xl md:text-5xl mb-6 font-normal tracking-wider"
-                style={{ 
-                  fontFamily: 'Playfair Display, serif',
-                  color: '#c9a876',
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.1em'
-                }}
-              >
-                {t.services.approachTitle}
-              </h2>
-              <DecorativeDivider variant="default" className="mb-8" />
-              <p 
-                className="text-xl text-gray-700 font-light"
-                style={{ fontFamily: 'Playfair Display, serif' }}
-              >
-                {t.services.approachSubtitle}
-              </p>
-            </div>
-
-            {/* Approach cards grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {t.approach.items.map((item, index) => (
-                <div 
-                  key={index}
-                  className="bg-white p-8 rounded-lg shadow-md"
-                  style={{ border: '1px solid #d4c5a9' }}
-                >
-                  <div className="flex items-start gap-6">
-                    <div 
-                      className="w-16 h-16 rounded-full flex items-center justify-center flex-shrink-0"
-                      style={{ backgroundColor: '#e8f4f4' }}
-                    >
-                      <svg 
-                        className="w-8 h-8"
-                        style={{ color: '#068c8c' }}
-                        fill="none" 
-                        stroke="currentColor" 
-                        viewBox="0 0 24 24"
-                      >
-                        {index === 0 && <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />}
-                        {index === 1 && <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />}
-                        {index === 2 && <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />}
-                        {index === 3 && <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />}
-                      </svg>
-                    </div>
-                    <div>
-                      <h3 
-                        className="text-2xl mb-4 font-normal"
-                        style={{ 
-                          fontFamily: 'Playfair Display, serif',
-                          color: '#c9a876'
-                        }}
-                      >
-                        {item.title.toUpperCase()}
-                      </h3>
-                      {/* Premium decorative line */}
-                      <div className="flex items-center gap-2 mb-4">
-                        <div className="w-8 h-[1px]" style={{ background: '#c9a876' }}></div>
-                        <div className="w-1 h-1 rounded-full" style={{ background: '#c9a876' }}></div>
-                        <div className="w-2 h-[1px]" style={{ background: '#c9a876' }}></div>
-                      </div>
-                      <p 
-                        className="text-gray-700 font-light leading-relaxed"
-                        style={{ fontFamily: 'Playfair Display, serif' }}
-                      >
-                        {item.description}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Bottom teal section with CTA */}
-      <div 
-        className="w-full py-16 relative overflow-hidden"
-        style={{
-          backgroundColor: '#068c8c',
-          isolation: 'isolate'
-        }}
-      >
-        {/* Pattern overlay with mix-blend-mode */}
-        <div 
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            backgroundImage: `url(${assetPath('/images/fresh-snow.png')})`,
-            backgroundRepeat: 'repeat',
-            mixBlendMode: 'multiply',
-            pointerEvents: 'none',
-            zIndex: 1
-          }}
-        />
-        <div className="container mx-auto px-4 text-center relative z-10">
-          <h2 
-            className="text-3xl md:text-4xl text-white mb-6 font-normal"
+      {/* CTA Section */}
+      <div className="bg-gradient-to-br from-[#068c8c] to-[#057575] py-20">
+        <div className="container mx-auto px-4 text-center">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-3xl md:text-4xl font-normal text-white mb-6"
             style={{ fontFamily: 'Playfair Display, serif' }}
           >
             {t.services.ctaTitle}
-          </h2>
-          <DecorativeDivider variant="short" className="mb-6" />
-          <p 
-            className="text-xl text-white/90 mb-8 font-light"
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="text-lg text-white/80 mb-8 font-light max-w-2xl mx-auto"
             style={{ fontFamily: 'Playfair Display, serif' }}
           >
             {t.services.ctaSubtitle}
-          </p>
-          <a href="/contatti">
-            <button 
-              className="px-10 py-4 text-[#068c8c] bg-[#c9b896] tracking-widest text-lg hover:opacity-90 transition-all font-light"
-              style={{ 
-                fontFamily: 'Playfair Display, serif',
-                textTransform: 'uppercase'
-              }}
-            >
-              {t.services.ctaButton}
-            </button>
-          </a>
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+          >
+            <Link href="/contatti">
+              <button
+                className="px-10 py-4 bg-white text-[#068c8c] rounded-full tracking-wide text-base hover:bg-[#c9b896] hover:text-white transition-all duration-300 shadow-lg hover:shadow-xl font-light uppercase"
+                style={{ fontFamily: 'Playfair Display, serif' }}
+              >
+                {t.services.ctaButton}
+              </button>
+            </Link>
+          </motion.div>
         </div>
       </div>
     </section>

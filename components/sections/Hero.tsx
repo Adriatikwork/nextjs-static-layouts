@@ -6,7 +6,7 @@ import Link from 'next/link'
 import { assetPath } from '@/lib/utils'
 import { useLanguage } from '@/lib/LanguageContext'
 
-export function HeroNew() {
+export function Hero() {
   const { t } = useLanguage()
   const [currentSlide, setCurrentSlide] = useState(0)
 
@@ -208,7 +208,7 @@ export function HeroNew() {
         <div className="hidden sm:flex absolute bottom-8 md:bottom-6 left-1/2 -translate-x-1/2 z-[15] animate-bounce">
           <div className="flex flex-col items-center gap-2 text-white/70">
             <span className="text-xs tracking-widest uppercase" style={{ fontFamily: 'Playfair Display, serif' }}>
-              Scroll
+              {t.hero.scroll}
             </span>
             <div className="w-[2px] h-8 bg-gradient-to-b from-white/70 to-transparent" />
           </div>
@@ -273,7 +273,7 @@ export function HeroNew() {
                 {/* Image Container - Taller to prevent cropping */}
                 <div className="relative h-[280px] overflow-hidden">
                   <Image
-                    src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=800&q=80"
+                    src={assetPath("/Doctor.jpg") || "/placeholder.svg"}
                     alt={t.hero.cards.aboutTitle}
                     fill
                     className="object-cover transition-transform duration-500 group-hover:scale-110"

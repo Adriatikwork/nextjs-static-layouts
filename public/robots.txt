@@ -2,4 +2,7 @@
 User-agent: *
 Allow: /
 
+# Sitemap URL - Update this after connecting custom domain
+# For GitHub Pages: https://adriatikwork.github.io/nextjs-static-layouts/sitemap.xml
+# For custom domain: https://dottoressairenebeconi.it/sitemap.xml
 Sitemap: https://dottoressairenebeconi.it/sitemap.xml

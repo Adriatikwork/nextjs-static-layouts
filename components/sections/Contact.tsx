@@ -8,49 +8,6 @@ import emailjs from '@emailjs/browser'
 import { emailJsConfig } from '@/config/emailjs.config'
 import Link from 'next/link'
 
-// Location data for the route map
-const locations = [
-  { 
-    id: "loc1", 
-    name: "Studio Centrale", 
-    address: "Via dei Calzaiuoli 12, 50122 Firenze", 
-    days: "Lunedì, Mercoledì, Venerdì", 
-    hours: "09:00 – 18:00", 
-    notes: "Sede principale - Centro storico"
-  },
-  { 
-    id: "loc2", 
-    name: "Clinica Santa Maria Novella", 
-    address: "Piazza Santa Maria Novella 8, 50123 Firenze", 
-    days: "Martedì, Giovedì", 
-    hours: "10:00 – 19:00", 
-    notes: "Vicino alla stazione ferroviaria"
-  },
-  { 
-    id: "loc3", 
-    name: "Ambulatorio Oltrarno", 
-    address: "Via Maggio 45, 50125 Firenze", 
-    days: "Lunedì, Venerdì", 
-    hours: "14:00 – 20:00", 
-    notes: "Quartiere artigianale"
-  },
-  { 
-    id: "loc4", 
-    name: "Poliambulatorio Le Cure", 
-    address: "Viale dei Mille 90, 50131 Firenze", 
-    days: "Mercoledì, Sabato", 
-    hours: "08:00 – 14:00", 
-    notes: "Parcheggio disponibile"
-  },
-  { 
-    id: "loc5", 
-    name: "Studio Campo di Marte", 
-    address: "Via Luigi Alamanni 5, 50123 Firenze", 
-    days: "Giovedì", 
-    hours: "15:00 – 19:00", 
-    notes: "Solo su appuntamento"
-  }
-]
 
 // SVG path for desktop route
 const scaledPath = "M 171 29 L 142 15 L 60 80 L 143 130 L 30 231 L 162 331"
@@ -79,6 +36,8 @@ const horizontalNodePositions = [
 export function Contact() {
   const { t } = useLanguage()
 
+  const locations = t.contact.locations
+
   // Form state
   const [formData, setFormData] = useState({
     name: '',
@@ -105,13 +64,13 @@ export function Contact() {
 
   const validateForm = () => {
     const errors: Record<string, string> = {}
-    if (!formData.name.trim()) errors.name = 'Il nome è obbligatorio'
+    if (!formData.name.trim()) errors.name = t.contact.form.validation.nameRequired
     if (!formData.email.trim()) {
-      errors.email = 'L\'email è obbligatoria'
+      errors.email = t.contact.form.validation.emailRequired
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      errors.email = 'Inserisci un\'email valida'
+      errors.email = t.contact.form.validation.emailInvalid
     }
-    if (!formData.message.trim()) errors.message = 'Il messaggio è obbligatorio'
+    if (!formData.message.trim()) errors.message = t.contact.form.validation.messageRequired
     setFormErrors(errors)
     return Object.keys(errors).length === 0
   }
@@ -191,10 +150,11 @@ export function Contact() {
   return (
     <section className="relative w-full">
       {/* Hero Section */}
-      <HeroSection />
-      
+      <HeroSection t={t} />
+
       {/* Form Section */}
-      <FormSection 
+      <FormSection
+        t={t}
         formData={formData}
         formStatus={formStatus}
         formErrors={formErrors}
@@ -217,7 +177,7 @@ export function Contact() {
 }
 
 // Hero Section Component
-function HeroSection() {
+function HeroSection({ t }: { t: any }) {
   return (
     <div
       className="relative w-full py-20 md:py-32 overflow-hidden"
@@ -244,21 +204,26 @@ function HeroSection() {
           className="text-5xl md:text-6xl lg:text-7xl text-[#c9b896] tracking-wide mb-6 font-normal"
           style={{ fontFamily: 'Playfair Display, serif' }}
         >
-          CONTATTI
+          {t.contact.hero.title}
         </h1>
 
         <p
           className="text-white/90 text-lg md:text-xl max-w-2xl mx-auto mb-4 font-light leading-relaxed"
           style={{ fontFamily: 'Playfair Display, serif' }}
         >
-          Siamo qui per prenderci cura<br />del tuo sorriso e e del tuo volto.
+          {t.contact.hero.subtitle.split('\n').map((line: string, i: number) => (
+            <React.Fragment key={i}>
+              {line}
+              {i < t.contact.hero.subtitle.split('\n').length - 1 && <br />}
+            </React.Fragment>
+          ))}
         </p>
 
         <p
           className="text-white/75 text-base md:text-lg max-w-xl mx-auto mb-12 font-light"
           style={{ fontFamily: 'Playfair Display, serif' }}
         >
-          Prenota una visita o comincia a tuo servizio oggi.
+          {t.contact.hero.description}
         </p>
 
         <div className="flex justify-center">
@@ -272,7 +237,7 @@ function HeroSection() {
                 border: 'none'
               }}
             >
-              Prenota una Visita
+              {t.contact.hero.cta}
             </button>
           </Link>
         </div>
@@ -283,6 +248,7 @@ function HeroSection() {
 
 // Form Section Component
 interface FormSectionProps {
+  t: any
   formData: {
     name: string
     email: string
@@ -295,7 +261,7 @@ interface FormSectionProps {
   handleSubmit: (e: React.FormEvent) => void
 }
 
-function FormSection({ formData, formStatus, formErrors, handleInputChange, handleSubmit }: FormSectionProps) {
+function FormSection({ t, formData, formStatus, formErrors, handleInputChange, handleSubmit }: FormSectionProps) {
   return (
     <div className="w-full py-16 md:py-20" style={{ backgroundColor: '#f5f1ed' }}>
       <div className="container mx-auto px-4">
@@ -305,13 +271,18 @@ function FormSection({ formData, formStatus, formErrors, handleInputChange, hand
               className="text-3xl md:text-4xl text-center mb-3 font-normal"
               style={{ fontFamily: 'Playfair Display, serif', color: '#1F2A33' }}
             >
-              Prenota una visita
+              {t.contact.form.title}
             </h2>
             <p
               className="text-center text-gray-600 mb-10 font-light"
               style={{ fontFamily: 'Playfair Display, serif' }}
             >
-              Compila il modulo per richiedere un appuntamento. Ti risponderemo il prima possibile<br />per confermare la tua visita.
+              {t.contact.form.subtitle.split('\n').map((line: string, i: number) => (
+                <React.Fragment key={i}>
+                  {line}
+                  {i < t.contact.form.subtitle.split('\n').length - 1 && <br />}
+                </React.Fragment>
+              ))}
             </p>
             
             <div className="bg-white rounded-2xl shadow-xl overflow-hidden max-w-3xl mx-auto">
@@ -325,10 +296,10 @@ function FormSection({ formData, formStatus, formErrors, handleInputChange, hand
                     <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
                     <div>
                       <p className="text-green-800 font-medium" style={{ fontFamily: 'Playfair Display, serif' }}>
-                        Messaggio inviato con successo!
+                        {t.contact.form.success}
                       </p>
                       <p className="text-green-700 text-sm font-light mt-1" style={{ fontFamily: 'Playfair Display, serif' }}>
-                        Ti risponderemo al più presto.
+                        {t.contact.form.successMessage}
                       </p>
                     </div>
                   </div>
@@ -343,10 +314,10 @@ function FormSection({ formData, formStatus, formErrors, handleInputChange, hand
                     <AlertCircle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
                     <div>
                       <p className="text-red-800 font-medium" style={{ fontFamily: 'Playfair Display, serif' }}>
-                        Errore nell'invio del messaggio
+                        {t.contact.form.error}
                       </p>
                       <p className="text-red-700 text-sm font-light mt-1" style={{ fontFamily: 'Playfair Display, serif' }}>
-                        Riprova più tardi o contattaci direttamente via email.
+                        {t.contact.form.errorMessage}
                       </p>
                     </div>
                   </div>
@@ -356,31 +327,31 @@ function FormSection({ formData, formStatus, formErrors, handleInputChange, hand
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                   <FormField
                     id="name"
-                    label="Nome e Cognome"
+                    label={t.contact.form.name}
                     type="text"
                     value={formData.name}
                     onChange={handleInputChange}
                     error={formErrors.name}
-                    placeholder="Il tuo nome completo"
+                    placeholder={t.contact.form.namePlaceholder}
                   />
                   <FormField
                     id="email"
-                    label="Indirizzo Email"
+                    label={t.contact.form.email}
                     type="email"
                     value={formData.email}
                     onChange={handleInputChange}
                     error={formErrors.email}
-                    placeholder="nome@esempio.com"
+                    placeholder={t.contact.form.emailPlaceholder}
                   />
                 </div>
-                
+
                 <div className="mb-6">
                   <label
                     htmlFor="reason"
                     className="block text-sm font-normal mb-2 text-gray-700"
                     style={{ fontFamily: 'Playfair Display, serif' }}
                   >
-                    Motivo del contatto
+                    {t.contact.form.reason}
                   </label>
                   <select
                     id="reason"
@@ -390,11 +361,11 @@ function FormSection({ formData, formStatus, formErrors, handleInputChange, hand
                     className="w-full px-4 py-3 border border-gray-300 rounded-md focus:border-[#068c8c] focus:ring-2 focus:ring-[#068c8c]/20 outline-none transition-all font-light bg-white"
                     style={{ fontFamily: 'Playfair Display, serif' }}
                   >
-                    <option value="">Seleziona un'opzione</option>
-                    <option value="Visita odontoiatrica">Visita odontoiatrica</option>
-                    <option value="Medicina estetica">Medicina estetica</option>
-                    <option value="Informazioni">Informazioni</option>
-                    <option value="Altro">Altro</option>
+                    <option value="">{t.contact.form.reasonPlaceholder}</option>
+                    <option value={t.contact.form.reasonOptions.dental}>{t.contact.form.reasonOptions.dental}</option>
+                    <option value={t.contact.form.reasonOptions.aesthetic}>{t.contact.form.reasonOptions.aesthetic}</option>
+                    <option value={t.contact.form.reasonOptions.info}>{t.contact.form.reasonOptions.info}</option>
+                    <option value={t.contact.form.reasonOptions.other}>{t.contact.form.reasonOptions.other}</option>
                   </select>
                 </div>
 
@@ -404,7 +375,7 @@ function FormSection({ formData, formStatus, formErrors, handleInputChange, hand
                     className="block text-sm font-normal mb-2 text-gray-700"
                     style={{ fontFamily: 'Playfair Display, serif' }}
                   >
-                    Messaggio
+                    {t.contact.form.message}
                   </label>
                   <textarea
                     id="message"
@@ -417,7 +388,7 @@ function FormSection({ formData, formStatus, formErrors, handleInputChange, hand
                       fontFamily: 'Playfair Display, serif',
                       borderColor: formErrors.message ? '#ef4444' : undefined
                     }}
-                    placeholder="Il tuo messaggio"
+                    placeholder={t.contact.form.messagePlaceholder}
                   />
                   {formErrors.message && (
                     <p className="text-red-500 text-sm mt-1 font-light" style={{ fontFamily: 'Playfair Display, serif' }}>
@@ -442,20 +413,20 @@ function FormSection({ formData, formStatus, formErrors, handleInputChange, hand
                       {formStatus === 'submitting' ? (
                         <>
                           <div className="w-5 h-5 border-2 border-current border-t-transparent rounded-full animate-spin" />
-                          Invio in corso...
+                          {t.contact.form.sending}
                         </>
                       ) : (
                         <>
-                          Invia Richiesta
+                          {t.contact.form.send}
                           <Send className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                         </>
                       )}
                     </span>
                   </button>
                 </div>
-                
+
                 <p className="text-center text-gray-500 text-sm mt-6 font-light" style={{ fontFamily: 'Playfair Display, serif' }}>
-                  * I dati del presente modulo non saranno utilizzati per comunicare con il nostro studio in relazione alla sua richiesta.
+                  {t.contact.form.disclaimer}
                 </p>
               </form>
             </div>

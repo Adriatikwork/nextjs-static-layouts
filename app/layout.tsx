@@ -2,10 +2,10 @@ import type { Metadata } from 'next'
 import { Geist, Geist_Mono, Playfair_Display } from 'next/font/google'
 import './globals.css'
 import { LanguageProvider } from '@/lib/LanguageContext'
-import { AssetPathProvider } from '@/components/AssetPathProvider'
 import { Navbar } from '@/components/layout/Navbar'
 import { Footer } from '@/components/layout/Footer'
 import { PageTransition } from '@/components/PageTransition'
+import { assetPath } from '@/lib/utils'
 
 const geist = Geist({ 
   subsets: ['latin'],
@@ -33,6 +33,7 @@ export const metadata: Metadata = {
   authors: [{ name: 'Dottssa Irene Maria Beconi' }],
   creator: 'Dottssa Irene Maria Beconi',
   publisher: 'Dottssa Irene Maria Beconi',
+  generator: 'Next.js',
   openGraph: {
     title: 'Dottssa Irene Maria Beconi - Odontoiatria e Medicina Estetica',
     description: 'Specialista in odontoiatria e medicina estetica del volto a Pistoia. Trattamenti personalizzati per il tuo benessere.',
@@ -42,12 +43,18 @@ export const metadata: Metadata = {
     siteName: 'Dottssa Irene Maria Beconi',
     images: [
       {
-        url: '/logo.svg',
+        url: assetPath('/logo-combined.png'),
         width: 1200,
         height: 630,
-        alt: 'Dottssa Irene Maria Beconi Logo',
+        alt: 'Dottssa Irene Maria Beconi - Odontoiatria e Medicina Estetica',
       },
     ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Dottssa Irene Maria Beconi - Odontoiatria e Medicina Estetica',
+    description: 'Specialista in odontoiatria e medicina estetica del volto a Pistoia. Trattamenti personalizzati per il tuo benessere.',
+    images: [assetPath('/logo-combined.png')],
   },
   robots: {
     index: true,
@@ -62,11 +69,13 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: '/favicon.ico', sizes: 'any' },
+      { url: assetPath('/favicon.svg'), type: 'image/svg+xml' },
+      { url: assetPath('/icon-192.svg'), type: 'image/svg+xml', sizes: '192x192' },
     ],
-    apple: '/logo.svg',
-    shortcut: '/favicon.ico',
+    apple: assetPath('/apple-touch-icon.svg'),
+    shortcut: assetPath('/favicon.svg'),
   },
+  category: 'medical',
 }
 
 export default function RootLayout({
@@ -84,9 +93,28 @@ export default function RootLayout({
         <meta name="ICBM" content="43.9333, 10.9167" />
         <link rel="canonical" href="https://dottoressairenebeconi.it" />
         
-        {/* Theme colors */}
+        {/* Favicon and Icons - Comprehensive setup */}
+        <link rel="icon" type="image/svg+xml" href={assetPath('/favicon.svg')} />
+        <link rel="icon" type="image/png" href={assetPath('/logo-icon.png')} />
+        <link rel="apple-touch-icon" sizes="180x180" href={assetPath('/apple-touch-icon.svg')} />
+        <link rel="mask-icon" href={assetPath('/favicon.svg')} color="#068c8c" />
+        
+        {/* Theme and App configurations */}
         <meta name="theme-color" content="#068c8c" />
         <meta name="msapplication-TileColor" content="#068c8c" />
+        <meta name="msapplication-TileImage" content={assetPath('/icon-192.svg')} />
+        <meta name="application-name" content="Dr. Beconi" />
+        <meta name="apple-mobile-web-app-title" content="Dr. Beconi" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+        {/* PWA Manifest */}
+        <link rel="manifest" href={assetPath('/manifest.json')} />
+        
+        {/* Language alternates */}
+        <link rel="alternate" href="https://dottoressairenebeconi.it" hrefLang="it" />
+        <link rel="alternate" href="https://dottoressairenebeconi.it/en" hrefLang="en" />
+        <link rel="alternate" href="https://dottoressairenebeconi.it" hrefLang="x-default" />
         
         {/* Structured Data - Medical Professional */}
         <script
@@ -124,7 +152,6 @@ export default function RootLayout({
         />
       </head>
       <body className={`${geist.className} antialiased`} style={{ fontFamily: 'var(--font-geist), sans-serif' }}>
-        <AssetPathProvider />
         <LanguageProvider>
           <Navbar />
           <PageTransition>
