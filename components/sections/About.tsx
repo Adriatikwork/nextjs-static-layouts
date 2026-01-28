@@ -42,10 +42,10 @@ export function About() {
               style={{ fontFamily: 'Playfair Display, serif' }}
             >
               {t.about.name.split('\n').map((line, i) => (
-                <React.Fragment key={i}>
+                <span key={i}>
                   {line}
                   {i < t.about.name.split('\n').length - 1 && <br />}
-                </React.Fragment>
+                </span>
               ))}
             </h1>
             <div className="flex items-center justify-center gap-4 my-12">

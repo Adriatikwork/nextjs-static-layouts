@@ -163,8 +163,9 @@ export function Contact() {
       />
       
       {/* Map Section */}
-      <MapSection 
+      <MapSection
         t={t}
+        locations={locations}
         activeLocation={activeLocation}
         activeIndex={activeIndex}
         handleNodeSelect={handleNodeSelect}
@@ -212,10 +213,10 @@ function HeroSection({ t }: { t: any }) {
           style={{ fontFamily: 'Playfair Display, serif' }}
         >
           {t.contact.hero.subtitle.split('\n').map((line: string, i: number) => (
-            <React.Fragment key={i}>
+            <span key={i}>
               {line}
               {i < t.contact.hero.subtitle.split('\n').length - 1 && <br />}
-            </React.Fragment>
+            </span>
           ))}
         </p>
 
@@ -278,10 +279,10 @@ function FormSection({ t, formData, formStatus, formErrors, handleInputChange, h
               style={{ fontFamily: 'Playfair Display, serif' }}
             >
               {t.contact.form.subtitle.split('\n').map((line: string, i: number) => (
-                <React.Fragment key={i}>
+                <span key={i}>
                   {line}
                   {i < t.contact.form.subtitle.split('\n').length - 1 && <br />}
-                </React.Fragment>
+                </span>
               ))}
             </p>
             
@@ -483,7 +484,8 @@ function FormField({ id, label, type, value, onChange, error, placeholder }: For
 // Map Section Component
 interface MapSectionProps {
   t: any
-  activeLocation: typeof locations[0]
+  locations: any[]
+  activeLocation: any
   activeIndex: number
   handleNodeSelect: (index: number) => void
   handleKeyDown: (e: React.KeyboardEvent, index: number) => void
@@ -491,7 +493,7 @@ interface MapSectionProps {
   handleMouseLeave: () => void
 }
 
-function MapSection({ t, activeLocation, activeIndex, handleNodeSelect, handleKeyDown, handleMouseEnter, handleMouseLeave }: MapSectionProps) {
+function MapSection({ t, locations, activeLocation, activeIndex, handleNodeSelect, handleKeyDown, handleMouseEnter, handleMouseLeave }: MapSectionProps) {
   return (
     <div 
       className="relative w-full py-20 overflow-hidden"
@@ -536,15 +538,17 @@ function MapSection({ t, activeLocation, activeIndex, handleNodeSelect, handleKe
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:items-center">
             {/* Location Card */}
-            <LocationCard 
+            <LocationCard
               t={t}
+              locations={locations}
               activeLocation={activeLocation}
               activeIndex={activeIndex}
               handleNodeSelect={handleNodeSelect}
             />
             
             {/* SVG Map */}
-            <SVGMap 
+            <SVGMap
+              locations={locations}
               activeIndex={activeIndex}
               handleNodeSelect={handleNodeSelect}
               handleKeyDown={handleKeyDown}
@@ -559,12 +563,13 @@ function MapSection({ t, activeLocation, activeIndex, handleNodeSelect, handleKe
 // Location Card Component
 interface LocationCardProps {
   t: any
-  activeLocation: typeof locations[0]
+  locations: any[]
+  activeLocation: any
   activeIndex: number
   handleNodeSelect: (index: number) => void
 }
 
-function LocationCard({ t, activeLocation, activeIndex, handleNodeSelect }: LocationCardProps) {
+function LocationCard({ t, locations, activeLocation, activeIndex, handleNodeSelect }: LocationCardProps) {
   return (
     <div className="order-1">
       <div 
@@ -694,12 +699,13 @@ function LocationDetail({ icon, label, value }: LocationDetailProps) {
 
 // SVG Map Component
 interface SVGMapProps {
+  locations: any[]
   activeIndex: number
   handleNodeSelect: (index: number) => void
   handleKeyDown: (e: React.KeyboardEvent, index: number) => void
 }
 
-function SVGMap({ activeIndex, handleNodeSelect, handleKeyDown }: SVGMapProps) {
+function SVGMap({ locations, activeIndex, handleNodeSelect, handleKeyDown }: SVGMapProps) {
   return (
     <div className="order-2">
       {/* Mobile */}
@@ -721,8 +727,9 @@ function SVGMap({ activeIndex, handleNodeSelect, handleKeyDown }: SVGMapProps) {
             style={{ filter: 'drop-shadow(0 2px 8px rgba(192, 155, 131, 0.5))' }}
           />
           {horizontalNodePositions.map((pos, index) => (
-            <SVGNode 
+            <SVGNode
               key={locations[index].id}
+              locations={locations}
               cx={pos.x}
               cy={pos.y}
               index={index}
@@ -754,8 +761,9 @@ function SVGMap({ activeIndex, handleNodeSelect, handleKeyDown }: SVGMapProps) {
             style={{ filter: 'drop-shadow(0 2px 8px rgba(192, 155, 131, 0.5))' }}
           />
           {nodePositions.map((pos, index) => (
-            <SVGNode 
+            <SVGNode
               key={locations[index].id}
+              locations={locations}
               cx={pos.x}
               cy={pos.y}
               index={index}
@@ -773,6 +781,7 @@ function SVGMap({ activeIndex, handleNodeSelect, handleKeyDown }: SVGMapProps) {
 
 // SVG Node Component
 interface SVGNodeProps {
+  locations: any[]
   cx: number
   cy: number
   index: number
@@ -782,7 +791,7 @@ interface SVGNodeProps {
   handleKeyDown: (e: React.KeyboardEvent, index: number) => void
 }
 
-function SVGNode({ cx, cy, index, isActive, isMobile, handleNodeSelect, handleKeyDown }: SVGNodeProps) {
+function SVGNode({ locations, cx, cy, index, isActive, isMobile, handleNodeSelect, handleKeyDown }: SVGNodeProps) {
   const sizes = isMobile 
     ? { halo: 18, outer: isActive ? 14 : 10, inner: isActive ? 8 : 6, clickable: 20, fontSize: "9" }
     : { halo: 24, outer: isActive ? 18 : 13, inner: isActive ? 10 : 8, clickable: 26, fontSize: "11" }
