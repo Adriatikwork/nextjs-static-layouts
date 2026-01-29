@@ -121,7 +121,7 @@ export function Gallery() {
                   whileTap={{ scale: 0.95 }}
                   className={`px-5 py-2 rounded-full text-xs tracking-wider uppercase transition-all duration-300 ${
                     selectedCategory === category.id
-                      ? 'bg-[#068c8c] text-white'
+                      ? 'bg-[#005F73] text-white'
                       : 'bg-transparent text-gray-600 hover:bg-gray-100 border border-gray-200'
                   }`}
                   style={{ fontFamily: 'Playfair Display, serif' }}

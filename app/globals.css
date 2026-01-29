@@ -73,12 +73,12 @@
     --radius: 0.5rem; /* Preserving user's radius */
     
     /* ===== EXACT HERO COLOR PALETTE ===== */
-    --teal-primary: #068c8c;
+    --teal-primary: #005F73;
     --gold-accent: #c9b896;
     --beige-light: #e8dfd0;
 
     /* Aliases for consistency */
-    --brand-teal: #068c8c;
+    --brand-teal: #005F73;
     --brand-gold: #c9b896;
     --brand-cream: #e8dfd0;
 
@@ -277,7 +277,7 @@ section[id] {
 .teal-gradient {
   position: relative;
   overflow: hidden;
-  background-color: #068c8c;
+  background-color: #005F73;
 }
 
 /* Ensure content is above */
@@ -478,7 +478,7 @@ section[id] {
 
 .card-hover:hover {
   transform: translateY(-8px);
-  box-shadow: 0 16px 32px rgba(6, 140, 140, 0.12), 0 4px 12px rgba(201, 168, 118, 0.15);
+  box-shadow: 0 16px 32px rgba(0, 95, 115, 0.12), 0 4px 12px rgba(201, 168, 118, 0.15);
   border-color: rgba(201, 168, 118, 0.5);
 }
 
@@ -544,7 +544,7 @@ button:active {
 }
 
 .btn-nav-outline.scrolled:hover {
-  background: rgba(6, 140, 140, 0.05);
+  background: rgba(0, 95, 115, 0.05);
   border-color: var(--brand-teal);
 }
 
@@ -694,7 +694,7 @@ button:active {
   justify-content: center;
   min-height: 400px;
   padding: 2rem;
-  background: linear-gradient(135deg, rgba(6, 140, 140, 0.03) 0%, rgba(201, 184, 150, 0.08) 100%);
+  background: linear-gradient(135deg, rgba(0, 95, 115, 0.03) 0%, rgba(201, 184, 150, 0.08) 100%);
   border: 2px dashed rgba(201, 184, 150, 0.5);
   border-radius: 8px;
 }

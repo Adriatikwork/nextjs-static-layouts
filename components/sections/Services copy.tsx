@@ -235,7 +235,7 @@ export function Services() {
           </div>
 
           {/* Journey Steps */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 lg:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 lg:gap-6">
             {approach.map((step, index) => {
               const Icon = step.icon
               return (
@@ -247,7 +247,7 @@ export function Services() {
                   transition={{ delay: index * 0.15 }}
                   className="relative group"
                 >
-                  {/* Connector Line */}
+                  {/* Connector Line - Desktop Only */}
                   {index < approach.length - 1 && (
                     <div className="hidden lg:block absolute top-16 left-full w-full h-px">
                       <div className="h-full w-full bg-gradient-to-r from-[#c9b896]/40 via-[#c9b896]/20 to-transparent" />
@@ -255,86 +255,86 @@ export function Services() {
                     </div>
                   )}
 
-                  {/* Mobile: Horizontal Card Layout */}
-                  <div className="md:hidden flex items-start gap-4 bg-white rounded-xl p-4 shadow-sm border border-gray-100">
-                    {/* Left: Icon + Number */}
-                    <div className="flex-shrink-0">
-                      <div className="relative w-14 h-14 rounded-xl bg-gradient-to-br from-[#005F73]/10 to-[#c9b896]/10 flex items-center justify-center">
-                        <Icon className="w-6 h-6 text-[#005F73]" />
-                        <div className="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-[#005F73] flex items-center justify-center text-white text-xs font-medium" style={{ fontFamily: 'Playfair Display, serif' }}>
-                          {step.number}
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Right: Content */}
-                    <div className="flex-1 min-w-0">
-                      <h3
-                        className="text-base font-medium text-gray-900 mb-1.5 leading-tight"
-                        style={{ fontFamily: 'Playfair Display, serif' }}
-                      >
-                        {step.title}
-                      </h3>
-                      <p
-                        className="text-xs text-gray-600 leading-relaxed font-light"
-                        style={{ fontFamily: 'Playfair Display, serif' }}
-                      >
-                        {step.description}
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Desktop: Original Layout */}
-                  <div className="hidden md:block">
-                    {/* Step Number - Large and Elegant */}
-                    <div className="relative mb-6">
-                      <div
-                        className="text-[120px] font-light leading-none text-[#005F73]/[0.06] select-none"
-                        style={{ fontFamily: 'Playfair Display, serif' }}
-                      >
-                        {step.number}
-                      </div>
-
-                      {/* Icon Overlaid on Number */}
-                      <div className="absolute bottom-0 left-0">
-                        <div className="relative w-16 h-16 group-hover:scale-110 transition-transform duration-500">
-                          <div className="absolute inset-0 bg-white border border-[#c9b896]/20" />
-                          <div className="absolute inset-0 bg-[#005F73]/5" />
-                          <div className="relative w-full h-full flex items-center justify-center">
-                            <Icon className="w-7 h-7 text-[#005F73]" />
+                  {/* Modern Card Container */}
+                  <div className="relative bg-white rounded-xl md:rounded-2xl p-5 md:p-6 shadow-sm border border-gray-100 hover:shadow-xl hover:border-[#c9b896]/30 transition-all duration-500 group-hover:-translate-y-1">
+                    {/* Step Number Badge - Modern Approach */}
+                    <div className="flex items-center justify-between mb-4 md:mb-5">
+                      <div className="flex items-center gap-3">
+                        {/* Icon Circle */}
+                        <div className="relative">
+                          <div className="w-11 h-11 md:w-12 md:h-12 rounded-full bg-gradient-to-br from-[#005F73]/10 to-[#c9b896]/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+                            <Icon className="w-5 h-5 md:w-6 md:h-6 text-[#005F73]" />
                           </div>
                         </div>
+
+                        {/* Step Number */}
+                        <div className="flex items-baseline gap-1">
+                          <span
+                            className="text-xs uppercase tracking-wider text-[#c9b896] font-medium"
+                            style={{ fontFamily: 'Playfair Display, serif' }}
+                          >
+                            Step
+                          </span>
+                          <span
+                            className="text-2xl md:text-3xl font-light text-[#005F73]"
+                            style={{ fontFamily: 'Playfair Display, serif' }}
+                          >
+                            {step.number}
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Progress Indicator */}
+                      <div className="flex gap-1">
+                        {[...Array(4)].map((_, i) => (
+                          <div
+                            key={i}
+                            className={`w-1 h-6 md:h-7 rounded-full transition-all duration-500 ${
+                              i <= index
+                                ? 'bg-[#005F73] group-hover:bg-[#c9b896]'
+                                : 'bg-gray-200'
+                            }`}
+                          />
+                        ))}
                       </div>
                     </div>
 
+                    {/* Divider */}
+                    <div className="h-px w-full bg-gradient-to-r from-[#c9b896]/30 via-[#c9b896]/10 to-transparent mb-4 md:mb-5" />
+
                     {/* Content */}
-                    <div className="pt-4">
+                    <div>
                       {/* Title */}
                       <h3
-                        className="text-xl font-normal text-gray-900 mb-4 group-hover:text-[#005F73] transition-colors duration-500"
+                        className="text-base md:text-lg font-medium text-gray-900 mb-2.5 md:mb-3 group-hover:text-[#005F73] transition-colors duration-500 leading-tight"
                         style={{ fontFamily: 'Playfair Display, serif' }}
                       >
                         {step.title}
                       </h3>
-
-                      {/* Decorative Line */}
-                      <div className="flex items-center gap-2 mb-4">
-                        <div className="h-px w-12 bg-[#c9b896] group-hover:w-20 transition-all duration-500" />
-                        <div className="w-1 h-1 rounded-full bg-[#c9b896]" />
-                      </div>
 
                       {/* Description */}
                       <p
-                        className="text-sm text-gray-600 leading-[1.8] font-light"
+                        className="text-xs md:text-[13px] text-gray-600 leading-relaxed font-light"
                         style={{ fontFamily: 'Playfair Display, serif' }}
                       >
                         {step.description}
                       </p>
                     </div>
 
-                    {/* Side Accent */}
-                    <div className="absolute left-0 top-24 bottom-0 w-px bg-gradient-to-b from-[#c9b896]/0 via-[#c9b896]/20 to-[#c9b896]/0 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                    {/* Hover Accent Line */}
+                    <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-[#005F73] via-[#c9b896] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-b-xl md:rounded-b-2xl" />
                   </div>
+
+                  {/* Mobile Connector - Vertical */}
+                  {index < approach.length - 1 && (
+                    <div className="md:hidden flex justify-center py-3">
+                      <div className="flex flex-col items-center gap-1">
+                        <div className="w-px h-4 bg-gradient-to-b from-[#c9b896]/40 to-[#c9b896]/20" />
+                        <div className="w-1.5 h-1.5 rounded-full bg-[#c9b896]/40" />
+                        <div className="w-px h-4 bg-gradient-to-b from-[#c9b896]/20 to-transparent" />
+                      </div>
+                    </div>
+                  )}
                 </motion.div>
               )
             })}

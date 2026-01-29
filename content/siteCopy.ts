@@ -35,7 +35,7 @@ export const content = {
       name: "Dottoressa Irene Maria Beconi",
       subtitle: "Odontoiatria e Medicina Estetica del Volto",
       tagline: "Eccellenza medica al servizio del tuo sorriso e della tua bellezza naturale",
-      welcomeText: "Benvenuti a Pistoia",
+      welcomeText: "Benvenuti allo studio di",
       description: "Competenza odontoiatrica e medicina estetica facciale per un percorso di bellezza e benessere personalizzato",
       ctaPrimary: "Prenota Consulto",
       ctaSecondary: "Scopri i Servizi",
@@ -97,6 +97,12 @@ export const content = {
         "Specializzazione in Medicina Estetica del Volto",
         "Master of Science in Aesthetic Medicine",
       ],
+      stats: {
+        experience: "Anni di Esperienza",
+        patients: "Pazienti Soddisfatti",
+        dedication: "Dedizione",
+        support: "Supporto"
+      },
       cta: {
         title: "Prenota il tuo consulto",
         subtitle: "Inizia il tuo percorso di cura personalizzata",
@@ -365,7 +371,8 @@ export const content = {
           emailRequired: "L'email è obbligatoria",
           emailInvalid: "Inserisci un'email valida",
           messageRequired: "Il messaggio è obbligatorio"
-        }
+        },
+        servicePrefill: "Salve, sono interessato/a al servizio \"{service}\". Vorrei ricevere maggiori informazioni e prenotare una consulenza. Grazie."
       },
       locations: [
         {
@@ -472,7 +479,7 @@ export const content = {
       name: "Dr. Irene Maria Beconi",
       subtitle: "Dentistry and Facial Aesthetic Medicine",
       tagline: "Medical excellence at the service of your smile and natural beauty",
-      welcomeText: "Welcome to Pistoia",
+      welcomeText: "Welcome to the studio of",
       description: "Dental expertise and facial aesthetic medicine for a personalized journey of beauty and wellness",
       ctaPrimary: "Book Consultation",
       ctaSecondary: "Discover Services",
@@ -534,6 +541,12 @@ export const content = {
         "Specialization in Facial Aesthetic Medicine",
         "Master of Science in Aesthetic Medicine",
       ],
+      stats: {
+        experience: "Years of Experience",
+        patients: "Satisfied Patients",
+        dedication: "Dedication",
+        support: "Support"
+      },
       cta: {
         title: "Book your consultation",
         subtitle: "Start your personalized care journey",
@@ -802,7 +815,8 @@ export const content = {
           emailRequired: "Email is required",
           emailInvalid: "Please enter a valid email",
           messageRequired: "Message is required"
-        }
+        },
+        servicePrefill: "Hello, I am interested in the \"{service}\" service. I would like to receive more information and book a consultation. Thank you."
       },
       locations: [
         {

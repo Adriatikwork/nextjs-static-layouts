@@ -97,11 +97,11 @@ export default function RootLayout({
         <link rel="icon" type="image/svg+xml" href={assetPath('/favicon.svg')} />
         <link rel="icon" type="image/png" href={assetPath('/logo-icon.png')} />
         <link rel="apple-touch-icon" sizes="180x180" href={assetPath('/apple-touch-icon.svg')} />
-        <link rel="mask-icon" href={assetPath('/favicon.svg')} color="#068c8c" />
+        <link rel="mask-icon" href={assetPath('/favicon.svg')} color="#005F73" />
         
         {/* Theme and App configurations */}
-        <meta name="theme-color" content="#068c8c" />
-        <meta name="msapplication-TileColor" content="#068c8c" />
+        <meta name="theme-color" content="#005F73" />
+        <meta name="msapplication-TileColor" content="#005F73" />
         <meta name="msapplication-TileImage" content={assetPath('/icon-192.svg')} />
         <meta name="application-name" content="Dr. Beconi" />
         <meta name="apple-mobile-web-app-title" content="Dr. Beconi" />

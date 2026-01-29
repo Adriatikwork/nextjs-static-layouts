@@ -87,7 +87,7 @@ export function Navbar() {
     }
     // Solid navbar when scrolled or on other pages
     return {
-      backgroundColor: '#068c8c',
+      backgroundColor: '#005F73',
       borderBottom: '1px solid rgba(255, 255, 255, 0.15)',
       boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)',
     }
@@ -226,7 +226,7 @@ export function Navbar() {
           <div
             className="fixed top-0 right-0 h-full w-full max-w-sm shadow-2xl overflow-y-auto z-50 lg:hidden"
             style={{
-              background: 'linear-gradient(135deg, #068c8c 0%, #0a7575 100%)',
+              background: 'linear-gradient(135deg, #005F73 0%, #004D5E 100%)',
             }}
           >
             {/* Close button */}

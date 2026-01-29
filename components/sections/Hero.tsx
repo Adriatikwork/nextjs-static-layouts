@@ -51,7 +51,7 @@ export function Hero() {
             <div
               className="absolute inset-0"
               style={{
-                background: 'linear-gradient(135deg, rgba(6, 140, 140, 0.5) 0%, rgba(10, 95, 95, 0.6) 50%, rgba(0, 0, 0, 0.55) 100%)',
+                background: 'linear-gradient(135deg, rgba(0, 95, 115, 0.5) 0%, rgba(0, 77, 94, 0.6) 50%, rgba(0, 0, 0, 0.55) 100%)',
                 zIndex: 2,
               }}
             />
@@ -93,7 +93,7 @@ export function Hero() {
 
                 {/* Main Heading - HUGE and dramatic */}
                 <h1
-                  className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-white font-normal leading-[0.95] tracking-tight px-2"
+                  className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-white font-normal leading-[0.95] tracking-tight px-2"
                   style={{
                     fontFamily: 'Playfair Display, serif',
                     textShadow: '2px 4px 20px rgba(0,0,0,0.5)',
@@ -231,7 +231,7 @@ export function Hero() {
         />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <p className="text-base md:text-lg text-gray-800 leading-relaxed font-normal" style={{ fontFamily: 'Playfair Display, serif' }}>
-            <span className="text-xl md:text-2xl text-[#068c8c]">+</span> {t.hero.bottomText}
+            <span className="text-xl md:text-2xl text-[#005F73]">+</span> {t.hero.bottomText}
           </p>
           <p className="text-sm md:text-base text-gray-700 leading-relaxed italic mt-2 font-light px-4" style={{ fontFamily: 'Playfair Display, serif' }}>
             {t.hero.bottomSubtext}
@@ -243,7 +243,7 @@ export function Hero() {
       <div
         className="w-full py-20 sm:py-24 md:py-32 relative overflow-hidden"
         style={{
-          background: 'linear-gradient(180deg, #068c8c 0%, #056d6d 100%)',
+          background: 'linear-gradient(180deg, #005F73 0%, #004D5E 100%)',
         }}
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -285,7 +285,7 @@ export function Hero() {
                 {/* Content */}
                 <div className="p-6 sm:p-8">
                   <h3
-                    className="text-2xl sm:text-3xl text-[#068c8c] mb-4 font-normal uppercase tracking-wide"
+                    className="text-2xl sm:text-3xl text-[#005F73] mb-4 font-normal uppercase tracking-wide"
                     style={{ fontFamily: 'Playfair Display, serif' }}
                   >
                     {t.hero.cards.aboutTitle}
@@ -303,7 +303,7 @@ export function Hero() {
                   </div>
 
                   {/* CTA */}
-                  <div className="flex items-center gap-2 text-[#068c8c] group-hover:gap-3 transition-all duration-300">
+                  <div className="flex items-center gap-2 text-[#005F73] group-hover:gap-3 transition-all duration-300">
                     <span className="text-sm uppercase tracking-wider font-medium" style={{ fontFamily: 'Playfair Display, serif' }}>
                       {t.hero.cards.learnMore}
                     </span>
@@ -330,7 +330,7 @@ export function Hero() {
 
                 <div className="p-6 sm:p-8">
                   <h3
-                    className="text-2xl sm:text-3xl text-[#068c8c] mb-4 font-normal uppercase tracking-wide"
+                    className="text-2xl sm:text-3xl text-[#005F73] mb-4 font-normal uppercase tracking-wide"
                     style={{ fontFamily: 'Playfair Display, serif' }}
                   >
                     {t.hero.cards.servicesTitle}
@@ -347,7 +347,7 @@ export function Hero() {
                     </p>
                   </div>
 
-                  <div className="flex items-center gap-2 text-[#068c8c] group-hover:gap-3 transition-all duration-300">
+                  <div className="flex items-center gap-2 text-[#005F73] group-hover:gap-3 transition-all duration-300">
                     <span className="text-sm uppercase tracking-wider font-medium" style={{ fontFamily: 'Playfair Display, serif' }}>
                       {t.hero.cards.learnMore}
                     </span>
@@ -374,7 +374,7 @@ export function Hero() {
 
                 <div className="p-6 sm:p-8">
                   <h3
-                    className="text-2xl sm:text-3xl text-[#068c8c] mb-4 font-normal uppercase tracking-wide"
+                    className="text-2xl sm:text-3xl text-[#005F73] mb-4 font-normal uppercase tracking-wide"
                     style={{ fontFamily: 'Playfair Display, serif' }}
                   >
                     {t.hero.cards.galleryTitle}
@@ -391,7 +391,7 @@ export function Hero() {
                     </p>
                   </div>
 
-                  <div className="flex items-center gap-2 text-[#068c8c] group-hover:gap-3 transition-all duration-300">
+                  <div className="flex items-center gap-2 text-[#005F73] group-hover:gap-3 transition-all duration-300">
                     <span className="text-sm uppercase tracking-wider font-medium" style={{ fontFamily: 'Playfair Display, serif' }}>
                       {t.hero.cards.learnMore}
                     </span>

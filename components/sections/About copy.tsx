@@ -26,7 +26,7 @@ export function About() {
   return (
     <div className="min-h-screen bg-[#f5f1ed]">
       {/* Hero Section - Minimal & Bold */}
-      <section className="relative pt-32 pb-12 px-4">
+      <section className="relative pt-32 pb-20 px-4">
         <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0 }}
@@ -64,7 +64,7 @@ export function About() {
       </section>
 
       {/* Introduction Section with Doctor Image - Two Column Layout */}
-      <section className="py-16 px-4 bg-gradient-to-b from-[#f5f1ed] to-white">
+      <section className="py-20 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             {/* Left: Doctor Image */}
@@ -134,18 +134,8 @@ export function About() {
       </section>
 
       {/* Values Grid - Modern Cards */}
-      <section className="py-16 px-4 bg-white relative overflow-hidden">
-        {/* Subtle background pattern */}
-        <div
-          className="absolute inset-0 opacity-30"
-          style={{
-            backgroundImage: `url(${assetPath('/images/fresh-snow.png')})`,
-            backgroundRepeat: 'repeat',
-            mixBlendMode: 'multiply',
-            pointerEvents: 'none',
-          }}
-        />
-        <div className="max-w-7xl mx-auto relative z-10">
+      <section className="py-20 px-4 bg-white">
+        <div className="max-w-7xl mx-auto">
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -182,45 +172,9 @@ export function About() {
         </div>
       </section>
 
-      {/* Statistics Section */}
-      <section className="py-12 px-4 bg-gradient-to-r from-[#005F73] to-[#004D5E]">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {[
-              { number: "15+", label: t.about.stats.experience },
-              { number: "5000+", label: t.about.stats.patients },
-              { number: "100%", label: t.about.stats.dedication },
-              { number: "24/7", label: t.about.stats.support }
-            ].map((stat, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="text-center"
-              >
-                <div
-                  className="text-4xl md:text-5xl font-normal text-[#c9b896] mb-2"
-                  style={{ fontFamily: 'Playfair Display, serif' }}
-                >
-                  {stat.number}
-                </div>
-                <div
-                  className="text-sm text-white/80 uppercase tracking-wide font-light"
-                  style={{ fontFamily: 'Playfair Display, serif' }}
-                >
-                  {stat.label}
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Formation Section - Elegant List */}
-      <section className="py-16 px-4 bg-[#f5f1ed]">
-        <div className="max-w-5xl mx-auto">
+      <section className="py-20 px-4">
+        <div className="max-w-4xl mx-auto">
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -234,15 +188,15 @@ export function About() {
             >
               {t.about.formationTitle}
             </motion.h2>
-            <div className="space-y-4">
+            <div className="space-y-6">
               {t.about.formation.map((item, i) => (
                 <motion.div
                   key={i}
                   variants={fadeIn}
-                  className="flex items-start gap-6 p-6 bg-white rounded-xl hover:shadow-xl transition-all duration-300 border border-gray-100 group hover:border-[#c9b896]/30"
+                  className="flex items-start gap-6 p-6 bg-white rounded-lg hover:shadow-lg transition-shadow duration-300"
                 >
-                  <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#c9b896]/20 to-[#005F73]/10 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-                    <span
+                  <div className="w-12 h-12 rounded-full bg-[#c9b896]/20 flex items-center justify-center flex-shrink-0">
+                    <span 
                       className="text-[#c9b896] text-lg font-normal"
                       style={{ fontFamily: 'Playfair Display, serif' }}
                     >
@@ -250,8 +204,8 @@ export function About() {
                     </span>
                   </div>
                   <div className="flex-1">
-                    <p
-                      className="text-lg md:text-xl text-gray-800 font-light leading-relaxed"
+                    <p 
+                      className="text-xl text-gray-800 font-light"
                       style={{ fontFamily: 'Playfair Display, serif' }}
                     >
                       {item}
@@ -265,11 +219,8 @@ export function About() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 px-4 bg-gradient-to-br from-[#005F73] to-[#004D5E] text-white relative overflow-hidden">
-        {/* Decorative elements */}
-        <div className="absolute top-0 left-0 w-64 h-64 bg-[#c9b896]/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-white/5 rounded-full blur-3xl" />
-        <div className="max-w-4xl mx-auto text-center relative z-10">
+      <section className="py-20 px-4 bg-[#005F73] text-white">
+        <div className="max-w-4xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}

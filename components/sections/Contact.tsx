@@ -1,12 +1,13 @@
 "use client"
 
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect, useCallback, Suspense } from 'react'
 import { assetPath } from '@/lib/utils'
 import { MapPin, Clock, Navigation, Send, CheckCircle, AlertCircle } from 'lucide-react'
 import { useLanguage } from '@/lib/LanguageContext'
 import emailjs from '@emailjs/browser'
 import { emailJsConfig } from '@/config/emailjs.config'
 import Link from 'next/link'
+import { useSearchParams } from 'next/navigation'
 
 
 // SVG path for desktop route
@@ -22,21 +23,26 @@ const nodePositions = [
 ]
 
 // Horizontal path for mobile
-const horizontalPath = "M 20 30 L 180 30"
+const horizontalPath = "M 15 30 L 185 30"
 
 // Horizontal node positions for mobile
 const horizontalNodePositions = [
-  { x: 20, y: 30 },
-  { x: 52, y: 30 },
-  { x: 84, y: 30 },
-  { x: 116, y: 30 },
-  { x: 148, y: 30 },
+  { x: 15, y: 30 },
+  { x: 57.5, y: 30 },
+  { x: 100, y: 30 },
+  { x: 142.5, y: 30 },
+  { x: 185, y: 30 },
 ]
 
-export function Contact() {
+function ContactContent() {
   const { t } = useLanguage()
+  const searchParams = useSearchParams()
 
   const locations = t.contact.locations
+
+  // Get service info from URL
+  const serviceFromUrl = searchParams.get('service')
+  const serviceType = searchParams.get('type')
 
   // Form state
   const [formData, setFormData] = useState({
@@ -47,6 +53,20 @@ export function Contact() {
   })
   const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle')
   const [formErrors, setFormErrors] = useState<Record<string, string>>({})
+
+  // Prefill form when service is selected
+  useEffect(() => {
+    if (serviceFromUrl) {
+      const prefillMessage = t.contact.form.servicePrefill.replace('{service}', serviceFromUrl)
+      const reasonValue = serviceType === 'dental' ? t.contact.form.reasonOptions.dental : t.contact.form.reasonOptions.aesthetic
+
+      setFormData(prev => ({
+        ...prev,
+        reason: reasonValue,
+        message: prefillMessage
+      }))
+    }
+  }, [serviceFromUrl, serviceType, t])
 
   // Location state
   const [activeIndex, setActiveIndex] = useState(0)
@@ -182,7 +202,7 @@ function HeroSection({ t }: { t: any }) {
   return (
     <div
       className="relative w-full py-20 md:py-32 overflow-hidden"
-      style={{ backgroundColor: '#068c8c', isolation: 'isolate' }}
+      style={{ backgroundColor: '#005F73', isolation: 'isolate' }}
     >
       <div
         style={{
@@ -359,7 +379,7 @@ function FormSection({ t, formData, formStatus, formErrors, handleInputChange, h
                     name="reason"
                     value={formData.reason}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-md focus:border-[#068c8c] focus:ring-2 focus:ring-[#068c8c]/20 outline-none transition-all font-light bg-white"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-md focus:border-[#005F73] focus:ring-2 focus:ring-[#005F73]/20 outline-none transition-all font-light bg-white"
                     style={{ fontFamily: 'Playfair Display, serif' }}
                   >
                     <option value="">{t.contact.form.reasonPlaceholder}</option>
@@ -384,7 +404,7 @@ function FormSection({ t, formData, formStatus, formErrors, handleInputChange, h
                     value={formData.message}
                     onChange={handleInputChange}
                     rows={6}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-md focus:border-[#068c8c] focus:ring-2 focus:ring-[#068c8c]/20 outline-none transition-all resize-none font-light"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-md focus:border-[#005F73] focus:ring-2 focus:ring-[#005F73]/20 outline-none transition-all resize-none font-light"
                     style={{
                       fontFamily: 'Playfair Display, serif',
                       borderColor: formErrors.message ? '#ef4444' : undefined
@@ -465,7 +485,7 @@ function FormField({ id, label, type, value, onChange, error, placeholder }: For
         name={id}
         value={value}
         onChange={onChange}
-        className="w-full px-4 py-3 border border-gray-300 rounded-md focus:border-[#068c8c] focus:ring-2 focus:ring-[#068c8c]/20 outline-none transition-all font-light"
+        className="w-full px-4 py-3 border border-gray-300 rounded-md focus:border-[#005F73] focus:ring-2 focus:ring-[#005F73]/20 outline-none transition-all font-light"
         style={{
           fontFamily: 'Playfair Display, serif',
           borderColor: error ? '#ef4444' : undefined
@@ -497,7 +517,7 @@ function MapSection({ t, locations, activeLocation, activeIndex, handleNodeSelec
   return (
     <div 
       className="relative w-full py-20 overflow-hidden"
-      style={{ backgroundColor: '#3A7884' }}
+      style={{ backgroundColor: '#005F73' }}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
@@ -633,7 +653,7 @@ function LocationCard({ t, locations, activeLocation, activeIndex, handleNodeSel
                 className="text-sm font-light italic"
                 style={{ 
                   fontFamily: 'Playfair Display, serif',
-                  color: '#3A7884'
+                  color: '#005F73'
                 }}
               >
                 {activeLocation.notes}
@@ -652,7 +672,7 @@ function LocationCard({ t, locations, activeLocation, activeIndex, handleNodeSel
                 index === activeIndex ? 'scale-125' : 'hover:scale-110'
               }`}
               style={{ 
-                backgroundColor: index === activeIndex ? '#C09B83' : '#3A7884',
+                backgroundColor: index === activeIndex ? '#C09B83' : '#005F73',
                 opacity: index === activeIndex ? 1 : 0.5
               }}
               aria-label={`Vai a ${loc.name}`}
@@ -679,7 +699,7 @@ function LocationDetail({ icon, label, value }: LocationDetailProps) {
       <div>
         <p 
           className="text-xs uppercase tracking-wider mb-1 font-medium"
-          style={{ color: '#3A7884' }}
+          style={{ color: '#005F73' }}
         >
           {label}
         </p>
@@ -707,9 +727,9 @@ interface SVGMapProps {
 
 function SVGMap({ locations, activeIndex, handleNodeSelect, handleKeyDown }: SVGMapProps) {
   return (
-    <div className="order-2">
+    <div className="order-2 flex justify-center items-center">
       {/* Mobile */}
-      <div className="lg:hidden relative w-full" style={{ height: '80px' }}>
+      <div className="lg:hidden relative w-full max-w-md mx-auto" style={{ height: '80px' }}>
         <svg 
           viewBox="0 0 200 60" 
           className="w-full h-full"
@@ -828,7 +848,7 @@ function SVGNode({ locations, cx, cy, index, isActive, isMobile, handleNodeSelec
         cx={cx}
         cy={cy}
         r={sizes.inner}
-        fill={isActive ? '#1F2A33' : '#3A7884'}
+        fill={isActive ? '#1F2A33' : '#005F73'}
         className="transition-all duration-300 ease-out"
       />
       
@@ -860,5 +880,14 @@ function SVGNode({ locations, cx, cy, index, isActive, isMobile, handleNodeSelec
         {index + 1}
       </text>
     </g>
+  )
+}
+
+// Main Contact component with Suspense wrapper
+export function Contact() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading...</div>}>
+      <ContactContent />
+    </Suspense>
   )
 }
