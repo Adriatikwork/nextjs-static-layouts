@@ -1,9 +1,9 @@
 import type { Metadata } from 'next'
 import { Geist, Geist_Mono, Playfair_Display } from 'next/font/google'
 import './globals.css'
+import { Suspense } from 'react'
 import { LanguageProvider } from '@/lib/LanguageContext'
-import { Navbar } from '@/components/layout/Navbar'
-import { Footer } from '@/components/layout/Footer'
+import { ConditionalLayout } from '@/components/ConditionalLayout'
 import { PageTransition } from '@/components/PageTransition'
 import { assetPath } from '@/lib/utils'
 
@@ -153,11 +153,13 @@ export default function RootLayout({
       </head>
       <body className={`${geist.className} antialiased`} style={{ fontFamily: 'var(--font-geist), sans-serif' }}>
         <LanguageProvider>
-          <Navbar />
-          <PageTransition>
-            {children}
-          </PageTransition>
-          <Footer />
+          <Suspense fallback={null}>
+            <ConditionalLayout>
+              <PageTransition>
+                {children}
+              </PageTransition>
+            </ConditionalLayout>
+          </Suspense>
         </LanguageProvider>
       </body>
     </html>

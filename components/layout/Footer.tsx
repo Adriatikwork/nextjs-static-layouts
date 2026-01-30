@@ -21,7 +21,7 @@ export function Footer() {
       {/* Decorative logo */}
       <div className="absolute bottom-10 right-10 opacity-5 pointer-events-none hidden lg:block">
         <Image 
-          src={assetPath("/logo-icon.png")}
+          src={assetPath("/logo-icon.png") || "/placeholder.svg"}
           alt="" 
           width={200} 
           height={200}
@@ -30,36 +30,17 @@ export function Footer() {
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 mb-8 md:mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr] gap-8 md:gap-6 lg:gap-8 mb-8 md:mb-12">
           {/* Column 1 - About */}
           <div>
-            <div className="flex items-center gap-3 mb-6">
-              <Image 
-                src={assetPath("/logo-icon.png")} 
-                alt="Logo" 
-                width={48} 
-                height={48}
+            <div className="mb-6">
+              <Image
+                src={assetPath("/logo-combined.png") || "/placeholder.svg"}
+                alt="Logo"
+                width={250}
+                height={100}
                 className="brightness-0 invert opacity-80"
               />
-            </div>
-            <h3 
-              className="text-xl mb-3 font-normal tracking-wider"
-              style={{ fontFamily: 'Playfair Display, serif' }}
-            >
-              {t.footer.name}
-            </h3>
-            <p 
-              className="text-brand-cream/80 mb-4 leading-relaxed font-light"
-              style={{ fontFamily: 'Playfair Display, serif' }}
-            >
-              {t.footer.subtitle}
-            </p>
-            <div 
-              className="flex items-center gap-2 text-brand-cream/70 text-sm font-light"
-              style={{ fontFamily: 'Playfair Display, serif' }}
-            >
-              <MapPin className="w-4 h-4" />
-              <span>{t.footer.location}</span>
             </div>
           </div>
 
