@@ -126,7 +126,7 @@ export default function RootLayout({
               name: 'Dottssa Irene Maria Beconi',
               description: 'Specialista in odontoiatria e medicina estetica del volto',
               url: 'https://dottoressairenebeconi.it',
-              telephone: '+39 XXX XXX XXXX',
+              telephone: '+39 333 548 1104',
               email: 'info@dottoressairenebeconi.it',
               address: {
                 '@type': 'PostalAddress',

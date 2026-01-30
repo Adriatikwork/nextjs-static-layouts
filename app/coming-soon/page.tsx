@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import Image from 'next/image'
-import { Mail, Phone } from 'lucide-react'
+import { Mail, Phone, Instagram } from 'lucide-react'
 import { assetPath } from '@/lib/utils'
 
 export default function ComingSoonPage() {
@@ -29,7 +29,7 @@ export default function ComingSoonPage() {
           transition={{ duration: 0.8 }}
           className="flex justify-center mb-12"
         >
-          <div className="relative w-72 h-72 md:w-96 md:h-96">
+          <div className="relative w-96 h-96 md:w-[32rem] md:h-[32rem]">
             <Image
               src={assetPath('/logo-combined.png')}
               alt="Dottoressa Irene Maria Beconi"
@@ -78,9 +78,9 @@ export default function ComingSoonPage() {
           </div>
 
           {/* Contact Info Cards */}
-          <div className="grid md:grid-cols-2 gap-6 max-w-2xl mx-auto pt-8">
+          <div className="grid md:grid-cols-3 gap-6 max-w-3xl mx-auto pt-8">
             <motion.a
-              href="tel:+390551234567"
+              href="tel:+393335481104"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
@@ -90,11 +90,11 @@ export default function ComingSoonPage() {
                 <Phone className="w-6 h-6 text-white" />
               </div>
               <p className="text-sm text-white/70 mb-2 uppercase tracking-wider">Telefono</p>
-              <p className="text-base font-light text-white">+39 055 12456</p>
+              <p className="text-base font-light text-white">+39 333 548 1104</p>
             </motion.a>
 
             <motion.a
-              href="mailto:info@dottoressamariabeconi.it"
+              href="mailto:info@dottoressairenebeconi.it"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.5 }}
@@ -104,7 +104,23 @@ export default function ComingSoonPage() {
                 <Mail className="w-6 h-6 text-white" />
               </div>
               <p className="text-sm text-white/70 mb-2 uppercase tracking-wider">Email</p>
-              <p className="text-base font-light text-white break-all">info@dottoressamariabeconi.it</p>
+              <p className="text-base font-light text-white break-all">info@dottoressairenebeconi.it</p>
+            </motion.a>
+
+            <motion.a
+              href="https://www.instagram.com/dr.ssa_irenebeconi"
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+              className="bg-white/10 backdrop-blur-lg p-6 rounded-2xl border border-white/20 hover:bg-white/20 transition-all duration-300 shadow-lg"
+            >
+              <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-white/20 flex items-center justify-center">
+                <Instagram className="w-6 h-6 text-white" />
+              </div>
+              <p className="text-sm text-white/70 mb-2 uppercase tracking-wider">Instagram</p>
+              <p className="text-base font-light text-white">@dr.ssa_irenebeconi</p>
             </motion.a>
           </div>
 

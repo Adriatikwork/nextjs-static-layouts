@@ -1,6 +1,6 @@
 "use client"
 
-import { MapPin, Phone, Mail } from 'lucide-react'
+import { MapPin, Phone, Mail, Instagram } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useLanguage } from '@/lib/LanguageContext'
@@ -106,7 +106,7 @@ export function Footer() {
               <div className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-brand-gold flex-shrink-0 mt-0.5" />
                 <div>
-                  <p 
+                  <p
                     className="text-brand-cream/70 text-sm font-light"
                     style={{ fontFamily: 'Playfair Display, serif' }}
                   >
@@ -115,6 +115,22 @@ export function Footer() {
                   </p>
                 </div>
               </div>
+              <a
+                href="https://www.instagram.com/dr.ssa_irenebeconi"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-start gap-3 hover:opacity-80 transition-opacity"
+              >
+                <Instagram className="w-5 h-5 text-brand-gold flex-shrink-0 mt-0.5" />
+                <div>
+                  <p
+                    className="text-brand-cream/70 text-sm font-light"
+                    style={{ fontFamily: 'Playfair Display, serif' }}
+                  >
+                    @dr.ssa_irenebeconi
+                  </p>
+                </div>
+              </a>
             </div>
           </div>
         </div>
