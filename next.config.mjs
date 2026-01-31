@@ -4,7 +4,7 @@
 // DEPLOYMENT CONFIGURATION
 // ============================================================
 // Change this to false when connecting a custom domain
-const USE_BASE_PATH = true
+const USE_BASE_PATH = false
 // ============================================================
 
 const isProd = process.env.NODE_ENV === 'production'
