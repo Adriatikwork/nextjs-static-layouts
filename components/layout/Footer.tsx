@@ -45,7 +45,7 @@ export function Footer() {
           </div>
 
           {/* Column 2 - Quick Links */}
-          <div className="text-center md:text-left">
+          <div>
             <h4
               className="text-lg mb-6 text-brand-gold font-normal tracking-wide"
               style={{ fontFamily: 'Playfair Display, serif' }}
@@ -73,14 +73,14 @@ export function Footer() {
           </div>
 
           {/* Column 3 - Contact Info */}
-          <div className="text-center md:text-left">
+          <div>
             <h4
               className="text-lg mb-6 text-brand-gold font-normal tracking-wide"
               style={{ fontFamily: 'Playfair Display, serif' }}
             >
               {t.footer.contactTitle}
             </h4>
-            <div className="space-y-4 flex flex-col items-center md:items-start">
+            <div className="space-y-4">
               <div className="flex items-start gap-3">
                 <Phone className="w-5 h-5 text-brand-gold flex-shrink-0 mt-0.5" />
                 <div>
