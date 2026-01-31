@@ -32,7 +32,7 @@ export function Footer() {
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr] gap-8 md:gap-6 lg:gap-8 mb-8 md:mb-12">
           {/* Column 1 - About */}
-          <div>
+          <div className="flex justify-center md:justify-start">
             <div className="mb-6">
               <Image
                 src={assetPath("/logo-combined.png") || "/placeholder.svg"}
@@ -45,8 +45,8 @@ export function Footer() {
           </div>
 
           {/* Column 2 - Quick Links */}
-          <div>
-            <h4 
+          <div className="text-center md:text-left">
+            <h4
               className="text-lg mb-6 text-brand-gold font-normal tracking-wide"
               style={{ fontFamily: 'Playfair Display, serif' }}
             >
@@ -73,18 +73,18 @@ export function Footer() {
           </div>
 
           {/* Column 3 - Contact Info */}
-          <div>
-            <h4 
+          <div className="text-center md:text-left">
+            <h4
               className="text-lg mb-6 text-brand-gold font-normal tracking-wide"
               style={{ fontFamily: 'Playfair Display, serif' }}
             >
               {t.footer.contactTitle}
             </h4>
-            <div className="space-y-4">
+            <div className="space-y-4 flex flex-col items-center md:items-start">
               <div className="flex items-start gap-3">
                 <Phone className="w-5 h-5 text-brand-gold flex-shrink-0 mt-0.5" />
                 <div>
-                  <p 
+                  <p
                     className="text-brand-cream/70 text-sm font-light"
                     style={{ fontFamily: 'Playfair Display, serif' }}
                   >
@@ -95,7 +95,7 @@ export function Footer() {
               <div className="flex items-start gap-3">
                 <Mail className="w-5 h-5 text-brand-gold flex-shrink-0 mt-0.5" />
                 <div>
-                  <p 
+                  <p
                     className="text-brand-cream/70 text-sm font-light"
                     style={{ fontFamily: 'Playfair Display, serif' }}
                   >
