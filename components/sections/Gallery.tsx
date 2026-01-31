@@ -3,7 +3,8 @@
 import Image from 'next/image'
 import { useState, useEffect } from 'react'
 import { Dialog, DialogContent } from '@/components/ui/dialog'
-import { ChevronLeft, ChevronRight, X } from 'lucide-react'
+import { BottomSheet, BottomSheetContent, BottomSheetHeader, BottomSheetTitle } from '@/components/ui/bottom-sheet'
+import { ChevronLeft, ChevronRight, X, ChevronDown } from 'lucide-react'
 import { useLanguage } from '@/lib/LanguageContext'
 import { motion, AnimatePresence } from 'framer-motion'
 
@@ -13,6 +14,7 @@ export function Gallery() {
   const [selectedCategory, setSelectedCategory] = useState<string>('all')
   const [isNavbarVisible, setIsNavbarVisible] = useState(true)
   const [lastScrollY, setLastScrollY] = useState(0)
+  const [isFilterSheetOpen, setIsFilterSheetOpen] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -111,8 +113,19 @@ export function Gallery() {
               {t.gallery.pageHeading}
             </span>
 
-            {/* Filter Pills - Minimal Design */}
-            <div className="flex gap-2 flex-wrap justify-end">
+            {/* Mobile: Tap to Open Bottom Sheet */}
+            <motion.button
+              onClick={() => setIsFilterSheetOpen(true)}
+              whileTap={{ scale: 0.95 }}
+              className="md:hidden flex items-center gap-2 px-4 py-2 rounded-full bg-[#005F73] text-white text-xs tracking-wider uppercase transition-all duration-300 shadow-sm"
+              style={{ fontFamily: 'Playfair Display, serif' }}
+            >
+              {categories.find(cat => cat.id === selectedCategory)?.label}
+              <ChevronDown className="w-4 h-4" />
+            </motion.button>
+
+            {/* Desktop: Filter Pills - Minimal Design */}
+            <div className="hidden md:flex gap-2 flex-wrap justify-end">
               {categories.map((category) => (
                 <motion.button
                   key={category.id}
@@ -249,6 +262,54 @@ export function Gallery() {
           )}
         </DialogContent>
       </Dialog>
+
+      {/* Mobile Filter Bottom Sheet */}
+      <BottomSheet open={isFilterSheetOpen} onOpenChange={setIsFilterSheetOpen}>
+        <BottomSheetContent showCloseButton={false}>
+          <BottomSheetHeader>
+            <BottomSheetTitle
+              className="text-center text-gray-800"
+              style={{ fontFamily: 'Playfair Display, serif' }}
+            >
+              {t.gallery.pageHeading}
+            </BottomSheetTitle>
+          </BottomSheetHeader>
+
+          <div className="space-y-2 mt-4">
+            {categories.map((category) => (
+              <motion.button
+                key={category.id}
+                onClick={() => {
+                  setSelectedCategory(category.id)
+                  setIsFilterSheetOpen(false)
+                }}
+                whileTap={{ scale: 0.98 }}
+                className={`w-full p-4 rounded-xl text-left transition-all duration-300 ${
+                  selectedCategory === category.id
+                    ? 'bg-[#005F73] text-white shadow-lg'
+                    : 'bg-gray-50 text-gray-700 hover:bg-gray-100'
+                }`}
+              >
+                <span
+                  className="text-sm tracking-wider uppercase font-medium"
+                  style={{ fontFamily: 'Playfair Display, serif' }}
+                >
+                  {category.label}
+                </span>
+                {selectedCategory === category.id && (
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    className="inline-block ml-2"
+                  >
+                    ✓
+                  </motion.div>
+                )}
+              </motion.button>
+            ))}
+          </div>
+        </BottomSheetContent>
+      </BottomSheet>
     </>
   )
 }
