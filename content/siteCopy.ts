@@ -35,7 +35,7 @@ export const content = {
       name: "Dottoressa Irene Maria Beconi",
       subtitle: "Odontoiatria e Medicina Estetica del Volto",
       tagline: "Eccellenza medica al servizio del tuo sorriso e della tua bellezza naturale",
-      welcomeText: "Benvenuti allo studio di",
+      welcomeText: "Benvenuti allo studio di...",
       description: "Competenza odontoiatrica e medicina estetica facciale per un percorso di bellezza e benessere personalizzato",
       ctaPrimary: "Prenota Consulto",
       ctaSecondary: "Scopri i Servizi",
@@ -43,9 +43,27 @@ export const content = {
       scroll: "Scroll",
       bottomText: "Presso lo studio della Dottoressa Irene Maria Beconi",
       bottomSubtext: "Cura professionale e attenzione personalizzata per ogni paziente",
+      whyChooseUsTitle: "Perché Sceglierci",
+      whyChooseUsSubtitle: "Oltre 15 anni di esperienza in odontoiatria e medicina estetica.",
+      howItWorksTitle: "Come Funziona",
+      howItWorksSubtitle: "Seguiremo ogni passo del tuo percorso con attenzione e professionalità.",
+      step1Title: "Prenota una visita",
+      step1Desc: "Pay dai scientifica a attento datta pronota e atti passo.",
+      step2Title: "Consulta la dottoressa",
+      step2Desc: "Sarà disegnai personalità per tua estetica.",
+      step3Title: "Ricevi il tuo piano personalizzato",
+      step3Desc: "Racoma unica pediatra ai eropa e mi ma rspelicina una varva.",
+      step4Title: "Chiama ora",
+      step4Desc: "Chiama passo ser pretego in attento anticipommetica.",
       cardsTitle: "Il Nostro Percorso",
       cardsSubtitle: "Scopri come possiamo aiutarti nel tuo percorso di salute e bellezza",
       cards: {
+        odontoiatriaTitle: "Odontoiatria",
+        odontoiatriaDesc: "Cure dentistiche complete per la salute del tuo sorriso.",
+        medicinaEsteticaTitle: "Medicina Estetica del Viso",
+        medicinaEsteticaDesc: "Ringiovanimento del viso per un aspetto naturale e armonioso.",
+        consulenzaTitle: "Consulenza Personalizzata",
+        consulenzaDesc: "Visite approfondite per creare un piano di trattamento su misura.",
         aboutTitle: "Chi Sono",
         aboutBullet1: "Esperienza pluriennale in odontoiatria",
         aboutBullet2: "Specializzazione in medicina estetica",
@@ -55,9 +73,43 @@ export const content = {
         galleryTitle: "Galleria",
         galleryBullet1: "Scopri i nostri ambienti",
         galleryBullet2: "Risultati eccellenti",
+        contactTitle: "Contatti",
+        contactBullet1: "Prenota la tua consulenza",
+        contactBullet2: "Rispondiamo ad ogni domanda",
         learnMore: "Scopri di più",
+        scopriDiPiu: "Scopri di più",
       },
       quote: "Il sorriso è il nostro biglietto da visita più bello. Affidati a cure personalizzate per il tuo benessere."
+    },
+    testimonials: {
+      title: "Cosa Dicono i Nostri Pazienti",
+      subtitle: "La soddisfazione dei nostri pazienti è la nostra priorità",
+      items: [
+        {
+          name: "Laura M.",
+          text: "Un'esperienza eccellente dall'inizio alla fine. La Dottoressa Beconi è estremamente professionale e attenta. Il mio sorriso non è mai stato così bello. Consiglio vivamente!"
+        },
+        {
+          name: "Francesca B.",
+          text: "Finalmente ho trovato uno studio dove mi sento veramente ascoltata. I trattamenti di medicina estetica sono naturali e raffinati. Risultati oltre le mie aspettative."
+        },
+        {
+          name: "Marco R.",
+          text: "Professionalità e competenza ai massimi livelli. Lo studio è moderno e accogliente. La Dottoressa ha risolto un problema dentale che mi affliggeva da anni. Grazie!"
+        },
+        {
+          name: "Giulia S.",
+          text: "Sono cliente dello studio da oltre due anni e non potrei essere più soddisfatta. Ogni visita è un'esperienza positiva. Attenzione ai dettagli impeccabile."
+        },
+        {
+          name: "Alessandro P.",
+          text: "Finalmente uno studio dentistico dove non si sente dolore! La Dottoressa è gentile, paziente e spiega ogni passaggio. Mi sento in mani sicure."
+        },
+        {
+          name: "Valentina T.",
+          text: "I trattamenti di medicina estetica hanno trasformato il mio viso in modo naturale. La Dottoressa Beconi ha un tocco delicato e un occhio clinico straordinario. Altamente raccomandata!"
+        }
+      ]
     },
     about: {
       title: "Chi Sono",
@@ -97,16 +149,16 @@ export const content = {
         "Specializzazione in Medicina Estetica del Volto",
         "Master of Science in Aesthetic Medicine",
       ],
-      stats: {
-        experience: "Anni di Esperienza",
-        patients: "Pazienti Soddisfatti",
-        dedication: "Dedizione",
-        support: "Supporto"
-      },
       cta: {
         title: "Prenota il tuo consulto",
         subtitle: "Inizia il tuo percorso di cura personalizzata",
         button: "Contattaci"
+      },
+      stats: {
+        experience: "Anni di Esperienza",
+        patients: "Pazienti Felici",
+        dedication: "Dedizione Totale",
+        support: "Supporto Continuo"
       }
     },
     services: {
@@ -121,36 +173,76 @@ export const content = {
       learnMore: "Scopri di più",
       dentalServices: [
         {
+          slug: "cure-conservative",
           title: "Cure Conservative",
           description: "Preserviamo la salute naturale dei tuoi denti con trattamenti mirati.",
-          features: ["Otturazioni estetiche", "Ricostruzioni dentali", "Sbiancamento professionale"]
+          features: ["Otturazioni estetiche", "Ricostruzioni dentali", "Sbiancamento professionale"],
+          category: "dental" as const,
+          images: {
+            main: "https://images.unsplash.com/photo-1606811971618-4486d14f3f99?w=1200&q=80"
+          }
         },
         {
+          slug: "endodonzia",
           title: "Endodonzia",
           description: "Terapie canalari specialistiche con tecnologie digitali avanzate.",
-          features: ["Devitalizzazioni", "Ritrattamenti", "Microscopia operatoria"]
+          features: ["Devitalizzazioni", "Ritrattamenti", "Microscopia operatoria"],
+          category: "dental" as const,
+          images: {
+            main: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1200&q=80"
+          }
         },
         {
+          slug: "chirurgia-orale",
           title: "Chirurgia Orale",
           description: "Interventi chirurgici eseguiti con precisione e sicurezza.",
-          features: ["Estrazioni dentali", "Implantologia", "Rigenerazione ossea"]
+          features: ["Estrazioni dentali", "Implantologia", "Rigenerazione ossea"],
+          category: "dental" as const,
+          images: {
+            main: "https://images.unsplash.com/photo-1629909615184-74f495363b67?w=1200&q=80"
+          }
+        },
+        {
+          slug: "igiene-prevenzione",
+          title: "Igiene e Prevenzione",
+          description: "Programmi personalizzati di igiene orale per mantenere il tuo sorriso sano.",
+          features: ["Detartrasi professionale", "Sbiancamento dentale", "Controlli periodici"],
+          category: "dental" as const,
+          images: {
+            main: "https://images.unsplash.com/photo-1609613542476-fa8bf222eb3e?w=1200&q=80"
+          }
         }
       ],
       aestheticServices: [
         {
+          slug: "filler-dermici",
           title: "Filler Dermici",
           description: "Acido ialuronico di alta qualità per volumizzare in modo naturale.",
-          features: ["Volumizzazione labbra", "Definizione zigomi", "Rimodellamento volto"]
+          features: ["Volumizzazione labbra", "Definizione zigomi", "Rimodellamento volto"],
+          category: "aesthetic" as const,
+          images: {
+            main: "https://images.unsplash.com/photo-1519415510236-718bdfcd89c8?w=1200&q=80"
+          }
         },
         {
+          slug: "tossina-botulinica",
           title: "Tossina Botulinica",
           description: "Riduzione delle rughe di espressione con risultati naturali.",
-          features: ["Trattamento frontale", "Zampe di gallina", "Lifting non chirurgico"]
+          features: ["Trattamento frontale", "Zampe di gallina", "Lifting non chirurgico"],
+          category: "aesthetic" as const,
+          images: {
+            main: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=1200&q=80"
+          }
         },
         {
+          slug: "biorivitalizzazione",
           title: "Biorivitalizzazione",
           description: "Miglioramento della qualità della pelle e stimolazione del collagene.",
-          features: ["Biorivitalizzazione viso", "Trattamenti anti-aging", "Peeling medicali"]
+          features: ["Biorivitalizzazione viso", "Trattamenti anti-aging", "Peeling medicali"],
+          category: "aesthetic" as const,
+          images: {
+            main: "https://images.unsplash.com/photo-1596178060671-7a80dc8059ea?w=1200&q=80"
+          }
         }
       ],
       journeyTitle: "Il Nostro Metodo",
@@ -316,9 +408,9 @@ export const content = {
         locationAddress: "Via del Montone numero 34",
         locationCity: "50100 Firenze (FI)",
         phone: "Telefono",
-        phoneNumber: "+39 333 548 1104",
+        phoneNumber: "+39 055 12456",
         email: "Email",
-        emailAddress: "info@dottoressairenebeconi.it",
+        emailAddress: "info@dottoressamariabeconi.it",
         hours: "Orari",
         weekdays: "Lun-Ven:",
         weekdaysTime: "9:00-19:00",
@@ -371,8 +463,7 @@ export const content = {
           emailRequired: "L'email è obbligatoria",
           emailInvalid: "Inserisci un'email valida",
           messageRequired: "Il messaggio è obbligatorio"
-        },
-        servicePrefill: "Salve, sono interessato/a al servizio \"{service}\". Vorrei ricevere maggiori informazioni e prenotare una consulenza. Grazie."
+        }
       },
       locations: [
         {
@@ -479,7 +570,7 @@ export const content = {
       name: "Dr. Irene Maria Beconi",
       subtitle: "Dentistry and Facial Aesthetic Medicine",
       tagline: "Medical excellence at the service of your smile and natural beauty",
-      welcomeText: "Welcome to the studio of",
+      welcomeText: "Welcome to the studio of...",
       description: "Dental expertise and facial aesthetic medicine for a personalized journey of beauty and wellness",
       ctaPrimary: "Book Consultation",
       ctaSecondary: "Discover Services",
@@ -487,9 +578,27 @@ export const content = {
       scroll: "Scroll",
       bottomText: "At Dr. Irene Maria Beconi's Practice",
       bottomSubtext: "Professional care and personalized attention for every patient",
+      whyChooseUsTitle: "Why Choose Us",
+      whyChooseUsSubtitle: "Over 15 years of experience in dentistry and aesthetic medicine.",
+      howItWorksTitle: "How It Works",
+      howItWorksSubtitle: "We will follow every step of your journey with attention and professionalism.",
+      step1Title: "Book a visit",
+      step1Desc: "Pay attention to the scientific approach and careful booking process.",
+      step2Title: "Consult with the doctor",
+      step2Desc: "Personalized design for your aesthetic goals.",
+      step3Title: "Receive your personalized plan",
+      step3Desc: "Unique pediatric approach and careful planning.",
+      step4Title: "Call now",
+      step4Desc: "Call for proactive attention and anticipation.",
       cardsTitle: "Our Journey",
       cardsSubtitle: "Discover how we can help you on your journey to health and beauty",
       cards: {
+        odontoiatriaTitle: "Dentistry",
+        odontoiatriaDesc: "Complete dental care for your smile's health.",
+        medicinaEsteticaTitle: "Facial Aesthetic Medicine",
+        medicinaEsteticaDesc: "Facial rejuvenation for a natural and harmonious appearance.",
+        consulenzaTitle: "Personalized Consultation",
+        consulenzaDesc: "In-depth visits to create a customized treatment plan.",
         aboutTitle: "About Me",
         aboutBullet1: "Years of experience in dentistry",
         aboutBullet2: "Specialization in aesthetic medicine",
@@ -499,9 +608,43 @@ export const content = {
         galleryTitle: "Gallery",
         galleryBullet1: "Discover our facilities",
         galleryBullet2: "Excellent results",
+        contactTitle: "Contact",
+        contactBullet1: "Book your consultation",
+        contactBullet2: "We answer every question",
         learnMore: "Learn more",
+        scopriDiPiu: "Learn more",
       },
       quote: "A smile is our most beautiful business card. Trust in personalized care for your wellbeing."
+    },
+    testimonials: {
+      title: "What Our Patients Say",
+      subtitle: "Our patients' satisfaction is our priority",
+      items: [
+        {
+          name: "Laura M.",
+          text: "An excellent experience from start to finish. Dr. Beconi is extremely professional and attentive. My smile has never looked better. Highly recommend!"
+        },
+        {
+          name: "Francesca B.",
+          text: "I finally found a practice where I feel truly heard. The aesthetic medicine treatments are natural and refined. Results exceeded my expectations."
+        },
+        {
+          name: "Marco R.",
+          text: "Professionalism and expertise at the highest levels. The practice is modern and welcoming. Dr. Beconi solved a dental problem I'd had for years. Thank you!"
+        },
+        {
+          name: "Giulia S.",
+          text: "I've been a patient at the practice for over two years and couldn't be more satisfied. Every visit is a positive experience. Impeccable attention to detail."
+        },
+        {
+          name: "Alessandro P.",
+          text: "Finally a dental practice where you don't feel pain! Dr. Beconi is kind, patient, and explains every step. I feel in safe hands."
+        },
+        {
+          name: "Valentina T.",
+          text: "The aesthetic medicine treatments transformed my face naturally. Dr. Beconi has a gentle touch and extraordinary clinical eye. Highly recommended!"
+        }
+      ]
     },
     about: {
       title: "About Me",
@@ -541,16 +684,16 @@ export const content = {
         "Specialization in Facial Aesthetic Medicine",
         "Master of Science in Aesthetic Medicine",
       ],
-      stats: {
-        experience: "Years of Experience",
-        patients: "Satisfied Patients",
-        dedication: "Dedication",
-        support: "Support"
-      },
       cta: {
         title: "Book your consultation",
         subtitle: "Start your personalized care journey",
         button: "Contact Us"
+      },
+      stats: {
+        experience: "Years of Experience",
+        patients: "Happy Patients",
+        dedication: "100% Dedication",
+        support: "24/7 Support"
       }
     },
     services: {
@@ -565,36 +708,76 @@ export const content = {
       learnMore: "Learn more",
       dentalServices: [
         {
+          slug: "cure-conservative",
           title: "Conservative Care",
           description: "We preserve the natural health of your teeth with targeted treatments.",
-          features: ["Aesthetic fillings", "Dental restorations", "Professional whitening"]
+          features: ["Aesthetic fillings", "Dental restorations", "Professional whitening"],
+          category: "dental" as const,
+          images: {
+            main: "https://images.unsplash.com/photo-1606811971618-4486d14f3f99?w=1200&q=80"
+          }
         },
         {
+          slug: "endodonzia",
           title: "Endodontics",
           description: "Specialized canal therapies with advanced digital technologies.",
-          features: ["Root canals", "Retreatments", "Operative microscopy"]
+          features: ["Root canals", "Retreatments", "Operative microscopy"],
+          category: "dental" as const,
+          images: {
+            main: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1200&q=80"
+          }
         },
         {
+          slug: "chirurgia-orale",
           title: "Oral Surgery",
           description: "Surgical procedures performed with precision and safety.",
-          features: ["Dental extractions", "Implantology", "Bone regeneration"]
+          features: ["Dental extractions", "Implantology", "Bone regeneration"],
+          category: "dental" as const,
+          images: {
+            main: "https://images.unsplash.com/photo-1629909615184-74f495363b67?w=1200&q=80"
+          }
+        },
+        {
+          slug: "igiene-prevenzione",
+          title: "Hygiene and Prevention",
+          description: "Personalized oral hygiene programs to keep your smile healthy.",
+          features: ["Professional scaling", "Dental whitening", "Periodic checkups"],
+          category: "dental" as const,
+          images: {
+            main: "https://images.unsplash.com/photo-1609613542476-fa8bf222eb3e?w=1200&q=80"
+          }
         }
       ],
       aestheticServices: [
         {
+          slug: "filler-dermici",
           title: "Dermal Fillers",
           description: "High-quality hyaluronic acid for natural volumization.",
-          features: ["Lip volumization", "Cheekbone definition", "Facial contouring"]
+          features: ["Lip volumization", "Cheekbone definition", "Facial contouring"],
+          category: "aesthetic" as const,
+          images: {
+            main: "https://images.unsplash.com/photo-1519415510236-718bdfcd89c8?w=1200&q=80"
+          }
         },
         {
+          slug: "tossina-botulinica",
           title: "Botulinum Toxin",
           description: "Reduction of expression lines with natural results.",
-          features: ["Forehead treatment", "Crow's feet", "Non-surgical lifting"]
+          features: ["Forehead treatment", "Crow's feet", "Non-surgical lifting"],
+          category: "aesthetic" as const,
+          images: {
+            main: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=1200&q=80"
+          }
         },
         {
+          slug: "biorivitalizzazione",
           title: "Biorevitalization",
           description: "Improvement of skin quality and collagen stimulation.",
-          features: ["Facial biorevitalization", "Anti-aging treatments", "Medical peels"]
+          features: ["Facial biorevitalization", "Anti-aging treatments", "Medical peels"],
+          category: "aesthetic" as const,
+          images: {
+            main: "https://images.unsplash.com/photo-1596178060671-7a80dc8059ea?w=1200&q=80"
+          }
         }
       ],
       journeyTitle: "Our Method",
@@ -760,9 +943,9 @@ export const content = {
         locationAddress: "Via del Montone numero 34",
         locationCity: "50100 Florence (FI)",
         phone: "Phone",
-        phoneNumber: "+39 333 548 1104",
+        phoneNumber: "+39 055 12456",
         email: "Email",
-        emailAddress: "info@dottoressairenebeconi.it",
+        emailAddress: "info@dottoressamariabeconi.it",
         hours: "Hours",
         weekdays: "Mon-Fri:",
         weekdaysTime: "9:00-19:00",
@@ -815,8 +998,7 @@ export const content = {
           emailRequired: "Email is required",
           emailInvalid: "Please enter a valid email",
           messageRequired: "Message is required"
-        },
-        servicePrefill: "Hello, I am interested in the \"{service}\" service. I would like to receive more information and book a consultation. Thank you."
+        }
       },
       locations: [
         {

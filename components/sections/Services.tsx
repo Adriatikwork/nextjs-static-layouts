@@ -3,155 +3,118 @@
 import { useLanguage } from '@/lib/LanguageContext'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useState } from 'react'
-import { FaTooth, FaSyringe, FaHeartbeat, FaUserMd, FaShieldAlt, FaAward, FaHeart } from 'react-icons/fa'
-import { HiSparkles, HiClock, HiCheckCircle } from 'react-icons/hi'
-import { RiStethoscopeLine } from 'react-icons/ri'
+import Image from 'next/image'
 import Link from 'next/link'
 
 export function Services() {
   const { t } = useLanguage()
   const [activeTab, setActiveTab] = useState<'dental' | 'aesthetic'>('aesthetic')
 
-  const dentalServices = t.services.dentalServices.map((service, index) => ({
-    icon: [FaTooth, RiStethoscopeLine, FaShieldAlt][index],
-    ...service
-  }))
-
-  const aestheticServices = t.services.aestheticServices.map((service, index) => ({
-    icon: [FaSyringe, HiSparkles, FaHeartbeat][index],
-    ...service
-  }))
-
-  const approach = t.services.journeySteps.map((step, index) => ({
-    ...step,
-    icon: [HiCheckCircle, RiStethoscopeLine, FaUserMd, FaAward][index]
-  }))
-
-  const currentServices = activeTab === 'dental' ? dentalServices : aestheticServices
+  // Service data comes from siteCopy.ts with Unsplash images
+  const currentServices = activeTab === 'dental'
+    ? t.services.dentalServices
+    : t.services.aestheticServices
 
   return (
-    <section className="w-full relative overflow-hidden pt-14 sm:pt-16 lg:pt-20">
-      {/* Animated Gradient Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#f8f7f5] via-[#fef5e7] to-[#e8f4f8] -z-10" />
+    <section className="w-full bg-white pt-20">
+      {/* Header Section */}
+      <div className="container mx-auto px-4 pt-12 pb-8 max-w-5xl text-center">
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-5xl md:text-6xl lg:text-7xl font-normal mb-6 text-[#1a1a1a]"
+          style={{ fontFamily: 'Playfair Display, serif' }}
+        >
+          I nostri servizi esclusivi
+        </motion.h1>
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.1 }}
+          className="text-lg md:text-xl text-gray-700 font-light max-w-3xl mx-auto leading-relaxed"
+          style={{ fontFamily: 'Playfair Display, serif' }}
+        >
+          Scopri i trattamenti di medicina estetica e odontoiatria. Ci impegniamo per fornire risultati naturali ed eleganti, valorizzando la tua naturale bellezza in modo armonioso.
+        </motion.p>
+      </div>
 
-      {/* Floating Abstract Shapes */}
-      <motion.div
-        animate={{
-          y: [0, -20, 0],
-          rotate: [0, 5, 0]
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-        className="absolute top-20 right-10 w-64 h-64 bg-gradient-to-br from-[#c9b896]/20 to-[#005F73]/10 rounded-full blur-3xl -z-10"
-      />
-      <motion.div
-        animate={{
-          y: [0, 20, 0],
-          rotate: [0, -5, 0]
-        }}
-        transition={{
-          duration: 10,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-        className="absolute bottom-40 left-10 w-80 h-80 bg-gradient-to-tr from-[#005F73]/10 to-[#c9b896]/20 rounded-full blur-3xl -z-10"
-      />
-      <motion.div
-        animate={{
-          scale: [1, 1.1, 1],
-          opacity: [0.3, 0.5, 0.3]
-        }}
-        transition={{
-          duration: 12,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-br from-purple-200/20 via-pink-100/20 to-blue-200/20 rounded-full blur-3xl -z-10"
-      />
-
-      {/* Static Section Header with Tab Toggle */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="relative bg-white/70 backdrop-blur-xl shadow-lg border border-white/50"
-        style={{
-          background: 'linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.6) 100%)'
-        }}
-      >
-        <div className="container mx-auto px-4 py-4 md:py-6">
-          <div className="flex flex-col md:flex-row items-center justify-center md:justify-between gap-3 md:gap-4">
-            <span
-              className="text-xs md:text-sm tracking-[0.2em] md:tracking-[0.3em] uppercase text-transparent bg-clip-text bg-gradient-to-r from-[#005F73] to-[#c9b896] font-light text-center md:text-left"
-              style={{ fontFamily: 'Playfair Display, serif' }}
-            >
-              {t.services.pageHeading}
-            </span>
-
-            {/* Tab Toggle with Glass Effect */}
-            <div className="flex gap-1.5 md:gap-2 bg-gradient-to-r from-gray-100/80 to-gray-50/80 backdrop-blur-sm rounded-full p-1 md:p-1.5 shadow-inner w-full md:w-auto max-w-sm">
-              <button
-                onClick={() => setActiveTab('aesthetic')}
-                className={`flex-1 md:flex-none px-4 md:px-6 py-2 md:py-2.5 rounded-full text-[10px] md:text-xs tracking-wide md:tracking-wider uppercase transition-all duration-300 ${
-                  activeTab === 'aesthetic'
-                    ? 'bg-gradient-to-r from-[#005F73] to-[#007991] text-white shadow-lg shadow-[#005F73]/30'
-                    : 'bg-transparent text-gray-600 hover:bg-white/50'
-                }`}
-                style={{ fontFamily: 'Playfair Display, serif' }}
-              >
-                {t.services.aestheticTab}
-              </button>
-              <button
-                onClick={() => setActiveTab('dental')}
-                className={`flex-1 md:flex-none px-4 md:px-6 py-2 md:py-2.5 rounded-full text-[10px] md:text-xs tracking-wide md:tracking-wider uppercase transition-all duration-300 ${
-                  activeTab === 'dental'
-                    ? 'bg-gradient-to-r from-[#005F73] to-[#007991] text-white shadow-lg shadow-[#005F73]/30'
-                    : 'bg-transparent text-gray-600 hover:bg-white/50'
-                }`}
-                style={{ fontFamily: 'Playfair Display, serif' }}
-              >
-                {t.services.dentalTab}
-              </button>
-            </div>
-          </div>
+      {/* Tab Toggle */}
+      <div className="container mx-auto px-4 py-8 max-w-5xl">
+        <div className="flex justify-center gap-3">
+          <button
+            onClick={() => setActiveTab('aesthetic')}
+            className={`px-8 py-3 rounded-full text-sm tracking-wider uppercase transition-all duration-300 ${
+              activeTab === 'aesthetic'
+                ? 'bg-[#005F73] text-white'
+                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+            }`}
+            style={{ fontFamily: 'Playfair Display, serif' }}
+          >
+            {t.services.aestheticTab}
+          </button>
+          <button
+            onClick={() => setActiveTab('dental')}
+            className={`px-8 py-3 rounded-full text-sm tracking-wider uppercase transition-all duration-300 ${
+              activeTab === 'dental'
+                ? 'bg-[#005F73] text-white'
+                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+            }`}
+            style={{ fontFamily: 'Playfair Display, serif' }}
+          >
+            {t.services.dentalTab}
+          </button>
         </div>
-      </motion.div>
+      </div>
 
       {/* Services Grid */}
-      <div className="container mx-auto px-4 pt-6 md:pt-8 pb-12 md:pb-16">
+      <div className="container mx-auto px-4 pb-20">
         <AnimatePresence mode="wait">
           <motion.div
             key={activeTab}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.4 }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4 md:gap-5 max-w-7xl mx-auto"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto"
+            style={{
+              // Center items on incomplete last row
+              justifyItems: 'center'
+            }}
           >
-            {currentServices.map((service, index) => {
-              const Icon = service.icon
-              return (
-                <Link
-                  key={service.title}
-                  href={`/contatti?service=${encodeURIComponent(service.title)}&type=${activeTab}`}
-                >
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                    className="group relative bg-white rounded-xl md:rounded-2xl p-5 md:p-8 shadow-sm hover:shadow-2xl transition-all duration-500 border border-gray-100 cursor-pointer"
-                  >
-                    {/* Icon */}
-                    <div className="w-12 h-12 md:w-16 md:h-16 rounded-xl md:rounded-2xl bg-gradient-to-br from-[#005F73]/10 to-[#c9b896]/10 flex items-center justify-center mb-4 md:mb-6 group-hover:scale-110 transition-transform duration-300">
-                      <Icon className="w-6 h-6 md:w-8 md:h-8 text-[#005F73]" />
-                    </div>
+            {currentServices.map((service, index) => (
+              <motion.div
+                key={service.title}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="w-full max-w-md"
+              >
+                <Link href={`/servizi/${service.slug}`} className="block group cursor-pointer">
+                  {/* Image */}
+                  <div className="relative aspect-[4/5] overflow-hidden rounded-lg mb-6 bg-gray-100">
+                    <Image
+                      src={service.images?.main || "/placeholder.svg"}
+                      alt={service.title}
+                      fill
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      unoptimized
+                    />
+                    {/* Subtle Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
+                    {/* Learn More Button Overlay */}
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <span className="px-6 py-3 bg-white text-[#005F73] rounded-full font-medium shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                        {t.services.learnMore}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Content */}
+                  <div className="space-y-3">
                     {/* Title */}
                     <h3
-                      className="text-xl md:text-2xl font-normal text-gray-900 mb-2 md:mb-3"
+                      className="text-2xl font-normal text-[#1a1a1a] group-hover:text-[#005F73] transition-colors duration-300"
                       style={{ fontFamily: 'Playfair Display, serif' }}
                     >
                       {service.title}
@@ -159,362 +122,72 @@ export function Services() {
 
                     {/* Description */}
                     <p
-                      className="text-sm text-gray-600 mb-4 md:mb-6 leading-relaxed font-light"
+                      className="text-gray-600 font-light leading-relaxed"
                       style={{ fontFamily: 'Playfair Display, serif' }}
                     >
                       {service.description}
                     </p>
-
-                    {/* Features List */}
-                    <ul className="space-y-1.5 md:space-y-2 mb-4 md:mb-6">
-                      {service.features.map((feature, idx) => (
-                        <li
-                          key={idx}
-                          className="flex items-start gap-2 text-xs md:text-sm text-gray-700 font-light"
-                          style={{ fontFamily: 'Playfair Display, serif' }}
-                        >
-                          <span className="w-1.5 h-1.5 rounded-full bg-[#c9b896] mt-1.5 md:mt-2 flex-shrink-0" />
-                          {feature}
-                        </li>
-                      ))}
-                    </ul>
-
-                    {/* Hover Arrow */}
-                    <div className="absolute bottom-5 right-5 md:bottom-8 md:right-8 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <div className="w-7 h-7 md:w-8 md:h-8 rounded-full bg-[#005F73] flex items-center justify-center">
-                        <span className="text-white text-base md:text-lg">→</span>
-                      </div>
-                    </div>
-                  </motion.div>
+                  </div>
                 </Link>
-              )
-            })}
+              </motion.div>
+            ))}
           </motion.div>
         </AnimatePresence>
       </div>
 
-      {/* Our Approach Section */}
-      <div className="bg-white py-12 md:py-24 relative">
-        {/* Subtle Grid Background */}
-        <div className="absolute inset-0 opacity-[0.02]" style={{
-          backgroundImage: `linear-gradient(#005F73 1px, transparent 1px), linear-gradient(90deg, #005F73 1px, transparent 1px)`,
-          backgroundSize: '60px 60px'
-        }} />
-
-        <div className="container mx-auto px-4 max-w-7xl relative">
-          {/* Section Header */}
-          <div className="text-center mb-10 md:mb-20">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="inline-flex flex-col items-center"
-            >
-              <span
-                className="text-[10px] md:text-xs tracking-[0.3em] md:tracking-[0.4em] uppercase text-[#c9b896] mb-3 md:mb-4 font-light"
-                style={{ fontFamily: 'Playfair Display, serif' }}
-              >
-                {t.services.journeyTitle}
-              </span>
-              <div className="flex items-center gap-2 mb-4 md:mb-6">
-                <div className="h-px w-6 md:w-8 bg-[#c9b896]" />
-                <div className="w-1.5 h-1.5 rounded-full bg-[#c9b896]" />
-                <div className="h-px w-6 md:w-8 bg-[#c9b896]" />
-              </div>
-            </motion.div>
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="text-2xl md:text-4xl lg:text-5xl font-normal text-gray-900 max-w-3xl mx-auto px-4"
+      {/* Approach Section - Compact */}
+      <div className="bg-[#f8f7f5] py-16">
+        <div className="container mx-auto px-4 max-w-5xl">
+          <div className="text-center mb-12">
+            <h2
+              className="text-3xl md:text-4xl font-normal text-[#005F73] mb-4"
               style={{ fontFamily: 'Playfair Display, serif' }}
             >
-              {t.services.journeySubtitle}
-            </motion.h2>
-          </div>
-
-          {/* Journey Steps */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 lg:gap-8">
-            {approach.map((step, index) => {
-              const Icon = step.icon
-              return (
-                <motion.div
-                  key={step.number}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.15 }}
-                  className="relative group"
-                >
-                  {/* Connector Line */}
-                  {index < approach.length - 1 && (
-                    <div className="hidden lg:block absolute top-16 left-full w-full h-px">
-                      <div className="h-full w-full bg-gradient-to-r from-[#c9b896]/40 via-[#c9b896]/20 to-transparent" />
-                      <div className="absolute right-0 top-1/2 -translate-y-1/2 w-1 h-1 rounded-full bg-[#c9b896]/40" />
-                    </div>
-                  )}
-
-                  {/* Mobile: Horizontal Card Layout */}
-                  <div className="md:hidden flex items-start gap-4 bg-white rounded-xl p-4 shadow-sm border border-gray-100">
-                    {/* Left: Icon + Number */}
-                    <div className="flex-shrink-0">
-                      <div className="relative w-14 h-14 rounded-xl bg-gradient-to-br from-[#005F73]/10 to-[#c9b896]/10 flex items-center justify-center">
-                        <Icon className="w-6 h-6 text-[#005F73]" />
-                        <div className="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-[#005F73] flex items-center justify-center text-white text-xs font-medium" style={{ fontFamily: 'Playfair Display, serif' }}>
-                          {step.number}
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Right: Content */}
-                    <div className="flex-1 min-w-0">
-                      <h3
-                        className="text-base font-medium text-gray-900 mb-1.5 leading-tight"
-                        style={{ fontFamily: 'Playfair Display, serif' }}
-                      >
-                        {step.title}
-                      </h3>
-                      <p
-                        className="text-xs text-gray-600 leading-relaxed font-light"
-                        style={{ fontFamily: 'Playfair Display, serif' }}
-                      >
-                        {step.description}
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Desktop: Original Layout */}
-                  <div className="hidden md:block">
-                    {/* Step Number - Large and Elegant */}
-                    <div className="relative mb-6">
-                      <div
-                        className="text-[120px] font-light leading-none text-[#005F73]/[0.06] select-none"
-                        style={{ fontFamily: 'Playfair Display, serif' }}
-                      >
-                        {step.number}
-                      </div>
-
-                      {/* Icon Overlaid on Number */}
-                      <div className="absolute bottom-0 left-0">
-                        <div className="relative w-16 h-16 group-hover:scale-110 transition-transform duration-500">
-                          <div className="absolute inset-0 bg-white border border-[#c9b896]/20" />
-                          <div className="absolute inset-0 bg-[#005F73]/5" />
-                          <div className="relative w-full h-full flex items-center justify-center">
-                            <Icon className="w-7 h-7 text-[#005F73]" />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Content */}
-                    <div className="pt-4">
-                      {/* Title */}
-                      <h3
-                        className="text-xl font-normal text-gray-900 mb-4 group-hover:text-[#005F73] transition-colors duration-500"
-                        style={{ fontFamily: 'Playfair Display, serif' }}
-                      >
-                        {step.title}
-                      </h3>
-
-                      {/* Decorative Line */}
-                      <div className="flex items-center gap-2 mb-4">
-                        <div className="h-px w-12 bg-[#c9b896] group-hover:w-20 transition-all duration-500" />
-                        <div className="w-1 h-1 rounded-full bg-[#c9b896]" />
-                      </div>
-
-                      {/* Description */}
-                      <p
-                        className="text-sm text-gray-600 leading-[1.8] font-light"
-                        style={{ fontFamily: 'Playfair Display, serif' }}
-                      >
-                        {step.description}
-                      </p>
-                    </div>
-
-                    {/* Side Accent */}
-                    <div className="absolute left-0 top-24 bottom-0 w-px bg-gradient-to-b from-[#c9b896]/0 via-[#c9b896]/20 to-[#c9b896]/0 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                  </div>
-                </motion.div>
-              )
-            })}
-          </div>
-        </div>
-      </div>
-
-      {/* Il Mio Approccio Section */}
-      <div className="py-12 md:py-24 bg-[#f8f7f5] relative">
-        {/* Subtle Radial Pattern */}
-        <div className="absolute inset-0 opacity-[0.03]" style={{
-          backgroundImage: `radial-gradient(circle at 2px 2px, #c9b896 1px, transparent 0)`,
-          backgroundSize: '48px 48px'
-        }} />
-
-        <div className="container mx-auto px-4 max-w-7xl relative">
-          <div>
-            {/* Section Header */}
-            <div className="text-center mb-10 md:mb-20">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="inline-flex flex-col items-center mb-4 md:mb-6"
-              >
-                <div className="flex items-center gap-2 md:gap-3 mb-3 md:mb-4">
-                  <div className="h-px w-8 md:w-12 bg-[#c9b896]" />
-                  <div className="w-1.5 h-1.5 md:w-2 md:h-2 border border-[#c9b896] rotate-45" />
-                  <div className="h-px w-8 md:w-12 bg-[#c9b896]" />
-                </div>
-                <h2
-                  className="text-2xl md:text-4xl lg:text-5xl font-normal text-[#c9b896] tracking-wide uppercase px-4"
-                  style={{ fontFamily: 'Playfair Display, serif' }}
-                >
-                  {t.services.approachTitle}
-                </h2>
-              </motion.div>
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.1 }}
-                className="text-base md:text-xl text-gray-700 font-light max-w-3xl mx-auto px-4"
-                style={{ fontFamily: 'Playfair Display, serif' }}
-              >
-                {t.services.approachSubtitle}
-              </motion.p>
-            </div>
-
-            {/* Approach Cards Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10">
-              {t.approach.items.map((item, index) => {
-                const approachIcons = [
-                  { icon: FaHeart, color: '#005F73' },
-                  { icon: HiCheckCircle, color: '#c9b896' },
-                  { icon: HiSparkles, color: '#005F73' },
-                  { icon: FaShieldAlt, color: '#c9b896' }
-                ]
-                const { icon: ApproachIcon, color } = approachIcons[index]
-
-                return (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.1 }}
-                    className="group relative"
-                  >
-                    {/* Card with Premium Details */}
-                    <div className="relative bg-white p-6 md:p-10 shadow-[0_2px_20px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgba(201,184,150,0.1)] transition-all duration-700 border border-[#c9b896]/10 hover:border-[#c9b896]/30 group-hover:-translate-y-1">
-                      {/* Top Corner Accent */}
-                      <div className="absolute top-0 right-0 w-16 h-16 md:w-20 md:h-20">
-                        <div className="absolute top-0 right-0 w-full h-px bg-gradient-to-l from-[#c9b896]/30 to-transparent" />
-                        <div className="absolute top-0 right-0 w-px h-full bg-gradient-to-b from-[#c9b896]/30 to-transparent" />
-                      </div>
-
-                      {/* Number Background */}
-                      <div
-                        className="absolute top-6 right-6 md:top-8 md:right-8 text-[100px] md:text-[140px] font-light leading-none text-[#c9b896]/[0.03] select-none"
-                        style={{ fontFamily: 'Playfair Display, serif' }}
-                      >
-                        {String(index + 1).padStart(2, '0')}
-                      </div>
-
-                      <div className="flex flex-col md:flex-row items-start gap-6 md:gap-8 relative z-10">
-                        {/* Icon with Frame */}
-                        <div className="flex-shrink-0 relative group-hover:scale-105 transition-transform duration-500">
-                          <div className="relative w-16 h-16 md:w-20 md:h-20">
-                            <div className="absolute inset-0 border border-[#c9b896]/20 group-hover:border-[#c9b896]/40 transition-colors duration-500" />
-                            <div className="absolute inset-0" style={{ backgroundColor: `${color}08` }} />
-                            <div className="relative w-full h-full flex items-center justify-center">
-                              <ApproachIcon className="w-7 h-7 md:w-9 md:h-9" style={{ color }} />
-                            </div>
-                          </div>
-                          {/* Corner dots */}
-                          <div className="absolute -top-1 -left-1 w-2 h-2 border-l border-t" style={{ borderColor: color }} />
-                          <div className="absolute -bottom-1 -right-1 w-2 h-2 border-r border-b" style={{ borderColor: color }} />
-                        </div>
-
-                        <div className="flex-1">
-                          {/* Title */}
-                          <h3
-                            className="text-xl md:text-2xl font-normal mb-4 md:mb-5 uppercase tracking-wide"
-                            style={{ fontFamily: 'Playfair Display, serif', color }}
-                          >
-                            {item.title}
-                          </h3>
-
-                          {/* Decorative Line */}
-                          <div className="flex items-center gap-2 md:gap-3 mb-4 md:mb-6">
-                            <div className="h-px flex-1 max-w-[60px] md:max-w-[80px] bg-gradient-to-r from-[#c9b896] to-transparent group-hover:max-w-[90px] md:group-hover:max-w-[120px] transition-all duration-500" />
-                            <div className="w-1.5 h-1.5 rounded-full bg-[#c9b896]" />
-                            <div className="h-px w-4 md:w-6 bg-[#c9b896]/30" />
-                          </div>
-
-                          {/* Description */}
-                          <p
-                            className="text-sm md:text-base text-gray-700 leading-[1.7] md:leading-[1.8] font-light"
-                            style={{ fontFamily: 'Playfair Display, serif' }}
-                          >
-                            {item.description}
-                          </p>
-                        </div>
-                      </div>
-
-                      {/* Bottom Left Accent on Hover */}
-                      <div className="absolute bottom-0 left-0 w-12 h-12 md:w-16 md:h-16 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                        <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-[#005F73]/20 to-transparent" />
-                        <div className="absolute bottom-0 left-0 w-px h-full bg-gradient-to-t from-[#005F73]/20 to-transparent" />
-                      </div>
-                    </div>
-
-                    {/* Side Vertical Line */}
-                    <div className="absolute right-0 top-12 bottom-12 w-px bg-gradient-to-b from-transparent via-[#c9b896]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                  </motion.div>
-                )
-              })}
-            </div>
+              Un approccio personalizzato
+            </h2>
+            <p
+              className="text-lg text-gray-700 font-light max-w-3xl mx-auto"
+              style={{ fontFamily: 'Playfair Display, serif' }}
+            >
+              L'ascolto dei miei pazienti e la creazione di un rapporto di fiducia sono al centro del mio approccio. Ogni trattamento è personalizzato per rispondere alle esigenze specifiche di ogni individuo.
+            </p>
           </div>
         </div>
       </div>
 
       {/* CTA Section */}
-      <div className="bg-gradient-to-br from-[#005F73] to-[#004D5E] py-12 md:py-16">
-        <div className="container mx-auto px-4 text-center">
-          <motion.h2
+      <div className="bg-gradient-to-br from-[#005F73] to-[#004D5E] py-16">
+        <div className="container mx-auto px-4 text-center max-w-4xl">
+          <motion.h3
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-2xl md:text-3xl lg:text-4xl font-normal text-white mb-4 md:mb-6"
+            className="text-3xl md:text-4xl font-normal text-white mb-6"
             style={{ fontFamily: 'Playfair Display, serif' }}
           >
-            {t.services.ctaTitle}
-          </motion.h2>
+            Prenota il tuo appuntamento
+          </motion.h3>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-base md:text-lg text-white/80 mb-6 md:mb-8 font-light max-w-2xl mx-auto"
+            className="text-lg text-white/90 mb-8 font-light"
             style={{ fontFamily: 'Playfair Display, serif' }}
           >
-            {t.services.ctaSubtitle}
+            Contattami telefonicamente o tramite WhatsApp per prenotare una consulenza personalizzata e scoprire i trattamenti più adatti a te.
           </motion.p>
-          <motion.div
+          <motion.a
+            href="/contatti"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
+            className="inline-block px-10 py-4 bg-[#c9b896] text-[#1a1a1a] rounded-full hover:bg-[#d4b19a] transition-colors duration-300 font-normal"
+            style={{ fontFamily: 'Playfair Display, serif' }}
           >
-            <Link href="/contatti">
-              <button
-                className="px-8 md:px-10 py-3 md:py-4 bg-white text-[#005F73] rounded-full tracking-wide text-sm md:text-base hover:bg-[#c9b896] hover:text-white transition-all duration-300 shadow-lg hover:shadow-xl font-light uppercase"
-                style={{ fontFamily: 'Playfair Display, serif' }}
-              >
-                {t.services.ctaButton}
-              </button>
-            </Link>
-          </motion.div>
+            Prenota un appuntamento
+          </motion.a>
         </div>
       </div>
     </section>

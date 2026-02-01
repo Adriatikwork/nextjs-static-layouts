@@ -1,4 +1,5 @@
 import { MetadataRoute } from 'next'
+import { content } from '@/content/siteCopy'
 
 export const dynamic = 'force-static'
 
@@ -6,6 +7,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Use environment variable for domain flexibility
   // Update NEXT_PUBLIC_SITE_URL when connecting custom domain
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://dottoressairenebeconi.it'
+
+  // Generate service URLs
+  const allServices = [
+    ...content.it.services.dentalServices,
+    ...content.it.services.aestheticServices
+  ]
+
+  const serviceUrls = allServices.map(service => ({
+    url: `${baseUrl}/servizi/${service.slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly' as const,
+    priority: 0.8,
+  }))
 
   return [
     {
@@ -24,8 +38,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${baseUrl}/servizi`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
-      priority: 0.8,
+      priority: 0.9,
     },
+    ...serviceUrls,
     {
       url: `${baseUrl}/galleria`,
       lastModified: new Date(),

@@ -48,11 +48,7 @@ export function About() {
                 </span>
               ))}
             </h1>
-            <div className="flex items-center justify-center gap-4 my-12">
-              <div className="w-16 h-[1px] bg-gradient-to-r from-transparent to-[#c9b896]" />
-              <div className="w-2 h-2 rounded-full bg-[#c9b896]" />
-              <div className="w-16 h-[1px] bg-gradient-to-l from-transparent to-[#c9b896]" />
-            </div>
+            <div className="my-12" />
             <p
               className="text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto leading-relaxed font-light"
               style={{ fontFamily: 'Playfair Display, serif' }}
@@ -81,9 +77,6 @@ export function About() {
                   alt="Dottoressa Irene Maria Beconi"
                   className="w-full h-full object-cover"
                 />
-                {/* Decorative Elements */}
-                <div className="absolute -top-6 -left-6 w-24 h-24 bg-[#c9b896]/20 rounded-full blur-2xl" />
-                <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-[#005F73]/20 rounded-full blur-2xl" />
               </div>
               {/* Floating Badge */}
               <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-white px-8 py-4 rounded-full shadow-xl border border-gray-100">
@@ -135,16 +128,6 @@ export function About() {
 
       {/* Values Grid - Modern Cards */}
       <section className="py-16 px-4 bg-white relative overflow-hidden">
-        {/* Subtle background pattern */}
-        <div
-          className="absolute inset-0 opacity-30"
-          style={{
-            backgroundImage: `url(${assetPath('/images/fresh-snow.png')})`,
-            backgroundRepeat: 'repeat',
-            mixBlendMode: 'multiply',
-            pointerEvents: 'none',
-          }}
-        />
         <div className="max-w-7xl mx-auto relative z-10">
           <motion.div
             initial="hidden"
@@ -266,9 +249,6 @@ export function About() {
 
       {/* CTA Section */}
       <section className="py-16 px-4 bg-gradient-to-br from-[#005F73] to-[#004D5E] text-white relative overflow-hidden">
-        {/* Decorative elements */}
-        <div className="absolute top-0 left-0 w-64 h-64 bg-[#c9b896]/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-white/5 rounded-full blur-3xl" />
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

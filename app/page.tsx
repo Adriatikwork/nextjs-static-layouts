@@ -3,6 +3,7 @@
 import { Suspense, useEffect, useState } from "react"
 import { useSearchParams } from "next/navigation"
 import { Hero } from '@/components/sections/Hero'
+import { Testimonials } from '@/components/sections/Testimonials'
 import ComingSoonPage from "@/app/coming-soon/page"
 
 function HomeContent() {
@@ -39,6 +40,7 @@ function HomeContent() {
   return (
     <main className="min-h-screen">
       <Hero />
+      <Testimonials />
     </main>
   )
 }

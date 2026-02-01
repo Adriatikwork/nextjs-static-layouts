@@ -75,12 +75,12 @@
     /* ===== EXACT HERO COLOR PALETTE ===== */
     --teal-primary: #005F73;
     --gold-accent: #c9b896;
-    --beige-light: #e8dfd0;
+    --beige-light: #f8f7f5;
 
     /* Aliases for consistency */
     --brand-teal: #005F73;
     --brand-gold: #c9b896;
-    --brand-cream: #e8dfd0;
+    --brand-cream: #f8f7f5;
 
     /* Dark text color for footer */
     --brand-dark-text: #1F2A33;

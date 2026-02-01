@@ -12,9 +12,10 @@ export function Hero() {
 
   // Hero background images - rotating carousel
   const heroImages = [
-    'https://images.unsplash.com/photo-1629909615184-74f495363b67?w=1920&q=80',
-    'https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=1920&q=80',
-    'https://images.unsplash.com/photo-1606811971618-4486d14f3f99?w=1920&q=80',
+    'https://images.unsplash.com/photo-1629909615184-74f495363b67?w=1920&q=80',  // Dental 1
+    'https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=1920&q=80',  // Dental 2
+    'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=1920&q=80',  // Beauty 1 - Spa/wellness
+    'https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=1920&q=80',  // Beauty 2 - Skincare treatment
   ]
 
   // Auto-rotate slides every 5 seconds
@@ -57,18 +58,6 @@ export function Hero() {
             />
           </div>
         ))}
-
-        {/* Subtle pattern overlay */}
-        <div
-          className="absolute inset-0 z-[3]"
-          style={{
-            backgroundImage: `url(${assetPath('/images/fresh-snow.png')})`,
-            backgroundRepeat: 'repeat',
-            mixBlendMode: 'soft-light',
-            opacity: 0.05,
-            pointerEvents: 'none',
-          }}
-        />
 
         {/* Hero Content */}
         <div className="relative z-[10] min-h-screen flex items-start sm:items-center px-4 sm:px-6 lg:px-8 py-8 sm:py-24 md:py-32 lg:py-40">
@@ -218,18 +207,9 @@ export function Hero() {
       {/* Bottom accent section */}
       <div
         className="w-full py-12 md:py-14 relative overflow-hidden"
-        style={{ backgroundColor: '#e8dfd0' }}
+        style={{ backgroundColor: '#f8f7f5' }}
       >
-        <div
-          className="absolute inset-0 opacity-30"
-          style={{
-            backgroundImage: `url(${assetPath('/images/fresh-snow.png')})`,
-            backgroundRepeat: 'repeat',
-            mixBlendMode: 'multiply',
-            pointerEvents: 'none',
-          }}
-        />
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="text-base md:text-lg text-gray-800 leading-relaxed font-normal" style={{ fontFamily: 'Playfair Display, serif' }}>
             <span className="text-xl md:text-2xl text-[#005F73]">+</span> {t.hero.bottomText}
           </p>
@@ -239,169 +219,204 @@ export function Hero() {
         </div>
       </div>
 
-      {/* Three Cards Section - Premium Medical Design */}
+      {/* Perché Sceglierci Section */}
       <div
-        className="w-full py-20 sm:py-24 md:py-32 relative overflow-hidden"
-        style={{
-          background: 'linear-gradient(180deg, #005F73 0%, #004D5E 100%)',
-        }}
+        className="w-full py-16 sm:py-20 md:py-24 relative overflow-hidden"
+        style={{ backgroundColor: '#f8f7f5' }}
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           {/* Section Title */}
           <div className="text-center mb-12 md:mb-16">
             <h2
-              className="text-3xl sm:text-4xl md:text-5xl text-white font-normal tracking-wide mb-4"
+              className="text-3xl sm:text-4xl md:text-5xl text-[#1F2A33] font-normal mb-4"
               style={{ fontFamily: 'Playfair Display, serif' }}
             >
-              {t.hero.cardsTitle}
+              {t.hero.whyChooseUsTitle}
             </h2>
-            <div className="flex items-center justify-center gap-4 mb-4">
-              <div className="w-20 h-[1px] bg-[#c9b896]" />
-              <div className="w-2 h-2 rounded-full bg-[#c9b896]" />
-              <div className="w-20 h-[1px] bg-[#c9b896]" />
-            </div>
-            <p className="text-lg text-white/90 max-w-2xl mx-auto font-light" style={{ fontFamily: 'Playfair Display, serif' }}>
-              {t.hero.cardsSubtitle}
+            <p className="text-base md:text-lg text-gray-700 max-w-3xl mx-auto font-light" style={{ fontFamily: 'Playfair Display, serif' }}>
+              {t.hero.whyChooseUsSubtitle}
             </p>
           </div>
 
           {/* Cards Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10 max-w-7xl mx-auto">
-            {/* Card 1 - Chi Sono */}
-            <Link href="/chi-sono" className="group">
-              <div className="relative h-[500px] rounded-lg overflow-hidden shadow-xl transition-all duration-300 hover:shadow-2xl hover:-translate-y-2" style={{ backgroundColor: '#e8dfd0' }}>
-                {/* Image Container - Taller to prevent cropping */}
-                <div className="relative h-[280px] overflow-hidden">
-                  <Image
-                    src={assetPath("/Doctor.jpg") || "/placeholder.svg"}
-                    alt={t.hero.cards.aboutTitle}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                  {/* Subtle gradient overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-                </div>
-
-                {/* Content */}
-                <div className="p-6 sm:p-8">
-                  <h3
-                    className="text-2xl sm:text-3xl text-[#005F73] mb-4 font-normal uppercase tracking-wide"
-                    style={{ fontFamily: 'Playfair Display, serif' }}
-                  >
-                    {t.hero.cards.aboutTitle}
-                  </h3>
-
-                  <div className="space-y-2 mb-6">
-                    <p className="text-sm sm:text-base text-gray-800 font-light flex items-start gap-2" style={{ fontFamily: 'Playfair Display, serif' }}>
-                      <span className="text-[#c9b896] font-normal">✓</span>
-                      <span>{t.hero.cards.aboutBullet1}</span>
-                    </p>
-                    <p className="text-sm sm:text-base text-gray-800 font-light flex items-start gap-2" style={{ fontFamily: 'Playfair Display, serif' }}>
-                      <span className="text-[#c9b896] font-normal">✓</span>
-                      <span>{t.hero.cards.aboutBullet2}</span>
-                    </p>
-                  </div>
-
-                  {/* CTA */}
-                  <div className="flex items-center gap-2 text-[#005F73] group-hover:gap-3 transition-all duration-300">
-                    <span className="text-sm uppercase tracking-wider font-medium" style={{ fontFamily: 'Playfair Display, serif' }}>
-                      {t.hero.cards.learnMore}
-                    </span>
-                    <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </div>
-                </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 max-w-7xl mx-auto">
+            {/* Card 1 - Odontoiatria */}
+            <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-all duration-300">
+              <div className="relative h-[220px] overflow-hidden">
+                <Image
+                  src={assetPath("/Doctor.jpg") || "/placeholder.svg"}
+                  alt={t.hero.cards.odontoiatriaTitle}
+                  fill
+                  className="object-cover"
+                />
               </div>
-            </Link>
-
-            {/* Card 2 - Servizi */}
-            <Link href="/servizi" className="group">
-              <div className="relative h-[500px] rounded-lg overflow-hidden shadow-xl transition-all duration-300 hover:shadow-2xl hover:-translate-y-2" style={{ backgroundColor: '#e8dfd0' }}>
-                <div className="relative h-[280px] overflow-hidden">
-                  <Image
-                    src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=800&q=80"
-                    alt={t.hero.cards.servicesTitle}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-                </div>
-
-                <div className="p-6 sm:p-8">
-                  <h3
-                    className="text-2xl sm:text-3xl text-[#005F73] mb-4 font-normal uppercase tracking-wide"
-                    style={{ fontFamily: 'Playfair Display, serif' }}
-                  >
-                    {t.hero.cards.servicesTitle}
-                  </h3>
-
-                  <div className="space-y-2 mb-6">
-                    <p className="text-sm sm:text-base text-gray-800 font-light flex items-start gap-2" style={{ fontFamily: 'Playfair Display, serif' }}>
-                      <span className="text-[#c9b896] font-normal">✓</span>
-                      <span>{t.hero.cards.servicesBullet1}</span>
-                    </p>
-                    <p className="text-sm sm:text-base text-gray-800 font-light flex items-start gap-2" style={{ fontFamily: 'Playfair Display, serif' }}>
-                      <span className="text-[#c9b896] font-normal">✓</span>
-                      <span>{t.hero.cards.servicesBullet2}</span>
-                    </p>
-                  </div>
-
-                  <div className="flex items-center gap-2 text-[#005F73] group-hover:gap-3 transition-all duration-300">
-                    <span className="text-sm uppercase tracking-wider font-medium" style={{ fontFamily: 'Playfair Display, serif' }}>
-                      {t.hero.cards.learnMore}
-                    </span>
-                    <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </div>
-                </div>
+              <div className="p-6">
+                <h3
+                  className="text-xl sm:text-2xl text-[#1F2A33] mb-3 font-normal"
+                  style={{ fontFamily: 'Playfair Display, serif' }}
+                >
+                  {t.hero.cards.odontoiatriaTitle}
+                </h3>
+                <p className="text-sm sm:text-base text-gray-700 mb-4 font-light leading-relaxed" style={{ fontFamily: 'Playfair Display, serif' }}>
+                  {t.hero.cards.odontoiatriaDesc}
+                </p>
+                <Link href="/servizi" className="inline-flex items-center gap-2 text-[#005F73] hover:gap-3 transition-all duration-300 group">
+                  <span className="text-sm font-normal" style={{ fontFamily: 'Playfair Display, serif' }}>
+                    {t.hero.cards.scopriDiPiu}
+                  </span>
+                  <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </Link>
               </div>
-            </Link>
+            </div>
 
-            {/* Card 3 - Galleria */}
-            <Link href="/galleria" className="group">
-              <div className="relative h-[500px] rounded-lg overflow-hidden shadow-xl transition-all duration-300 hover:shadow-2xl hover:-translate-y-2" style={{ backgroundColor: '#e8dfd0' }}>
-                <div className="relative h-[280px] overflow-hidden">
-                  <Image
-                    src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=800&q=80"
-                    alt={t.hero.cards.galleryTitle}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-                </div>
-
-                <div className="p-6 sm:p-8">
-                  <h3
-                    className="text-2xl sm:text-3xl text-[#005F73] mb-4 font-normal uppercase tracking-wide"
-                    style={{ fontFamily: 'Playfair Display, serif' }}
-                  >
-                    {t.hero.cards.galleryTitle}
-                  </h3>
-
-                  <div className="space-y-2 mb-6">
-                    <p className="text-sm sm:text-base text-gray-800 font-light flex items-start gap-2" style={{ fontFamily: 'Playfair Display, serif' }}>
-                      <span className="text-[#c9b896] font-normal">✓</span>
-                      <span>{t.hero.cards.galleryBullet1}</span>
-                    </p>
-                    <p className="text-sm sm:text-base text-gray-800 font-light flex items-start gap-2" style={{ fontFamily: 'Playfair Display, serif' }}>
-                      <span className="text-[#c9b896] font-normal">✓</span>
-                      <span>{t.hero.cards.galleryBullet2}</span>
-                    </p>
-                  </div>
-
-                  <div className="flex items-center gap-2 text-[#005F73] group-hover:gap-3 transition-all duration-300">
-                    <span className="text-sm uppercase tracking-wider font-medium" style={{ fontFamily: 'Playfair Display, serif' }}>
-                      {t.hero.cards.learnMore}
-                    </span>
-                    <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </div>
-                </div>
+            {/* Card 2 - Medicina Estetica del Viso */}
+            <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-all duration-300">
+              <div className="relative h-[220px] overflow-hidden">
+                <Image
+                  src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=800&q=80"
+                  alt={t.hero.cards.medicinaEsteticaTitle}
+                  fill
+                  className="object-cover"
+                />
               </div>
-            </Link>
+              <div className="p-6">
+                <h3
+                  className="text-xl sm:text-2xl text-[#1F2A33] mb-3 font-normal"
+                  style={{ fontFamily: 'Playfair Display, serif' }}
+                >
+                  {t.hero.cards.medicinaEsteticaTitle}
+                </h3>
+                <p className="text-sm sm:text-base text-gray-700 mb-4 font-light leading-relaxed" style={{ fontFamily: 'Playfair Display, serif' }}>
+                  {t.hero.cards.medicinaEsteticaDesc}
+                </p>
+                <Link href="/servizi" className="inline-flex items-center gap-2 text-[#005F73] hover:gap-3 transition-all duration-300 group">
+                  <span className="text-sm font-normal" style={{ fontFamily: 'Playfair Display, serif' }}>
+                    {t.hero.cards.scopriDiPiu}
+                  </span>
+                  <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </Link>
+              </div>
+            </div>
+
+            {/* Card 3 - Consulenza Personalizzata */}
+            <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-all duration-300">
+              <div className="relative h-[220px] overflow-hidden">
+                <Image
+                  src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80"
+                  alt={t.hero.cards.consulenzaTitle}
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div className="p-6">
+                <h3
+                  className="text-xl sm:text-2xl text-[#1F2A33] mb-3 font-normal"
+                  style={{ fontFamily: 'Playfair Display, serif' }}
+                >
+                  {t.hero.cards.consulenzaTitle}
+                </h3>
+                <p className="text-sm sm:text-base text-gray-700 mb-4 font-light leading-relaxed" style={{ fontFamily: 'Playfair Display, serif' }}>
+                  {t.hero.cards.consulenzaDesc}
+                </p>
+                <Link href="/contatti" className="inline-flex items-center gap-2 text-[#005F73] hover:gap-3 transition-all duration-300 group">
+                  <span className="text-sm font-normal" style={{ fontFamily: 'Playfair Display, serif' }}>
+                    {t.hero.cards.scopriDiPiu}
+                  </span>
+                  <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Come Funziona Section */}
+      <div className="w-full py-16 sm:py-20 md:py-24 bg-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Section Title */}
+          <div className="text-center mb-12 md:mb-16">
+            <h2
+              className="text-3xl sm:text-4xl md:text-5xl text-[#1F2A33] font-normal mb-4"
+              style={{ fontFamily: 'Playfair Display, serif' }}
+            >
+              {t.hero.howItWorksTitle}
+            </h2>
+            <p className="text-base md:text-lg text-gray-700 max-w-3xl mx-auto font-light" style={{ fontFamily: 'Playfair Display, serif' }}>
+              {t.hero.howItWorksSubtitle}
+            </p>
+          </div>
+
+          {/* Steps Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
+            {/* Step 1 */}
+            <div className="text-center">
+              <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-[#f8f7f5] flex items-center justify-center">
+                <span className="text-3xl text-[#005F73]" style={{ fontFamily: 'Playfair Display, serif' }}>1</span>
+              </div>
+              <h3
+                className="text-lg sm:text-xl text-[#1F2A33] mb-3 font-normal"
+                style={{ fontFamily: 'Playfair Display, serif' }}
+              >
+                {t.hero.step1Title}
+              </h3>
+              <p className="text-sm text-gray-700 font-light leading-relaxed" style={{ fontFamily: 'Playfair Display, serif' }}>
+                {t.hero.step1Desc}
+              </p>
+            </div>
+
+            {/* Step 2 */}
+            <div className="text-center">
+              <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-[#f8f7f5] flex items-center justify-center">
+                <span className="text-3xl text-[#005F73]" style={{ fontFamily: 'Playfair Display, serif' }}>2</span>
+              </div>
+              <h3
+                className="text-lg sm:text-xl text-[#1F2A33] mb-3 font-normal"
+                style={{ fontFamily: 'Playfair Display, serif' }}
+              >
+                {t.hero.step2Title}
+              </h3>
+              <p className="text-sm text-gray-700 font-light leading-relaxed" style={{ fontFamily: 'Playfair Display, serif' }}>
+                {t.hero.step2Desc}
+              </p>
+            </div>
+
+            {/* Step 3 */}
+            <div className="text-center">
+              <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-[#f8f7f5] flex items-center justify-center">
+                <span className="text-3xl text-[#005F73]" style={{ fontFamily: 'Playfair Display, serif' }}>3</span>
+              </div>
+              <h3
+                className="text-lg sm:text-xl text-[#1F2A33] mb-3 font-normal"
+                style={{ fontFamily: 'Playfair Display, serif' }}
+              >
+                {t.hero.step3Title}
+              </h3>
+              <p className="text-sm text-gray-700 font-light leading-relaxed" style={{ fontFamily: 'Playfair Display, serif' }}>
+                {t.hero.step3Desc}
+              </p>
+            </div>
+
+            {/* Step 4 */}
+            <div className="text-center">
+              <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-[#f8f7f5] flex items-center justify-center">
+                <span className="text-3xl text-[#005F73]" style={{ fontFamily: 'Playfair Display, serif' }}>4</span>
+              </div>
+              <h3
+                className="text-lg sm:text-xl text-[#1F2A33] mb-3 font-normal"
+                style={{ fontFamily: 'Playfair Display, serif' }}
+              >
+                {t.hero.step4Title}
+              </h3>
+              <p className="text-sm text-gray-700 font-light leading-relaxed" style={{ fontFamily: 'Playfair Display, serif' }}>
+                {t.hero.step4Desc}
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -409,18 +424,9 @@ export function Hero() {
       {/* Bottom quote section */}
       <div
         className="w-full py-16 md:py-20 relative overflow-hidden"
-        style={{ backgroundColor: '#e8dfd0' }}
+        style={{ backgroundColor: '#f8f7f5' }}
       >
-        <div
-          className="absolute inset-0 opacity-30"
-          style={{
-            backgroundImage: `url(${assetPath('/images/fresh-snow.png')})`,
-            backgroundRepeat: 'repeat',
-            mixBlendMode: 'multiply',
-            pointerEvents: 'none',
-          }}
-        />
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-4xl relative z-10">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-4xl">
           <p
             className="text-lg md:text-xl lg:text-2xl text-gray-800 leading-relaxed font-normal italic"
             style={{ fontFamily: 'Playfair Display, serif' }}
