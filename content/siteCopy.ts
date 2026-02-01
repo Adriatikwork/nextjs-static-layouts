@@ -79,6 +79,12 @@ export const content = {
         learnMore: "Scopri di più",
         scopriDiPiu: "Scopri di più",
       },
+      processSteps: {
+        book: 'Prenota una visita',
+        consult: 'Consulto medico',
+        plan: 'Piano personalizzato',
+        call: 'Chiama ora',
+      },
       quote: "Il sorriso è il nostro biglietto da visita più bello. Affidati a cure personalizzate per il tuo benessere."
     },
     testimonials: {
@@ -428,6 +434,7 @@ export const content = {
       map: {
         title: "Come Raggiungerci",
         subtitle: "Le nostre sedi a Firenze",
+        openInMaps: "Apri in Google Maps",
         locationFields: {
           address: "Indirizzo",
           days: "Giorni",
@@ -613,6 +620,12 @@ export const content = {
         contactBullet2: "We answer every question",
         learnMore: "Learn more",
         scopriDiPiu: "Learn more",
+      },
+      processSteps: {
+        book: 'Book a visit',
+        consult: 'Consult with doctor',
+        plan: 'Personalized plan',
+        call: 'Call now',
       },
       quote: "A smile is our most beautiful business card. Trust in personalized care for your wellbeing."
     },
@@ -963,6 +976,7 @@ export const content = {
       map: {
         title: "How to Reach Us",
         subtitle: "Our locations in Florence",
+        openInMaps: "Open in Google Maps",
         locationFields: {
           address: "Address",
           days: "Days",

@@ -239,12 +239,43 @@ export function Hero() {
           </div>
 
           {/* Cards Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 max-w-7xl mx-auto">
-            {/* Card 1 - Odontoiatria */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 max-w-7xl mx-auto">
+            {/* Card 1 - Chi Sono */}
             <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-all duration-300">
               <div className="relative h-[220px] overflow-hidden">
                 <Image
                   src={assetPath("/Doctor.jpg") || "/placeholder.svg"}
+                  alt={t.hero.cards.aboutTitle}
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div className="p-6">
+                <h3
+                  className="text-xl sm:text-2xl text-[#1F2A33] mb-3 font-normal"
+                  style={{ fontFamily: 'Playfair Display, serif' }}
+                >
+                  {t.hero.cards.aboutTitle}
+                </h3>
+                <p className="text-sm sm:text-base text-gray-700 mb-4 font-light leading-relaxed" style={{ fontFamily: 'Playfair Display, serif' }}>
+                  {t.hero.cards.aboutBullet1}
+                </p>
+                <Link href="/chi-sono" className="inline-flex items-center gap-2 text-[#005F73] hover:gap-3 transition-all duration-300 group">
+                  <span className="text-sm font-normal" style={{ fontFamily: 'Playfair Display, serif' }}>
+                    {t.hero.cards.scopriDiPiu}
+                  </span>
+                  <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </Link>
+              </div>
+            </div>
+
+            {/* Card 2 - Odontoiatria */}
+            <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-all duration-300">
+              <div className="relative h-[220px] overflow-hidden">
+                <Image
+                  src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=800&q=80"
                   alt={t.hero.cards.odontoiatriaTitle}
                   fill
                   className="object-cover"
@@ -271,7 +302,7 @@ export function Hero() {
               </div>
             </div>
 
-            {/* Card 2 - Medicina Estetica del Viso */}
+            {/* Card 3 - Medicina Estetica del Viso */}
             <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-all duration-300">
               <div className="relative h-[220px] overflow-hidden">
                 <Image
@@ -302,7 +333,7 @@ export function Hero() {
               </div>
             </div>
 
-            {/* Card 3 - Consulenza Personalizzata */}
+            {/* Card 4 - Consulenza Personalizzata */}
             <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-all duration-300">
               <div className="relative h-[220px] overflow-hidden">
                 <Image
@@ -336,86 +367,124 @@ export function Hero() {
         </div>
       </div>
 
-      {/* Come Funziona Section */}
-      <div className="w-full py-16 sm:py-20 md:py-24 bg-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Come Funziona Section - Premium Design */}
+      <div className="w-full py-16 sm:py-20 md:py-24 bg-white relative overflow-hidden">
+        {/* Subtle background accent */}
+        <div className="absolute inset-0 opacity-[0.03]" style={{
+          backgroundImage: `radial-gradient(circle at 20% 50%, #005F73 0%, transparent 50%), radial-gradient(circle at 80% 50%, #c9b896 0%, transparent 50%)`
+        }} />
+        
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           {/* Section Title */}
-          <div className="text-center mb-12 md:mb-16">
+          <div className="text-center mb-12 md:mb-14">
             <h2
               className="text-3xl sm:text-4xl md:text-5xl text-[#1F2A33] font-normal mb-4"
               style={{ fontFamily: 'Playfair Display, serif' }}
             >
               {t.hero.howItWorksTitle}
             </h2>
-            <p className="text-base md:text-lg text-gray-700 max-w-3xl mx-auto font-light" style={{ fontFamily: 'Playfair Display, serif' }}>
+            <p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto font-light" style={{ fontFamily: 'Playfair Display, serif' }}>
               {t.hero.howItWorksSubtitle}
             </p>
           </div>
 
-          {/* Steps Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
-            {/* Step 1 */}
-            <div className="text-center">
-              <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-[#f8f7f5] flex items-center justify-center">
-                <span className="text-3xl text-[#005F73]" style={{ fontFamily: 'Playfair Display, serif' }}>1</span>
+          {/* Steps - Connected Flow Design */}
+          <div className="max-w-5xl mx-auto">
+            <div className="flex flex-col lg:flex-row items-stretch justify-between gap-6 lg:gap-0">
+              
+              {/* Step 1 - Book */}
+              <div className="group flex-1 flex flex-col items-center text-center px-4 lg:px-6 relative">
+                <div className="relative mb-5">
+                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#005F73] to-[#004D5E] flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
+                    <svg width="28" height="28" viewBox="0 0 36 36" fill="none" className="text-white">
+                      <rect x="5" y="8" width="26" height="23" rx="3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                      <path d="M5 15H31" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                      <path d="M12 5V11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                      <path d="M24 5V11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                      <circle cx="12" cy="21" r="1.5" fill="currentColor"/>
+                      <circle cx="18" cy="21" r="1.5" fill="currentColor"/>
+                      <circle cx="24" cy="21" r="1.5" fill="currentColor"/>
+                      <circle cx="12" cy="26" r="1.5" fill="currentColor"/>
+                    </svg>
+                  </div>
+                  <div className="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-[#c9b896] text-[#1F2A33] text-xs font-semibold flex items-center justify-center shadow">1</div>
+                </div>
+                <h3 className="text-lg text-[#1F2A33] mb-2 font-medium" style={{ fontFamily: 'Playfair Display, serif' }}>
+                  {t.hero.step1Title}
+                </h3>
+                <p className="text-sm text-gray-600 font-light leading-relaxed" style={{ fontFamily: 'Playfair Display, serif' }}>
+                  {t.hero.step1Desc}
+                </p>
+                {/* Connector line - desktop only */}
+                <div className="hidden lg:block absolute top-8 left-[calc(50%+40px)] w-[calc(100%-80px)] h-px bg-gradient-to-r from-[#c9b896] to-[#c9b896]/30" />
               </div>
-              <h3
-                className="text-lg sm:text-xl text-[#1F2A33] mb-3 font-normal"
-                style={{ fontFamily: 'Playfair Display, serif' }}
-              >
-                {t.hero.step1Title}
-              </h3>
-              <p className="text-sm text-gray-700 font-light leading-relaxed" style={{ fontFamily: 'Playfair Display, serif' }}>
-                {t.hero.step1Desc}
-              </p>
-            </div>
 
-            {/* Step 2 */}
-            <div className="text-center">
-              <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-[#f8f7f5] flex items-center justify-center">
-                <span className="text-3xl text-[#005F73]" style={{ fontFamily: 'Playfair Display, serif' }}>2</span>
+              {/* Step 2 - Consult */}
+              <div className="group flex-1 flex flex-col items-center text-center px-4 lg:px-6 relative">
+                <div className="relative mb-5">
+                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#005F73] to-[#004D5E] flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
+                    <svg width="28" height="28" viewBox="0 0 36 36" fill="none" className="text-white">
+                      <circle cx="18" cy="11" r="5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                      <path d="M9 31V27C9 23.6863 11.6863 21 15 21H21C24.3137 21 27 23.6863 27 27V31" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                      <path d="M26 10L28 8M28 8L30 10M28 8V5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </div>
+                  <div className="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-[#c9b896] text-[#1F2A33] text-xs font-semibold flex items-center justify-center shadow">2</div>
+                </div>
+                <h3 className="text-lg text-[#1F2A33] mb-2 font-medium" style={{ fontFamily: 'Playfair Display, serif' }}>
+                  {t.hero.step2Title}
+                </h3>
+                <p className="text-sm text-gray-600 font-light leading-relaxed" style={{ fontFamily: 'Playfair Display, serif' }}>
+                  {t.hero.step2Desc}
+                </p>
+                {/* Connector line - desktop only */}
+                <div className="hidden lg:block absolute top-8 left-[calc(50%+40px)] w-[calc(100%-80px)] h-px bg-gradient-to-r from-[#c9b896] to-[#c9b896]/30" />
               </div>
-              <h3
-                className="text-lg sm:text-xl text-[#1F2A33] mb-3 font-normal"
-                style={{ fontFamily: 'Playfair Display, serif' }}
-              >
-                {t.hero.step2Title}
-              </h3>
-              <p className="text-sm text-gray-700 font-light leading-relaxed" style={{ fontFamily: 'Playfair Display, serif' }}>
-                {t.hero.step2Desc}
-              </p>
-            </div>
 
-            {/* Step 3 */}
-            <div className="text-center">
-              <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-[#f8f7f5] flex items-center justify-center">
-                <span className="text-3xl text-[#005F73]" style={{ fontFamily: 'Playfair Display, serif' }}>3</span>
+              {/* Step 3 - Plan */}
+              <div className="group flex-1 flex flex-col items-center text-center px-4 lg:px-6 relative">
+                <div className="relative mb-5">
+                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#005F73] to-[#004D5E] flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
+                    <svg width="28" height="28" viewBox="0 0 36 36" fill="none" className="text-white">
+                      <path d="M9 5H23L27 9V31C27 31.5523 26.5523 32 26 32H10C9.44772 32 9 31.5523 9 31V5Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                      <path d="M23 5V9H27" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                      <path d="M13 14H23" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                      <path d="M13 19H20" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                      <path d="M14 25L17 28L24 21" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </div>
+                  <div className="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-[#c9b896] text-[#1F2A33] text-xs font-semibold flex items-center justify-center shadow">3</div>
+                </div>
+                <h3 className="text-lg text-[#1F2A33] mb-2 font-medium" style={{ fontFamily: 'Playfair Display, serif' }}>
+                  {t.hero.step3Title}
+                </h3>
+                <p className="text-sm text-gray-600 font-light leading-relaxed" style={{ fontFamily: 'Playfair Display, serif' }}>
+                  {t.hero.step3Desc}
+                </p>
+                {/* Connector line - desktop only */}
+                <div className="hidden lg:block absolute top-8 left-[calc(50%+40px)] w-[calc(100%-80px)] h-px bg-gradient-to-r from-[#c9b896] to-[#c9b896]/30" />
               </div>
-              <h3
-                className="text-lg sm:text-xl text-[#1F2A33] mb-3 font-normal"
-                style={{ fontFamily: 'Playfair Display, serif' }}
-              >
-                {t.hero.step3Title}
-              </h3>
-              <p className="text-sm text-gray-700 font-light leading-relaxed" style={{ fontFamily: 'Playfair Display, serif' }}>
-                {t.hero.step3Desc}
-              </p>
-            </div>
 
-            {/* Step 4 */}
-            <div className="text-center">
-              <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-[#f8f7f5] flex items-center justify-center">
-                <span className="text-3xl text-[#005F73]" style={{ fontFamily: 'Playfair Display, serif' }}>4</span>
+              {/* Step 4 - Call */}
+              <div className="group flex-1 flex flex-col items-center text-center px-4 lg:px-6">
+                <div className="relative mb-5">
+                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#c9b896] to-[#b8a785] flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
+                    <svg width="28" height="28" viewBox="0 0 36 36" fill="none" className="text-[#1F2A33]">
+                      <path d="M13 17C14.5 19.8 16.7 22 20 23.5L22.3 21.2C22.55 20.95 22.93 20.88 23.25 21C24.4 21.45 25.6 21.7 26.9 21.7C27.4 21.7 27.85 22.15 27.85 22.65V27C27.85 27.5 27.4 27.95 26.9 27.95C16.2 27.95 7.55 19.3 7.55 8.6C7.55 8.1 8 7.65 8.5 7.65H12.8C13.3 7.65 13.75 8.1 13.75 8.6C13.75 9.9 14 11.1 14.45 12.25C14.58 12.57 14.52 12.95 14.27 13.2L12 15.5C12.3 16.1 12.6 16.6 13 17Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                      <path d="M21 8C21 8 24.5 8 27.5 11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                      <path d="M21 12C21 12 23 12 25 14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                    </svg>
+                  </div>
+                  <div className="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-[#005F73] text-white text-xs font-semibold flex items-center justify-center shadow">4</div>
+                </div>
+                <h3 className="text-lg text-[#1F2A33] mb-2 font-medium" style={{ fontFamily: 'Playfair Display, serif' }}>
+                  {t.hero.step4Title}
+                </h3>
+                <p className="text-sm text-gray-600 font-light leading-relaxed" style={{ fontFamily: 'Playfair Display, serif' }}>
+                  {t.hero.step4Desc}
+                </p>
               </div>
-              <h3
-                className="text-lg sm:text-xl text-[#1F2A33] mb-3 font-normal"
-                style={{ fontFamily: 'Playfair Display, serif' }}
-              >
-                {t.hero.step4Title}
-              </h3>
-              <p className="text-sm text-gray-700 font-light leading-relaxed" style={{ fontFamily: 'Playfair Display, serif' }}>
-                {t.hero.step4Desc}
-              </p>
+
             </div>
           </div>
         </div>

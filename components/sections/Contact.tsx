@@ -1,38 +1,17 @@
 "use client"
 
-import React, { useState, useEffect, useCallback, Suspense } from 'react'
+import React, { useState, useEffect, Suspense } from 'react'
 import { assetPath } from '@/lib/utils'
-import { MapPin, Clock, Navigation, Send, CheckCircle, AlertCircle } from 'lucide-react'
+import { MapPin, Clock, Send, CheckCircle, AlertCircle } from 'lucide-react'
 import { useLanguage } from '@/lib/LanguageContext'
 import emailjs from '@emailjs/browser'
 import { emailJsConfig } from '@/config/emailjs.config'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
+import { LocationCard } from '@/components/ui/location-card'
+import { motion } from 'framer-motion'
 
 
-// SVG path for desktop route
-const scaledPath = "M 171 29 L 142 15 L 60 80 L 143 130 L 30 231 L 162 331"
-
-// Node positions for desktop
-const nodePositions = [
-  { x: 171, y: 29 },
-  { x: 60, y: 80 },
-  { x: 143, y: 130 },
-  { x: 30, y: 231 },
-  { x: 162, y: 331 },
-]
-
-// Horizontal path for mobile
-const horizontalPath = "M 15 30 L 185 30"
-
-// Horizontal node positions for mobile
-const horizontalNodePositions = [
-  { x: 15, y: 30 },
-  { x: 57.5, y: 30 },
-  { x: 100, y: 30 },
-  { x: 142.5, y: 30 },
-  { x: 185, y: 30 },
-]
 
 function ContactContent() {
   const { t } = useLanguage()
@@ -67,11 +46,6 @@ function ContactContent() {
       }))
     }
   }, [serviceFromUrl, serviceType, t])
-
-  // Location state
-  const [activeIndex, setActiveIndex] = useState(0)
-  const [isPaused, setIsPaused] = useState(false)
-  const [lastInteraction, setLastInteraction] = useState(Date.now())
 
   // Form handlers
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -120,53 +94,6 @@ function ContactContent() {
     }
   }
 
-  // Location handlers
-  const handleNodeSelect = useCallback((index: number) => {
-    setActiveIndex(index)
-    setIsPaused(true)
-    setLastInteraction(Date.now())
-  }, [])
-  
-  const handleKeyDown = useCallback((e: React.KeyboardEvent, index: number) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault()
-      handleNodeSelect(index)
-    }
-  }, [handleNodeSelect])
-  
-  const handleMouseEnter = useCallback(() => {
-    setIsPaused(true)
-    setLastInteraction(Date.now())
-  }, [])
-  
-  const handleMouseLeave = useCallback(() => {
-    setLastInteraction(Date.now())
-  }, [])
-  
-  // Auto-rotation
-  useEffect(() => {
-    const rotationInterval = setInterval(() => {
-      if (!isPaused) {
-        setActiveIndex((prev) => (prev + 1) % locations.length)
-      }
-    }, 4000)
-    return () => clearInterval(rotationInterval)
-  }, [isPaused])
-  
-  // Resume after inactivity
-  useEffect(() => {
-    if (isPaused) {
-      const resumeTimeout = setTimeout(() => {
-        if (Date.now() - lastInteraction >= 10000) {
-          setIsPaused(false)
-        }
-      }, 10000)
-      return () => clearTimeout(resumeTimeout)
-    }
-  }, [isPaused, lastInteraction])
-  
-  const activeLocation = locations[activeIndex]
-
   return (
     <section className="relative w-full">
       {/* Hero Section */}
@@ -182,17 +109,8 @@ function ContactContent() {
         handleSubmit={handleSubmit}
       />
       
-      {/* Map Section */}
-      <MapSection
-        t={t}
-        locations={locations}
-        activeLocation={activeLocation}
-        activeIndex={activeIndex}
-        handleNodeSelect={handleNodeSelect}
-        handleKeyDown={handleKeyDown}
-        handleMouseEnter={handleMouseEnter}
-        handleMouseLeave={handleMouseLeave}
-      />
+      {/* Locations Section - Compact Grid */}
+      <LocationsSection t={t} locations={locations} />
     </section>
   )
 }
@@ -501,385 +419,99 @@ function FormField({ id, label, type, value, onChange, error, placeholder }: For
   )
 }
 
-// Map Section Component
-interface MapSectionProps {
+// Locations Section Component - Using LocationCard component
+interface LocationsSectionProps {
   t: any
   locations: any[]
-  activeLocation: any
-  activeIndex: number
-  handleNodeSelect: (index: number) => void
-  handleKeyDown: (e: React.KeyboardEvent, index: number) => void
-  handleMouseEnter: () => void
-  handleMouseLeave: () => void
 }
 
-function MapSection({ t, locations, activeLocation, activeIndex, handleNodeSelect, handleKeyDown, handleMouseEnter, handleMouseLeave }: MapSectionProps) {
+function LocationsSection({ t, locations }: LocationsSectionProps) {
   return (
-    <div 
-      className="relative w-full py-20 overflow-hidden"
-      style={{ backgroundColor: '#005F73' }}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-    >
-      {/* City background overlay */}
-      <div 
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          backgroundImage: `url(${assetPath('/images/city-clay.png')})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          opacity: 0.1,
-        }}
-      />
-      
-      {/* Vignette overlay */}
-      <div 
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background: 'radial-gradient(ellipse at center, transparent 0%, rgba(31, 42, 51, 0.4) 100%)'
-        }}
-      />
-      
-      {/* Content */}
-      <div className="relative z-10 container mx-auto px-4">
-        <h2 
-          className="text-3xl md:text-4xl text-white text-center mb-4 font-normal tracking-wider"
-          style={{ fontFamily: 'Playfair Display, serif' }}
-        >
-          {t.contact.map.title}
-        </h2>
-        <p 
-          className="text-white/70 text-center mb-12 font-light"
-          style={{ fontFamily: 'Playfair Display, serif' }}
-        >
-          {t.contact.map.subtitle}
-        </p>
-        
-        <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:items-center">
-            {/* Location Card */}
-            <LocationCard
-              t={t}
-              locations={locations}
-              activeLocation={activeLocation}
-              activeIndex={activeIndex}
-              handleNodeSelect={handleNodeSelect}
-            />
-            
-            {/* SVG Map */}
-            <SVGMap
-              locations={locations}
-              activeIndex={activeIndex}
-              handleNodeSelect={handleNodeSelect}
-              handleKeyDown={handleKeyDown}
-            />
-          </div>
-        </div>
-      </div>
-    </div>
-  )
-}
-
-// Location Card Component
-interface LocationCardProps {
-  t: any
-  locations: any[]
-  activeLocation: any
-  activeIndex: number
-  handleNodeSelect: (index: number) => void
-}
-
-function LocationCard({ t, locations, activeLocation, activeIndex, handleNodeSelect }: LocationCardProps) {
-  return (
-    <div className="order-1">
-      <div 
-        className="rounded-2xl p-6 md:p-8 shadow-xl transition-all duration-300"
-        style={{ 
-          backgroundColor: '#E6DED9',
-          boxShadow: '0 20px 40px rgba(31, 42, 51, 0.3)'
-        }}
-      >
-        {/* Card header */}
-        <div className="flex items-start gap-4 mb-6">
-          <div 
-            className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0"
-            style={{ backgroundColor: '#C09B83' }}
+    <div className="w-full py-16 md:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-white">
+      <div className="container mx-auto max-w-7xl">
+        {/* Section Header */}
+        <div className="text-center mb-12 md:mb-16">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
           >
-            <Navigation className="w-6 h-6 text-white" />
-          </div>
-          <div className="flex-1 min-w-0">
-            <h3 
-              className="text-xl md:text-2xl font-normal truncate"
-              style={{ 
-                fontFamily: 'Playfair Display, serif',
-                color: '#1F2A33'
-              }}
-            >
-              {activeLocation.name}
-            </h3>
-          </div>
-        </div>
-        
-        <div className="h-px w-full mb-6" style={{ backgroundColor: '#C09B83', opacity: 0.3 }} />
-        
-        {/* Location details */}
-        <div className="space-y-4">
-          <LocationDetail 
-            icon={<MapPin className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: '#C09B83' }} />}
-            label={t.contact.map.locationFields.address}
-            value={activeLocation.address}
-          />
-          <LocationDetail 
-            icon={<Clock className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: '#C09B83' }} />}
-            label={t.contact.map.locationFields.days}
-            value={activeLocation.days}
-          />
-          <LocationDetail 
-            icon={
-              <div className="w-5 h-5 flex-shrink-0 mt-0.5 flex items-center justify-center">
-                <div className="w-3 h-3 rounded-full border-2" style={{ borderColor: '#C09B83' }} />
-              </div>
-            }
-            label={t.contact.map.locationFields.hours}
-            value={activeLocation.hours}
-          />
-          
-          {activeLocation.notes && (
-            <div 
-              className="mt-4 p-3 rounded-xl"
-              style={{ backgroundColor: 'rgba(58, 120, 132, 0.1)' }}
-            >
-              <p 
-                className="text-sm font-light italic"
-                style={{ 
-                  fontFamily: 'Playfair Display, serif',
-                  color: '#005F73'
-                }}
-              >
-                {activeLocation.notes}
-              </p>
+            <div className="flex items-center justify-center gap-4 mb-6">
+              <div className="w-16 md:w-24 h-[1px] bg-gradient-to-r from-transparent via-[#C09B83] to-[#C09B83]" />
+              <MapPin className="w-6 h-6 text-[#C09B83]" />
+              <div className="w-16 md:w-24 h-[1px] bg-gradient-to-l from-transparent via-[#C09B83] to-[#C09B83]" />
             </div>
-          )}
+            <h2
+              className="text-3xl md:text-4xl lg:text-5xl text-[#1F2A33] font-normal mb-4"
+              style={{ fontFamily: 'Playfair Display, serif' }}
+            >
+              {t.contact.map.title}
+            </h2>
+            <p
+              className="text-lg text-[#1F2A33]/70 max-w-2xl mx-auto"
+              style={{ fontFamily: 'Playfair Display, serif' }}
+            >
+              {t.contact.map.subtitle}
+            </p>
+          </motion.div>
         </div>
-        
-        {/* Location selector dots */}
-        <div className="flex items-center justify-center gap-2 mt-6 pt-4" style={{ borderTop: '1px solid rgba(192, 155, 131, 0.2)' }}>
-          {locations.map((loc, index) => (
-            <button
-              key={loc.id}
-              onClick={() => handleNodeSelect(index)}
-              className={`w-2.5 h-2.5 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 ${
-                index === activeIndex ? 'scale-125' : 'hover:scale-110'
-              }`}
-              style={{ 
-                backgroundColor: index === activeIndex ? '#C09B83' : '#005F73',
-                opacity: index === activeIndex ? 1 : 0.5
-              }}
-              aria-label={`Vai a ${loc.name}`}
-              aria-current={index === activeIndex ? 'true' : 'false'}
-            />
+
+        {/* Locations List with LocationCard */}
+        <div className="space-y-12 md:space-y-16 lg:space-y-20">
+          {locations.map((location, index) => (
+            <React.Fragment key={location.id}>
+              <LocationCard location={location} index={index} />
+
+              {/* Elegant Divider (except after last item) */}
+              {index < locations.length - 1 && (
+                <motion.div
+                  initial={{ opacity: 0, scaleX: 0 }}
+                  whileInView={{ opacity: 1, scaleX: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
+                  className="flex items-center justify-center py-8"
+                >
+                  <div className="flex items-center gap-4">
+                    <div className="w-16 md:w-24 h-[1px] bg-gradient-to-r from-transparent to-[#C09B83]/30" />
+                    <div className="w-2 h-2 rounded-full bg-[#C09B83]/50" />
+                    <div className="w-16 md:w-24 h-[1px] bg-gradient-to-l from-transparent to-[#C09B83]/30" />
+                  </div>
+                </motion.div>
+              )}
+            </React.Fragment>
           ))}
         </div>
+
+        {/* Bottom CTA Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mt-20 text-center"
+        >
+          <div className="max-w-2xl mx-auto">
+            <h3
+              className="text-2xl md:text-3xl font-normal text-[#1F2A33] mb-4"
+              style={{ fontFamily: 'Playfair Display, serif' }}
+            >
+              {t.contact.form.title}
+            </h3>
+            <p className="text-lg text-[#1F2A33]/70 mb-8">
+              {t.contact.form.subtitle.split('\n')[0]}
+            </p>
+            <a
+              href="#contact-form"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-[#005F73] text-white rounded-lg hover:bg-[#004D5E] transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
+            >
+              <MapPin className="w-5 h-5" />
+              <span className="font-medium">{t.contact.form.send}</span>
+            </a>
+          </div>
+        </motion.div>
       </div>
     </div>
-  )
-}
-
-// Location Detail Component
-interface LocationDetailProps {
-  icon: React.ReactNode
-  label: string
-  value: string
-}
-
-function LocationDetail({ icon, label, value }: LocationDetailProps) {
-  return (
-    <div className="flex items-start gap-3">
-      {icon}
-      <div>
-        <p 
-          className="text-xs uppercase tracking-wider mb-1 font-medium"
-          style={{ color: '#005F73' }}
-        >
-          {label}
-        </p>
-        <p 
-          className="font-light"
-          style={{ 
-            fontFamily: 'Playfair Display, serif',
-            color: '#1F2A33'
-          }}
-        >
-          {value}
-        </p>
-      </div>
-    </div>
-  )
-}
-
-// SVG Map Component
-interface SVGMapProps {
-  locations: any[]
-  activeIndex: number
-  handleNodeSelect: (index: number) => void
-  handleKeyDown: (e: React.KeyboardEvent, index: number) => void
-}
-
-function SVGMap({ locations, activeIndex, handleNodeSelect, handleKeyDown }: SVGMapProps) {
-  return (
-    <div className="order-2 flex justify-center items-center">
-      {/* Mobile */}
-      <div className="lg:hidden relative w-full max-w-md mx-auto" style={{ height: '80px' }}>
-        <svg 
-          viewBox="0 0 200 60" 
-          className="w-full h-full"
-          role="img"
-          aria-label="Mappa delle sedi con percorso"
-          preserveAspectRatio="xMidYMid meet"
-        >
-          <path
-            d={horizontalPath}
-            fill="none"
-            stroke="#C09B83"
-            strokeWidth="3"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            style={{ filter: 'drop-shadow(0 2px 8px rgba(192, 155, 131, 0.5))' }}
-          />
-          {horizontalNodePositions.map((pos, index) => (
-            <SVGNode
-              key={locations[index].id}
-              locations={locations}
-              cx={pos.x}
-              cy={pos.y}
-              index={index}
-              isActive={index === activeIndex}
-              isMobile={true}
-              handleNodeSelect={handleNodeSelect}
-              handleKeyDown={handleKeyDown}
-            />
-          ))}
-        </svg>
-      </div>
-      
-      {/* Desktop */}
-      <div className="hidden lg:block relative w-full" style={{ height: '350px' }}>
-        <svg 
-          viewBox="0 0 200 360" 
-          className="absolute inset-0 w-full h-full"
-          role="img"
-          aria-label="Mappa delle sedi con percorso"
-          preserveAspectRatio="xMidYMid meet"
-        >
-          <path
-            d={scaledPath}
-            fill="none"
-            stroke="#C09B83"
-            strokeWidth="4"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            style={{ filter: 'drop-shadow(0 2px 8px rgba(192, 155, 131, 0.5))' }}
-          />
-          {nodePositions.map((pos, index) => (
-            <SVGNode
-              key={locations[index].id}
-              locations={locations}
-              cx={pos.x}
-              cy={pos.y}
-              index={index}
-              isActive={index === activeIndex}
-              isMobile={false}
-              handleNodeSelect={handleNodeSelect}
-              handleKeyDown={handleKeyDown}
-            />
-          ))}
-        </svg>
-      </div>
-    </div>
-  )
-}
-
-// SVG Node Component
-interface SVGNodeProps {
-  locations: any[]
-  cx: number
-  cy: number
-  index: number
-  isActive: boolean
-  isMobile: boolean
-  handleNodeSelect: (index: number) => void
-  handleKeyDown: (e: React.KeyboardEvent, index: number) => void
-}
-
-function SVGNode({ locations, cx, cy, index, isActive, isMobile, handleNodeSelect, handleKeyDown }: SVGNodeProps) {
-  const sizes = isMobile 
-    ? { halo: 18, outer: isActive ? 14 : 10, inner: isActive ? 8 : 6, clickable: 20, fontSize: "9" }
-    : { halo: 24, outer: isActive ? 18 : 13, inner: isActive ? 10 : 8, clickable: 26, fontSize: "11" }
-
-  return (
-    <g>
-      {isActive && (
-        <circle
-          cx={cx}
-          cy={cy}
-          r={sizes.halo}
-          fill="none"
-          stroke="#C09B83"
-          strokeWidth={isMobile ? "2" : "2.5"}
-          className="animate-pulse"
-          style={{ opacity: 0.4 }}
-        />
-      )}
-      
-      <circle
-        cx={cx}
-        cy={cy}
-        r={sizes.outer}
-        fill={isActive ? '#C09B83' : '#E6DED9'}
-        className="transition-all duration-300 ease-out"
-        style={{ 
-          filter: isActive 
-            ? 'drop-shadow(0 4px 12px rgba(192, 155, 131, 0.6))' 
-            : 'drop-shadow(0 2px 6px rgba(0, 0, 0, 0.3))'
-        }}
-      />
-      
-      <circle
-        cx={cx}
-        cy={cy}
-        r={sizes.inner}
-        fill={isActive ? '#1F2A33' : '#005F73'}
-        className="transition-all duration-300 ease-out"
-      />
-      
-      <circle
-        cx={cx}
-        cy={cy}
-        r={sizes.clickable}
-        fill="transparent"
-        className="cursor-pointer focus:outline-none"
-        role="button"
-        tabIndex={0}
-        aria-label={`Seleziona ${locations[index].name}`}
-        aria-pressed={isActive}
-        onClick={() => handleNodeSelect(index)}
-        onKeyDown={(e) => handleKeyDown(e, index)}
-      />
-      
-      <text
-        x={cx}
-        y={cy + 1}
-        textAnchor="middle"
-        dominantBaseline="middle"
-        fill={isActive ? '#C09B83' : '#E6DED9'}
-        fontSize={sizes.fontSize}
-        fontWeight="600"
-        className="pointer-events-none select-none"
-        style={{ fontFamily: 'Montserrat, sans-serif' }}
-      >
-        {index + 1}
-      </text>
-    </g>
   )
 }
 
