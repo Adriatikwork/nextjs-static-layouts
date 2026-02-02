@@ -65,41 +65,29 @@ export function Hero() {
             <div className="max-w-6xl mx-auto text-center">
               {/* Animated entrance for content */}
               <div className="space-y-4 sm:space-y-6 md:space-y-8 animate-fade-in">
-                {/* Small accent line */}
-                <div className="flex items-center justify-center gap-3 md:gap-4 mb-2">
-                  <div className="w-12 sm:w-16 md:w-24 h-[1px] bg-gradient-to-r from-transparent via-[#c9b896] to-[#c9b896]" />
-                  <p
-                    className="text-[#c9b896] text-xs sm:text-sm md:text-base tracking-[0.3em] md:tracking-[0.4em] uppercase font-light whitespace-nowrap"
+                {/* Refined Name Display with elegant accent */}
+                <div className="relative inline-block mx-auto">
+                  {/* Decorative background element */}
+                  <div className="absolute -inset-4 bg-white/5 backdrop-blur-sm rounded-lg" />
+
+                  <h1
+                    className="relative text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-white font-light leading-tight tracking-wide px-6 py-4"
                     style={{
                       fontFamily: 'Playfair Display, serif',
-                      textShadow: '1px 1px 3px rgba(0,0,0,0.5)'
+                      textShadow: '2px 4px 20px rgba(0,0,0,0.7)',
+                      animation: 'slideInUp 0.8s ease-out both',
                     }}
                   >
-                    {t.hero.welcomeText}
-                  </p>
-                  <div className="w-12 sm:w-16 md:w-24 h-[1px] bg-gradient-to-l from-transparent via-[#c9b896] to-[#c9b896]" />
-                </div>
+                    {t.hero.name}
+                  </h1>
 
-                {/* Main Heading - HUGE and dramatic */}
-                <h1
-                  className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-white font-normal leading-[0.95] tracking-tight px-2"
-                  style={{
-                    fontFamily: 'Playfair Display, serif',
-                    textShadow: '2px 4px 20px rgba(0,0,0,0.5)',
-                  }}
-                >
-                  {t.hero.name.split(' ').map((word, index) => (
-                    <span
-                      key={index}
-                      className="block"
-                      style={{
-                        animation: `slideInUp 0.8s ease-out ${index * 0.2}s both`,
-                      }}
-                    >
-                      {word.toUpperCase()}
-                    </span>
-                  ))}
-                </h1>
+                  {/* Elegant underline accent */}
+                  <div className="flex items-center justify-center gap-2 mt-2">
+                    <div className="w-12 h-[2px] bg-gradient-to-r from-transparent to-[#c9b896]" />
+                    <div className="w-20 h-[2px] bg-[#c9b896]" />
+                    <div className="w-12 h-[2px] bg-gradient-to-l from-transparent to-[#c9b896]" />
+                  </div>
+                </div>
 
                 {/* Elegant divider */}
                 <div className="flex items-center justify-center gap-3 md:gap-4 py-2 md:py-4">
@@ -201,21 +189,6 @@ export function Hero() {
             </span>
             <div className="w-[2px] h-8 bg-gradient-to-b from-white/70 to-transparent" />
           </div>
-        </div>
-      </div>
-
-      {/* Bottom accent section */}
-      <div
-        className="w-full py-12 md:py-14 relative overflow-hidden"
-        style={{ backgroundColor: '#f8f7f5' }}
-      >
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <p className="text-base md:text-lg text-gray-800 leading-relaxed font-normal" style={{ fontFamily: 'Playfair Display, serif' }}>
-            <span className="text-xl md:text-2xl text-[#005F73]">+</span> {t.hero.bottomText}
-          </p>
-          <p className="text-sm md:text-base text-gray-700 leading-relaxed italic mt-2 font-light px-4" style={{ fontFamily: 'Playfair Display, serif' }}>
-            {t.hero.bottomSubtext}
-          </p>
         </div>
       </div>
 
@@ -468,14 +441,14 @@ export function Hero() {
               {/* Step 4 - Call */}
               <div className="group flex-1 flex flex-col items-center text-center px-4 lg:px-6">
                 <div className="relative mb-5">
-                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#c9b896] to-[#b8a785] flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
-                    <svg width="28" height="28" viewBox="0 0 36 36" fill="none" className="text-[#1F2A33]">
+                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#005F73] to-[#004D5E] flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
+                    <svg width="28" height="28" viewBox="0 0 36 36" fill="none" className="text-white">
                       <path d="M13 17C14.5 19.8 16.7 22 20 23.5L22.3 21.2C22.55 20.95 22.93 20.88 23.25 21C24.4 21.45 25.6 21.7 26.9 21.7C27.4 21.7 27.85 22.15 27.85 22.65V27C27.85 27.5 27.4 27.95 26.9 27.95C16.2 27.95 7.55 19.3 7.55 8.6C7.55 8.1 8 7.65 8.5 7.65H12.8C13.3 7.65 13.75 8.1 13.75 8.6C13.75 9.9 14 11.1 14.45 12.25C14.58 12.57 14.52 12.95 14.27 13.2L12 15.5C12.3 16.1 12.6 16.6 13 17Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                       <path d="M21 8C21 8 24.5 8 27.5 11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
                       <path d="M21 12C21 12 23 12 25 14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
                     </svg>
                   </div>
-                  <div className="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-[#005F73] text-white text-xs font-semibold flex items-center justify-center shadow">4</div>
+                  <div className="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-[#c9b896] text-[#1F2A33] text-xs font-semibold flex items-center justify-center shadow">4</div>
                 </div>
                 <h3 className="text-lg text-[#1F2A33] mb-2 font-medium" style={{ fontFamily: 'Playfair Display, serif' }}>
                   {t.hero.step4Title}

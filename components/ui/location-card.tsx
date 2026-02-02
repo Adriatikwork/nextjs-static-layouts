@@ -39,7 +39,7 @@ export function LocationCard({ location, index }: LocationCardProps) {
       }}
       className={cn(
         "group relative overflow-hidden rounded-xl md:rounded-2xl",
-        "bg-[#E6DED9] border border-[#C09B83]/30",
+        "bg-[#f8f7f5] border border-[#C09B83]/30",
         "shadow-md hover:shadow-xl transition-all duration-500",
         "hover:scale-[1.01] md:hover:scale-[1.02]"
       )}
@@ -82,31 +82,7 @@ export function LocationCard({ location, index }: LocationCardProps) {
             </p>
           </div>
 
-          {/* Days and Hours - Mobile Friendly */}
-          {(location.days || location.hours) && (
-            <div className="mb-4 md:mb-6 space-y-2">
-              {location.days && (
-                <div className="flex items-center gap-2 text-[#1F2A33]/70">
-                  <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                  </svg>
-                  <span className="text-sm md:text-base" style={{ fontFamily: 'Playfair Display, serif' }}>
-                    {location.days}
-                  </span>
-                </div>
-              )}
-              {location.hours && (
-                <div className="flex items-center gap-2 text-[#1F2A33]/70">
-                  <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  <span className="text-sm md:text-base" style={{ fontFamily: 'Playfair Display, serif' }}>
-                    {location.hours}
-                  </span>
-                </div>
-              )}
-            </div>
-          )}
+
 
           {/* Notes (if available) */}
           {location.notes && (

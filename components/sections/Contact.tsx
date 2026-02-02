@@ -1,5 +1,7 @@
 "use client"
 
+import { cn } from "@/lib/utils"
+
 import React, { useState, useEffect, Suspense } from 'react'
 import { assetPath } from '@/lib/utils'
 import { MapPin, Clock, Send, CheckCircle, AlertCircle } from 'lucide-react'
@@ -202,7 +204,7 @@ interface FormSectionProps {
 
 function FormSection({ t, formData, formStatus, formErrors, handleInputChange, handleSubmit }: FormSectionProps) {
   return (
-    <div className="w-full py-16 md:py-20" style={{ backgroundColor: '#f5f1ed' }}>
+    <div className="w-full py-16 md:py-20" style={{ backgroundColor: '#f8f7f5' }}>
       <div className="container mx-auto px-4">
         <div className="max-w-5xl mx-auto">
           <div id="contact-form" className="scroll-mt-20">
@@ -419,7 +421,7 @@ function FormField({ id, label, type, value, onChange, error, placeholder }: For
   )
 }
 
-// Locations Section Component - Using LocationCard component
+// Locations Section Component - Elegant Alternating Layout
 interface LocationsSectionProps {
   t: any
   locations: any[]
@@ -457,30 +459,120 @@ function LocationsSection({ t, locations }: LocationsSectionProps) {
           </motion.div>
         </div>
 
-        {/* Locations List with LocationCard */}
-        <div className="space-y-12 md:space-y-16 lg:space-y-20">
-          {locations.map((location, index) => (
-            <React.Fragment key={location.id}>
-              <LocationCard location={location} index={index} />
+        {/* Alternating Locations with Timeline */}
+        <div className="relative max-w-6xl mx-auto">
+          {/* Center Timeline Line - Hidden on mobile */}
+          <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-[2px] bg-gradient-to-b from-[#C09B83]/30 via-[#C09B83]/50 to-[#C09B83]/30 transform -translate-x-1/2" />
 
-              {/* Elegant Divider (except after last item) */}
-              {index < locations.length - 1 && (
+          <div className="space-y-6 md:space-y-8">
+            {locations.map((location, index) => {
+              const isEven = index % 2 === 0
+              const encodedAddress = encodeURIComponent(location.address)
+              const mapUrl = `https://maps.google.com/maps?q=${encodedAddress}&output=embed`
+
+              return (
                 <motion.div
-                  initial={{ opacity: 0, scaleX: 0 }}
-                  whileInView={{ opacity: 1, scaleX: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
-                  className="flex items-center justify-center py-8"
+                  key={location.id}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{
+                    duration: 0.6,
+                    delay: index * 0.1,
+                    ease: [0.22, 1, 0.36, 1]
+                  }}
+                  className="relative"
                 >
-                  <div className="flex items-center gap-4">
-                    <div className="w-16 md:w-24 h-[1px] bg-gradient-to-r from-transparent to-[#C09B83]/30" />
-                    <div className="w-2 h-2 rounded-full bg-[#C09B83]/50" />
-                    <div className="w-16 md:w-24 h-[1px] bg-gradient-to-l from-transparent to-[#C09B83]/30" />
+                  {/* Timeline Dot - Hidden on mobile */}
+                  <div className="hidden lg:block absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
+                    <div className="w-8 h-8 rounded-full bg-[#005F73] border-4 border-white flex items-center justify-center">
+                      <span className="text-white text-xs font-semibold">{index + 1}</span>
+                    </div>
                   </div>
+
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6 items-center">
+                    {/* Text Content */}
+                    <div className={cn(
+                      "lg:pr-12",
+                      isEven ? "lg:text-right" : "lg:col-start-2 lg:pl-12 lg:text-left"
+                    )}>
+                      {/* Mobile Number Badge */}
+                      <div className="lg:hidden mb-3">
+                        <div className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-[#005F73] text-white font-semibold text-sm">
+                          {index + 1}
+                        </div>
+                      </div>
+
+                      <h3
+                        className="text-2xl md:text-3xl font-normal mb-2 text-[#1F2A33]"
+                        style={{ fontFamily: 'Playfair Display, serif' }}
+                      >
+                        {location.name}
+                      </h3>
+
+                      <div className={cn(
+                        "flex items-start gap-2 mb-3",
+                        isEven ? "lg:justify-end" : "lg:justify-start"
+                      )}>
+                        <MapPin className="w-4 h-4 text-[#005F73] mt-1 flex-shrink-0" />
+                        <p
+                          className="text-base md:text-lg text-[#1F2A33]/80 leading-relaxed"
+                          style={{ fontFamily: 'Playfair Display, serif' }}
+                        >
+                          {location.address}
+                        </p>
+                      </div>
+
+                      {location.notes && (
+                        <p className="text-sm text-[#1F2A33]/60 italic mb-3">
+                          {location.notes}
+                        </p>
+                      )}
+
+                      <a
+                        href={`https://maps.google.com/?q=${encodedAddress}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={cn(
+                          "inline-flex items-center gap-2 text-[#005F73] font-medium text-sm",
+                          "hover:text-[#C09B83] transition-colors duration-300"
+                        )}
+                      >
+                        <MapPin className="w-4 h-4" />
+                        <span>Apri in Google Maps</span>
+                      </a>
+                    </div>
+
+                    {/* Map */}
+                    <div className={cn(
+                      "relative overflow-hidden rounded-lg shadow-lg",
+                      "h-[200px] md:h-[250px]",
+                      isEven ? "lg:col-start-2" : "lg:col-start-1 lg:row-start-1"
+                    )}>
+                      <iframe
+                        src={mapUrl}
+                        width="100%"
+                        height="100%"
+                        style={{ border: 0 }}
+                        allowFullScreen
+                        loading="lazy"
+                        referrerPolicy="no-referrer-when-downgrade"
+                        title={`Map of ${location.name}`}
+                        className="absolute inset-0 w-full h-full"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Subtle Divider */}
+                  {index < locations.length - 1 && (
+                    <div className="mt-6 md:mt-8 flex justify-center">
+                      <div className="w-12 h-[1px] bg-[#C09B83]/30" />
+                    </div>
+                  )}
                 </motion.div>
-              )}
-            </React.Fragment>
-          ))}
+              )
+            })}
+          </div>
         </div>
 
         {/* Bottom CTA Section */}
@@ -489,7 +581,7 @@ function LocationsSection({ t, locations }: LocationsSectionProps) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mt-20 text-center"
+          className="mt-16 text-center"
         >
           <div className="max-w-2xl mx-auto">
             <h3
@@ -501,13 +593,16 @@ function LocationsSection({ t, locations }: LocationsSectionProps) {
             <p className="text-lg text-[#1F2A33]/70 mb-8">
               {t.contact.form.subtitle.split('\n')[0]}
             </p>
-            <a
-              href="#contact-form"
+            <button
+              onClick={() => {
+                const element = document.getElementById('contact-form')
+                element?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+              }}
               className="inline-flex items-center gap-2 px-8 py-4 bg-[#005F73] text-white rounded-lg hover:bg-[#004D5E] transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
             >
               <MapPin className="w-5 h-5" />
               <span className="font-medium">{t.contact.form.send}</span>
-            </a>
+            </button>
           </div>
         </motion.div>
       </div>
