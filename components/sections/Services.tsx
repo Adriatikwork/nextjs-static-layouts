@@ -2,18 +2,21 @@
 
 import { useLanguage } from '@/lib/LanguageContext'
 import { motion, AnimatePresence } from 'framer-motion'
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { getServiceSummaries } from '@/content/services'
 
 export function Services() {
-  const { t } = useLanguage()
+  const { t, language } = useLanguage()
   const [activeTab, setActiveTab] = useState<'dental' | 'aesthetic'>('aesthetic')
 
-  // Service data comes from siteCopy.ts with Unsplash images
+  // Get service summaries dynamically based on current language
+  const services = useMemo(() => getServiceSummaries(language), [language])
+
   const currentServices = activeTab === 'dental'
-    ? t.services.dentalServices
-    : t.services.aestheticServices
+    ? services.dentalServices
+    : services.aestheticServices
 
   return (
     <section className="w-full bg-white pt-20">

@@ -19,12 +19,11 @@ export interface ServiceImages {
   gallery: string[]
 }
 
-export interface ServiceDetailData {
-  slug: string
+// Translatable content only (no slug, category, or images)
+export interface ServiceTranslations {
   title: string
   description: string
   features: string[]
-  category: 'dental' | 'aesthetic'
   whatIs: string
   benefits: string[]
   process: ProcessStep[]
@@ -33,10 +32,16 @@ export interface ServiceDetailData {
   suitableFor: string[]
   notSuitableFor?: string[]
   faqs: FAQ[]
+}
+
+// Complete service data (config + translations)
+export interface ServiceDetailData extends ServiceTranslations {
+  slug: string
+  category: 'dental' | 'aesthetic'
   images: ServiceImages
 }
 
 export interface ServiceContent {
-  it: ServiceDetailData
-  en: ServiceDetailData
+  it: ServiceTranslations
+  en: ServiceTranslations
 }

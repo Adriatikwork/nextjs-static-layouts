@@ -2,11 +2,9 @@ import { ServiceContent } from './types'
 
 export const content: ServiceContent = {
   it: {
-    slug: "filler-dermici",
     title: "Filler Dermici",
     description: "Acido ialuronico di alta qualità per volumizzare in modo naturale.",
     features: ["Volumizzazione labbra", "Definizione zigomi", "Rimodellamento volto"],
-    category: "aesthetic",
 
     whatIs: "I filler dermici a base di acido ialuronico rappresentano una delle tecniche più versatili ed efficaci della medicina estetica moderna. L'acido ialuronico è una sostanza naturalmente presente nella nostra pelle che, con il passare degli anni, diminuisce causando perdita di volume e comparsa di rughe. Attraverso microiniezioni precise e personalizzate, ripristiniamo i volumi del viso in modo naturale e armonioso, rispettando l'anatomia facciale e la tua unicità. Utilizziamo esclusivamente prodotti certificati di altissima qualità per garantire sicurezza e risultati ottimali.",
 
@@ -94,23 +92,12 @@ export const content: ServiceContent = {
         question: "Quando vedrò i risultati finali?",
         answer: "I risultati sono immediatamente visibili, ma il risultato definitivo si apprezza dopo circa 2 settimane, quando eventuali gonfiori si sono completamente riassorbiti e il prodotto si è integrato nei tessuti."
       }
-    ],
-
-    images: {
-      main: "https://images.unsplash.com/photo-1519415510236-718bdfcd89c8?w=1200&q=80",
-      gallery: [
-        "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=1200&q=80",
-        "https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=1200&q=80",
-        "https://images.unsplash.com/photo-1596178060671-7a80dc8059ea?w=1200&q=80"
-      ]
-    }
+    ]
   },
   en: {
-    slug: "filler-dermici",
     title: "Dermal Fillers",
     description: "High-quality hyaluronic acid for natural volumization.",
     features: ["Lip volumization", "Cheekbone definition", "Facial contouring"],
-    category: "aesthetic",
 
     whatIs: "Hyaluronic acid-based dermal fillers represent one of the most versatile and effective techniques in modern aesthetic medicine. Hyaluronic acid is a substance naturally present in our skin that, over the years, decreases causing volume loss and wrinkle formation. Through precise and personalized micro-injections, we restore facial volumes naturally and harmoniously, respecting facial anatomy and your uniqueness. We use exclusively certified products of the highest quality to ensure safety and optimal results.",
 
@@ -198,15 +185,6 @@ export const content: ServiceContent = {
         question: "When will I see final results?",
         answer: "Results are immediately visible, but the final result is appreciated after about 2 weeks, when any swelling has completely resolved and the product has integrated into the tissues."
       }
-    ],
-
-    images: {
-      main: "https://images.unsplash.com/photo-1519415510236-718bdfcd89c8?w=1200&q=80",
-      gallery: [
-        "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=1200&q=80",
-        "https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=1200&q=80",
-        "https://images.unsplash.com/photo-1596178060671-7a80dc8059ea?w=1200&q=80"
-      ]
-    }
+    ]
   }
 }

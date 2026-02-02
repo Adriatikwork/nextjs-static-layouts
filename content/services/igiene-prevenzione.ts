@@ -2,11 +2,9 @@ import { ServiceContent } from './types'
 
 export const content: ServiceContent = {
   it: {
-    slug: "igiene-prevenzione",
     title: "Igiene e Prevenzione",
     description: "Programmi personalizzati di igiene orale per mantenere il tuo sorriso sano.",
     features: ["Detartrasi professionale", "Sbiancamento dentale", "Controlli periodici"],
-    category: "dental",
 
     whatIs: "L'igiene e la prevenzione rappresentano il fondamento della salute orale. Attraverso sedute professionali di igiene, controlli periodici e programmi personalizzati, preveniamo l'insorgenza di carie, malattie gengivali e altre patologie del cavo orale. La nostra igienista dentale utilizza strumenti all'avanguardia e tecniche delicate per rimuovere placca e tartaro, mentre i controlli regolari permettono di intercettare precocemente eventuali problematiche. Investire nella prevenzione significa preservare la salute e la bellezza del tuo sorriso nel tempo.",
 
@@ -93,23 +91,12 @@ export const content: ServiceContent = {
         question: "Lo sbiancamento professionale danneggia i denti?",
         answer: "No, se eseguito correttamente da professionisti. Utilizziamo prodotti sicuri e approvati che non danneggiano lo smalto. Alcuni pazienti possono avvertire sensibilità temporanea, che si risolve in pochi giorni."
       }
-    ],
-
-    images: {
-      main: "https://images.unsplash.com/photo-1676897288522-e8a081e71430?w=1200&q=80",
-      gallery: [
-        "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=1200&q=80",
-        "https://images.unsplash.com/photo-1606811956291-c6a86d6d2ee0?w=1200&q=80",
-        "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=1200&q=80"
-      ]
-    }
+    ]
   },
   en: {
-    slug: "igiene-prevenzione",
     title: "Hygiene and Prevention",
     description: "Personalized oral hygiene programs to keep your smile healthy.",
     features: ["Professional scaling", "Dental whitening", "Periodic checkups"],
-    category: "dental",
 
     whatIs: "Hygiene and prevention represent the foundation of oral health. Through professional hygiene sessions, periodic check-ups, and personalized programs, we prevent the onset of cavities, gum diseases, and other oral cavity pathologies. Our dental hygienist uses state-of-the-art instruments and gentle techniques to remove plaque and tartar, while regular check-ups allow early detection of any problems. Investing in prevention means preserving the health and beauty of your smile over time.",
 
@@ -196,15 +183,6 @@ export const content: ServiceContent = {
         question: "Does professional whitening damage teeth?",
         answer: "No, if performed correctly by professionals. We use safe and approved products that do not damage enamel. Some patients may experience temporary sensitivity, which resolves in a few days."
       }
-    ],
-
-    images: {
-      main: "https://images.unsplash.com/photo-1676897288522-e8a081e71430?w=1200&q=80",
-      gallery: [
-        "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=1200&q=80",
-        "https://images.unsplash.com/photo-1606811956291-c6a86d6d2ee0?w=1200&q=80",
-        "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=1200&q=80"
-      ]
-    }
+    ]
   }
 }

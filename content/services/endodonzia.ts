@@ -2,11 +2,9 @@ import { ServiceContent } from './types'
 
 export const content: ServiceContent = {
   it: {
-    slug: "endodonzia",
     title: "Endodonzia",
     description: "Terapie canalari specialistiche con tecnologie digitali avanzate.",
     features: ["Devitalizzazioni", "Ritrattamenti", "Microscopia operatoria"],
-    category: "dental",
 
     whatIs: "L'endodonzia è la branca dell'odontoiatria che si occupa della diagnosi e del trattamento delle patologie della polpa dentale e dei tessuti periradicolari. Attraverso terapie canalari specialistiche, salviamo denti gravemente compromessi da carie profonde, traumi o infezioni, evitando l'estrazione. Utilizziamo tecnologie digitali avanzate, microscopia operatoria e strumenti di ultima generazione per garantire precisione millimetrica e massimi tassi di successo. L'obiettivo è preservare il dente naturale, mantenendo funzionalità ed estetica.",
 
@@ -92,23 +90,12 @@ export const content: ServiceContent = {
         question: "È meglio della estrazione?",
         answer: "Assolutamente sì. Preservare il dente naturale è sempre preferibile, mantenendo la funzione masticatoria naturale ed evitando la necessità di impianti o ponti."
       }
-    ],
-
-    images: {
-      main: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1200&q=80",
-      gallery: [
-        "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=1200&q=80",
-        "https://images.unsplash.com/photo-1588776814546-daab30f310ce?w=1200&q=80",
-        "https://images.unsplash.com/photo-1606811956291-c6a86d6d2ee0?w=1200&q=80"
-      ]
-    }
+    ]
   },
   en: {
-    slug: "endodonzia",
     title: "Endodontics",
     description: "Specialized canal therapies with advanced digital technologies.",
     features: ["Root canals", "Retreatments", "Operative microscopy"],
-    category: "dental",
 
     whatIs: "Endodontics is the branch of dentistry that deals with the diagnosis and treatment of dental pulp and periradicular tissue pathologies. Through specialized root canal therapies, we save teeth severely compromised by deep cavities, trauma, or infections, avoiding extraction. We use advanced digital technologies, operative microscopy, and state-of-the-art instruments to ensure millimetric precision and maximum success rates. The goal is to preserve the natural tooth, maintaining functionality and aesthetics.",
 
@@ -194,15 +181,6 @@ export const content: ServiceContent = {
         question: "Is it better than extraction?",
         answer: "Absolutely yes. Preserving the natural tooth is always preferable, maintaining natural chewing function and avoiding the need for implants or bridges."
       }
-    ],
-
-    images: {
-      main: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1200&q=80",
-      gallery: [
-        "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=1200&q=80",
-        "https://images.unsplash.com/photo-1588776814546-daab30f310ce?w=1200&q=80",
-        "https://images.unsplash.com/photo-1606811956291-c6a86d6d2ee0?w=1200&q=80"
-      ]
-    }
+    ]
   }
 }

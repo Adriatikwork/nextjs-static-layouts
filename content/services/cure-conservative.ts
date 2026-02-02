@@ -2,11 +2,9 @@ import { ServiceContent } from './types'
 
 export const content: ServiceContent = {
   it: {
-    slug: "cure-conservative",
     title: "Cure Conservative",
     description: "Preserviamo la salute naturale dei tuoi denti con trattamenti mirati.",
     features: ["Otturazioni estetiche", "Ricostruzioni dentali", "Sbiancamento professionale"],
-    category: "dental",
 
     whatIs: "Le cure conservative rappresentano l'insieme di trattamenti odontoiatrici volti a preservare e ripristinare la salute naturale dei denti. Attraverso tecniche minimamente invasive e materiali biocompatibili di ultima generazione, trattiamo carie, fratture e difetti dello smalto, preservando la struttura dentale originale il più possibile. Il nostro approccio combina precisione clinica e attenzione estetica per risultati duraturi e naturali, garantendo funzionalità ottimale e bellezza del sorriso.",
 
@@ -92,23 +90,12 @@ export const content: ServiceContent = {
         question: "Posso fare lo sbiancamento con otturazioni presenti?",
         answer: "Sì, ma è importante sapere che le otturazioni non si sbiancano. In alcuni casi potrebbe essere necessario sostituirle dopo lo sbiancamento per mantenere uniformità di colore."
       }
-    ],
-
-    images: {
-      main: "https://images.unsplash.com/photo-1606811971618-4486d14f3f99?w=1200&q=80",
-      gallery: [
-        "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=1200&q=80",
-        "https://images.unsplash.com/photo-1609840112855-9ab5f01f28c7?w=1200&q=80",
-        "https://images.unsplash.com/photo-1598256989800-fe5f95da9787?w=1200&q=80"
-      ]
-    }
+    ]
   },
   en: {
-    slug: "cure-conservative",
     title: "Conservative Care",
     description: "We preserve the natural health of your teeth with targeted treatments.",
     features: ["Aesthetic fillings", "Dental restorations", "Professional whitening"],
-    category: "dental",
 
     whatIs: "Conservative dentistry encompasses all dental treatments aimed at preserving and restoring the natural health of teeth. Through minimally invasive techniques and state-of-the-art biocompatible materials, we treat cavities, fractures, and enamel defects while preserving as much of the original tooth structure as possible. Our approach combines clinical precision with aesthetic attention for lasting, natural results, ensuring optimal functionality and smile beauty.",
 
@@ -194,15 +181,6 @@ export const content: ServiceContent = {
         question: "Can I whiten teeth with fillings present?",
         answer: "Yes, but it's important to know that fillings don't whiten. In some cases, it may be necessary to replace them after whitening to maintain color uniformity."
       }
-    ],
-
-    images: {
-      main: "https://images.unsplash.com/photo-1606811971618-4486d14f3f99?w=1200&q=80",
-      gallery: [
-        "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=1200&q=80",
-        "https://images.unsplash.com/photo-1609840112855-9ab5f01f28c7?w=1200&q=80",
-        "https://images.unsplash.com/photo-1598256989800-fe5f95da9787?w=1200&q=80"
-      ]
-    }
+    ]
   }
 }

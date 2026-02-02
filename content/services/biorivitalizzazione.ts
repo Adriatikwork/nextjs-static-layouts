@@ -2,11 +2,9 @@ import { ServiceContent } from './types'
 
 export const content: ServiceContent = {
   it: {
-    slug: "biorivitalizzazione",
     title: "Biorivitalizzazione",
     description: "Miglioramento della qualità della pelle e stimolazione del collagene.",
     features: ["Biorivitalizzazione viso", "Trattamenti anti-aging", "Peeling medicali"],
-    category: "aesthetic",
 
     whatIs: "La biorivitalizzazione è un trattamento di medicina estetica avanzato che mira a migliorare la qualità della pelle del viso attraverso microiniezioni di sostanze bioattive come acido ialuronico, vitamine, aminoacidi e antiossidanti. Questi nutrienti essenziali stimolano la rigenerazione cellulare, migliorano l'idratazione profonda e attivano la produzione naturale di collagene ed elastina. Il risultato è una pelle più luminosa, compatta e visibilmente ringiovanita, con un miglioramento della texture e del tono cutaneo. Ideale per prevenire e contrastare i segni dell'invecchiamento cutaneo.",
 
@@ -96,23 +94,12 @@ export const content: ServiceContent = {
         question: "Posso combinarlo con altri trattamenti?",
         answer: "Sì, la biorivitalizzazione si integra perfettamente con altri trattamenti estetici come filler, botox e peeling. Anzi, spesso ne potenzia i risultati. Valuteremo insieme il protocollo più adatto."
       }
-    ],
-
-    images: {
-      main: "https://images.unsplash.com/photo-1596178060671-7a80dc8059ea?w=1200&q=80",
-      gallery: [
-        "https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=1200&q=80",
-        "https://images.unsplash.com/photo-1620706857370-e1b9770e8bb1?w=1200&q=80",
-        "https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?w=1200&q=80"
-      ]
-    }
+    ]
   },
   en: {
-    slug: "biorivitalizzazione",
     title: "Biorevitalization",
     description: "Improvement of skin quality and collagen stimulation.",
     features: ["Facial biorevitalization", "Anti-aging treatments", "Medical peels"],
-    category: "aesthetic",
 
     whatIs: "Biorevitalization is an advanced aesthetic medicine treatment that aims to improve facial skin quality through micro-injections of bioactive substances such as hyaluronic acid, vitamins, amino acids, and antioxidants. These essential nutrients stimulate cell regeneration, improve deep hydration, and activate natural production of collagen and elastin. The result is brighter, more compact, and visibly rejuvenated skin, with improved texture and tone. Ideal for preventing and counteracting signs of skin aging.",
 
@@ -202,15 +189,6 @@ export const content: ServiceContent = {
         question: "Can I combine it with other treatments?",
         answer: "Yes, biorevitalization integrates perfectly with other aesthetic treatments such as fillers, botox, and peels. In fact, it often enhances their results. We will evaluate together the most suitable protocol."
       }
-    ],
-
-    images: {
-      main: "https://images.unsplash.com/photo-1596178060671-7a80dc8059ea?w=1200&q=80",
-      gallery: [
-        "https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=1200&q=80",
-        "https://images.unsplash.com/photo-1620706857370-e1b9770e8bb1?w=1200&q=80",
-        "https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?w=1200&q=80"
-      ]
-    }
+    ]
   }
 }

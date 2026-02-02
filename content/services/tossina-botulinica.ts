@@ -2,11 +2,9 @@ import { ServiceContent } from './types'
 
 export const content: ServiceContent = {
   it: {
-    slug: "tossina-botulinica",
     title: "Tossina Botulinica",
     description: "Riduzione delle rughe di espressione con risultati naturali.",
     features: ["Trattamento frontale", "Zampe di gallina", "Lifting non chirurgico"],
-    category: "aesthetic",
 
     whatIs: "La tossina botulinica è un trattamento medico estetico mirato alla riduzione delle rughe dinamiche del volto, quelle causate dalla contrazione ripetuta dei muscoli facciali durante l'espressione. Attraverso microiniezioni precise in punti specifici, rilassiamo temporaneamente i muscoli responsabili delle rughe d'espressione, ottenendo un aspetto più riposato e giovane senza alterare la naturale espressività del volto. Utilizzo esclusivamente prodotti certificati e sicuri, con dosaggi personalizzati per risultati naturali e armoniosi.",
 
@@ -94,23 +92,12 @@ export const content: ServiceContent = {
         question: "Fa male?",
         answer: "Il disagio è minimo. Le iniezioni sono rapide e vengono eseguite con aghi sottilissimi. La maggior parte dei pazienti descrive solo una leggera sensazione di pizzicore."
       }
-    ],
-
-    images: {
-      main: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=1200&q=80",
-      gallery: [
-        "https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=1200&q=80",
-        "https://images.unsplash.com/photo-1620706857370-e1b9770e8bb1?w=1200&q=80",
-        "https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=1200&q=80"
-      ]
-    }
+    ]
   },
   en: {
-    slug: "tossina-botulinica",
     title: "Botulinum Toxin",
     description: "Reduction of expression lines with natural results.",
     features: ["Forehead treatment", "Crow's feet", "Non-surgical lifting"],
-    category: "aesthetic",
 
     whatIs: "Botulinum toxin is an aesthetic medical treatment aimed at reducing dynamic facial wrinkles caused by repeated contraction of facial muscles during expression. Through precise micro-injections at specific points, we temporarily relax the muscles responsible for expression lines, achieving a more rested and youthful appearance without altering the natural expressiveness of the face. I use exclusively certified and safe products, with personalized dosages for natural and harmonious results.",
 
@@ -198,15 +185,6 @@ export const content: ServiceContent = {
         question: "Does it hurt?",
         answer: "Discomfort is minimal. Injections are quick and performed with ultra-fine needles. Most patients describe only a slight tingling sensation."
       }
-    ],
-
-    images: {
-      main: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=1200&q=80",
-      gallery: [
-        "https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=1200&q=80",
-        "https://images.unsplash.com/photo-1620706857370-e1b9770e8bb1?w=1200&q=80",
-        "https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=1200&q=80"
-      ]
-    }
+    ]
   }
 }

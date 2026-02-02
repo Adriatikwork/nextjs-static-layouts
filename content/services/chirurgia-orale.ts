@@ -2,11 +2,9 @@ import { ServiceContent } from './types'
 
 export const content: ServiceContent = {
   it: {
-    slug: "chirurgia-orale",
     title: "Chirurgia Orale",
     description: "Interventi chirurgici eseguiti con precisione e sicurezza.",
     features: ["Estrazioni dentali", "Implantologia", "Rigenerazione ossea"],
-    category: "dental",
 
     whatIs: "La chirurgia orale comprende tutti gli interventi chirurgici eseguiti nel cavo orale, dalle semplici estrazioni dentali agli interventi più complessi come l'implantologia e la rigenerazione ossea. Utilizziamo protocolli chirurgici minimamente invasivi, tecnologie digitali per la pianificazione 3D e tecniche avanzate per garantire risultati ottimali, rapida guarigione e massimo comfort per il paziente. Ogni intervento è personalizzato e pianificato con precisione millimetrica.",
 
@@ -94,23 +92,12 @@ export const content: ServiceContent = {
         question: "Quanto tempo devo aspettare dopo l'estrazione?",
         answer: "Dipende dal tipo di intervento successivo. Per le protesi rimovibili, alcune settimane. Per gli impianti, può variare da immediato a 3-4 mesi, in base al caso specifico."
       }
-    ],
-
-    images: {
-      main: "https://images.unsplash.com/photo-1629909615184-74f495363b67?w=1200&q=80",
-      gallery: [
-        "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=1200&q=80",
-        "https://images.unsplash.com/photo-1598531228433-d9f0bdc0ce4d?w=1200&q=80",
-        "https://images.unsplash.com/photo-1629909615184-74f495363b67?w=1200&q=80"
-      ]
-    }
+    ]
   },
   en: {
-    slug: "chirurgia-orale",
     title: "Oral Surgery",
     description: "Surgical procedures performed with precision and safety.",
     features: ["Dental extractions", "Implantology", "Bone regeneration"],
-    category: "dental",
 
     whatIs: "Oral surgery includes all surgical procedures performed in the oral cavity, from simple dental extractions to more complex interventions such as implantology and bone regeneration. We use minimally invasive surgical protocols, digital technologies for 3D planning, and advanced techniques to ensure optimal results, rapid healing, and maximum patient comfort. Each intervention is personalized and planned with millimetric precision.",
 
@@ -198,15 +185,6 @@ export const content: ServiceContent = {
         question: "How long must I wait after extraction?",
         answer: "It depends on the type of subsequent intervention. For removable prosthetics, a few weeks. For implants, it can vary from immediate to 3-4 months, based on the specific case."
       }
-    ],
-
-    images: {
-      main: "https://images.unsplash.com/photo-1629909615184-74f495363b67?w=1200&q=80",
-      gallery: [
-        "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=1200&q=80",
-        "https://images.unsplash.com/photo-1598531228433-d9f0bdc0ce4d?w=1200&q=80",
-        "https://images.unsplash.com/photo-1629909615184-74f495363b67?w=1200&q=80"
-      ]
-    }
+    ]
   }
 }
