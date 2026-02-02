@@ -96,7 +96,7 @@ export const content: ServiceContent = {
     ],
 
     images: {
-      main: "https://images.unsplash.com/photo-1609613542476-b6c1be97f001?w=1200&q=80",
+      main: "https://images.unsplash.com/photo-1676897288522-e8a081e71430?w=1200&q=80",
       gallery: [
         "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=1200&q=80",
         "https://images.unsplash.com/photo-1606811956291-c6a86d6d2ee0?w=1200&q=80",
@@ -199,7 +199,7 @@ export const content: ServiceContent = {
     ],
 
     images: {
-      main: "https://images.unsplash.com/photo-1609613542476-b6c1be97f001?w=1200&q=80",
+      main: "https://images.unsplash.com/photo-1676897288522-e8a081e71430?w=1200&q=80",
       gallery: [
         "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=1200&q=80",
         "https://images.unsplash.com/photo-1606811956291-c6a86d6d2ee0?w=1200&q=80",

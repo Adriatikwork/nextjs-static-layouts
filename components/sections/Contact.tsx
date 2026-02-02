@@ -81,7 +81,7 @@ function ContactContent() {
       const templateParams = {
         from_name: formData.name,
         from_email: formData.email,
-        reason: formData.reason || 'Non specificato',
+        reason: formData.reason || t.contact.form.notSpecified,
         message: formData.message,
         to_name: recipientName,
       }
@@ -527,6 +527,44 @@ function LocationsSection({ t, locations }: LocationsSectionProps) {
                         <p className="text-sm text-[#1F2A33]/60 italic mb-3">
                           {location.notes}
                         </p>
+                      )}
+
+                      {/* Services Offered */}
+                      {location.services && location.services.length > 0 && (
+                        <div className={cn(
+                          "mb-3",
+                          isEven ? "lg:flex lg:flex-col lg:items-end" : "lg:flex lg:flex-col lg:items-start"
+                        )}>
+                          <p className="text-sm font-medium text-[#1F2A33]/80 mb-2" style={{ fontFamily: 'Playfair Display, serif' }}>
+                            {t.contact.map.servicesOffered}
+                          </p>
+                          <div className={cn(
+                            "flex flex-wrap gap-2",
+                            isEven ? "lg:justify-end" : "lg:justify-start"
+                          )}>
+                            {location.services.map((service: string) => (
+                              <span
+                                key={service}
+                                className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium"
+                                style={{
+                                  backgroundColor: service === 'dental' ? '#005F73' : '#C09B83',
+                                  color: '#ffffff'
+                                }}
+                              >
+                                {t.contact.map.services[service]}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Phone Number */}
+                      {location.phone && (
+                        <div className="mb-3">
+                          <p className="text-sm font-medium text-[#1F2A33]/80">
+                            {t.contact.map.phone}: <a href={`tel:${location.phone}`} className="text-[#005F73] hover:text-[#C09B83] transition-colors">{location.phone}</a>
+                          </p>
+                        </div>
                       )}
 
                       <a

@@ -29,7 +29,9 @@ export const content = {
       gallery: "Galleria",
       contact: "Contatti",
       cta: "Prenota",
-      bookAppointment: "Prenota Appuntamento"
+      bookAppointment: "Prenota Appuntamento",
+      openMenu: "Apri menu",
+      closeMenu: "Chiudi menu"
     },
     hero: {
       name: "Dottoressa Irene Maria Beconi",
@@ -170,6 +172,8 @@ export const content = {
     services: {
       title: "I Nostri Servizi",
       pageHeading: "I Nostri Servizi",
+      pageTitle: "I nostri servizi esclusivi",
+      pageDescription: "Scopri i trattamenti di medicina estetica e odontoiatria. Ci impegniamo per fornire risultati naturali ed eleganti, valorizzando la tua naturale bellezza in modo armonioso.",
       subtitle: "Due aree di eccellenza al servizio della tua bellezza",
       intro: "La mia pratica medica unisce competenze odontoiatriche e competenze in medicina estetica facciale per offrirti un approccio completo alla cura del sorriso e del volto.",
       dentalCategory: "Odontoiatria e Salute Orale",
@@ -177,6 +181,26 @@ export const content = {
       dentalTab: "Odontoiatria",
       aestheticTab: "Medicina Estetica",
       learnMore: "Scopri di più",
+      approachSectionTitle: "Un approccio personalizzato",
+      approachSectionDescription: "L'ascolto dei miei pazienti e la creazione di un rapporto di fiducia sono al centro del mio approccio. Ogni trattamento è personalizzato per rispondere alle esigenze specifiche di ogni individuo.",
+      ctaSectionTitle: "Prenota il tuo appuntamento",
+      ctaSectionDescription: "Contattami telefonicamente o tramite WhatsApp per prenotare una consulenza personalizzata e scoprire i trattamenti più adatti a te.",
+      ctaSectionButton: "Prenota un appuntamento",
+      durationLabel: "Durata",
+      resultsLabel: "Risultati",
+      recoveryLabel: "Recupero",
+      whatIsTitle: "Cos'è",
+      benefitsTitle: "Benefici",
+      processTitle: "Il Processo",
+      aftercareTitle: "Cosa Fare Dopo",
+      suitableForTitle: "Adatto Per",
+      notSuitableForTitle: "Non Adatto Per",
+      faqsTitle: "Domande Frequenti",
+      galleryTitle: "Galleria",
+      interestedInService: "Interessato a {service}?",
+      ctaConsultationDescription: "Prenota una consulenza personalizzata per scoprire come questo trattamento può aiutarti.",
+      serviceNotFound: "Servizio non trovato",
+      serviceNotFoundDescription: "Il servizio richiesto non è disponibile.",
       dentalServices: [
         {
           slug: "cure-conservative",
@@ -215,7 +239,7 @@ export const content = {
           features: ["Detartrasi professionale", "Sbiancamento dentale", "Controlli periodici"],
           category: "dental" as const,
           images: {
-            main: "https://images.unsplash.com/photo-1609613542476-fa8bf222eb3e?w=1200&q=80"
+            main: "https://images.unsplash.com/photo-1676897288522-e8a081e71430?w=1200&q=80"
           }
         }
       ],
@@ -433,12 +457,18 @@ export const content = {
       },
       map: {
         title: "Come Raggiungerci",
-        subtitle: "Le nostre sedi a Firenze",
+        subtitle: "Le nostre sedi",
         openInMaps: "Apri in Google Maps",
         locationFields: {
           address: "Indirizzo",
           days: "Giorni",
           hours: "Orario"
+        },
+        servicesOffered: "Servizi offerti",
+        phone: "Telefono",
+        services: {
+          dental: "Odontoiatria",
+          aesthetic: "Medicina Estetica"
         }
       },
       form: {
@@ -465,6 +495,8 @@ export const content = {
         error: "Errore nell'invio del messaggio",
         errorMessage: "Riprova più tardi o contattaci direttamente via email.",
         disclaimer: "* I dati del presente modulo non saranno utilizzati per comunicare con il nostro studio in relazione alla sua richiesta.",
+        notSpecified: "Non specificato",
+        servicePrefill: "Sono interessato/a a: {service}",
         validation: {
           nameRequired: "Il nome è obbligatorio",
           emailRequired: "L'email è obbligatoria",
@@ -479,7 +511,9 @@ export const content = {
           address: "Via dei Calzaiuoli 12, 50122 Firenze",
           days: "Lunedì, Mercoledì, Venerdì",
           hours: "09:00 – 18:00",
-          notes: "Sede principale - Centro storico"
+          notes: "Sede principale - Centro storico",
+          phone: "+39 0573 123456",
+          services: ["dental", "aesthetic"]
         },
         {
           id: "loc2",
@@ -487,7 +521,9 @@ export const content = {
           address: "Piazza Santa Maria Novella 8, 50123 Firenze",
           days: "Martedì, Giovedì",
           hours: "10:00 – 19:00",
-          notes: "Vicino alla stazione ferroviaria"
+          notes: "Vicino alla stazione ferroviaria",
+          phone: "+39 0573 234567",
+          services: ["dental", "aesthetic"]
         },
         {
           id: "loc3",
@@ -495,7 +531,9 @@ export const content = {
           address: "Via Maggio 45, 50125 Firenze",
           days: "Lunedì, Venerdì",
           hours: "14:00 – 20:00",
-          notes: "Quartiere artigianale"
+          notes: "Quartiere artigianale",
+          phone: "+39 0573 345678",
+          services: ["dental", "aesthetic"]
         },
         {
           id: "loc4",
@@ -503,7 +541,9 @@ export const content = {
           address: "Viale dei Mille 90, 50131 Firenze",
           days: "Mercoledì, Sabato",
           hours: "08:00 – 14:00",
-          notes: "Parcheggio disponibile"
+          notes: "Parcheggio disponibile",
+          phone: "+39 0573 456789",
+          services: ["dental"]
         },
         {
           id: "loc5",
@@ -511,7 +551,9 @@ export const content = {
           address: "Via Luigi Alamanni 5, 50123 Firenze",
           days: "Giovedì",
           hours: "15:00 – 19:00",
-          notes: "Solo su appuntamento"
+          notes: "Solo su appuntamento",
+          phone: "+39 0573 567890",
+          services: ["dental", "aesthetic"]
         }
       ]
     },
@@ -571,7 +613,9 @@ export const content = {
       gallery: "Gallery",
       contact: "Contact",
       cta: "Book Now",
-      bookAppointment: "Book Appointment"
+      bookAppointment: "Book Appointment",
+      openMenu: "Open menu",
+      closeMenu: "Close menu"
     },
     hero: {
       name: "Dr. Irene Maria Beconi",
@@ -712,6 +756,8 @@ export const content = {
     services: {
       title: "Our Services",
       pageHeading: "Our Services",
+      pageTitle: "Our exclusive services",
+      pageDescription: "Discover aesthetic medicine and dentistry treatments. We are committed to providing natural and elegant results, enhancing your natural beauty harmoniously.",
       subtitle: "Two areas of excellence for your beauty and wellbeing",
       intro: "My medical practice combines dental expertise with facial aesthetic medicine to provide you with a comprehensive approach to smile and facial care.",
       dentalCategory: "Dentistry and Oral Health",
@@ -719,6 +765,26 @@ export const content = {
       dentalTab: "Dentistry",
       aestheticTab: "Aesthetic Medicine",
       learnMore: "Learn more",
+      approachSectionTitle: "A personalized approach",
+      approachSectionDescription: "Listening to my patients and creating a relationship of trust are at the heart of my approach. Each treatment is personalized to meet the specific needs of each individual.",
+      ctaSectionTitle: "Book your appointment",
+      ctaSectionDescription: "Contact me by phone or WhatsApp to book a personalized consultation and discover the treatments best suited to you.",
+      ctaSectionButton: "Book an appointment",
+      durationLabel: "Duration",
+      resultsLabel: "Results",
+      recoveryLabel: "Recovery",
+      whatIsTitle: "What is it",
+      benefitsTitle: "Benefits",
+      processTitle: "The Process",
+      aftercareTitle: "Aftercare",
+      suitableForTitle: "Suitable For",
+      notSuitableForTitle: "Not Suitable For",
+      faqsTitle: "Frequently Asked Questions",
+      galleryTitle: "Gallery",
+      interestedInService: "Interested in {service}?",
+      ctaConsultationDescription: "Book a personalized consultation to discover how this treatment can help you.",
+      serviceNotFound: "Service not found",
+      serviceNotFoundDescription: "The requested service is not available.",
       dentalServices: [
         {
           slug: "cure-conservative",
@@ -757,7 +823,7 @@ export const content = {
           features: ["Professional scaling", "Dental whitening", "Periodic checkups"],
           category: "dental" as const,
           images: {
-            main: "https://images.unsplash.com/photo-1609613542476-fa8bf222eb3e?w=1200&q=80"
+            main: "https://images.unsplash.com/photo-1676897288522-e8a081e71430?w=1200&q=80"
           }
         }
       ],
@@ -975,12 +1041,18 @@ export const content = {
       },
       map: {
         title: "How to Reach Us",
-        subtitle: "Our locations in Florence",
+        subtitle: "Our locations",
         openInMaps: "Open in Google Maps",
         locationFields: {
           address: "Address",
           days: "Days",
           hours: "Hours"
+        },
+        servicesOffered: "Services offered",
+        phone: "Phone",
+        services: {
+          dental: "Dentistry",
+          aesthetic: "Aesthetic Medicine"
         }
       },
       form: {
@@ -1007,6 +1079,8 @@ export const content = {
         error: "Error sending message",
         errorMessage: "Please try again later or contact us directly via email.",
         disclaimer: "* The data from this form will not be used to communicate with our practice regarding your request.",
+        notSpecified: "Not specified",
+        servicePrefill: "I'm interested in: {service}",
         validation: {
           nameRequired: "Name is required",
           emailRequired: "Email is required",
@@ -1021,7 +1095,9 @@ export const content = {
           address: "Via dei Calzaiuoli 12, 50122 Florence",
           days: "Monday, Wednesday, Friday",
           hours: "09:00 – 18:00",
-          notes: "Main office - Historic center"
+          notes: "Main office - Historic center",
+          phone: "+39 0573 123456",
+          services: ["dental", "aesthetic"]
         },
         {
           id: "loc2",
@@ -1029,7 +1105,9 @@ export const content = {
           address: "Piazza Santa Maria Novella 8, 50123 Florence",
           days: "Tuesday, Thursday",
           hours: "10:00 – 19:00",
-          notes: "Near the train station"
+          notes: "Near the train station",
+          phone: "+39 0573 234567",
+          services: ["dental", "aesthetic"]
         },
         {
           id: "loc3",
@@ -1037,7 +1115,9 @@ export const content = {
           address: "Via Maggio 45, 50125 Florence",
           days: "Monday, Friday",
           hours: "14:00 – 20:00",
-          notes: "Artisan quarter"
+          notes: "Artisan quarter",
+          phone: "+39 0573 345678",
+          services: ["dental", "aesthetic"]
         },
         {
           id: "loc4",
@@ -1045,7 +1125,9 @@ export const content = {
           address: "Viale dei Mille 90, 50131 Florence",
           days: "Wednesday, Saturday",
           hours: "08:00 – 14:00",
-          notes: "Parking available"
+          notes: "Parking available",
+          phone: "+39 0573 456789",
+          services: ["dental"]
         },
         {
           id: "loc5",
@@ -1053,7 +1135,9 @@ export const content = {
           address: "Via Luigi Alamanni 5, 50123 Florence",
           days: "Thursday",
           hours: "15:00 – 19:00",
-          notes: "By appointment only"
+          notes: "By appointment only",
+          phone: "+39 0573 567890",
+          services: ["dental", "aesthetic"]
         }
       ]
     },

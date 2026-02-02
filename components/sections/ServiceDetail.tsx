@@ -91,17 +91,17 @@ export function ServiceDetail({ slug }: ServiceDetailProps) {
             <div className="grid grid-cols-3 gap-4 pt-6">
               <div className="text-center p-4 bg-gray-50 rounded-lg">
                 <Clock className="w-6 h-6 mx-auto mb-2 text-[#005F73]" />
-                <p className="text-xs text-gray-600 mb-1">Durata</p>
+                <p className="text-xs text-gray-600 mb-1">{t.services?.durationLabel}</p>
                 <p className="text-sm font-medium text-[#1a1a1a]">{service.duration.session}</p>
               </div>
               <div className="text-center p-4 bg-gray-50 rounded-lg">
                 <Calendar className="w-6 h-6 mx-auto mb-2 text-[#005F73]" />
-                <p className="text-xs text-gray-600 mb-1">Risultati</p>
+                <p className="text-xs text-gray-600 mb-1">{t.services?.resultsLabel}</p>
                 <p className="text-sm font-medium text-[#1a1a1a]">{service.duration.results}</p>
               </div>
               <div className="text-center p-4 bg-gray-50 rounded-lg">
                 <Timer className="w-6 h-6 mx-auto mb-2 text-[#005F73]" />
-                <p className="text-xs text-gray-600 mb-1">Recupero</p>
+                <p className="text-xs text-gray-600 mb-1">{t.services?.recoveryLabel}</p>
                 <p className="text-sm font-medium text-[#1a1a1a]">{service.duration.recovery}</p>
               </div>
             </div>
@@ -113,7 +113,7 @@ export function ServiceDetail({ slug }: ServiceDetailProps) {
                 className="inline-block px-8 py-4 bg-[#005F73] text-white rounded-full hover:bg-[#004D5E] transition-colors duration-300 font-normal shadow-lg"
                 style={{ fontFamily: 'Playfair Display, serif' }}
               >
-                Prenota una consulenza
+                {t.hero.ctaPrimary}
               </Link>
             </div>
           </motion.div>
@@ -133,7 +133,7 @@ export function ServiceDetail({ slug }: ServiceDetailProps) {
               className="text-3xl md:text-4xl font-normal text-[#005F73] mb-6"
               style={{ fontFamily: 'Playfair Display, serif' }}
             >
-              Cos'è
+              {t.services?.whatIsTitle}
             </h2>
             <p
               className="text-lg text-gray-700 font-light leading-relaxed"
@@ -158,7 +158,7 @@ export function ServiceDetail({ slug }: ServiceDetailProps) {
               className="text-3xl md:text-4xl font-normal text-[#005F73] mb-8"
               style={{ fontFamily: 'Playfair Display, serif' }}
             >
-              Benefici
+              {t.services?.benefitsTitle}
             </h2>
             <ul className="space-y-4">
               {service.benefits.map((benefit, index) => (
@@ -197,7 +197,7 @@ export function ServiceDetail({ slug }: ServiceDetailProps) {
               className="text-3xl md:text-4xl font-normal text-[#005F73] mb-12 text-center"
               style={{ fontFamily: 'Playfair Display, serif' }}
             >
-              Il Processo
+              {t.services?.processTitle}
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {service.process.map((step, index) => (
@@ -248,7 +248,7 @@ export function ServiceDetail({ slug }: ServiceDetailProps) {
               className="text-3xl md:text-4xl font-normal text-[#005F73] mb-8"
               style={{ fontFamily: 'Playfair Display, serif' }}
             >
-              Cura Post-Trattamento
+              {t.services?.aftercareTitle}
             </h2>
             <ul className="space-y-3">
               {service.aftercare.map((instruction, index) => (
@@ -289,7 +289,7 @@ export function ServiceDetail({ slug }: ServiceDetailProps) {
                 className="text-2xl md:text-3xl font-normal text-[#005F73] mb-6"
                 style={{ fontFamily: 'Playfair Display, serif' }}
               >
-                Adatto per
+                {t.services?.suitableForTitle}
               </h2>
               <ul className="space-y-3">
                 {service.suitableFor.map((item, index) => (
@@ -315,7 +315,7 @@ export function ServiceDetail({ slug }: ServiceDetailProps) {
                   className="text-2xl md:text-3xl font-normal text-[#005F73] mb-6"
                   style={{ fontFamily: 'Playfair Display, serif' }}
                 >
-                  Non adatto per
+                  {t.services?.notSuitableForTitle}
                 </h2>
                 <ul className="space-y-3">
                   {service.notSuitableFor.map((item, index) => (
@@ -347,7 +347,7 @@ export function ServiceDetail({ slug }: ServiceDetailProps) {
                 className="text-3xl md:text-4xl font-normal text-[#005F73] mb-12 text-center"
                 style={{ fontFamily: 'Playfair Display, serif' }}
               >
-                Galleria
+                {t.services?.galleryTitle}
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {service.images.gallery.map((imagePath, index) => (
@@ -386,7 +386,7 @@ export function ServiceDetail({ slug }: ServiceDetailProps) {
               className="text-3xl md:text-4xl font-normal text-[#005F73] mb-12 text-center"
               style={{ fontFamily: 'Playfair Display, serif' }}
             >
-              Domande Frequenti
+              {t.services?.faqsTitle}
             </h2>
             <div className="space-y-4">
               {service.faqs.map((faq, index) => (
@@ -447,7 +447,7 @@ export function ServiceDetail({ slug }: ServiceDetailProps) {
             className="text-3xl md:text-4xl font-normal text-white mb-6"
             style={{ fontFamily: 'Playfair Display, serif' }}
           >
-            Interessato a {service.title}?
+            {t.services?.interestedInService?.replace('{service}', service.title)}
           </motion.h3>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -457,7 +457,7 @@ export function ServiceDetail({ slug }: ServiceDetailProps) {
             className="text-lg text-white/90 mb-8 font-light"
             style={{ fontFamily: 'Playfair Display, serif' }}
           >
-            Prenota una consulenza personalizzata per scoprire come questo trattamento può aiutarti.
+            {t.services?.ctaConsultationDescription}
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -470,7 +470,7 @@ export function ServiceDetail({ slug }: ServiceDetailProps) {
               className="inline-block px-10 py-4 bg-[#c9b896] text-[#1a1a1a] rounded-full hover:bg-[#d4b19a] transition-colors duration-300 font-normal shadow-lg"
               style={{ fontFamily: 'Playfair Display, serif' }}
             >
-              Prenota un appuntamento
+              {t.services?.ctaSectionButton}
             </Link>
           </motion.div>
         </div>

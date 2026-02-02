@@ -25,7 +25,7 @@ export function Services() {
           className="text-5xl md:text-6xl lg:text-7xl font-normal mb-6 text-[#1a1a1a]"
           style={{ fontFamily: 'Playfair Display, serif' }}
         >
-          I nostri servizi esclusivi
+          {t.services.pageTitle}
         </motion.h1>
         <motion.p
           initial={{ opacity: 0, y: 20 }}
@@ -34,7 +34,7 @@ export function Services() {
           className="text-lg md:text-xl text-gray-700 font-light max-w-3xl mx-auto leading-relaxed"
           style={{ fontFamily: 'Playfair Display, serif' }}
         >
-          Scopri i trattamenti di medicina estetica e odontoiatria. Ci impegniamo per fornire risultati naturali ed eleganti, valorizzando la tua naturale bellezza in modo armonioso.
+          {t.services.pageDescription}
         </motion.p>
       </div>
 
@@ -75,11 +75,7 @@ export function Services() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto"
-            style={{
-              // Center items on incomplete last row
-              justifyItems: 'center'
-            }}
+            className="flex flex-wrap justify-center gap-8 max-w-7xl mx-auto"
           >
             {currentServices.map((service, index) => (
               <motion.div
@@ -87,7 +83,7 @@ export function Services() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="w-full max-w-md"
+                className="w-full sm:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.5rem)] max-w-md"
               >
                 <Link href={`/servizi/${service.slug}`} className="block group cursor-pointer">
                   {/* Image */}
@@ -143,13 +139,13 @@ export function Services() {
               className="text-3xl md:text-4xl font-normal text-[#005F73] mb-4"
               style={{ fontFamily: 'Playfair Display, serif' }}
             >
-              Un approccio personalizzato
+              {t.services.approachSectionTitle}
             </h2>
             <p
               className="text-lg text-gray-700 font-light max-w-3xl mx-auto"
               style={{ fontFamily: 'Playfair Display, serif' }}
             >
-              L'ascolto dei miei pazienti e la creazione di un rapporto di fiducia sono al centro del mio approccio. Ogni trattamento è personalizzato per rispondere alle esigenze specifiche di ogni individuo.
+              {t.services.approachSectionDescription}
             </p>
           </div>
         </div>
@@ -165,7 +161,7 @@ export function Services() {
             className="text-3xl md:text-4xl font-normal text-white mb-6"
             style={{ fontFamily: 'Playfair Display, serif' }}
           >
-            Prenota il tuo appuntamento
+            {t.services.ctaSectionTitle}
           </motion.h3>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -175,7 +171,7 @@ export function Services() {
             className="text-lg text-white/90 mb-8 font-light"
             style={{ fontFamily: 'Playfair Display, serif' }}
           >
-            Contattami telefonicamente o tramite WhatsApp per prenotare una consulenza personalizzata e scoprire i trattamenti più adatti a te.
+            {t.services.ctaSectionDescription}
           </motion.p>
           <motion.a
             href="/contatti"
@@ -186,7 +182,7 @@ export function Services() {
             className="inline-block px-10 py-4 bg-[#c9b896] text-[#1a1a1a] rounded-full hover:bg-[#d4b19a] transition-colors duration-300 font-normal"
             style={{ fontFamily: 'Playfair Display, serif' }}
           >
-            Prenota un appuntamento
+            {t.services.ctaSectionButton}
           </motion.a>
         </div>
       </div>

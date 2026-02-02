@@ -198,7 +198,7 @@ export function Navbar() {
               <button
                 onClick={toggleMenu}
                 className="p-2 text-white hover:text-[#c9b896] transition-colors duration-300 z-50 relative"
-                aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+                aria-label={isMenuOpen ? t.nav.closeMenu : t.nav.openMenu}
                 aria-expanded={isMenuOpen}
               >
                 {isMenuOpen ? (
@@ -234,7 +234,7 @@ export function Navbar() {
               <button
                 onClick={closeMenu}
                 className="text-white p-2 hover:text-[#c9b896] transition-colors"
-                aria-label="Close menu"
+                aria-label={t.nav.closeMenu}
               >
                 <X className="w-6 h-6 sm:w-7 sm:h-7" />
               </button>
@@ -286,13 +286,13 @@ export function Navbar() {
             {/* Contact Info */}
             <div className="px-8 py-6 border-t border-white/10 mt-auto">
               <div className="space-y-3 text-white/80 text-sm font-light">
-                <p>Via del Montone numero 34</p>
-                <p>Firenze</p>
+                <p>{t.contact.info.locationAddress}</p>
+                <p>{t.contact.info.locationCity}</p>
                 <a
-                  href="tel:+3905512456"
+                  href={`tel:${t.contact.info.phoneNumber.replace(/\s/g, '')}`}
                   className="block hover:text-[#c9b896] transition-colors"
                 >
-                  +39 05512456
+                  {t.contact.info.phoneNumber}
                 </a>
               </div>
             </div>

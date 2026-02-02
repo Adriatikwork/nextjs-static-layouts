@@ -1,5 +1,6 @@
 import { ServiceDetail } from '@/components/sections/ServiceDetail'
 import { getServiceContent, getAllServiceSlugs } from '@/content/services'
+import { content } from '@/content/siteCopy'
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
@@ -53,8 +54,8 @@ export async function generateMetadata({
     }
   } catch (error) {
     return {
-      title: 'Servizio non trovato',
-      description: 'Il servizio richiesto non è disponibile.',
+      title: content.it.services.serviceNotFound,
+      description: content.it.services.serviceNotFoundDescription,
     }
   }
 }
