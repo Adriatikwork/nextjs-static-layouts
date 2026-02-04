@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { motion } from 'framer-motion'
 import { assetPath } from '@/lib/utils'
 import { useLanguage } from '@/lib/LanguageContext'
 
@@ -64,44 +65,61 @@ export function Hero() {
           <div className="container mx-auto">
             <div className="max-w-6xl mx-auto text-center">
               {/* Animated entrance for content */}
-              <div className="space-y-4 sm:space-y-6 md:space-y-8 animate-fade-in">
-                {/* Refined Name Display with elegant accent */}
-                <div className="relative inline-block mx-auto">
-                  {/* Decorative background element */}
-                  <div className="absolute -inset-4 bg-white/5 backdrop-blur-sm rounded-lg" />
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                className="space-y-4 sm:space-y-6 md:space-y-8"
+              >
+                {/* Refined Name Display */}
+                <div className="relative inline-block mx-auto z-20">
+                  {/* Decorative background element - rendered immediately */}
+                  <div
+                    className="absolute -inset-4 rounded-lg -z-10"
+                    style={{
+                      backgroundColor: 'rgba(255, 255, 255, 0.05)',
+                      backdropFilter: 'blur(4px)',
+                      WebkitBackdropFilter: 'blur(4px)',
+                    }}
+                  />
 
                   <h1
                     className="relative text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-white font-light leading-tight tracking-wide px-6 py-4"
                     style={{
                       fontFamily: 'Playfair Display, serif',
                       textShadow: '2px 4px 20px rgba(0,0,0,0.7)',
-                      animation: 'slideInUp 0.8s ease-out both',
                     }}
                   >
                     {t.hero.name}
                   </h1>
-
-                  {/* Elegant underline accent */}
-                  <div className="flex items-center justify-center gap-2 mt-2">
-                    <div className="w-12 h-[2px] bg-gradient-to-r from-transparent to-[#c9b896]" />
-                    <div className="w-20 h-[2px] bg-[#c9b896]" />
-                    <div className="w-12 h-[2px] bg-gradient-to-l from-transparent to-[#c9b896]" />
-                  </div>
                 </div>
 
-                {/* Elegant divider */}
-                <div className="flex items-center justify-center gap-3 md:gap-4 py-2 md:py-4">
-                  <div className="w-16 sm:w-20 md:w-32 h-[1px] md:h-[2px] bg-gradient-to-r from-transparent via-[#c9b896] to-[#c9b896]" />
-                  <div className="flex items-center gap-2 md:gap-3">
-                    <div className="w-2 h-2 md:w-2.5 md:h-2.5 rotate-45 bg-[#c9b896]" />
-                    <div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full border-2 border-[#c9b896]" />
-                    <div className="w-2 h-2 md:w-2.5 md:h-2.5 rotate-45 bg-[#c9b896]" />
-                  </div>
-                  <div className="w-16 sm:w-20 md:w-32 h-[1px] md:h-[2px] bg-gradient-to-l from-transparent via-[#c9b896] to-[#c9b896]" />
-                </div>
+                {/* Elegant Ornamental Divider */}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                  className="flex items-center justify-center py-4 md:py-6 px-4"
+                >
+                  {/* Mobile divider - shorter version */}
+                  <img
+                    src="/images/divider-phone.svg"
+                    alt="Decorative divider"
+                    className="block md:hidden w-full max-w-sm h-auto opacity-90"
+                  />
+                  {/* Desktop divider - full version */}
+                  <img
+                    src="/images/divider.svg"
+                    alt="Decorative divider"
+                    className="hidden md:block w-full max-w-4xl h-auto opacity-90"
+                  />
+                </motion.div>
 
                 {/* Subtitle */}
-                <p
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.3 }}
                   className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-white/95 font-light leading-relaxed tracking-wide max-w-4xl mx-auto px-4"
                   style={{
                     fontFamily: 'Playfair Display, serif',
@@ -109,18 +127,26 @@ export function Hero() {
                   }}
                 >
                   {t.hero.subtitle}
-                </p>
+                </motion.p>
 
                 {/* Description */}
-                <p
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.4 }}
                   className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/85 font-light leading-relaxed max-w-3xl mx-auto px-4"
                   style={{ fontFamily: 'Playfair Display, serif' }}
                 >
                   {t.hero.description}
-                </p>
+                </motion.p>
 
                 {/* CTA Buttons */}
-                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-6 md:pt-8 px-4">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.5 }}
+                  className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-6 md:pt-8 px-4"
+                >
                   <Link href="/contatti">
                     <button
                       className="group w-full sm:w-auto px-8 sm:px-10 md:px-12 py-4 md:py-5 text-white tracking-[0.15em] sm:tracking-[0.2em] text-sm sm:text-base md:text-lg uppercase transition-all duration-500 font-light min-w-[240px] sm:min-w-[260px] relative overflow-hidden hover:shadow-2xl"
@@ -148,8 +174,8 @@ export function Hero() {
                       <div className="absolute inset-0 bg-white/10 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
                     </button>
                   </Link>
-                </div>
-              </div>
+                </motion.div>
+              </motion.div>
             </div>
           </div>
         </div>
@@ -200,21 +226,38 @@ export function Hero() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           {/* Section Title */}
           <div className="text-center mb-12 md:mb-16">
-            <h2
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
               className="text-3xl sm:text-4xl md:text-5xl text-[#1F2A33] font-normal mb-4"
               style={{ fontFamily: 'Playfair Display, serif' }}
             >
               {t.hero.whyChooseUsTitle}
-            </h2>
-            <p className="text-base md:text-lg text-gray-700 max-w-3xl mx-auto font-light" style={{ fontFamily: 'Playfair Display, serif' }}>
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="text-base md:text-lg text-gray-700 max-w-3xl mx-auto font-light"
+              style={{ fontFamily: 'Playfair Display, serif' }}
+            >
               {t.hero.whyChooseUsSubtitle}
-            </p>
+            </motion.p>
           </div>
 
           {/* Cards Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 max-w-7xl mx-auto">
             {/* Card 1 - Chi Sono */}
-            <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-all duration-300">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0 }}
+              className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-all duration-300"
+            >
               <div className="relative h-[220px] overflow-hidden">
                 <Image
                   src={assetPath("/Doctor.jpg") || "/placeholder.svg"}
@@ -242,10 +285,16 @@ export function Hero() {
                   </svg>
                 </Link>
               </div>
-            </div>
+            </motion.div>
 
             {/* Card 2 - Odontoiatria */}
-            <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-all duration-300">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-all duration-300"
+            >
               <div className="relative h-[220px] overflow-hidden">
                 <Image
                   src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=800&q=80"
@@ -273,10 +322,16 @@ export function Hero() {
                   </svg>
                 </Link>
               </div>
-            </div>
+            </motion.div>
 
             {/* Card 3 - Medicina Estetica del Viso */}
-            <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-all duration-300">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-all duration-300"
+            >
               <div className="relative h-[220px] overflow-hidden">
                 <Image
                   src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=800&q=80"
@@ -304,10 +359,16 @@ export function Hero() {
                   </svg>
                 </Link>
               </div>
-            </div>
+            </motion.div>
 
             {/* Card 4 - Consulenza Personalizzata */}
-            <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-all duration-300">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-all duration-300"
+            >
               <div className="relative h-[220px] overflow-hidden">
                 <Image
                   src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80"
@@ -335,7 +396,7 @@ export function Hero() {
                   </svg>
                 </Link>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>
@@ -350,15 +411,26 @@ export function Hero() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           {/* Section Title */}
           <div className="text-center mb-12 md:mb-14">
-            <h2
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
               className="text-3xl sm:text-4xl md:text-5xl text-[#1F2A33] font-normal mb-4"
               style={{ fontFamily: 'Playfair Display, serif' }}
             >
               {t.hero.howItWorksTitle}
-            </h2>
-            <p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto font-light" style={{ fontFamily: 'Playfair Display, serif' }}>
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto font-light"
+              style={{ fontFamily: 'Playfair Display, serif' }}
+            >
               {t.hero.howItWorksSubtitle}
-            </p>
+            </motion.p>
           </div>
 
           {/* Steps - Connected Flow Design */}
@@ -366,7 +438,13 @@ export function Hero() {
             <div className="flex flex-col lg:flex-row items-stretch justify-between gap-6 lg:gap-0">
               
               {/* Step 1 - Book */}
-              <div className="group flex-1 flex flex-col items-center text-center px-4 lg:px-6 relative">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0 }}
+                className="group flex-1 flex flex-col items-center text-center px-4 lg:px-6 relative"
+              >
                 <div className="relative mb-5">
                   <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#005F73] to-[#004D5E] flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
                     <svg width="28" height="28" viewBox="0 0 36 36" fill="none" className="text-white">
@@ -390,10 +468,16 @@ export function Hero() {
                 </p>
                 {/* Connector line - desktop only */}
                 <div className="hidden lg:block absolute top-8 left-[calc(50%+40px)] w-[calc(100%-80px)] h-px bg-gradient-to-r from-[#c9b896] to-[#c9b896]/30" />
-              </div>
+              </motion.div>
 
               {/* Step 2 - Consult */}
-              <div className="group flex-1 flex flex-col items-center text-center px-4 lg:px-6 relative">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                className="group flex-1 flex flex-col items-center text-center px-4 lg:px-6 relative"
+              >
                 <div className="relative mb-5">
                   <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#005F73] to-[#004D5E] flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
                     <svg width="28" height="28" viewBox="0 0 36 36" fill="none" className="text-white">
@@ -412,10 +496,16 @@ export function Hero() {
                 </p>
                 {/* Connector line - desktop only */}
                 <div className="hidden lg:block absolute top-8 left-[calc(50%+40px)] w-[calc(100%-80px)] h-px bg-gradient-to-r from-[#c9b896] to-[#c9b896]/30" />
-              </div>
+              </motion.div>
 
               {/* Step 3 - Plan */}
-              <div className="group flex-1 flex flex-col items-center text-center px-4 lg:px-6 relative">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="group flex-1 flex flex-col items-center text-center px-4 lg:px-6 relative"
+              >
                 <div className="relative mb-5">
                   <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#005F73] to-[#004D5E] flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
                     <svg width="28" height="28" viewBox="0 0 36 36" fill="none" className="text-white">
@@ -436,10 +526,16 @@ export function Hero() {
                 </p>
                 {/* Connector line - desktop only */}
                 <div className="hidden lg:block absolute top-8 left-[calc(50%+40px)] w-[calc(100%-80px)] h-px bg-gradient-to-r from-[#c9b896] to-[#c9b896]/30" />
-              </div>
+              </motion.div>
 
               {/* Step 4 - Call */}
-              <div className="group flex-1 flex flex-col items-center text-center px-4 lg:px-6">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+                className="group flex-1 flex flex-col items-center text-center px-4 lg:px-6"
+              >
                 <div className="relative mb-5">
                   <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#005F73] to-[#004D5E] flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
                     <svg width="28" height="28" viewBox="0 0 36 36" fill="none" className="text-white">
@@ -456,7 +552,7 @@ export function Hero() {
                 <p className="text-sm text-gray-600 font-light leading-relaxed" style={{ fontFamily: 'Playfair Display, serif' }}>
                   {t.hero.step4Desc}
                 </p>
-              </div>
+              </motion.div>
 
             </div>
           </div>
@@ -469,28 +565,21 @@ export function Hero() {
         style={{ backgroundColor: '#f8f7f5' }}
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-4xl">
-          <p
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
             className="text-lg md:text-xl lg:text-2xl text-gray-800 leading-relaxed font-normal italic"
             style={{ fontFamily: 'Playfair Display, serif' }}
           >
             {`"${t.hero.quote}"`}
-          </p>
+          </motion.p>
         </div>
       </div>
 
       {/* CSS Animations */}
       <style jsx>{`
-        @keyframes slideInUp {
-          from {
-            opacity: 0;
-            transform: translateY(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
         @keyframes progress {
           from {
             width: 0%;
@@ -498,19 +587,6 @@ export function Hero() {
           to {
             width: 100%;
           }
-        }
-
-        @keyframes fade-in {
-          from {
-            opacity: 0;
-          }
-          to {
-            opacity: 1;
-          }
-        }
-
-        .animate-fade-in {
-          animation: fade-in 1s ease-out;
         }
       `}</style>
     </section>

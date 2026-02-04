@@ -11,7 +11,8 @@ export function Footer() {
   
   return (
     <footer 
-      className="bg-brand-dark-text text-white py-16 relative overflow-hidden"
+      className="py-16 relative overflow-hidden"
+      style={{ backgroundColor: '#005F73' }}
     >
       {/* Decorative background */}
       <div 
@@ -47,8 +48,8 @@ export function Footer() {
           {/* Column 2 - Quick Links */}
           <div>
             <h4
-              className="text-lg mb-6 text-brand-gold font-normal tracking-wide"
-              style={{ fontFamily: 'Playfair Display, serif' }}
+              className="text-lg mb-6 font-normal tracking-wide"
+              style={{ fontFamily: 'Playfair Display, serif', color: '#c9b896' }}
             >
               {t.footer.linksTitle}
             </h4>
@@ -63,8 +64,8 @@ export function Footer() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="block text-brand-cream/70 hover:text-brand-gold transition-colors text-sm font-light"
-                  style={{ fontFamily: 'Playfair Display, serif' }}
+                  className="block hover:text-brand-gold transition-colors text-sm font-light"
+                  style={{ fontFamily: 'Playfair Display, serif', color: 'rgba(255, 255, 255, 0.85)' }}
                 >
                   {link.label}
                 </Link>
@@ -75,40 +76,40 @@ export function Footer() {
           {/* Column 3 - Contact Info */}
           <div>
             <h4
-              className="text-lg mb-6 text-brand-gold font-normal tracking-wide"
-              style={{ fontFamily: 'Playfair Display, serif' }}
+              className="text-lg mb-6 font-normal tracking-wide"
+              style={{ fontFamily: 'Playfair Display, serif', color: '#c9b896' }}
             >
               {t.footer.contactTitle}
             </h4>
             <div className="space-y-4">
               <div className="flex items-start gap-3">
-                <Phone className="w-5 h-5 text-brand-gold flex-shrink-0 mt-0.5" />
+                <Phone className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: '#c9b896' }} />
                 <div>
                   <p
-                    className="text-brand-cream/70 text-sm font-light"
-                    style={{ fontFamily: 'Playfair Display, serif' }}
+                    className="text-sm font-light"
+                    style={{ fontFamily: 'Playfair Display, serif', color: 'rgba(255, 255, 255, 0.85)' }}
                   >
                     {t.contact.info.phoneNumber}
                   </p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <Mail className="w-5 h-5 text-brand-gold flex-shrink-0 mt-0.5" />
+                <Mail className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: '#c9b896' }} />
                 <div>
                   <p
-                    className="text-brand-cream/70 text-sm font-light"
-                    style={{ fontFamily: 'Playfair Display, serif' }}
+                    className="text-sm font-light"
+                    style={{ fontFamily: 'Playfair Display, serif', color: 'rgba(255, 255, 255, 0.85)' }}
                   >
                     {t.contact.info.emailAddress}
                   </p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <MapPin className="w-5 h-5 text-brand-gold flex-shrink-0 mt-0.5" />
+                <MapPin className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: '#c9b896' }} />
                 <div>
                   <p
-                    className="text-brand-cream/70 text-sm font-light"
-                    style={{ fontFamily: 'Playfair Display, serif' }}
+                    className="text-sm font-light"
+                    style={{ fontFamily: 'Playfair Display, serif', color: 'rgba(255, 255, 255, 0.85)' }}
                   >
                     {t.contact.info.locationAddress}<br />
                     {t.contact.info.locationCity}
@@ -121,11 +122,11 @@ export function Footer() {
                 rel="noopener noreferrer"
                 className="flex items-start gap-3 hover:opacity-80 transition-opacity"
               >
-                <Instagram className="w-5 h-5 text-brand-gold flex-shrink-0 mt-0.5" />
+                <Instagram className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: '#c9b896' }} />
                 <div>
                   <p
-                    className="text-brand-cream/70 text-sm font-light"
-                    style={{ fontFamily: 'Playfair Display, serif' }}
+                    className="text-sm font-light"
+                    style={{ fontFamily: 'Playfair Display, serif', color: 'rgba(255, 255, 255, 0.85)' }}
                   >
                     @dr.ssa_irenebeconi
                   </p>
@@ -137,11 +138,11 @@ export function Footer() {
 
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-brand-gold/20">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            {/* Copyright */}
+          <div className="flex flex-col items-center gap-6">
+            {/* Copyright - Centered */}
             <p 
-              className="text-brand-cream/60 text-sm font-light"
-              style={{ fontFamily: 'Playfair Display, serif' }}
+              className="text-sm font-light text-center"
+              style={{ fontFamily: 'Playfair Display, serif', color: 'rgba(255, 255, 255, 0.7)' }}
             >
               {t.footer.copyright.replace('{year}', new Date().getFullYear().toString())}
             </p>
@@ -156,8 +157,8 @@ export function Footer() {
                 <a
                   key={link.label}
                   href={link.href}
-                  className="text-brand-cream/60 hover:text-brand-gold transition-colors text-sm font-light"
-                  style={{ fontFamily: 'Playfair Display, serif' }}
+                  className="hover:text-brand-gold transition-colors text-sm font-light"
+                  style={{ fontFamily: 'Playfair Display, serif', color: 'rgba(255, 255, 255, 0.7)' }}
                 >
                   {link.label}
                 </a>
