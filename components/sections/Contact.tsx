@@ -122,7 +122,7 @@ function HeroSection({ t }: { t: any }) {
   return (
     <div
       className="relative w-full py-20 md:py-32 overflow-hidden"
-      style={{ backgroundColor: '#005F73', isolation: 'isolate' }}
+      style={{ backgroundColor: '#1A506C', isolation: 'isolate' }}
     >
       <div
         style={{
@@ -299,7 +299,7 @@ function FormSection({ t, formData, formStatus, formErrors, handleInputChange, h
                     name="reason"
                     value={formData.reason}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-md focus:border-[#005F73] focus:ring-2 focus:ring-[#005F73]/20 outline-none transition-all font-light bg-white"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-md focus:border-[#1A506C] focus:ring-2 focus:ring-[#1A506C]/20 outline-none transition-all font-light bg-white"
                     style={{ fontFamily: 'Playfair Display, serif' }}
                   >
                     <option value="">{t.contact.form.reasonPlaceholder}</option>
@@ -324,7 +324,7 @@ function FormSection({ t, formData, formStatus, formErrors, handleInputChange, h
                     value={formData.message}
                     onChange={handleInputChange}
                     rows={6}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-md focus:border-[#005F73] focus:ring-2 focus:ring-[#005F73]/20 outline-none transition-all resize-none font-light"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-md focus:border-[#1A506C] focus:ring-2 focus:ring-[#1A506C]/20 outline-none transition-all resize-none font-light"
                     style={{
                       fontFamily: 'Playfair Display, serif',
                       borderColor: formErrors.message ? '#ef4444' : undefined
@@ -405,7 +405,7 @@ function FormField({ id, label, type, value, onChange, error, placeholder }: For
         name={id}
         value={value}
         onChange={onChange}
-        className="w-full px-4 py-3 border border-gray-300 rounded-md focus:border-[#005F73] focus:ring-2 focus:ring-[#005F73]/20 outline-none transition-all font-light"
+        className="w-full px-4 py-3 border border-gray-300 rounded-md focus:border-[#1A506C] focus:ring-2 focus:ring-[#1A506C]/20 outline-none transition-all font-light"
         style={{
           fontFamily: 'Playfair Display, serif',
           borderColor: error ? '#ef4444' : undefined
@@ -485,7 +485,7 @@ function LocationsSection({ t, locations }: LocationsSectionProps) {
                 >
                   {/* Timeline Dot - Hidden on mobile */}
                   <div className="hidden lg:block absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
-                    <div className="w-8 h-8 rounded-full bg-[#005F73] border-4 border-white flex items-center justify-center">
+                    <div className="w-8 h-8 rounded-full bg-[#1A506C] border-4 border-white flex items-center justify-center">
                       <span className="text-white text-xs font-semibold">{index + 1}</span>
                     </div>
                   </div>
@@ -498,7 +498,7 @@ function LocationsSection({ t, locations }: LocationsSectionProps) {
                     )}>
                       {/* Mobile Number Badge */}
                       <div className="lg:hidden mb-3">
-                        <div className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-[#005F73] text-white font-semibold text-sm">
+                        <div className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-[#1A506C] text-white font-semibold text-sm">
                           {index + 1}
                         </div>
                       </div>
@@ -514,7 +514,7 @@ function LocationsSection({ t, locations }: LocationsSectionProps) {
                         "flex items-start gap-2 mb-3",
                         isEven ? "lg:justify-end" : "lg:justify-start"
                       )}>
-                        <MapPin className="w-4 h-4 text-[#005F73] mt-1 flex-shrink-0" />
+                        <MapPin className="w-4 h-4 text-[#1A506C] mt-1 flex-shrink-0" />
                         <p
                           className="text-base md:text-lg text-[#1F2A33]/80 leading-relaxed"
                           style={{ fontFamily: 'Playfair Display, serif' }}
@@ -547,7 +547,7 @@ function LocationsSection({ t, locations }: LocationsSectionProps) {
                                 key={service}
                                 className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium"
                                 style={{
-                                  backgroundColor: service === 'dental' ? '#005F73' : '#C09B83',
+                                  backgroundColor: service === 'dental' ? '#1A506C' : '#C09B83',
                                   color: '#ffffff'
                                 }}
                               >
@@ -562,7 +562,7 @@ function LocationsSection({ t, locations }: LocationsSectionProps) {
                       {location.phone && (
                         <div className="mb-3">
                           <p className="text-sm font-medium text-[#1F2A33]/80">
-                            {t.contact.map.phone}: <a href={`tel:${location.phone}`} className="text-[#005F73] hover:text-[#C09B83] transition-colors">{location.phone}</a>
+                            {t.contact.map.phone}: <a href={`tel:${location.phone}`} className="text-[#1A506C] hover:text-[#C09B83] transition-colors">{location.phone}</a>
                           </p>
                         </div>
                       )}
@@ -572,7 +572,7 @@ function LocationsSection({ t, locations }: LocationsSectionProps) {
                         target="_blank"
                         rel="noopener noreferrer"
                         className={cn(
-                          "inline-flex items-center gap-2 text-[#005F73] font-medium text-sm",
+                          "inline-flex items-center gap-2 text-[#1A506C] font-medium text-sm",
                           "hover:text-[#C09B83] transition-colors duration-300"
                         )}
                       >
@@ -636,7 +636,7 @@ function LocationsSection({ t, locations }: LocationsSectionProps) {
                 const element = document.getElementById('contact-form')
                 element?.scrollIntoView({ behavior: 'smooth', block: 'start' })
               }}
-              className="inline-flex items-center gap-2 px-8 py-4 bg-[#005F73] text-white rounded-lg hover:bg-[#004D5E] transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-[#1A506C] text-white rounded-lg hover:bg-[#0D4056] transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
             >
               <MapPin className="w-5 h-5" />
               <span className="font-medium">{t.contact.form.send}</span>

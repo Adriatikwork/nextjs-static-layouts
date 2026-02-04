@@ -34,7 +34,7 @@ export function About() {
             transition={{ duration: 1 }}
             className="text-center mb-16"
           >
-            <p className="text-sm tracking-[0.3em] uppercase text-[#005F73] mb-6 font-light">
+            <p className="text-sm tracking-[0.3em] uppercase text-[#1A506C] mb-6 font-light">
               {t.about.pageHeading}
             </p>
             <h1
@@ -81,7 +81,7 @@ export function About() {
               {/* Floating Badge */}
               <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-white px-8 py-4 rounded-full shadow-xl border border-gray-100">
                 <p
-                  className="text-sm text-[#005F73] font-normal tracking-wide"
+                  className="text-sm text-[#1A506C] font-normal tracking-wide"
                   style={{ fontFamily: 'Playfair Display, serif' }}
                 >
                   {t.about.experienceBadge}
@@ -147,8 +147,8 @@ export function About() {
                 variants={fadeIn}
                 className="group text-center p-8 rounded-lg hover:bg-[#f5f1ed] transition-all duration-500"
               >
-                <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-[#005F73]/10 flex items-center justify-center group-hover:bg-[#005F73] transition-colors duration-500">
-                  <item.icon className="w-8 h-8 text-[#005F73] group-hover:text-white transition-colors duration-500" />
+                <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-[#1A506C]/10 flex items-center justify-center group-hover:bg-[#1A506C] transition-colors duration-500">
+                  <item.icon className="w-8 h-8 text-[#1A506C] group-hover:text-white transition-colors duration-500" />
                 </div>
                 <h3 
                   className="text-xl mb-3 font-normal"
@@ -166,7 +166,7 @@ export function About() {
       </section>
 
       {/* Statistics Section */}
-      <section className="py-12 px-4 bg-gradient-to-r from-[#005F73] to-[#004D5E]">
+      <section className="py-12 px-4 bg-gradient-to-r from-[#1A506C] to-[#0D4056]">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
@@ -224,7 +224,7 @@ export function About() {
                   variants={fadeIn}
                   className="flex items-start gap-6 p-6 bg-white rounded-xl hover:shadow-xl transition-all duration-300 border border-gray-100 group hover:border-[#c9b896]/30"
                 >
-                  <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#c9b896]/20 to-[#005F73]/10 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                  <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#c9b896]/20 to-[#1A506C]/10 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
                     <span
                       className="text-[#c9b896] text-lg font-normal"
                       style={{ fontFamily: 'Playfair Display, serif' }}
@@ -248,7 +248,7 @@ export function About() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 px-4 bg-gradient-to-br from-[#005F73] to-[#004D5E] text-white relative overflow-hidden">
+      <section className="py-16 px-4 bg-gradient-to-br from-[#1A506C] to-[#0D4056] text-white relative overflow-hidden">
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

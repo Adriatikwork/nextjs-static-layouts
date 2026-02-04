@@ -117,7 +117,7 @@ export function Gallery() {
             <motion.button
               onClick={() => setIsFilterSheetOpen(true)}
               whileTap={{ scale: 0.95 }}
-              className="md:hidden flex items-center gap-2 px-4 py-2 rounded-full bg-[#005F73] text-white text-xs tracking-wider uppercase transition-all duration-300 shadow-sm"
+              className="md:hidden flex items-center gap-2 px-4 py-2 rounded-full bg-[#1A506C] text-white text-xs tracking-wider uppercase transition-all duration-300 shadow-sm"
               style={{ fontFamily: 'Playfair Display, serif' }}
             >
               {categories.find(cat => cat.id === selectedCategory)?.label}
@@ -134,7 +134,7 @@ export function Gallery() {
                   whileTap={{ scale: 0.95 }}
                   className={`px-5 py-2 rounded-full text-xs tracking-wider uppercase transition-all duration-300 ${
                     selectedCategory === category.id
-                      ? 'bg-[#005F73] text-white'
+                      ? 'bg-[#1A506C] text-white'
                       : 'bg-transparent text-gray-600 hover:bg-gray-100 border border-gray-200'
                   }`}
                   style={{ fontFamily: 'Playfair Display, serif' }}
@@ -286,7 +286,7 @@ export function Gallery() {
                 whileTap={{ scale: 0.98 }}
                 className={`w-full p-4 rounded-xl text-left transition-all duration-300 ${
                   selectedCategory === category.id
-                    ? 'bg-[#005F73] text-white shadow-lg'
+                    ? 'bg-[#1A506C] text-white shadow-lg'
                     : 'bg-gray-50 text-gray-700 hover:bg-gray-100'
                 }`}
               >

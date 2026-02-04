@@ -7,7 +7,7 @@ import { assetPath } from '@/lib/utils'
 
 export default function ComingSoonPage() {
   return (
-    <div className="fixed inset-0 bg-[#005F73] flex items-center justify-center px-4 py-8 relative overflow-hidden z-50">
+    <div className="fixed inset-0 bg-[#1A506C] flex items-center justify-center px-4 py-8 relative overflow-hidden z-50">
       {/* Subtle Background Pattern */}
       <div className="absolute inset-0 opacity-[0.03]" style={{
         backgroundImage: 'radial-gradient(circle at 2px 2px, #ffffff 1px, transparent 0)',

@@ -32,7 +32,7 @@ export function ServiceDetail({ slug }: ServiceDetailProps) {
       <div className="container mx-auto px-4 pt-24 pb-8">
         <Link
           href="/servizi"
-          className="inline-flex items-center gap-2 text-[#005F73] hover:text-[#004D5E] transition-colors duration-300 group"
+          className="inline-flex items-center gap-2 text-[#1A506C] hover:text-[#0D4056] transition-colors duration-300 group"
         >
           <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform duration-300" />
           <span style={{ fontFamily: 'Playfair Display, serif' }}>
@@ -67,8 +67,8 @@ export function ServiceDetail({ slug }: ServiceDetailProps) {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="space-y-6"
           >
-            <div className="inline-block px-4 py-2 bg-[#005F73]/10 rounded-full">
-              <span className="text-[#005F73] text-sm font-medium tracking-wider uppercase">
+            <div className="inline-block px-4 py-2 bg-[#1A506C]/10 rounded-full">
+              <span className="text-[#1A506C] text-sm font-medium tracking-wider uppercase">
                 {service.category === 'dental' ? t.services?.dentalCategory : t.services?.aestheticCategory}
               </span>
             </div>
@@ -90,17 +90,17 @@ export function ServiceDetail({ slug }: ServiceDetailProps) {
             {/* Duration Info Cards */}
             <div className="grid grid-cols-3 gap-4 pt-6">
               <div className="text-center p-4 bg-gray-50 rounded-lg">
-                <Clock className="w-6 h-6 mx-auto mb-2 text-[#005F73]" />
+                <Clock className="w-6 h-6 mx-auto mb-2 text-[#1A506C]" />
                 <p className="text-xs text-gray-600 mb-1">{t.services?.durationLabel}</p>
                 <p className="text-sm font-medium text-[#1a1a1a]">{service.duration.session}</p>
               </div>
               <div className="text-center p-4 bg-gray-50 rounded-lg">
-                <Calendar className="w-6 h-6 mx-auto mb-2 text-[#005F73]" />
+                <Calendar className="w-6 h-6 mx-auto mb-2 text-[#1A506C]" />
                 <p className="text-xs text-gray-600 mb-1">{t.services?.resultsLabel}</p>
                 <p className="text-sm font-medium text-[#1a1a1a]">{service.duration.results}</p>
               </div>
               <div className="text-center p-4 bg-gray-50 rounded-lg">
-                <Timer className="w-6 h-6 mx-auto mb-2 text-[#005F73]" />
+                <Timer className="w-6 h-6 mx-auto mb-2 text-[#1A506C]" />
                 <p className="text-xs text-gray-600 mb-1">{t.services?.recoveryLabel}</p>
                 <p className="text-sm font-medium text-[#1a1a1a]">{service.duration.recovery}</p>
               </div>
@@ -110,7 +110,7 @@ export function ServiceDetail({ slug }: ServiceDetailProps) {
             <div className="pt-4">
               <Link
                 href="/contatti"
-                className="inline-block px-8 py-4 bg-[#005F73] text-white rounded-full hover:bg-[#004D5E] transition-colors duration-300 font-normal shadow-lg"
+                className="inline-block px-8 py-4 bg-[#1A506C] text-white rounded-full hover:bg-[#0D4056] transition-colors duration-300 font-normal shadow-lg"
                 style={{ fontFamily: 'Playfair Display, serif' }}
               >
                 {t.hero.ctaPrimary}
@@ -130,7 +130,7 @@ export function ServiceDetail({ slug }: ServiceDetailProps) {
             transition={{ duration: 0.6 }}
           >
             <h2
-              className="text-3xl md:text-4xl font-normal text-[#005F73] mb-6"
+              className="text-3xl md:text-4xl font-normal text-[#1A506C] mb-6"
               style={{ fontFamily: 'Playfair Display, serif' }}
             >
               {t.services?.whatIsTitle}
@@ -155,7 +155,7 @@ export function ServiceDetail({ slug }: ServiceDetailProps) {
             transition={{ duration: 0.6 }}
           >
             <h2
-              className="text-3xl md:text-4xl font-normal text-[#005F73] mb-8"
+              className="text-3xl md:text-4xl font-normal text-[#1A506C] mb-8"
               style={{ fontFamily: 'Playfair Display, serif' }}
             >
               {t.services?.benefitsTitle}
@@ -170,7 +170,7 @@ export function ServiceDetail({ slug }: ServiceDetailProps) {
                   transition={{ duration: 0.4, delay: index * 0.1 }}
                   className="flex items-start gap-3"
                 >
-                  <div className="mt-1 w-2 h-2 rounded-full bg-[#005F73] flex-shrink-0" />
+                  <div className="mt-1 w-2 h-2 rounded-full bg-[#1A506C] flex-shrink-0" />
                   <p
                     className="text-lg text-gray-700 font-light"
                     style={{ fontFamily: 'Playfair Display, serif' }}
@@ -194,7 +194,7 @@ export function ServiceDetail({ slug }: ServiceDetailProps) {
             transition={{ duration: 0.6 }}
           >
             <h2
-              className="text-3xl md:text-4xl font-normal text-[#005F73] mb-12 text-center"
+              className="text-3xl md:text-4xl font-normal text-[#1A506C] mb-12 text-center"
               style={{ fontFamily: 'Playfair Display, serif' }}
             >
               {t.services?.processTitle}
@@ -210,7 +210,7 @@ export function ServiceDetail({ slug }: ServiceDetailProps) {
                   className="bg-white p-6 rounded-lg shadow-md"
                 >
                   <div className="flex items-start gap-4">
-                    <div className="flex-shrink-0 w-10 h-10 rounded-full bg-[#005F73] text-white flex items-center justify-center font-medium">
+                    <div className="flex-shrink-0 w-10 h-10 rounded-full bg-[#1A506C] text-white flex items-center justify-center font-medium">
                       {index + 1}
                     </div>
                     <div>
@@ -245,7 +245,7 @@ export function ServiceDetail({ slug }: ServiceDetailProps) {
             transition={{ duration: 0.6 }}
           >
             <h2
-              className="text-3xl md:text-4xl font-normal text-[#005F73] mb-8"
+              className="text-3xl md:text-4xl font-normal text-[#1A506C] mb-8"
               style={{ fontFamily: 'Playfair Display, serif' }}
             >
               {t.services?.aftercareTitle}
@@ -260,7 +260,7 @@ export function ServiceDetail({ slug }: ServiceDetailProps) {
                   transition={{ duration: 0.4, delay: index * 0.1 }}
                   className="flex items-start gap-3 p-4 bg-gray-50 rounded-lg"
                 >
-                  <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#005F73] flex-shrink-0" />
+                  <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#1A506C] flex-shrink-0" />
                   <p
                     className="text-gray-700 font-light"
                     style={{ fontFamily: 'Playfair Display, serif' }}
@@ -286,7 +286,7 @@ export function ServiceDetail({ slug }: ServiceDetailProps) {
               transition={{ duration: 0.6 }}
             >
               <h2
-                className="text-2xl md:text-3xl font-normal text-[#005F73] mb-6"
+                className="text-2xl md:text-3xl font-normal text-[#1A506C] mb-6"
                 style={{ fontFamily: 'Playfair Display, serif' }}
               >
                 {t.services?.suitableForTitle}
@@ -312,7 +312,7 @@ export function ServiceDetail({ slug }: ServiceDetailProps) {
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
                 <h2
-                  className="text-2xl md:text-3xl font-normal text-[#005F73] mb-6"
+                  className="text-2xl md:text-3xl font-normal text-[#1A506C] mb-6"
                   style={{ fontFamily: 'Playfair Display, serif' }}
                 >
                   {t.services?.notSuitableForTitle}
@@ -344,7 +344,7 @@ export function ServiceDetail({ slug }: ServiceDetailProps) {
               transition={{ duration: 0.6 }}
             >
               <h2
-                className="text-3xl md:text-4xl font-normal text-[#005F73] mb-12 text-center"
+                className="text-3xl md:text-4xl font-normal text-[#1A506C] mb-12 text-center"
                 style={{ fontFamily: 'Playfair Display, serif' }}
               >
                 {t.services?.galleryTitle}
@@ -383,7 +383,7 @@ export function ServiceDetail({ slug }: ServiceDetailProps) {
             transition={{ duration: 0.6 }}
           >
             <h2
-              className="text-3xl md:text-4xl font-normal text-[#005F73] mb-12 text-center"
+              className="text-3xl md:text-4xl font-normal text-[#1A506C] mb-12 text-center"
               style={{ fontFamily: 'Playfair Display, serif' }}
             >
               {t.services?.faqsTitle}
@@ -409,9 +409,9 @@ export function ServiceDetail({ slug }: ServiceDetailProps) {
                       {faq.question}
                     </h3>
                     {openFaqIndex === index ? (
-                      <ChevronUp className="w-5 h-5 text-[#005F73] flex-shrink-0" />
+                      <ChevronUp className="w-5 h-5 text-[#1A506C] flex-shrink-0" />
                     ) : (
-                      <ChevronDown className="w-5 h-5 text-[#005F73] flex-shrink-0" />
+                      <ChevronDown className="w-5 h-5 text-[#1A506C] flex-shrink-0" />
                     )}
                   </button>
                   {openFaqIndex === index && (
@@ -438,7 +438,7 @@ export function ServiceDetail({ slug }: ServiceDetailProps) {
       </section>
 
       {/* Final CTA */}
-      <section className="bg-gradient-to-br from-[#005F73] to-[#004D5E] py-16">
+      <section className="bg-gradient-to-br from-[#1A506C] to-[#0D4056] py-16">
         <div className="container mx-auto px-4 text-center max-w-4xl">
           <motion.h3
             initial={{ opacity: 0, y: 20 }}

@@ -43,7 +43,7 @@ export function Testimonials() {
 
               {/* Author */}
               <p
-                className="text-[#005F73] font-normal text-base sm:text-lg"
+                className="text-[#1A506C] font-normal text-base sm:text-lg"
                 style={{ fontFamily: 'Playfair Display, serif' }}
               >
                 {testimonial.name}

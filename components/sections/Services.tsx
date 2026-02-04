@@ -48,7 +48,7 @@ export function Services() {
             onClick={() => setActiveTab('aesthetic')}
             className={`px-8 py-3 rounded-full text-sm tracking-wider uppercase transition-all duration-300 ${
               activeTab === 'aesthetic'
-                ? 'bg-[#005F73] text-white'
+                ? 'bg-[#1A506C] text-white'
                 : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
             }`}
             style={{ fontFamily: 'Playfair Display, serif' }}
@@ -59,7 +59,7 @@ export function Services() {
             onClick={() => setActiveTab('dental')}
             className={`px-8 py-3 rounded-full text-sm tracking-wider uppercase transition-all duration-300 ${
               activeTab === 'dental'
-                ? 'bg-[#005F73] text-white'
+                ? 'bg-[#1A506C] text-white'
                 : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
             }`}
             style={{ fontFamily: 'Playfair Display, serif' }}
@@ -103,7 +103,7 @@ export function Services() {
 
                     {/* Learn More Button Overlay */}
                     <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <span className="px-6 py-3 bg-white text-[#005F73] rounded-full font-medium shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                      <span className="px-6 py-3 bg-white text-[#1A506C] rounded-full font-medium shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
                         {t.services.learnMore}
                       </span>
                     </div>
@@ -113,7 +113,7 @@ export function Services() {
                   <div className="space-y-3">
                     {/* Title */}
                     <h3
-                      className="text-2xl font-normal text-[#1a1a1a] group-hover:text-[#005F73] transition-colors duration-300"
+                      className="text-2xl font-normal text-[#1a1a1a] group-hover:text-[#1A506C] transition-colors duration-300"
                       style={{ fontFamily: 'Playfair Display, serif' }}
                     >
                       {service.title}
@@ -139,7 +139,7 @@ export function Services() {
         <div className="container mx-auto px-4 max-w-5xl">
           <div className="text-center mb-12">
             <h2
-              className="text-3xl md:text-4xl font-normal text-[#005F73] mb-4"
+              className="text-3xl md:text-4xl font-normal text-[#1A506C] mb-4"
               style={{ fontFamily: 'Playfair Display, serif' }}
             >
               {t.services.approachSectionTitle}
@@ -155,7 +155,7 @@ export function Services() {
       </div>
 
       {/* CTA Section */}
-      <div className="bg-gradient-to-br from-[#005F73] to-[#004D5E] py-16">
+      <div className="bg-gradient-to-br from-[#1A506C] to-[#0D4056] py-16">
         <div className="container mx-auto px-4 text-center max-w-4xl">
           <motion.h3
             initial={{ opacity: 0, y: 20 }}

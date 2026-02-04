@@ -12,7 +12,7 @@ export function Footer() {
   return (
     <footer 
       className="py-16 relative overflow-hidden"
-      style={{ backgroundColor: '#005F73' }}
+      style={{ backgroundColor: '#1A506C' }}
     >
       {/* Decorative background */}
       <div 

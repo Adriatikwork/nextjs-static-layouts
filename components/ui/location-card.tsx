@@ -58,7 +58,7 @@ export function LocationCard({ location, index }: LocationCardProps) {
         >
           {/* Location Number Badge */}
           <div className="mb-4 md:mb-6">
-            <div className="inline-flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-full bg-[#005F73] text-white font-semibold text-base md:text-lg">
+            <div className="inline-flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-full bg-[#1A506C] text-white font-semibold text-base md:text-lg">
               {index + 1}
             </div>
           </div>
@@ -73,7 +73,7 @@ export function LocationCard({ location, index }: LocationCardProps) {
 
           {/* Address */}
           <div className="flex items-start gap-2 md:gap-3 mb-4 md:mb-6">
-            <MapPin className="w-4 h-4 md:w-5 md:h-5 text-[#005F73] mt-1 flex-shrink-0" />
+            <MapPin className="w-4 h-4 md:w-5 md:h-5 text-[#1A506C] mt-1 flex-shrink-0" />
             <p
               className="text-base sm:text-lg md:text-xl text-[#1F2A33]/80 leading-relaxed"
               style={{ fontFamily: 'Playfair Display, serif' }}
@@ -100,7 +100,7 @@ export function LocationCard({ location, index }: LocationCardProps) {
               target="_blank"
               rel="noopener noreferrer"
               className={cn(
-                "inline-flex items-center gap-2 text-[#005F73] font-medium text-sm md:text-base",
+                "inline-flex items-center gap-2 text-[#1A506C] font-medium text-sm md:text-base",
                 "hover:text-[#C09B83] transition-colors duration-300",
                 "group/link"
               )}
@@ -133,7 +133,7 @@ export function LocationCard({ location, index }: LocationCardProps) {
           />
 
           {/* Subtle overlay on hover */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#005F73]/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#1A506C]/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
         </div>
       </div>
     </motion.article>

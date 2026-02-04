@@ -53,7 +53,7 @@ export function Hero() {
             <div
               className="absolute inset-0"
               style={{
-                background: 'linear-gradient(135deg, rgba(0, 95, 115, 0.5) 0%, rgba(0, 77, 94, 0.6) 50%, rgba(0, 0, 0, 0.55) 100%)',
+                background: 'linear-gradient(135deg, rgba(26, 80, 108, 0.5) 0%, rgba(13, 64, 86, 0.6) 50%, rgba(0, 0, 0, 0.55) 100%)',
                 zIndex: 2,
               }}
             />
@@ -276,7 +276,7 @@ export function Hero() {
                 <p className="text-sm sm:text-base text-gray-700 mb-4 font-light leading-relaxed" style={{ fontFamily: 'Playfair Display, serif' }}>
                   {t.hero.cards.aboutBullet1}
                 </p>
-                <Link href="/chi-sono" className="inline-flex items-center gap-2 text-[#005F73] hover:gap-3 transition-all duration-300 group">
+                <Link href="/chi-sono" className="inline-flex items-center gap-2 text-[#1A506C] hover:gap-3 transition-all duration-300 group">
                   <span className="text-sm font-normal" style={{ fontFamily: 'Playfair Display, serif' }}>
                     {t.hero.cards.scopriDiPiu}
                   </span>
@@ -313,7 +313,7 @@ export function Hero() {
                 <p className="text-sm sm:text-base text-gray-700 mb-4 font-light leading-relaxed" style={{ fontFamily: 'Playfair Display, serif' }}>
                   {t.hero.cards.odontoiatriaDesc}
                 </p>
-                <Link href="/servizi" className="inline-flex items-center gap-2 text-[#005F73] hover:gap-3 transition-all duration-300 group">
+                <Link href="/servizi" className="inline-flex items-center gap-2 text-[#1A506C] hover:gap-3 transition-all duration-300 group">
                   <span className="text-sm font-normal" style={{ fontFamily: 'Playfair Display, serif' }}>
                     {t.hero.cards.scopriDiPiu}
                   </span>
@@ -350,7 +350,7 @@ export function Hero() {
                 <p className="text-sm sm:text-base text-gray-700 mb-4 font-light leading-relaxed" style={{ fontFamily: 'Playfair Display, serif' }}>
                   {t.hero.cards.medicinaEsteticaDesc}
                 </p>
-                <Link href="/servizi" className="inline-flex items-center gap-2 text-[#005F73] hover:gap-3 transition-all duration-300 group">
+                <Link href="/servizi" className="inline-flex items-center gap-2 text-[#1A506C] hover:gap-3 transition-all duration-300 group">
                   <span className="text-sm font-normal" style={{ fontFamily: 'Playfair Display, serif' }}>
                     {t.hero.cards.scopriDiPiu}
                   </span>
@@ -387,7 +387,7 @@ export function Hero() {
                 <p className="text-sm sm:text-base text-gray-700 mb-4 font-light leading-relaxed" style={{ fontFamily: 'Playfair Display, serif' }}>
                   {t.hero.cards.consulenzaDesc}
                 </p>
-                <Link href="/contatti" className="inline-flex items-center gap-2 text-[#005F73] hover:gap-3 transition-all duration-300 group">
+                <Link href="/contatti" className="inline-flex items-center gap-2 text-[#1A506C] hover:gap-3 transition-all duration-300 group">
                   <span className="text-sm font-normal" style={{ fontFamily: 'Playfair Display, serif' }}>
                     {t.hero.cards.scopriDiPiu}
                   </span>
@@ -405,7 +405,7 @@ export function Hero() {
       <div className="w-full py-16 sm:py-20 md:py-24 bg-white relative overflow-hidden">
         {/* Subtle background accent */}
         <div className="absolute inset-0 opacity-[0.03]" style={{
-          backgroundImage: `radial-gradient(circle at 20% 50%, #005F73 0%, transparent 50%), radial-gradient(circle at 80% 50%, #c9b896 0%, transparent 50%)`
+          backgroundImage: `radial-gradient(circle at 20% 50%, #1A506C 0%, transparent 50%), radial-gradient(circle at 80% 50%, #c9b896 0%, transparent 50%)`
         }} />
         
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -446,7 +446,7 @@ export function Hero() {
                 className="group flex-1 flex flex-col items-center text-center px-4 lg:px-6 relative"
               >
                 <div className="relative mb-5">
-                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#005F73] to-[#004D5E] flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
+                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#1A506C] to-[#0D4056] flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
                     <svg width="28" height="28" viewBox="0 0 36 36" fill="none" className="text-white">
                       <rect x="5" y="8" width="26" height="23" rx="3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                       <path d="M5 15H31" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
@@ -479,7 +479,7 @@ export function Hero() {
                 className="group flex-1 flex flex-col items-center text-center px-4 lg:px-6 relative"
               >
                 <div className="relative mb-5">
-                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#005F73] to-[#004D5E] flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
+                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#1A506C] to-[#0D4056] flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
                     <svg width="28" height="28" viewBox="0 0 36 36" fill="none" className="text-white">
                       <circle cx="18" cy="11" r="5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
                       <path d="M9 31V27C9 23.6863 11.6863 21 15 21H21C24.3137 21 27 23.6863 27 27V31" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -507,7 +507,7 @@ export function Hero() {
                 className="group flex-1 flex flex-col items-center text-center px-4 lg:px-6 relative"
               >
                 <div className="relative mb-5">
-                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#005F73] to-[#004D5E] flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
+                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#1A506C] to-[#0D4056] flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
                     <svg width="28" height="28" viewBox="0 0 36 36" fill="none" className="text-white">
                       <path d="M9 5H23L27 9V31C27 31.5523 26.5523 32 26 32H10C9.44772 32 9 31.5523 9 31V5Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                       <path d="M23 5V9H27" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -537,7 +537,7 @@ export function Hero() {
                 className="group flex-1 flex flex-col items-center text-center px-4 lg:px-6"
               >
                 <div className="relative mb-5">
-                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#005F73] to-[#004D5E] flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
+                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#1A506C] to-[#0D4056] flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
                     <svg width="28" height="28" viewBox="0 0 36 36" fill="none" className="text-white">
                       <path d="M13 17C14.5 19.8 16.7 22 20 23.5L22.3 21.2C22.55 20.95 22.93 20.88 23.25 21C24.4 21.45 25.6 21.7 26.9 21.7C27.4 21.7 27.85 22.15 27.85 22.65V27C27.85 27.5 27.4 27.95 26.9 27.95C16.2 27.95 7.55 19.3 7.55 8.6C7.55 8.1 8 7.65 8.5 7.65H12.8C13.3 7.65 13.75 8.1 13.75 8.6C13.75 9.9 14 11.1 14.45 12.25C14.58 12.57 14.52 12.95 14.27 13.2L12 15.5C12.3 16.1 12.6 16.6 13 17Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                       <path d="M21 8C21 8 24.5 8 27.5 11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>

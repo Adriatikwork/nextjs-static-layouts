@@ -54,9 +54,9 @@ const config: Config = {
         // ===== TARGET COLOR PALETTE =====
         // Blue-teal (richer, more blue than green)
         'brand-teal': {
-          DEFAULT: "#005F73",
+          DEFAULT: "#1A506C",
           light: "#007080",
-          dark: "#004D5E",
+          dark: "#0D4056",
         },
         // Gold/Champagne accent
         'brand-gold': {
@@ -72,8 +72,8 @@ const config: Config = {
         'brand-dark-text': "#1F2A33",
         // Legacy aliases for backwards compatibility
         teal: {
-          DEFAULT: "#005F73",
-          dark: "#004D5E",
+          DEFAULT: "#1A506C",
+          dark: "#0D4056",
           light: "#007080",
         },
         cream: {
