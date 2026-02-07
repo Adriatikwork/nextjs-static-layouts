@@ -6,12 +6,12 @@ import { useState, useMemo } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { getServiceSummaries } from '@/content/services'
+import { ArrowRight } from 'lucide-react'
 
 export function Services() {
   const { t, language } = useLanguage()
   const [activeTab, setActiveTab] = useState<'dental' | 'aesthetic'>('aesthetic')
 
-  // Get service summaries dynamically based on current language
   const services = useMemo(() => getServiceSummaries(language), [language])
 
   const currentServices = activeTab === 'dental'
@@ -20,49 +20,66 @@ export function Services() {
 
   return (
     <section className="w-full bg-white pt-20">
-      {/* Header Section */}
-      <div className="container mx-auto px-4 pt-12 pb-8 max-w-5xl text-center">
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-5xl md:text-6xl lg:text-7xl font-normal mb-6 text-[#1a1a1a]"
-          style={{ fontFamily: 'Playfair Display, serif' }}
-        >
-          {t.services.pageTitle}
-        </motion.h1>
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1 }}
-          className="text-lg md:text-xl text-gray-700 font-light max-w-3xl mx-auto leading-relaxed"
-          style={{ fontFamily: 'Playfair Display, serif' }}
-        >
-          {t.services.pageDescription}
-        </motion.p>
+      {/* Header */}
+      <div className="max-w-7xl mx-auto px-6 lg:px-16 pt-12 pb-8">
+        <div className="max-w-3xl">
+          <motion.p
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-[#1a506c] text-sm tracking-[0.3em] uppercase mb-4"
+            style={{ fontFamily: 'Geist, sans-serif', fontWeight: 500 }}
+          >
+            {t.services.pageHeading}
+          </motion.p>
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="text-4xl sm:text-5xl md:text-6xl leading-[1.1] mb-6"
+            style={{ fontFamily: 'Playfair Display, serif', color: '#1a2a30' }}
+          >
+            {t.services.pageTitle}
+          </motion.h1>
+          <motion.div
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="w-16 h-[1px] bg-[#c9b896] origin-left mb-6"
+          />
+          <motion.p
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="text-base md:text-lg max-w-2xl"
+            style={{ fontFamily: 'Geist, sans-serif', fontWeight: 300, color: '#5a6a70' }}
+          >
+            {t.services.pageDescription}
+          </motion.p>
+        </div>
       </div>
 
       {/* Tab Toggle */}
-      <div className="container mx-auto px-4 py-8 max-w-5xl">
-        <div className="flex justify-center gap-3">
+      <div className="max-w-7xl mx-auto px-6 lg:px-16 py-8">
+        <div className="flex gap-2">
           <button
             onClick={() => setActiveTab('aesthetic')}
-            className={`px-8 py-3 rounded-full text-sm tracking-wider uppercase transition-all duration-300 ${
+            className={`px-6 py-3 text-sm tracking-[0.1em] uppercase transition-all duration-300 border ${
               activeTab === 'aesthetic'
-                ? 'bg-[#1A506C] text-white'
-                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                ? 'bg-[#1a506c] text-white border-[#1a506c]'
+                : 'bg-transparent text-[#5a6a70] border-[#d4cfc5] hover:border-[#1a506c] hover:text-[#1a506c]'
             }`}
-            style={{ fontFamily: 'Playfair Display, serif' }}
+            style={{ fontFamily: 'Geist, sans-serif', fontWeight: 500 }}
           >
             {t.services.aestheticTab}
           </button>
           <button
             onClick={() => setActiveTab('dental')}
-            className={`px-8 py-3 rounded-full text-sm tracking-wider uppercase transition-all duration-300 ${
+            className={`px-6 py-3 text-sm tracking-[0.1em] uppercase transition-all duration-300 border ${
               activeTab === 'dental'
-                ? 'bg-[#1A506C] text-white'
-                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                ? 'bg-[#1a506c] text-white border-[#1a506c]'
+                : 'bg-transparent text-[#5a6a70] border-[#d4cfc5] hover:border-[#1a506c] hover:text-[#1a506c]'
             }`}
-            style={{ fontFamily: 'Playfair Display, serif' }}
+            style={{ fontFamily: 'Geist, sans-serif', fontWeight: 500 }}
           >
             {t.services.dentalTab}
           </button>
@@ -70,15 +87,15 @@ export function Services() {
       </div>
 
       {/* Services Grid */}
-      <div className="container mx-auto px-4 pb-20">
+      <div className="max-w-7xl mx-auto px-6 lg:px-16 pb-24">
         <AnimatePresence mode="wait">
           <motion.div
             key={activeTab}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="flex flex-wrap justify-center gap-8 max-w-7xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.4 }}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
           >
             {currentServices.map((service, index) => (
               <motion.div
@@ -86,11 +103,10 @@ export function Services() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="w-full sm:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.5rem)] max-w-md"
               >
-                <Link href={`/servizi/${service.slug}`} className="block group cursor-pointer">
+                <Link href={`/servizi/${service.slug}`} className="group block">
                   {/* Image */}
-                  <div className="relative aspect-[4/5] overflow-hidden rounded-lg mb-6 bg-gray-100">
+                  <div className="relative aspect-[4/5] overflow-hidden mb-5">
                     <Image
                       src={service.images?.main || "/placeholder.svg"}
                       alt={service.title}
@@ -98,35 +114,29 @@ export function Services() {
                       className="object-cover transition-transform duration-700 group-hover:scale-105"
                       unoptimized
                     />
-                    {/* Subtle Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
-                    {/* Learn More Button Overlay */}
-                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <span className="px-6 py-3 bg-white text-[#1A506C] rounded-full font-medium shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                        {t.services.learnMore}
-                      </span>
-                    </div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   </div>
 
                   {/* Content */}
-                  <div className="space-y-3">
-                    {/* Title */}
-                    <h3
-                      className="text-2xl font-normal text-[#1a1a1a] group-hover:text-[#1A506C] transition-colors duration-300"
-                      style={{ fontFamily: 'Playfair Display, serif' }}
-                    >
-                      {service.title}
-                    </h3>
-
-                    {/* Description */}
-                    <p
-                      className="text-gray-600 font-light leading-relaxed"
-                      style={{ fontFamily: 'Playfair Display, serif' }}
-                    >
-                      {service.description}
-                    </p>
-                  </div>
+                  <h3
+                    className="text-xl mb-2 group-hover:text-[#1a506c] transition-colors duration-300"
+                    style={{ fontFamily: 'Playfair Display, serif', color: '#1a2a30' }}
+                  >
+                    {service.title}
+                  </h3>
+                  <p
+                    className="text-sm leading-relaxed mb-3"
+                    style={{ fontFamily: 'Geist, sans-serif', fontWeight: 300, color: '#5a6a70' }}
+                  >
+                    {service.description}
+                  </p>
+                  <span
+                    className="inline-flex items-center gap-2 text-[#1a506c] text-sm tracking-wide group-hover:gap-3 transition-all duration-300"
+                    style={{ fontFamily: 'Geist, sans-serif', fontWeight: 500 }}
+                  >
+                    {t.services.learnMore}
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </span>
                 </Link>
               </motion.div>
             ))}
@@ -134,59 +144,68 @@ export function Services() {
         </AnimatePresence>
       </div>
 
-      {/* Approach Section - Compact */}
-      <div className="bg-[#f8f7f5] py-16">
-        <div className="container mx-auto px-4 max-w-5xl">
-          <div className="text-center mb-12">
-            <h2
-              className="text-3xl md:text-4xl font-normal text-[#1A506C] mb-4"
-              style={{ fontFamily: 'Playfair Display, serif' }}
-            >
-              {t.services.approachSectionTitle}
-            </h2>
-            <p
-              className="text-lg text-gray-700 font-light max-w-3xl mx-auto"
-              style={{ fontFamily: 'Playfair Display, serif' }}
-            >
-              {t.services.approachSectionDescription}
-            </p>
-          </div>
-        </div>
-      </div>
-
-      {/* CTA Section */}
-      <div className="bg-gradient-to-br from-[#1A506C] to-[#0D4056] py-16">
-        <div className="container mx-auto px-4 text-center max-w-4xl">
-          <motion.h3
-            initial={{ opacity: 0, y: 20 }}
+      {/* Approach Section */}
+      <div className="py-24" style={{ backgroundColor: '#FAF8F5' }}>
+        <div className="max-w-4xl mx-auto px-6 lg:px-16 text-center">
+          <motion.p
+            initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-3xl md:text-4xl font-normal text-white mb-6"
-            style={{ fontFamily: 'Playfair Display, serif' }}
+            className="text-[#1a506c] text-sm tracking-[0.3em] uppercase mb-4"
+            style={{ fontFamily: 'Geist, sans-serif', fontWeight: 500 }}
           >
-            {t.services.ctaSectionTitle}
-          </motion.h3>
+            {t.services.approachSectionTitle}
+          </motion.p>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-lg text-white/90 mb-8 font-light"
-            style={{ fontFamily: 'Playfair Display, serif' }}
+            className="text-xl md:text-2xl leading-relaxed"
+            style={{ fontFamily: 'Playfair Display, serif', fontWeight: 300, color: '#3a4a50' }}
           >
-            {t.services.ctaSectionDescription}
+            {t.services.approachSectionDescription}
           </motion.p>
-          <motion.a
-            href="/contatti"
+        </div>
+      </div>
+
+      {/* CTA Section */}
+      <div className="py-24" style={{ backgroundColor: '#1a506c' }}>
+        <div className="max-w-4xl mx-auto px-6 lg:px-16 text-center">
+          <motion.h3
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="inline-block px-10 py-4 bg-[#c9b896] text-[#1a1a1a] rounded-full hover:bg-[#d4b19a] transition-colors duration-300 font-normal"
-            style={{ fontFamily: 'Playfair Display, serif' }}
+            className="text-3xl md:text-4xl text-white mb-6 leading-tight"
+            style={{ fontFamily: 'Playfair Display, serif', fontWeight: 400 }}
           >
-            {t.services.ctaSectionButton}
-          </motion.a>
+            {t.services.ctaSectionTitle}
+          </motion.h3>
+          <motion.p
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="text-base text-white/80 mb-10 max-w-xl mx-auto"
+            style={{ fontFamily: 'Geist, sans-serif', fontWeight: 300 }}
+          >
+            {t.services.ctaSectionDescription}
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+          >
+            <Link
+              href="/contatti"
+              className="inline-flex items-center gap-3 px-10 py-4 bg-[#c9b896] text-[#1a2a30] text-sm tracking-[0.15em] uppercase transition-all duration-300 hover:bg-[#d4c5a5] hover:shadow-lg"
+              style={{ fontFamily: 'Geist, sans-serif', fontWeight: 500 }}
+            >
+              {t.services.ctaSectionButton}
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </motion.div>
         </div>
       </div>
     </section>

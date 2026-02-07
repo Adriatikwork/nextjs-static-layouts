@@ -2,8 +2,9 @@
 
 import { useLanguage } from '@/lib/LanguageContext'
 import { motion } from 'framer-motion'
-import { Award, GraduationCap, Heart, Sparkles } from 'lucide-react'
+import { Award, GraduationCap, Heart, Sparkles, ArrowRight } from 'lucide-react'
 import { assetPath } from '@/lib/utils'
+import Link from 'next/link'
 
 export function About() {
   const { t } = useLanguage()
@@ -17,41 +18,37 @@ export function About() {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: {
-        staggerChildren: 0.2
-      }
+      transition: { staggerChildren: 0.15 }
     }
   }
 
   return (
-    <div className="min-h-screen bg-[#f5f1ed]">
-      {/* Hero Section - Minimal & Bold */}
-      <section className="relative pt-32 pb-12 px-4">
+    <div className="min-h-screen" style={{ backgroundColor: '#FAF8F5' }}>
+      {/* Hero */}
+      <section className="relative pt-36 pb-16 px-6 lg:px-16">
         <div className="max-w-6xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1 }}
-            className="text-center mb-16"
-          >
-            <p className="text-sm tracking-[0.3em] uppercase text-[#1A506C] mb-6 font-light">
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8 }}>
+            <p
+              className="text-[#1a506c] text-sm tracking-[0.3em] uppercase mb-6"
+              style={{ fontFamily: 'Geist, sans-serif', fontWeight: 500 }}
+            >
               {t.about.pageHeading}
             </p>
             <h1
-              className="text-6xl md:text-7xl lg:text-8xl font-normal tracking-tight mb-8 leading-[1.1]"
-              style={{ fontFamily: 'Playfair Display, serif' }}
+              className="text-5xl md:text-6xl lg:text-7xl leading-[1.05] tracking-tight mb-8"
+              style={{ fontFamily: 'Playfair Display, serif', color: '#1a2a30' }}
             >
-              {t.about.name.split('\n').map((line, i) => (
+              {t.about.name.split('\n').map((line: string, i: number) => (
                 <span key={i}>
                   {line}
                   {i < t.about.name.split('\n').length - 1 && <br />}
                 </span>
               ))}
             </h1>
-            <div className="my-12" />
+            <div className="w-16 h-[1px] bg-[#c9b896] mb-8" />
             <p
-              className="text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto leading-relaxed font-light"
-              style={{ fontFamily: 'Playfair Display, serif' }}
+              className="text-xl md:text-2xl max-w-2xl leading-relaxed"
+              style={{ fontFamily: 'Playfair Display, serif', fontWeight: 300, color: '#3a4a50' }}
             >
               {t.about.subtitle}
             </p>
@@ -59,37 +56,40 @@ export function About() {
         </div>
       </section>
 
-      {/* Introduction Section with Doctor Image - Two Column Layout */}
-      <section className="py-16 px-4 bg-gradient-to-b from-[#f5f1ed] to-white">
+      {/* Introduction - Two Column */}
+      <section className="py-24 px-6 lg:px-16 bg-white">
         <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            {/* Left: Doctor Image */}
+          <div className="grid md:grid-cols-2 gap-16 items-center">
+            {/* Image */}
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
+              initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
               className="relative"
             >
-              <div className="relative aspect-[3/4] rounded-2xl overflow-hidden shadow-2xl">
+              <div className="relative aspect-[3/4] overflow-hidden">
                 <img
-                  src={assetPath("/Doctor.jpg")}
+                  src={assetPath("/Doctor.jpg") || "/placeholder.svg"}
                   alt="Dottoressa Irene Maria Beconi"
                   className="w-full h-full object-cover"
                 />
               </div>
-              {/* Floating Badge */}
-              <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-white px-8 py-4 rounded-full shadow-xl border border-gray-100">
+              {/* Badge */}
+              <div
+                className="absolute -bottom-5 left-8 px-6 py-3 border border-[#e8e2d8]"
+                style={{ backgroundColor: '#FAF8F5' }}
+              >
                 <p
-                  className="text-sm text-[#1A506C] font-normal tracking-wide"
-                  style={{ fontFamily: 'Playfair Display, serif' }}
+                  className="text-sm tracking-wide"
+                  style={{ fontFamily: 'Geist, sans-serif', fontWeight: 500, color: '#1a506c' }}
                 >
                   {t.about.experienceBadge}
                 </p>
               </div>
             </motion.div>
 
-            {/* Right: Text Content */}
+            {/* Text */}
             <motion.div
               initial="hidden"
               whileInView="visible"
@@ -99,25 +99,25 @@ export function About() {
             >
               <motion.p
                 variants={fadeIn}
-                className="text-lg md:text-xl text-gray-800 leading-relaxed font-light"
-                style={{ fontFamily: 'Playfair Display, serif' }}
+                className="text-lg md:text-xl leading-relaxed"
+                style={{ fontFamily: 'Geist, sans-serif', fontWeight: 300, color: '#3a4a50' }}
               >
                 {t.about.intro}
               </motion.p>
               <motion.p
                 variants={fadeIn}
-                className="text-lg md:text-xl text-gray-700 leading-relaxed font-light"
-                style={{ fontFamily: 'Playfair Display, serif' }}
+                className="text-lg md:text-xl leading-relaxed"
+                style={{ fontFamily: 'Geist, sans-serif', fontWeight: 300, color: '#5a6a70' }}
               >
                 {t.about.description}
               </motion.p>
-
-              {/* Key Highlights */}
-              <motion.div variants={fadeIn} className="pt-6 space-y-4">
-                {t.about.keyHighlights.map((item, i) => (
+              <motion.div variants={fadeIn} className="pt-4 space-y-3">
+                {t.about.keyHighlights.map((item: string, i: number) => (
                   <div key={i} className="flex items-center gap-3">
-                    <div className="w-2 h-2 rounded-full bg-[#c9b896]" />
-                    <p className="text-gray-700 font-light">{item}</p>
+                    <div className="w-1.5 h-1.5 bg-[#c9b896]" />
+                    <p className="text-sm" style={{ fontFamily: 'Geist, sans-serif', fontWeight: 400, color: '#3a4a50' }}>
+                      {item}
+                    </p>
                   </div>
                 ))}
               </motion.div>
@@ -126,9 +126,9 @@ export function About() {
         </div>
       </section>
 
-      {/* Values Grid - Modern Cards */}
-      <section className="py-16 px-4 bg-white relative overflow-hidden">
-        <div className="max-w-7xl mx-auto relative z-10">
+      {/* Values */}
+      <section className="py-24 px-6 lg:px-16" style={{ backgroundColor: '#FAF8F5' }}>
+        <div className="max-w-7xl mx-auto">
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -145,18 +145,18 @@ export function About() {
               <motion.div
                 key={i}
                 variants={fadeIn}
-                className="group text-center p-8 rounded-lg hover:bg-[#f5f1ed] transition-all duration-500"
+                className="group p-8 bg-white border border-[#e8e2d8] hover:border-[#c9b896] transition-all duration-500"
               >
-                <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-[#1A506C]/10 flex items-center justify-center group-hover:bg-[#1A506C] transition-colors duration-500">
-                  <item.icon className="w-8 h-8 text-[#1A506C] group-hover:text-white transition-colors duration-500" />
+                <div className="w-12 h-12 mb-6 flex items-center justify-center bg-[#1a506c]/10 group-hover:bg-[#1a506c] transition-colors duration-500">
+                  <item.icon className="w-5 h-5 text-[#1a506c] group-hover:text-white transition-colors duration-500" />
                 </div>
-                <h3 
-                  className="text-xl mb-3 font-normal"
-                  style={{ fontFamily: 'Playfair Display, serif' }}
+                <h3
+                  className="text-lg mb-3"
+                  style={{ fontFamily: 'Playfair Display, serif', color: '#1a2a30' }}
                 >
                   {item.title}
                 </h3>
-                <p className="text-gray-600 text-sm leading-relaxed font-light">
+                <p className="text-sm leading-relaxed" style={{ fontFamily: 'Geist, sans-serif', fontWeight: 300, color: '#5a6a70' }}>
                   {item.description}
                 </p>
               </motion.div>
@@ -165,8 +165,8 @@ export function About() {
         </div>
       </section>
 
-      {/* Statistics Section */}
-      <section className="py-12 px-4 bg-gradient-to-r from-[#1A506C] to-[#0D4056]">
+      {/* Stats */}
+      <section className="py-20 px-6 lg:px-16" style={{ backgroundColor: '#1a506c' }}>
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
@@ -184,14 +184,14 @@ export function About() {
                 className="text-center"
               >
                 <div
-                  className="text-4xl md:text-5xl font-normal text-[#c9b896] mb-2"
-                  style={{ fontFamily: 'Playfair Display, serif' }}
+                  className="text-4xl md:text-5xl mb-2"
+                  style={{ fontFamily: 'Playfair Display, serif', fontWeight: 300, color: '#c9b896' }}
                 >
                   {stat.number}
                 </div>
                 <div
-                  className="text-sm text-white/80 uppercase tracking-wide font-light"
-                  style={{ fontFamily: 'Playfair Display, serif' }}
+                  className="text-xs uppercase tracking-[0.2em]"
+                  style={{ fontFamily: 'Geist, sans-serif', fontWeight: 400, color: 'rgba(255,255,255,0.6)' }}
                 >
                   {stat.label}
                 </div>
@@ -201,45 +201,47 @@ export function About() {
         </div>
       </section>
 
-      {/* Formation Section - Elegant List */}
-      <section className="py-16 px-4 bg-[#f5f1ed]">
+      {/* Formation */}
+      <section className="py-24 px-6 lg:px-16" style={{ backgroundColor: '#FAF8F5' }}>
         <div className="max-w-5xl mx-auto">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={staggerContainer}
-          >
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer}>
+            <motion.p
+              variants={fadeIn}
+              className="text-[#1a506c] text-sm tracking-[0.3em] uppercase mb-4"
+              style={{ fontFamily: 'Geist, sans-serif', fontWeight: 500 }}
+            >
+              Formazione
+            </motion.p>
             <motion.h2
               variants={fadeIn}
-              className="text-4xl md:text-5xl mb-12 text-center font-normal"
-              style={{ fontFamily: 'Playfair Display, serif' }}
+              className="text-3xl md:text-4xl mb-4"
+              style={{ fontFamily: 'Playfair Display, serif', color: '#1a2a30' }}
             >
               {t.about.formationTitle}
             </motion.h2>
+            <motion.div
+              variants={fadeIn}
+              className="w-16 h-[1px] bg-[#c9b896] mb-12"
+            />
             <div className="space-y-4">
-              {t.about.formation.map((item, i) => (
+              {t.about.formation.map((item: string, i: number) => (
                 <motion.div
                   key={i}
                   variants={fadeIn}
-                  className="flex items-start gap-6 p-6 bg-white rounded-xl hover:shadow-xl transition-all duration-300 border border-gray-100 group hover:border-[#c9b896]/30"
+                  className="flex items-start gap-6 p-6 bg-white border border-[#e8e2d8] hover:border-[#c9b896] transition-all duration-300 group"
                 >
-                  <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#c9b896]/20 to-[#1A506C]/10 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-                    <span
-                      className="text-[#c9b896] text-lg font-normal"
-                      style={{ fontFamily: 'Playfair Display, serif' }}
-                    >
-                      {String(i + 1).padStart(2, '0')}
-                    </span>
-                  </div>
-                  <div className="flex-1">
-                    <p
-                      className="text-lg md:text-xl text-gray-800 font-light leading-relaxed"
-                      style={{ fontFamily: 'Playfair Display, serif' }}
-                    >
-                      {item}
-                    </p>
-                  </div>
+                  <span
+                    className="text-2xl font-light leading-none mt-1"
+                    style={{ fontFamily: 'Playfair Display, serif', color: 'rgba(201,184,150,0.5)' }}
+                  >
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                  <p
+                    className="text-base md:text-lg leading-relaxed flex-1"
+                    style={{ fontFamily: 'Geist, sans-serif', fontWeight: 300, color: '#3a4a50' }}
+                  >
+                    {item}
+                  </p>
                 </motion.div>
               ))}
             </div>
@@ -247,9 +249,9 @@ export function About() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-16 px-4 bg-gradient-to-br from-[#1A506C] to-[#0D4056] text-white relative overflow-hidden">
-        <div className="max-w-4xl mx-auto text-center relative z-10">
+      {/* CTA */}
+      <section className="py-24 px-6 lg:px-16" style={{ backgroundColor: '#1a506c' }}>
+        <div className="max-w-4xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -257,21 +259,25 @@ export function About() {
             transition={{ duration: 0.8 }}
           >
             <h3
-              className="text-4xl md:text-5xl mb-6 font-normal"
+              className="text-3xl md:text-4xl text-white mb-6"
               style={{ fontFamily: 'Playfair Display, serif' }}
             >
               {t.about.cta.title}
             </h3>
-            <p className="text-lg mb-10 text-white/90 font-light max-w-2xl mx-auto">
+            <p
+              className="text-base text-white/70 mb-10 max-w-xl mx-auto"
+              style={{ fontFamily: 'Geist, sans-serif', fontWeight: 300 }}
+            >
               {t.about.cta.subtitle}
             </p>
-            <a
+            <Link
               href="/contatti"
-              className="inline-block px-12 py-4 bg-[#c9b896] text-[#1a1a1a] rounded-full hover:bg-[#d4b19a] transition-all duration-300 hover:scale-105 font-normal tracking-wide"
-              style={{ fontFamily: 'Playfair Display, serif' }}
+              className="inline-flex items-center gap-3 px-10 py-4 bg-[#c9b896] text-[#1a2a30] text-sm tracking-[0.15em] uppercase transition-all duration-300 hover:bg-[#d4c5a5] hover:shadow-lg"
+              style={{ fontFamily: 'Geist, sans-serif', fontWeight: 500 }}
             >
               {t.about.cta.button}
-            </a>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
           </motion.div>
         </div>
       </section>

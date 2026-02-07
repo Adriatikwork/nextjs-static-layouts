@@ -1,6 +1,6 @@
 "use client"
 
-import { MapPin, Phone, Mail, Instagram } from 'lucide-react'
+import { Phone, Mail, MapPin, Instagram, ArrowRight } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useLanguage } from '@/lib/LanguageContext'
@@ -8,162 +8,135 @@ import { assetPath } from '@/lib/utils'
 
 export function Footer() {
   const { t } = useLanguage()
-  
+
   return (
-    <footer 
-      className="py-16 relative overflow-hidden"
-      style={{ backgroundColor: '#1A506C' }}
-    >
-      {/* Decorative background */}
-      <div 
-        className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-brand-gold to-transparent"
-      />
-      
-      {/* Decorative logo */}
-      <div className="absolute bottom-10 right-10 opacity-5 pointer-events-none hidden lg:block">
-        <Image 
-          src={assetPath("/logo-icon.png") || "/placeholder.svg"}
-          alt="" 
-          width={200} 
-          height={200}
-          className="brightness-0 invert"
-        />
-      </div>
+    <footer className="relative overflow-hidden" style={{ backgroundColor: '#1a506c' }}>
+      {/* Top line accent */}
+      <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-[#c9b896]/40 to-transparent" />
 
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr] gap-8 md:gap-6 lg:gap-8 mb-8 md:mb-12">
-          {/* Column 1 - About */}
-          <div className="flex justify-center md:justify-start">
-            <div className="mb-6">
-              <Image
-                src={assetPath("/logo-combined.png") || "/placeholder.svg"}
-                alt="Logo"
-                width={250}
-                height={100}
-                className="brightness-0 invert opacity-80"
-              />
-            </div>
+      <div className="max-w-7xl mx-auto px-6 lg:px-16 py-16 md:py-20">
+        {/* Top Row: Logo + Nav */}
+        <div className="flex flex-col lg:flex-row lg:justify-between gap-12 mb-16">
+          {/* Logo */}
+          <div className="flex flex-col items-center lg:items-start max-w-xs lg:max-w-sm mx-auto lg:mx-0">
+            <Image
+              src={assetPath("/logo-combined.png") || "/placeholder.svg"}
+              alt="Logo"
+              width={200}
+              height={80}
+              className="brightness-0 invert opacity-70 mb-6"
+            />
+            <p
+              className="text-sm leading-relaxed text-center lg:text-left"
+              style={{ fontFamily: 'Geist, sans-serif', fontWeight: 300, color: 'rgba(255,255,255,0.5)' }}
+            >
+              {t.hero.description}
+            </p>
           </div>
 
-          {/* Column 2 - Quick Links */}
-          <div>
-            <h4
-              className="text-lg mb-6 font-normal tracking-wide"
-              style={{ fontFamily: 'Playfair Display, serif', color: '#c9b896' }}
-            >
-              {t.footer.linksTitle}
-            </h4>
-            <div className="space-y-3">
-              {[
-                { label: t.footer.links.home, href: '/' },
-                { label: t.footer.links.about, href: '/chi-sono' },
-                { label: t.footer.links.services, href: '/servizi' },
-                { label: t.footer.links.gallery, href: '/galleria' },
-                { label: t.footer.links.contact, href: '/contatti' },
-              ].map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="block hover:text-brand-gold transition-colors text-sm font-light"
-                  style={{ fontFamily: 'Playfair Display, serif', color: 'rgba(255, 255, 255, 0.85)' }}
-                >
-                  {link.label}
-                </Link>
-              ))}
-            </div>
-          </div>
-
-          {/* Column 3 - Contact Info */}
-          <div>
-            <h4
-              className="text-lg mb-6 font-normal tracking-wide"
-              style={{ fontFamily: 'Playfair Display, serif', color: '#c9b896' }}
-            >
-              {t.footer.contactTitle}
-            </h4>
-            <div className="space-y-4">
-              <div className="flex items-start gap-3">
-                <Phone className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: '#c9b896' }} />
-                <div>
-                  <p
-                    className="text-sm font-light"
-                    style={{ fontFamily: 'Playfair Display, serif', color: 'rgba(255, 255, 255, 0.85)' }}
+          {/* Links */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-16">
+            {/* Navigation */}
+            <div>
+              <h4
+                className="text-xs uppercase tracking-[0.2em] mb-5"
+                style={{ fontFamily: 'Geist, sans-serif', fontWeight: 600, color: '#c9b896' }}
+              >
+                {t.footer.linksTitle}
+              </h4>
+              <nav className="space-y-3">
+                {[
+                  { label: t.footer.links.home, href: '/' },
+                  { label: t.footer.links.about, href: '/chi-sono' },
+                  { label: t.footer.links.services, href: '/servizi' },
+                  { label: t.footer.links.gallery, href: '/galleria' },
+                  { label: t.footer.links.contact, href: '/contatti' },
+                ].map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className="block text-sm hover:text-[#c9b896] transition-colors duration-300"
+                    style={{ fontFamily: 'Geist, sans-serif', fontWeight: 300, color: 'rgba(255,255,255,0.6)' }}
                   >
+                    {link.label}
+                  </Link>
+                ))}
+              </nav>
+            </div>
+
+            {/* Contact */}
+            <div>
+              <h4
+                className="text-xs uppercase tracking-[0.2em] mb-5"
+                style={{ fontFamily: 'Geist, sans-serif', fontWeight: 600, color: '#c9b896' }}
+              >
+                {t.footer.contactTitle}
+              </h4>
+              <div className="space-y-4">
+                <div className="flex items-start gap-3">
+                  <Phone className="w-4 h-4 flex-shrink-0 mt-0.5" style={{ color: '#c9b896' }} />
+                  <p className="text-sm" style={{ fontFamily: 'Geist, sans-serif', fontWeight: 300, color: 'rgba(255,255,255,0.6)' }}>
                     {t.contact.info.phoneNumber}
                   </p>
                 </div>
-              </div>
-              <div className="flex items-start gap-3">
-                <Mail className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: '#c9b896' }} />
-                <div>
-                  <p
-                    className="text-sm font-light"
-                    style={{ fontFamily: 'Playfair Display, serif', color: 'rgba(255, 255, 255, 0.85)' }}
-                  >
+                <div className="flex items-start gap-3">
+                  <Mail className="w-4 h-4 flex-shrink-0 mt-0.5" style={{ color: '#c9b896' }} />
+                  <p className="text-sm" style={{ fontFamily: 'Geist, sans-serif', fontWeight: 300, color: 'rgba(255,255,255,0.6)' }}>
                     {t.contact.info.emailAddress}
                   </p>
                 </div>
-              </div>
-              <div className="flex items-start gap-3">
-                <MapPin className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: '#c9b896' }} />
-                <div>
-                  <p
-                    className="text-sm font-light"
-                    style={{ fontFamily: 'Playfair Display, serif', color: 'rgba(255, 255, 255, 0.85)' }}
-                  >
+                <div className="flex items-start gap-3">
+                  <MapPin className="w-4 h-4 flex-shrink-0 mt-0.5" style={{ color: '#c9b896' }} />
+                  <p className="text-sm" style={{ fontFamily: 'Geist, sans-serif', fontWeight: 300, color: 'rgba(255,255,255,0.6)' }}>
                     {t.contact.info.locationAddress}<br />
                     {t.contact.info.locationCity}
                   </p>
                 </div>
               </div>
+            </div>
+
+            {/* Social */}
+            <div>
+              <h4
+                className="text-xs uppercase tracking-[0.2em] mb-5"
+                style={{ fontFamily: 'Geist, sans-serif', fontWeight: 600, color: '#c9b896' }}
+              >
+                Social
+              </h4>
               <a
-                href="https://www.instagram.com/dr.ssa_irenebeconi"
+                href="https://www.instagram.com/dr.ssa_irenembeconi/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-start gap-3 hover:opacity-80 transition-opacity"
+                className="flex items-center gap-3 text-sm hover:text-[#c9b896] transition-colors duration-300"
+                style={{ fontFamily: 'Geist, sans-serif', fontWeight: 300, color: 'rgba(255,255,255,0.6)' }}
               >
-                <Instagram className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: '#c9b896' }} />
-                <div>
-                  <p
-                    className="text-sm font-light"
-                    style={{ fontFamily: 'Playfair Display, serif', color: 'rgba(255, 255, 255, 0.85)' }}
-                  >
-                    @dr.ssa_irenebeconi
-                  </p>
-                </div>
+                <Instagram className="w-4 h-4" style={{ color: '#c9b896' }} />
+                @dr.ssa_irenembeconi
               </a>
             </div>
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="pt-8 border-t border-brand-gold/20">
-          <div className="flex flex-col items-center gap-6">
-            {/* Copyright - Centered */}
-            <p 
-              className="text-sm font-light text-center"
-              style={{ fontFamily: 'Playfair Display, serif', color: 'rgba(255, 255, 255, 0.7)' }}
-            >
-              {t.footer.copyright.replace('{year}', new Date().getFullYear().toString())}
-            </p>
-
-            {/* Legal Links */}
-            <div className="flex gap-6">
-              {[
-                { label: t.footer.links.privacy, href: '#' },
-                { label: t.footer.links.cookie, href: '#' },
-                { label: t.footer.links.legal, href: '#' },
-              ].map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  className="hover:text-brand-gold transition-colors text-sm font-light"
-                  style={{ fontFamily: 'Playfair Display, serif', color: 'rgba(255, 255, 255, 0.7)' }}
-                >
-                  {link.label}
-                </a>
-              ))}
-            </div>
+        {/* Bottom */}
+        <div className="pt-8 border-t border-white/10 flex flex-col items-center justify-center gap-6">
+          <p className="text-xs text-center" style={{ fontFamily: 'Geist, sans-serif', fontWeight: 300, color: 'rgba(255,255,255,0.35)' }}>
+            {t.footer.copyright.replace('{year}', new Date().getFullYear().toString())}
+          </p>
+          <div className="flex flex-wrap justify-center gap-6">
+            {[
+              { label: t.footer.links.privacy, href: '#' },
+              { label: t.footer.links.cookie, href: '#' },
+              { label: t.footer.links.legal, href: '#' },
+            ].map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                className="text-xs hover:text-[#c9b896] transition-colors"
+                style={{ fontFamily: 'Geist, sans-serif', fontWeight: 300, color: 'rgba(255,255,255,0.35)' }}
+              >
+                {link.label}
+              </a>
+            ))}
           </div>
         </div>
       </div>
