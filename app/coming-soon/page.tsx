@@ -108,7 +108,7 @@ export default function ComingSoonPage() {
             </motion.a>
 
             <motion.a
-              href="https://www.instagram.com/dr.ssa_irenebeconi"
+              href="https://www.instagram.com/dr.ssa_irenembeconi/"
               target="_blank"
               rel="noopener noreferrer"
               initial={{ opacity: 0, y: 20 }}
@@ -120,7 +120,7 @@ export default function ComingSoonPage() {
                 <Instagram className="w-6 h-6 text-white" />
               </div>
               <p className="text-sm text-white/70 mb-2 uppercase tracking-wider">Instagram</p>
-              <p className="text-base font-light text-white">@dr.ssa_irenebeconi</p>
+              <p className="text-base font-light text-white">@dr.ssa_irenembeconi</p>
             </motion.a>
           </div>
 
