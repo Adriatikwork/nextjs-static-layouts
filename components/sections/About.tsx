@@ -27,7 +27,7 @@ export function About() {
       {/* Hero */}
       <section className="relative pt-36 pb-16 px-6 lg:px-16">
         <div className="max-w-6xl mx-auto">
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8 }}>
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8 }} className="text-center md:text-left">
             <p
               className="text-[#1a506c] text-sm tracking-[0.3em] uppercase mb-6"
               style={{ fontFamily: 'Geist, sans-serif', fontWeight: 500 }}
@@ -45,9 +45,9 @@ export function About() {
                 </span>
               ))}
             </h1>
-            <div className="w-16 h-[1px] bg-[#c9b896] mb-8" />
+            <div className="w-16 h-[1px] bg-[#c9b896] mb-8 mx-auto md:mx-0" />
             <p
-              className="text-xl md:text-2xl max-w-2xl leading-relaxed"
+              className="text-xl md:text-2xl max-w-2xl leading-relaxed mx-auto md:mx-0"
               style={{ fontFamily: 'Playfair Display, serif', fontWeight: 300, color: '#3a4a50' }}
             >
               {t.about.subtitle}
@@ -170,7 +170,7 @@ export function About() {
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
-              { number: "15+", label: t.about.stats.experience },
+              { number: "10+", label: t.about.stats.experience },
               { number: "5000+", label: t.about.stats.patients },
               { number: "100%", label: t.about.stats.dedication },
               { number: "24/7", label: t.about.stats.support }

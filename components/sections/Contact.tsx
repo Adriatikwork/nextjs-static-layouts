@@ -3,7 +3,7 @@
 import { cn } from "@/lib/utils"
 import React, { useState, useEffect, Suspense } from 'react'
 import { assetPath } from '@/lib/utils'
-import { MapPin, Clock, Send, CheckCircle, AlertCircle, ArrowRight } from 'lucide-react'
+import { MapPin, Send, CheckCircle, AlertCircle, ArrowRight } from 'lucide-react'
 import { useLanguage } from '@/lib/LanguageContext'
 import emailjs from '@emailjs/browser'
 import { emailJsConfig } from '@/config/emailjs.config'
@@ -342,14 +342,6 @@ function ContactContent() {
                         {location.address}
                       </p>
                     </div>
-                    {location.days && (
-                      <div className="flex items-start gap-2 mb-4">
-                        <Clock className="w-4 h-4 text-[#1a506c] mt-1 flex-shrink-0" />
-                        <p className="text-sm" style={{ fontFamily: 'Geist, sans-serif', fontWeight: 300, color: '#5a6a70' }}>
-                          {location.days} | {location.hours}
-                        </p>
-                      </div>
-                    )}
                     {location.services && location.services.length > 0 && (
                       <div className="flex flex-wrap gap-2 mb-4">
                         {location.services.map((service: string) => (

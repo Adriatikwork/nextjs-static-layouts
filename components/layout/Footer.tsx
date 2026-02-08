@@ -1,6 +1,6 @@
 "use client"
 
-import { Phone, Mail, MapPin, Instagram, ArrowRight } from 'lucide-react'
+import { Phone, Mail, Instagram, ArrowRight } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useLanguage } from '@/lib/LanguageContext'
@@ -83,13 +83,6 @@ export function Footer() {
                   <Mail className="w-4 h-4 flex-shrink-0 mt-0.5" style={{ color: '#c9b896' }} />
                   <p className="text-sm" style={{ fontFamily: 'Geist, sans-serif', fontWeight: 300, color: 'rgba(255,255,255,0.6)' }}>
                     {t.contact.info.emailAddress}
-                  </p>
-                </div>
-                <div className="flex items-start gap-3">
-                  <MapPin className="w-4 h-4 flex-shrink-0 mt-0.5" style={{ color: '#c9b896' }} />
-                  <p className="text-sm" style={{ fontFamily: 'Geist, sans-serif', fontWeight: 300, color: 'rgba(255,255,255,0.6)' }}>
-                    {t.contact.info.locationAddress}<br />
-                    {t.contact.info.locationCity}
                   </p>
                 </div>
               </div>

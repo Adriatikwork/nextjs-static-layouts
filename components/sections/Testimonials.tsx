@@ -23,7 +23,7 @@ export function Testimonials() {
               className="text-[#1a506c] text-sm tracking-[0.3em] uppercase mb-4"
               style={{ fontFamily: 'Geist, sans-serif', fontWeight: 500 }}
             >
-              Recensioni
+              {t.testimonials.label}
             </motion.p>
             <motion.h2
               initial={{ opacity: 0, y: 20 }}

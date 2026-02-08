@@ -39,14 +39,14 @@ export const content = {
       tagline: "Eccellenza medica al servizio del tuo sorriso e della tua bellezza naturale",
       welcomeText: "Benvenuti allo studio di...",
       description: "Competenza odontoiatrica e medicina estetica facciale per un percorso di bellezza e benessere personalizzato",
-      ctaPrimary: "Prenota Consulto",
+      ctaPrimary: "Prenota Consulenza",
       ctaSecondary: "Scopri i Servizi",
       location: "Pistoia, Italia",
       scroll: "Scroll",
       bottomText: "Presso lo studio della Dottoressa Irene Maria Beconi",
       bottomSubtext: "Cura professionale e attenzione personalizzata per ogni paziente",
-      whyChooseUsTitle: "Perché Sceglierci",
-      whyChooseUsSubtitle: "Oltre 15 anni di esperienza in odontoiatria e medicina estetica.",
+      whyChooseUsTitle: "Perché Scegliere",
+      whyChooseUsSubtitle: "Oltre 10 anni di esperienza in odontoiatria e medicina estetica.",
       howItWorksTitle: "Come Funziona",
       howItWorksSubtitle: "Seguiremo ogni passo del tuo percorso con attenzione e professionalità.",
       step1Title: "Prenota una visita",
@@ -55,20 +55,14 @@ export const content = {
       step2Desc: "Sarà disegnai personalità per tua estetica.",
       step3Title: "Ricevi il tuo piano personalizzato",
       step3Desc: "Racoma unica pediatra ai eropa e mi ma rspelicina una varva.",
-      step4Title: "Chiama ora",
-      step4Desc: "Chiama passo ser pretego in attento anticipommetica.",
       cardsTitle: "Il Nostro Percorso",
       cardsSubtitle: "Scopri come possiamo aiutarti nel tuo percorso di salute e bellezza",
       cards: {
         odontoiatriaTitle: "Odontoiatria",
-        odontoiatriaDesc: "Cure dentistiche complete per la salute del tuo sorriso.",
         medicinaEsteticaTitle: "Medicina Estetica del Viso",
-        medicinaEsteticaDesc: "Ringiovanimento del viso per un aspetto naturale e armonioso.",
-        consulenzaTitle: "Consulenza Personalizzata",
-        consulenzaDesc: "Visite approfondite per creare un piano di trattamento su misura.",
+        consulenzaTitle: "Consulenza con la dottoressa",
         aboutTitle: "Chi Sono",
-        aboutBullet1: "Esperienza pluriennale in odontoiatria",
-        aboutBullet2: "Specializzazione in medicina estetica",
+        aboutBullet2: "Odontoiatra\nMedico Estetico del Volto",
         servicesTitle: "Servizi",
         servicesBullet1: "Trattamenti dentali completi",
         servicesBullet2: "Medicina estetica del volto",
@@ -90,7 +84,8 @@ export const content = {
       quote: "Il sorriso è il nostro biglietto da visita più bello. Affidati a cure personalizzate per il tuo benessere."
     },
     testimonials: {
-      title: "Cosa Dicono i Nostri Pazienti",
+      label: "Recensioni",
+      title: "Cosa Dicono I Miei Pazienti",
       subtitle: "La soddisfazione dei nostri pazienti è la nostra priorità",
       items: [
         {
@@ -123,13 +118,13 @@ export const content = {
       title: "Chi Sono",
       pageHeading: "Chi Sono",
       name: "Dottoressa Irene\nMaria Beconi",
-      subtitle: "Specialista in odontoiatria e medicina estetica del volto",
-      experienceBadge: "15+ anni di esperienza",
+      subtitle: "Odontoiatra Medico Estetico del Volto",
+      experienceBadge: "10+ anni di esperienza",
       intro: "Con anni di esperienza e formazione continua, mi dedico a offrire trattamenti di eccellenza che combinano competenza medica e attenzione alla persona.",
       description: "La mia missione è aiutare ogni paziente a raggiungere il benessere attraverso cure personalizzate, utilizzando le tecniche più avanzate e un approccio umano e professionale.",
       keyHighlights: [
-        "Specialista in Odontoiatria",
-        "Esperta in Medicina Estetica del Volto",
+        "Medico Odontoiatra",
+        "Medico Estetico del Volto",
         "Formazione internazionale continua"
       ],
       values: [
@@ -147,7 +142,7 @@ export const content = {
         },
         {
           title: "Esperienza",
-          description: "Anni di pratica specialistica nel settore"
+          description: "Anni di pratica professionale nel settore"
         }
       ],
       formationTitle: "La mia formazione",
@@ -171,8 +166,8 @@ export const content = {
     },
     services: {
       title: "I Nostri Servizi",
-      pageHeading: "I Nostri Servizi",
-      pageTitle: "I nostri servizi esclusivi",
+      pageHeading: "Quello Che Offro",
+      pageTitle: "I miei servizi",
       pageDescription: "Scopri i trattamenti di medicina estetica e odontoiatria. Ci impegniamo per fornire risultati naturali ed eleganti, valorizzando la tua naturale bellezza in modo armonioso.",
       subtitle: "Due aree di eccellenza al servizio della tua bellezza",
       intro: "La mia pratica medica unisce competenze odontoiatriche e competenze in medicina estetica facciale per offrirti un approccio completo alla cura del sorriso e del volto.",
@@ -238,7 +233,7 @@ export const content = {
         },
         {
           title: "Endodonzia",
-          description: "Terapie canalari specialistiche per salvare denti compromessi, eseguite con tecnologie digitali avanzate e massima precisione operativa.",
+          description: "Terapie canalari avanzate per salvare denti compromessi, eseguite con tecnologie digitali moderne e massima precisione operativa.",
           items: [
             "Devitalizzazioni",
             "Ritrattamenti canalari",
@@ -248,7 +243,7 @@ export const content = {
         },
         {
           title: "Chirurgia Orale",
-          description: "Interventi chirurgici specialistici eseguiti con precisione e sicurezza, dalla semplice estrazione agli impianti dentali più complessi.",
+          description: "Interventi chirurgici avanzati eseguiti con precisione e sicurezza, dalla semplice estrazione agli impianti dentali più complessi.",
           items: [
             "Estrazioni dentali",
             "Implantologia dentale",
@@ -364,16 +359,9 @@ export const content = {
         locationAddress: "Via del Montone numero 34",
         locationCity: "50100 Firenze (FI)",
         phone: "Telefono",
-        phoneNumber: "+39 055 12456",
+        phoneNumber: "+39 333 5481104",
         email: "Email",
         emailAddress: "info@dottoressamariabeconi.it",
-        hours: "Orari",
-        weekdays: "Lun-Ven:",
-        weekdaysTime: "9:00-19:00",
-        saturday: "Sabato:",
-        saturdayTime: "9:00-13:00",
-        sunday: "Domenica:",
-        sundayTime: "Chiuso",
       },
       booking: {
         title: "Prenota Appuntamento",
@@ -435,8 +423,6 @@ export const content = {
           id: "loc1",
           name: "Studio Centrale",
           address: "Via dei Calzaiuoli 12, 50122 Firenze",
-          days: "Lunedì, Mercoledì, Venerdì",
-          hours: "09:00 – 18:00",
           notes: "Sede principale - Centro storico",
           phone: "+39 0573 123456",
           services: ["dental", "aesthetic"]
@@ -445,8 +431,6 @@ export const content = {
           id: "loc2",
           name: "Clinica Santa Maria Novella",
           address: "Piazza Santa Maria Novella 8, 50123 Firenze",
-          days: "Martedì, Giovedì",
-          hours: "10:00 – 19:00",
           notes: "Vicino alla stazione ferroviaria",
           phone: "+39 0573 234567",
           services: ["dental", "aesthetic"]
@@ -455,8 +439,6 @@ export const content = {
           id: "loc3",
           name: "Ambulatorio Oltrarno",
           address: "Via Maggio 45, 50125 Firenze",
-          days: "Lunedì, Venerdì",
-          hours: "14:00 – 20:00",
           notes: "Quartiere artigianale",
           phone: "+39 0573 345678",
           services: ["dental", "aesthetic"]
@@ -465,8 +447,6 @@ export const content = {
           id: "loc4",
           name: "Poliambulatorio Le Cure",
           address: "Viale dei Mille 90, 50131 Firenze",
-          days: "Mercoledì, Sabato",
-          hours: "08:00 – 14:00",
           notes: "Parcheggio disponibile",
           phone: "+39 0573 456789",
           services: ["dental"]
@@ -475,8 +455,6 @@ export const content = {
           id: "loc5",
           name: "Studio Campo di Marte",
           address: "Via Luigi Alamanni 5, 50123 Firenze",
-          days: "Giovedì",
-          hours: "15:00 – 19:00",
           notes: "Solo su appuntamento",
           phone: "+39 0573 567890",
           services: ["dental", "aesthetic"]
@@ -565,8 +543,6 @@ export const content = {
       step2Desc: "Personalized design for your aesthetic goals.",
       step3Title: "Receive your personalized plan",
       step3Desc: "Unique pediatric approach and careful planning.",
-      step4Title: "Call now",
-      step4Desc: "Call for proactive attention and anticipation.",
       cardsTitle: "Our Journey",
       cardsSubtitle: "Discover how we can help you on your journey to health and beauty",
       cards: {
@@ -574,11 +550,11 @@ export const content = {
         odontoiatriaDesc: "Complete dental care for your smile's health.",
         medicinaEsteticaTitle: "Facial Aesthetic Medicine",
         medicinaEsteticaDesc: "Facial rejuvenation for a natural and harmonious appearance.",
-        consulenzaTitle: "Personalized Consultation",
+        consulenzaTitle: "Consultation with the Doctor",
         consulenzaDesc: "In-depth visits to create a customized treatment plan.",
         aboutTitle: "About Me",
         aboutBullet1: "Years of experience in dentistry",
-        aboutBullet2: "Specialization in aesthetic medicine",
+        aboutBullet2: "Dental Surgeon\nFacial Aesthetic Medicine Doctor",
         servicesTitle: "Services",
         servicesBullet1: "Complete dental treatments",
         servicesBullet2: "Facial aesthetic medicine",
@@ -600,7 +576,8 @@ export const content = {
       quote: "A smile is our most beautiful business card. Trust in personalized care for your wellbeing."
     },
     testimonials: {
-      title: "What Our Patients Say",
+      label: "Testimonials",
+      title: "What My Patients Say",
       subtitle: "Our patients' satisfaction is our priority",
       items: [
         {
@@ -633,13 +610,13 @@ export const content = {
       title: "About Me",
       pageHeading: "About Me",
       name: "Dr. Irene\nMaria Beconi",
-      subtitle: "Specialist in dentistry and facial aesthetic medicine",
-      experienceBadge: "15+ years of experience",
+      subtitle: "Dental Surgeon & Facial Aesthetic Medicine Doctor",
+      experienceBadge: "10+ years of experience",
       intro: "With years of experience and continuous training, I am dedicated to providing excellent treatments that combine medical expertise with personal care.",
       description: "My mission is to help each patient achieve wellbeing through personalized care, using the most advanced techniques with a compassionate and professional approach.",
       keyHighlights: [
-        "Specialist in Dentistry",
-        "Expert in Facial Aesthetic Medicine",
+        "Dental Surgeon",
+        "Facial Aesthetic Medicine Doctor",
         "Continuous international training"
       ],
       values: [
@@ -657,7 +634,7 @@ export const content = {
         },
         {
           title: "Experience",
-          description: "Years of specialized practice in the field"
+          description: "Years of professional practice in the field"
         }
       ],
       formationTitle: "My Education & Training",
@@ -681,8 +658,8 @@ export const content = {
     },
     services: {
       title: "Our Services",
-      pageHeading: "Our Services",
-      pageTitle: "Our exclusive services",
+      pageHeading: "What I Offer",
+      pageTitle: "My services",
       pageDescription: "Discover aesthetic medicine and dentistry treatments. We are committed to providing natural and elegant results, enhancing your natural beauty harmoniously.",
       subtitle: "Two areas of excellence for your beauty and wellbeing",
       intro: "My medical practice combines dental expertise with facial aesthetic medicine to provide you with a comprehensive approach to smile and facial care.",
@@ -748,7 +725,7 @@ export const content = {
         },
         {
           title: "Endodontics",
-          description: "Specialized root canal therapies to save compromised teeth, performed with advanced digital technologies and the highest level of precision.",
+          description: "Advanced root canal therapies to save compromised teeth, performed with modern digital technologies and the highest level of precision.",
           items: [
             "Root canal treatment",
             "Root canal retreatment",
@@ -758,7 +735,7 @@ export const content = {
         },
         {
           title: "Oral Surgery",
-          description: "Specialized surgical procedures performed with precision and safety, from simple extractions to complex dental implant procedures.",
+          description: "Advanced surgical procedures performed with precision and safety, from simple extractions to complex dental implant procedures.",
           items: [
             "Tooth extractions",
             "Dental implants",
@@ -874,16 +851,9 @@ export const content = {
         locationAddress: "Via del Montone numero 34",
         locationCity: "50100 Florence (FI)",
         phone: "Phone",
-        phoneNumber: "+39 055 12456",
+        phoneNumber: "+39 333 5481104",
         email: "Email",
         emailAddress: "info@dottoressamariabeconi.it",
-        hours: "Hours",
-        weekdays: "Mon-Fri:",
-        weekdaysTime: "9:00-19:00",
-        saturday: "Saturday:",
-        saturdayTime: "9:00-13:00",
-        sunday: "Sunday:",
-        sundayTime: "Closed",
       },
       booking: {
         title: "Book an Appointment",
@@ -945,8 +915,6 @@ export const content = {
           id: "loc1",
           name: "Central Office",
           address: "Via dei Calzaiuoli 12, 50122 Florence",
-          days: "Monday, Wednesday, Friday",
-          hours: "09:00 – 18:00",
           notes: "Main office - Historic center",
           phone: "+39 0573 123456",
           services: ["dental", "aesthetic"]
@@ -955,8 +923,6 @@ export const content = {
           id: "loc2",
           name: "Santa Maria Novella Clinic",
           address: "Piazza Santa Maria Novella 8, 50123 Florence",
-          days: "Tuesday, Thursday",
-          hours: "10:00 – 19:00",
           notes: "Near the train station",
           phone: "+39 0573 234567",
           services: ["dental", "aesthetic"]
@@ -965,8 +931,6 @@ export const content = {
           id: "loc3",
           name: "Oltrarno Clinic",
           address: "Via Maggio 45, 50125 Florence",
-          days: "Monday, Friday",
-          hours: "14:00 – 20:00",
           notes: "Artisan quarter",
           phone: "+39 0573 345678",
           services: ["dental", "aesthetic"]
@@ -975,8 +939,6 @@ export const content = {
           id: "loc4",
           name: "Le Cure Polyclinic",
           address: "Viale dei Mille 90, 50131 Florence",
-          days: "Wednesday, Saturday",
-          hours: "08:00 – 14:00",
           notes: "Parking available",
           phone: "+39 0573 456789",
           services: ["dental"]
@@ -985,8 +947,6 @@ export const content = {
           id: "loc5",
           name: "Campo di Marte Office",
           address: "Via Luigi Alamanni 5, 50123 Florence",
-          days: "Thursday",
-          hours: "15:00 – 19:00",
           notes: "By appointment only",
           phone: "+39 0573 567890",
           services: ["dental", "aesthetic"]

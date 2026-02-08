@@ -3,10 +3,10 @@ import { ServiceContent } from './types'
 export const content: ServiceContent = {
   it: {
     title: "Endodonzia",
-    description: "Terapie canalari specialistiche con tecnologie digitali avanzate.",
+    description: "Terapie canalari avanzate con tecnologie digitali avanzate.",
     features: ["Devitalizzazioni", "Ritrattamenti", "Microscopia operatoria"],
 
-    whatIs: "L'endodonzia è la branca dell'odontoiatria che si occupa della diagnosi e del trattamento delle patologie della polpa dentale e dei tessuti periradicolari. Attraverso terapie canalari specialistiche, salviamo denti gravemente compromessi da carie profonde, traumi o infezioni, evitando l'estrazione. Utilizziamo tecnologie digitali avanzate, microscopia operatoria e strumenti di ultima generazione per garantire precisione millimetrica e massimi tassi di successo. L'obiettivo è preservare il dente naturale, mantenendo funzionalità ed estetica.",
+    whatIs: "L'endodonzia è la branca dell'odontoiatria che si occupa della diagnosi e del trattamento delle patologie della polpa dentale e dei tessuti periradicolari. Attraverso terapie canalari avanzate, salviamo denti gravemente compromessi da carie profonde, traumi o infezioni, evitando l'estrazione. Utilizziamo tecnologie digitali avanzate, microscopia operatoria e strumenti di ultima generazione per garantire precisione millimetrica e massimi tassi di successo. L'obiettivo è preservare il dente naturale, mantenendo funzionalità ed estetica.",
 
     benefits: [
       "Salvataggio di denti altrimenti destinati all'estrazione",
@@ -94,10 +94,10 @@ export const content: ServiceContent = {
   },
   en: {
     title: "Endodontics",
-    description: "Specialized canal therapies with advanced digital technologies.",
+    description: "Advanced canal therapies with advanced digital technologies.",
     features: ["Root canals", "Retreatments", "Operative microscopy"],
 
-    whatIs: "Endodontics is the branch of dentistry that deals with the diagnosis and treatment of dental pulp and periradicular tissue pathologies. Through specialized root canal therapies, we save teeth severely compromised by deep cavities, trauma, or infections, avoiding extraction. We use advanced digital technologies, operative microscopy, and state-of-the-art instruments to ensure millimetric precision and maximum success rates. The goal is to preserve the natural tooth, maintaining functionality and aesthetics.",
+    whatIs: "Endodontics is the branch of dentistry that deals with the diagnosis and treatment of dental pulp and periradicular tissue pathologies. Through advanced root canal therapies, we save teeth severely compromised by deep cavities, trauma, or infections, avoiding extraction. We use advanced digital technologies, operative microscopy, and state-of-the-art instruments to ensure millimetric precision and maximum success rates. The goal is to preserve the natural tooth, maintaining functionality and aesthetics.",
 
     benefits: [
       "Saving teeth otherwise destined for extraction",

@@ -1,6 +1,6 @@
 # Dottssa Irene Maria Beconi - Medical Website
 
-A premium static website for Dr. Irene Maria Beconi, specialist in dentistry and facial aesthetic medicine in Pistoia, Italy.
+A premium static website for Dr. Irene Maria Beconi, Dental Surgeon and Facial Aesthetic Medicine Doctor in Pistoia, Italy.
 
 ## Features
 

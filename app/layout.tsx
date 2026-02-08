@@ -28,7 +28,7 @@ const playfair = Playfair_Display({
 
 export const metadata: Metadata = {
   title: 'Dottssa Irene Maria Beconi - Odontoiatria e Medicina Estetica del Volto | Pistoia',
-  description: 'Dottoressa Irene Maria Beconi: Specialista in odontoiatria e medicina estetica del volto a Pistoia. Trattamenti personalizzati con tecnologie avanzate per il tuo benessere e la tua bellezza naturale.',
+  description: 'Dottoressa Irene Maria Beconi: Odontoiatra e Medico Estetico del Volto a Pistoia. Trattamenti personalizzati con tecnologie avanzate per il tuo benessere e la tua bellezza naturale.',
   keywords: 'odontoiatria Pistoia, medicina estetica Pistoia, dentista Pistoia, chirurgia orale, filler, botulino, impianti dentali, Irene Maria Beconi',
   authors: [{ name: 'Dottssa Irene Maria Beconi' }],
   creator: 'Dottssa Irene Maria Beconi',
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   generator: 'Next.js',
   openGraph: {
     title: 'Dottssa Irene Maria Beconi - Odontoiatria e Medicina Estetica',
-    description: 'Specialista in odontoiatria e medicina estetica del volto a Pistoia. Trattamenti personalizzati per il tuo benessere.',
+    description: 'Odontoiatra e Medico Estetico del Volto a Pistoia. Trattamenti personalizzati per il tuo benessere.',
     type: 'website',
     locale: 'it_IT',
     alternateLocale: ['en_US'],
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Dottssa Irene Maria Beconi - Odontoiatria e Medicina Estetica',
-    description: 'Specialista in odontoiatria e medicina estetica del volto a Pistoia. Trattamenti personalizzati per il tuo benessere.',
+    description: 'Odontoiatra e Medico Estetico del Volto a Pistoia. Trattamenti personalizzati per il tuo benessere.',
     images: [assetPath('/logo-combined.png')],
   },
   robots: {
@@ -124,7 +124,7 @@ export default function RootLayout({
               '@context': 'https://schema.org',
               '@type': 'Dentist',
               name: 'Dottssa Irene Maria Beconi',
-              description: 'Specialista in odontoiatria e medicina estetica del volto',
+              description: 'Odontoiatra e Medico Estetico del Volto',
               url: 'https://dottoressairenebeconi.it',
               telephone: '+39 333 548 1104',
               email: 'info@dottoressairenebeconi.it',

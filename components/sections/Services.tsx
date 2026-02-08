@@ -2,15 +2,24 @@
 
 import { useLanguage } from '@/lib/LanguageContext'
 import { motion, AnimatePresence } from 'framer-motion'
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { getServiceSummaries } from '@/content/services'
 import { ArrowRight } from 'lucide-react'
+import { useSearchParams } from 'next/navigation'
 
 export function Services() {
   const { t, language } = useLanguage()
-  const [activeTab, setActiveTab] = useState<'dental' | 'aesthetic'>('aesthetic')
+  const searchParams = useSearchParams()
+  const tabParam = searchParams.get('tab') as 'dental' | 'aesthetic' | null
+  const [activeTab, setActiveTab] = useState<'dental' | 'aesthetic'>(tabParam || 'aesthetic')
+
+  useEffect(() => {
+    if (tabParam) {
+      setActiveTab(tabParam)
+    }
+  }, [tabParam])
 
   const services = useMemo(() => getServiceSummaries(language), [language])
 

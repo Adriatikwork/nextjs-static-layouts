@@ -20,7 +20,7 @@ export const content: ServiceContent = {
 
     process: [
       {
-        title: "Consulenza personalizzata",
+        title: "Prenota un appuntamento",
         description: "Analizziamo insieme le tue esigenze, valutiamo l'anatomia del tuo viso e definiamo il piano di trattamento ottimale per risultati armoniosi"
       },
       {
@@ -113,7 +113,7 @@ export const content: ServiceContent = {
 
     process: [
       {
-        title: "Personalized consultation",
+        title: "Book an appointment",
         description: "We analyze your needs together, assess your facial anatomy, and define the optimal treatment plan for harmonious results"
       },
       {

@@ -11,6 +11,8 @@ import { ArrowRight, Calendar, Stethoscope, Sparkles, Users } from 'lucide-react
 export function Hero() {
   const { t } = useLanguage()
   const [currentSlide, setCurrentSlide] = useState(0)
+  const [touchStart, setTouchStart] = useState<number | null>(null)
+  const [touchEnd, setTouchEnd] = useState<number | null>(null)
 
   const heroImages = [
     'https://images.unsplash.com/photo-1629909615184-74f495363b67?w=1920&q=80',
@@ -26,10 +28,44 @@ export function Hero() {
     return () => clearInterval(interval)
   }, [heroImages.length])
 
+  // Minimum swipe distance (in px)
+  const minSwipeDistance = 50
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null)
+    setTouchStart(e.targetTouches[0].clientX)
+  }
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX)
+  }
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return
+
+    const distance = touchStart - touchEnd
+    const isLeftSwipe = distance > minSwipeDistance
+    const isRightSwipe = distance < -minSwipeDistance
+
+    if (isLeftSwipe) {
+      // Swipe left = next slide
+      setCurrentSlide((prev) => (prev + 1) % heroImages.length)
+    }
+    if (isRightSwipe) {
+      // Swipe right = previous slide
+      setCurrentSlide((prev) => (prev - 1 + heroImages.length) % heroImages.length)
+    }
+  }
+
   return (
     <section id="hero-section" className="relative w-full">
       {/* ===== HERO ===== */}
-      <div className="relative w-full min-h-screen overflow-hidden">
+      <div
+        className="relative w-full min-h-screen overflow-hidden"
+        onTouchStart={onTouchStart}
+        onTouchMove={onTouchMove}
+        onTouchEnd={onTouchEnd}
+      >
         {/* Background Images */}
         {heroImages.map((image, index) => (
           <div
@@ -65,17 +101,6 @@ export function Hero() {
               transition={{ duration: 1, delay: 0.2 }}
               className="space-y-8"
             >
-              {/* Small label */}
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                className="text-[#c9b896] text-sm tracking-[0.3em] uppercase"
-                style={{ fontFamily: 'Geist, sans-serif', fontWeight: 400 }}
-              >
-                {t.hero.location}
-              </motion.p>
-
               {/* Main heading */}
               <div className="relative inline-block mx-auto">
                 {/* Subtle glass effect */}
@@ -247,13 +272,13 @@ export function Hero() {
                 image: 'https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=800&q=80',
                 title: t.hero.cards.odontoiatriaTitle,
                 desc: t.hero.cards.odontoiatriaDesc,
-                href: '/servizi',
+                href: '/servizi?tab=dental',
               },
               {
                 image: 'https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=800&q=80',
                 title: t.hero.cards.medicinaEsteticaTitle,
                 desc: t.hero.cards.medicinaEsteticaDesc,
-                href: '/servizi',
+                href: '/servizi?tab=aesthetic',
               },
               {
                 image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80',
@@ -285,12 +310,6 @@ export function Hero() {
                   >
                     {card.title}
                   </h3>
-                  <p
-                    className="text-sm leading-relaxed mb-3"
-                    style={{ fontFamily: 'Geist, sans-serif', fontWeight: 300, color: '#5a6a70' }}
-                  >
-                    {card.desc}
-                  </p>
                   <span
                     className="inline-flex items-center gap-2 text-[#1a506c] text-sm tracking-wide group-hover:gap-3 transition-all duration-300"
                     style={{ fontFamily: 'Geist, sans-serif', fontWeight: 500 }}
@@ -333,12 +352,11 @@ export function Hero() {
           </div>
 
           {/* Steps */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-8">
             {[
               { icon: Calendar, num: '01', title: t.hero.step1Title, desc: t.hero.step1Desc },
               { icon: Stethoscope, num: '02', title: t.hero.step2Title, desc: t.hero.step2Desc },
               { icon: Sparkles, num: '03', title: t.hero.step3Title, desc: t.hero.step3Desc },
-              { icon: Users, num: '04', title: t.hero.step4Title, desc: t.hero.step4Desc },
             ].map((step, index) => (
               <motion.div
                 key={index}
