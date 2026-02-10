@@ -1,5 +1,6 @@
 "use client"
 
+// Chi Sono page component
 import { useLanguage } from '@/lib/LanguageContext'
 import { motion } from 'framer-motion'
 import { Award, GraduationCap, Heart, Sparkles, ArrowRight } from 'lucide-react'
