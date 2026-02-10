@@ -118,7 +118,7 @@ export const content = {
       title: "Chi Sono",
       pageHeading: "Chi Sono",
       name: "Dottoressa\nIrene Maria Beconi",
-      subtitle: "Odontoiatra\nMedico Estetico del Volto",
+      subtitle: "Odontoiatria\nMedicina Estetica del Volto",
       experienceBadge: "10+ anni di esperienza",
       intro: "Con anni di esperienza e formazione continua, mi dedico a offrire trattamenti di eccellenza che combinano competenza medica e attenzione alla persona.",
       description: "La mia missione è aiutare ogni paziente a raggiungere il benessere attraverso cure personalizzate, utilizzando le tecniche più avanzate e un approccio umano e professionale.",
