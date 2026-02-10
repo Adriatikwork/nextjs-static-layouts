@@ -119,7 +119,12 @@ export function Hero() {
                   className="relative text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white leading-[1.05] tracking-tight"
                   style={{ fontFamily: 'Playfair Display, serif', fontWeight: 400 }}
                 >
-                  {t.hero.name}
+                  {t.hero.name.split('\n').map((line: string, i: number) => (
+                    <span key={i}>
+                      {line}
+                      {i < t.hero.name.split('\n').length - 1 && <br />}
+                    </span>
+                  ))}
                 </motion.h1>
               </div>
 
@@ -152,7 +157,12 @@ export function Hero() {
                 className="text-xl sm:text-2xl md:text-3xl text-white/90 max-w-2xl mx-auto leading-relaxed"
                 style={{ fontFamily: 'Playfair Display, serif', fontWeight: 300 }}
               >
-                {t.hero.subtitle}
+                {t.hero.subtitle.split('\n').map((line: string, i: number) => (
+                  <span key={i}>
+                    {line}
+                    {i < t.hero.subtitle.split('\n').length - 1 && <br />}
+                  </span>
+                ))}
               </motion.p>
 
               {/* Description */}

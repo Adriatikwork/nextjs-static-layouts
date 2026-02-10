@@ -50,7 +50,12 @@ export function About() {
               className="text-xl md:text-2xl max-w-2xl leading-relaxed mx-auto md:mx-0"
               style={{ fontFamily: 'Playfair Display, serif', fontWeight: 300, color: '#3a4a50' }}
             >
-              {t.about.subtitle}
+              {t.about.subtitle.split('\n').map((line: string, i: number) => (
+                <span key={i}>
+                  {line}
+                  {i < t.about.subtitle.split('\n').length - 1 && <br />}
+                </span>
+              ))}
             </p>
           </motion.div>
         </div>
