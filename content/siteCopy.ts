@@ -35,7 +35,7 @@ export const content = {
     },
     hero: {
       name: "Dottoressa\nIrene Maria Beconi",
-      subtitle: "Odontoiatria e\nMedicina Estetica del Volto",
+      subtitle: "Odontoiatria\nMedicina Estetica del Volto",
       tagline: "Eccellenza medica al servizio del tuo sorriso e della tua bellezza naturale",
       welcomeText: "Benvenuti allo studio di...",
       description: "Un percorso di salute e bellezza personalizzato, basato sulle tue esigenze",
