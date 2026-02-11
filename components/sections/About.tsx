@@ -36,11 +36,11 @@ export function About() {
               {t.about.pageHeading}
             </p>
             <h1
-              className="text-5xl md:text-6xl lg:text-7xl leading-[1.05] tracking-tight mb-8"
+              className="text-[clamp(1.75rem,8vw,4.5rem)] leading-[1.05] tracking-tight mb-8"
               style={{ fontFamily: 'Playfair Display, serif', color: '#1a2a30' }}
             >
               {t.about.name.split('\n').map((line: string, i: number) => (
-                <span key={i}>
+                <span key={i} className={i === 1 ? 'whitespace-nowrap' : ''}>
                   {line}
                   {i < t.about.name.split('\n').length - 1 && <br />}
                 </span>
